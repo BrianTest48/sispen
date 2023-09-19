@@ -733,6 +733,8 @@ function mostrardetalle(a,b,c){
                         $('#cargo_certificado').val(cargo);
                         $('#firmante_certificado').val(firm);
                         $('#lugar_certificado').val(dpto1+", "+convertDateFormat(fech_final_1));
+                        $('#sueldo_emp').val(data[0]['fechsueldo']);
+                        $('#moneda_emp').val(data[0]['moneda_rm']);
 
                         /* LIQUIDACION */
                         $('#dias_liqui').val(data[0]['Dias']);
@@ -1154,6 +1156,20 @@ function calcularBono(){
     $('#cal_bono').val(prom_total);
 
 }
+function calcularTotalBoleta(){
+    let sueldo_boleta = $('#sueldo_boleta').val();
+    let h_extras_boleta = $('#horaex_boleta').val();
+    let boni_boleta = $('#boni_boleta').val();
+    let rm_vacacional = $('#rm_vacacional_boleta').val();
+    let reintegro_boleta = $('#reintegro_boleta').val();
+    let otros_boleta = $('#otros_boleta').val();
+    
+    let total ;
+
+    total = Number(sueldo_boleta) + Number(h_extras_boleta) + Number(boni_boleta) + Number(rm_vacacional)+ Number(reintegro_boleta) + Number(otros_boleta) ;
+    console.log(total);
+    $('#total_monto_boleta').val(total);
+}
 
 function ListarFirmante(a){
     let estado = $('select[name="lst_emp_'+a+'"] option:selected').text();
@@ -1448,6 +1464,46 @@ $(document).on("click","#bono-tab", function(){
 
 });
 
+$(document).on("click","#boleta-tab", function(){
+    
+    let anio_inicio = $("#fech_inicio_emp").val();
+    let anio_final = $("#fech_final_emp").val();
+    /**FUNCIONALIDAD PARA CAMBIAR LA VISIBILIDAD DE BONOS*/
+
+    let fecha = new Date(anio_final);
+
+    let fecha_01_65 = new Date("1965-01-01");
+    let fecha_07_80 = new Date("1980-07-01");
+    let fecha_01_70 = new Date("1970-01-01");
+    
+    let fecha_12_82 = new Date("1983-01-01");
+    let fecha_07_99 = new Date("1999-08-01");
+    let fecha_12_84 = new Date("1985-01-01");
+    
+
+    $('.bonif').attr("disabled", "disabled");
+
+    if(fecha > fecha_01_65 && fecha < fecha_07_99){
+        $('#boni_boleta').attr("disabled", false);
+        $('#reintegro_boleta').attr("disabled", false);
+        $('#bonificacion_pasajes_boleta').attr("disabled", false);
+        $('#bonificacion_uniforme_boleta').attr("disabled", false);
+        $('#bonificacion_gratificacion_boleta').attr("disabled", false);
+    }
+    if(fecha > fecha_07_80 && fecha < fecha_07_99){
+        $('#bonificacion_metas_boleta').attr("disabled", false);
+    }
+    if(fecha > fecha_01_65 && fecha < fecha_12_82){
+        $('#bonificacion_alimentos_boleta').attr("disabled", false);
+    }
+    if(fecha > fecha_01_70 && fecha < fecha_07_99){
+        $('#bonificacion_logros_boleta').attr("disabled", false);
+    }
+    if(fecha > fecha_01_65 && fecha < fecha_12_84){
+        $('#bonificacion_festivos_boleta').attr("disabled", false);  
+    }  
+});
+
 
 $(document).on("click","#btnprevli", function(){
     OcultarPrev();
@@ -1458,11 +1514,20 @@ $(document).on("click","#btnprevli", function(){
     let dias_lq     = $('#dias_liqui').val();
     let meses_lq    = $('#meses_liqui').val();
     let anios_lq    = $('#anios_liqui').val();
-    let monto_prueba= 1500;
+    let monto_texto;
     let motivo      = $('select[name="combo_prev_liqui"] option:selected').text();
     let fecha_final = $("#fech_final_emp").val();
     let fecha       = new Date(fecha_final);
     let anio        = fecha.getFullYear();
+
+    /*CALCULO DEL CUERPO DE AÑOS POR SUELDO */
+    let moneda_rm = $('#moneda_emp').val();
+    let sueldo_rm = $('#sueldo_emp').val();
+    let monto_sld_anio ;  
+    let monto_sld_mes ;
+    let monto_sld_dia; 
+    let monto_total_lq;
+    let meses_sld_lq; 
 
     $('.motivo_retiro').html(motivo.toUpperCase());
     
@@ -1479,22 +1544,55 @@ $(document).on("click","#btnprevli", function(){
         $("#liquidacion_4").show();
     }
 
+
+
+   
     if(anio >= 60 && anio <= 1979){
+        if(dias_lq > 0){
+            meses_sld_lq = Number(meses_lq) + 1;
+        }else {
+            meses_sld_lq = meses_lq ;
+        }
+        monto_sld_anio = Number(Number(sueldo_rm) * Number(anios_lq)).toFixed(2);
+        monto_sld_mes = Number((Number(sueldo_rm) / 12) * Number(meses_sld_lq)).toFixed(2);
+        monto_total_lq = Number(Number(monto_sld_anio) + Number(monto_sld_mes)).toFixed(2);
+        monto_texto = monto_total_lq;
+
+        $('.anios_liqui').html(anios_lq + " Años");
+        $('.meses_liqui').html(meses_sld_lq + " Meses");
+        $('.tiempo_lq_total').html(anios_lq + " Años " + meses_sld_lq + " Meses");
+
         $('.modelo_60_79').show();
+        
     }
     if(anio >= 1980 && anio <= 1999){
+        meses_sld_lq = meses_lq ;
+        monto_sld_anio = Number(Number(sueldo_rm) * Number(anios_lq)).toFixed(2);
+        monto_sld_mes = Number((Number(sueldo_rm) / 12) * Number(meses_lq)).toFixed(2);
+        monto_sld_dia =Number(Number((Number(sueldo_rm) / 12)/30) * Number(dias_lq)).toFixed(2);
+        monto_total_lq = Number(Number(monto_sld_anio) + Number(monto_sld_mes) + Number(monto_sld_dia)).toFixed(2);
+        monto_texto = monto_total_lq ;
+
+        $('.anios_liqui').html(anios_lq + " Años");
+        $('.meses_liqui').html(meses_sld_lq + " Meses");
+        $('.dias_liqui').html(dias_lq + " Dias");
+        $('.tiempo_lq_total').html(anios_lq + " Años " + meses_sld_lq + " Meses " + dias_lq + " Dias");
+
         $('.modelo_80_99').show();
     }
 
-    $('.anios_liqui').html(anios_lq + " Años");
-    $('.meses_liqui').html(meses_lq + " Meses");
-    $('.dias_liqui').html(dias_lq + " dias");
-    $('.monto_prueba').html(monto_prueba);
+    $('.tipo_moneda').html(moneda_rm);
+    $('.sueldo_rm').html(Number(sueldo_rm).toFixed(2));
+    $('.monto_sldo_anio').html(monto_sld_anio);
+    $('.monto_sldo_mes').html(monto_sld_mes);
+    $('.monto_sldo_dia').html(monto_sld_dia);
+    $('.monto_total_lq').html(monto_total_lq);
+    $('.monto_prueba').html(monto_texto);
 
     $.ajax({
         url: "../../controller/pensioncontrolador.php?op=letras_monto",
         type: "POST",
-        data: {valor : monto_prueba},
+        data: {valor : monto_texto},
         success: function(data){
             //console.log(data);
             $('.letras_monto').html(data);
@@ -1503,28 +1601,6 @@ $(document).on("click","#btnprevli", function(){
             console.log(error);
         }
     });
-   
-
-
-    /*let monto = Number($('.tot_imp').html());
-    let prc1 = Number(monto *0.01).toFixed(2);
-    let prc3 = Number(monto *0.03).toFixed(2);
-    let prc6 = Number(monto *0.06).toFixed(2);
-    let total_empleador = Number(prc6 * 3).toFixed(2);
-    let total_trabajador = (Number(prc3) * 2  + Number(prc1)).toFixed(2);
-    let total_neto = Number(monto) - Number(total_empleador) - Number(total_trabajador);
-
-    $('.porcentaje_6_liquidacion').html(prc6);
-    $('.porcentaje_3_liquidacion').html(prc3);
-    $('.porcentaje_1_liquidacion').html(prc1);
-    //$('.total_dsc_empleador_liquidacion').html(total_empleador);
-    //$('.total_dsc_trabajador_liquidacion').html(total_trabajador);
-    $('.total_neto_pagar_liquidacion').html(total_neto);
-
-    $("#prev1").hide();
-    $("#prev2").show();
-    $("#prev3").hide();
-    $("#prev4").hide();*/
 });
 
 $(document).on("click","#btnprevbono", function(){

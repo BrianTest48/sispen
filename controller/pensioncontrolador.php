@@ -62,7 +62,7 @@
             break;
 
         case 'consulta_dni_nac' :  
-            $token = 'b2f4b70e-2a6e-4ca7-8ee4-c7ec6a7a59bd';
+            $token = '46294ae7-7fbd-4ad1-99c1-9a10947c167c';
             //$dni    =   $_POST['dni'];
             $dni    =   $_POST['dni'];
             // Iniciar llamada a API
@@ -174,6 +174,7 @@
                     $sub_array['Dias'] = $row["Dias"];
                     $sub_array['fechsueldo'] = $row["fechsueldo"];
                     $sub_array['moneda_sueldo'] = $row["moneda_sueldo"];
+                    $sub_array['moneda_rm'] = $row["moneda_rm"];
                     $sub_array['dpto'] = $row["dpto"];
                     $sub_array['rep_legal'] = $row["rep_legal"];
                     $sub_array['dni_a'] = $row["dni_a"];

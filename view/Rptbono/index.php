@@ -186,6 +186,7 @@
                                     <input  type="hidden" id="fech_inicio_emp" name="fech_inicio_emp">
                                     <input  type="hidden" id="fech_final_emp" name="fech_final_emp">
                                     <input  type="hidden" id="sueldo_emp" name="sueldo_emp">
+                                    <input  type="hidden" id="moneda_emp" name="moneda_emp">
                                     <input  type="hidden" id="cargo_emp" name="cargo_emp">
                                     <input  type="hidden" id="dpto_emp" name="dpto_emp">
                                     <h5 class="text-center" id="nom_emp_lab"></h5>
@@ -245,61 +246,61 @@
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="row mg-b-5">
-                                                                <label class="form-control-label col-lg-6">Adelanto: <span class="tx-danger">*</span></label>
+                                                                <label class="form-control-label col-lg-6">Adelanto: </label>
                                                                 <input class="form-control col-lg-6 " type="number" name="empresa" value="0" placeholder="" required>
                                                             </div>
                                                         </div><!-- col-4 -->
                                                         <div class="col-lg-12">
                                                             <div class="row mg-b-5">
-                                                                <label class="form-control-label col-lg-6">Vacaciones: <span class="tx-danger">*</span></label>
+                                                                <label class="form-control-label col-lg-6">Vacaciones: </label>
                                                                 <input class="form-control col-lg-6" type="number" name="empresa"  value="0" placeholder="" required>
                                                             </div>
                                                         </div><!-- col-4 -->
                                                         <div class="col-lg-12">
                                                             <div class="row mg-b-5">
-                                                                <label class="form-control-label col-lg-6">Gratificaciones: <span class="tx-danger">*</span></label>
+                                                                <label class="form-control-label col-lg-6">Gratificaciones: </label>
                                                                 <input class="form-control col-lg-6" type="number" name="empresa"  value="0" placeholder="" required>
                                                             </div>
                                                         </div><!-- col-4 -->
                                                         <div class="col-lg-12">
                                                             <div class="row mg-b-5">
-                                                                <label class="form-control-label col-lg-6">Reintegro: <span class="tx-danger">*</span></label>
+                                                                <label class="form-control-label col-lg-6">Reintegro: </label>
                                                                 <input class="form-control col-lg-6" type="number" name="empresa"  value="0" placeholder="" required>
                                                             </div>
                                                         </div><!-- col-4 -->
                                                         <div class="col-lg-12">
                                                             <div class="row mg-b-5">
-                                                                <label class="form-control-label col-lg-6">Incentivo: <span class="tx-danger">*</span></label>
+                                                                <label class="form-control-label col-lg-6">Incentivo: </label>
                                                                 <input class="form-control col-lg-6" type="number" name="empresa"  value="0" placeholder="" required>
                                                             </div>
                                                         </div><!-- col-4 -->
                                                         <div class="col-lg-12">
                                                             <div class="row mg-b-5">
-                                                                <label class="form-control-label col-lg-6">Bonificacion: <span class="tx-danger">*</span></label>
+                                                                <label class="form-control-label col-lg-6">Bonificacion: </label>
                                                                 <input class="form-control col-lg-6" type="number" name="empresa" id="bonif" value="0" placeholder="" required>
                                                             </div>
                                                         </div><!-- col-4 -->
                                                         <div class="col-lg-12">
                                                             <div class="row mg-b-5">
-                                                                <label class="form-control-label col-lg-6">Bon. Extraordinaria: <span class="tx-danger">*</span></label>
+                                                                <label class="form-control-label col-lg-6">Bon. Extraordinaria: </label>
                                                                 <input class="form-control col-lg-6" type="number" name="empresa" id="bonif_extra" value="0" placeholder="" required>
                                                             </div>
                                                         </div><!-- col-4 -->
                                                         <div class="col-lg-12">
                                                             <div class="row mg-b-5">
-                                                                <label class="form-control-label col-lg-6">Bon. Graciosa: <span class="tx-danger">*</span></label>
+                                                                <label class="form-control-label col-lg-6">Bon. Graciosa: </label>
                                                                 <input class="form-control col-lg-6" type="number" name="empresa" id="bonif_gra" value="0" placeholder="" required>
                                                             </div>
                                                         </div><!-- col-4 -->
                                                         <div class="col-lg-12">
                                                             <div class="row mg-b-5">
-                                                                <label class="form-control-label col-lg-6">Bon. Por Cumplimiento de Meta: <span class="tx-danger">*</span></label>
+                                                                <label class="form-control-label col-lg-6">Bon. Por Cumplimiento de Meta: </label>
                                                                 <input class="form-control col-lg-6" type="number" name="empresa" id="bonif_meta" value="0" placeholder="" required>
                                                             </div>
                                                         </div><!-- col-4 -->
                                                         <div class="col-lg-12">
                                                             <div class="row mg-b-5">
-                                                                <label class="form-control-label col-lg-6">Bon. Por Dias Festivos: <span class="tx-danger">*</span></label>
+                                                                <label class="form-control-label col-lg-6">Bon. Por Dias Festivos: </label>
                                                                 <input class="form-control col-lg-6" type="number" name="empresa" id="bonif_dias" value="0" placeholder="" required>
                                                             </div>
                                                         </div><!-- col-4 -->
@@ -357,37 +358,79 @@
                                                         <div class="col-lg-12">
                                                             <div class="row mg-b-5">
                                                                 <label class="form-control-label col-lg-6">Sueldo: </label>
-                                                                <input class="form-control col-lg-6" type="number" name="sueldo_boleta" id="sueldo_boleta"    placeholder="" >
+                                                                <input class="form-control col-lg-6" type="number" name="sueldo_boleta" id="sueldo_boleta" oninput="calcularTotalBoleta()"   placeholder="" >
                                                             </div>
                                                         </div><!-- col-4 -->
                                                         <div class="col-lg-12">
                                                             <div class="row mg-b-5">
                                                                 <label class="form-control-label col-lg-6">REM. Vacacional: </label>
-                                                                <input class="form-control col-lg-6" type="number" name="rm_vacacional_boleta" id="rm_vacacional_boleta"    placeholder="" >
+                                                                <input class="form-control col-lg-6" type="number" name="rm_vacacional_boleta" id="rm_vacacional_boleta"  oninput="calcularTotalBoleta()"  placeholder="" >
                                                             </div>
                                                         </div><!-- col-4 -->
                                                         <div class="col-lg-12">
                                                             <div class="row mg-b-5">
                                                                 <label class="form-control-label col-lg-6">Reintegro: </label>
-                                                                <input class="form-control col-lg-6" type="number" name="reintegro_boleta" id="reintegro_boleta"  placeholder="" >
+                                                                <input class="form-control col-lg-6 bonif" type="number" name="reintegro_boleta" id="reintegro_boleta" oninput="calcularTotalBoleta()"  placeholder="" >
                                                             </div>
                                                         </div><!-- col-4 -->
                                                         <div class="col-lg-12">
                                                             <div class="row mg-b-5">
                                                                 <label class="form-control-label col-lg-6">H. Extras: </label>
-                                                                <input class="form-control col-lg-6" type="number" name="horaex_boleta" id="horaex_boleta"   placeholder="" >
+                                                                <input class="form-control col-lg-6" type="number" name="horaex_boleta" id="horaex_boleta" oninput="calcularTotalBoleta()"  placeholder="" >
                                                             </div>
                                                         </div><!-- col-4 -->
                                                         <div class="col-lg-12">
                                                             <div class="row mg-b-5">
                                                                 <label class="form-control-label col-lg-6">Bonificacion: </label>
-                                                                <input class="form-control col-lg-6" type="number" name="boni_boleta" id="boni_boleta"   placeholder="" >
+                                                                <input class="form-control col-lg-6 bonif" type="number" name="boni_boleta" id="boni_boleta" oninput="calcularTotalBoleta()"  placeholder="" >
+                                                            </div>
+                                                        </div><!-- col-4 -->
+                                                        <div class="col-lg-12">
+                                                            <div class="row mg-b-5">
+                                                                <label class="form-control-label col-lg-6">Bonificacion Por Alimentos: </label>
+                                                                <input class="form-control col-lg-6 bonif" type="number" name="bonificacion_alimentos_boleta" id="bonificacion_alimentos_boleta"  oninput="calcularTotalBoleta()" placeholder="" >
+                                                            </div>
+                                                        </div><!-- col-4 -->
+                                                        <div class="col-lg-12">
+                                                            <div class="row mg-b-5">
+                                                                <label class="form-control-label col-lg-6">Bonificacion Por Metas Cumplidas: </label>
+                                                                <input class="form-control col-lg-6 bonif" type="number" name="bonificacion_metas_boleta" id="bonificacion_metas_boleta"  oninput="calcularTotalBoleta()" placeholder="" >
+                                                            </div>
+                                                        </div><!-- col-4 -->
+                                                        <div class="col-lg-12">
+                                                            <div class="row mg-b-5">
+                                                                <label class="form-control-label col-lg-6">Bonificacion Por Logros Cumplidas: </label>
+                                                                <input class="form-control col-lg-6 bonif" type="number" name="bonificacion_logros_boleta" id="bonificacion_logros_boleta"  oninput="calcularTotalBoleta()" placeholder="" >
+                                                            </div>
+                                                        </div><!-- col-4 -->
+                                                        <div class="col-lg-12">
+                                                            <div class="row mg-b-5">
+                                                                <label class="form-control-label col-lg-6">Bonificacion Por Dias Festivos: </label>
+                                                                <input class="form-control col-lg-6 bonif" type="number" name="bonificacion_festivos_boleta" id="bonificacion_festivos_boleta"  oninput="calcularTotalBoleta()" placeholder="" >
+                                                            </div>
+                                                        </div><!-- col-4 -->
+                                                        <div class="col-lg-12">
+                                                            <div class="row mg-b-5">
+                                                                <label class="form-control-label col-lg-6">Pasajes: </label>
+                                                                <input class="form-control col-lg-6 bonif" type="number" name="bonificacion_pasajes_boleta" id="bonificacion_pasajes_boleta"  oninput="calcularTotalBoleta()" placeholder="" >
+                                                            </div>
+                                                        </div><!-- col-4 -->
+                                                        <div class="col-lg-12">
+                                                            <div class="row mg-b-5">
+                                                                <label class="form-control-label col-lg-6">Uniforme: </label>
+                                                                <input class="form-control col-lg-6 bonif" type="number" name="bonificacion_uniforme_boleta" id="bonificacion_uniforme_boleta"  oninput="calcularTotalBoleta()" placeholder="" >
+                                                            </div>
+                                                        </div><!-- col-4 -->
+                                                        <div class="col-lg-12">
+                                                            <div class="row mg-b-5">
+                                                                <label class="form-control-label col-lg-6">Gratificacion: </label>
+                                                                <input class="form-control col-lg-6 bonif" type="number" name="bonificacion_gratificacion_boleta" id="bonificacion_gratificacion_boleta"  oninput="calcularTotalBoleta()" placeholder="" >
                                                             </div>
                                                         </div><!-- col-4 -->
                                                         <div class="col-lg-12">
                                                             <div class="row mg-b-5">
                                                                 <label class="form-control-label col-lg-6">Otros: </label>
-                                                                <input class="form-control col-lg-6" type="number" name="otros_boleta" id="otros_boleta"   placeholder="" >
+                                                                <input class="form-control col-lg-6" type="number" name="otros_boleta" id="otros_boleta"  oninput="calcularTotalBoleta()" placeholder="" >
                                                             </div>
                                                         </div><!-- col-4 -->
                                                     </div><!-- row -->
@@ -4178,29 +4221,29 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                         </div>
                                                         <div class="col-4" style="text-align: right !important;">
-                                                            <h1 class="tiempo_liqui_imp" style="color: #000;font-weight: 600;font-size: 12px;"></h1>
+                                                            <h1 class="tiempo_lq_total" style="color: #000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-4 text-left">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"> <span class="anios_liqui"></span> x S/. 90000</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"> <span class="anios_liqui"></span> x <span class="tipo_moneda"></span> <span class="sueldo_rm"></span></h1>
                                                         </div>
                                                         <div class="col-4 text-center">
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                         </div>
                                                         <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">S/.90000</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_sldo_anio"></span></h1>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-4 text-left">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="meses_liqui"></span> x S/9000/12</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="meses_liqui"></span> x <span class="tipo_moneda"></span><span class="sueldo_rm"></span>/12</h1>
                                                         </div>
                                                         <div class="col-4 text-center">
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                         </div>
                                                         <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">S/.4500</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_sldo_mes"></span></h1>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -4211,131 +4254,11 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                         </div>
                                                         <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">S/.94500</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_total_lq"></span> </h1>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div id="" class="prev_modelo_liqui modelo_80_99">
-                                                    <div class="text-center">
-                                                        <div  style="text-align: center !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px; letter-spacing: 2.4px;"><u>COMPENSACION POR TIEMPO DE SERVICIOS</u></h1>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                    <div class="row">
-                                                        <div class="col-4 text-left">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">REMUNERACION MENSUAL</h1>
-                                                        </div>
-                                                        <div class="col-4 text-center">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"></h1>
-                                                        </div>
-                                                        <div class="col-4" style="text-align: right !important;">
-                                                            <h1  style="color: #000;font-weight: 600;font-size: 12px;">132.00</h1>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-4 text-left">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">VACACIONES TRUNCAS</h1>
-                                                        </div>
-                                                        <div class="col-4 text-center">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"></h1>
-                                                        </div>
-                                                        <div class="col-4" style="text-align: right !important;">
-                                                            <h1  style="color: #000;font-weight: 600;font-size: 12px;">CANCELADO</h1>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-4 text-left">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">GRATIFICACIONES TRUNCAS</h1>
-                                                        </div>
-                                                        <div class="col-4 text-center">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"></h1>
-                                                        </div>
-                                                        <div class="col-4" style="text-align: right !important;">
-                                                            <h1  style="color: #000;font-weight: 600;font-size: 12px;">CANCELADO</h1>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                    <div class="text-center">
-                                                        <div  style="text-align: center !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px; letter-spacing: 2.4px;"><u>CALCULO DE LIQUIDACION</u></h1>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                    <div class="row">
-                                                        <div class="col-4 text-left">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="desde_imp_num"></span> AL <span class="hasta_imp_num"></span></h1>
-                                                        </div>
-                                                        <div class="col-4 text-center">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
-                                                        </div>
-                                                        <div class="col-4" style="text-align: right !important;">
-                                                            <h1 class="tiempo_liqui_imp" style="color: #000;font-weight: 600;font-size: 12px;"></h1>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-4 text-left">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"> <span class="anios_liqui"></span> x S/. 90000</h1>
-                                                        </div>
-                                                        <div class="col-4 text-center">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
-                                                        </div>
-                                                        <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">792.00</h1>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-4 text-left">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="meses_liqui"></span> x S/9000/12</h1>
-                                                        </div>
-                                                        <div class="col-4 text-center">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
-                                                        </div>
-                                                        <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">88.00</h1>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-4 text-left">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="anios_liqui"></span> x S/9000/12/30</h1>
-                                                        </div>
-                                                        <div class="col-4 text-center">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
-                                                        </div>
-                                                        <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">5.50</h1>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-4 text-left">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">TOTAL:</h1>
-                                                        </div>
-                                                        <div class="col-4 text-center">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
-                                                        </div>
-                                                        <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">885.50</h1>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                    <div class="text-left">
-                                                        <div  style="text-align: left !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px; letter-spacing: 2.4px;"><u>NETO A PAGAR</u></h1>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                    <div class="row">
-                                                        <div class="col-4 text-left">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">A DEPOSITAR</h1>
-                                                        </div>
-                                                        <div class="col-4 text-center">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"></h1>
-                                                        </div>
-                                                        <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">S/ 885.50</h1>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                        
                                                 <div style="border-bottom: 0.5mm solid; margin-bottom: 10px; margin-top: 10px;"></div>
                                                 <br>
                                                 <div class="text-center">
@@ -4474,29 +4397,29 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                         </div>
                                                         <div class="col-4" style="text-align: right !important;">
-                                                            <h1 class="tiempo_liqui_imp" style="color: #000;font-weight: 600;font-size: 12px;"></h1>
+                                                            <h1 class="tiempo_lq_total" style="color: #000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-4 text-left">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"> <span class="anios_liqui"></span> x S/. 90000</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"> <span class="anios_liqui"></span> x <span class="tipo_moneda"></span> <span class="sueldo_rm"></span></h1>
                                                         </div>
                                                         <div class="col-4 text-center">
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                         </div>
                                                         <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">S/.90000</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_sldo_anio"></span></h1>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-4 text-left">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="meses_liqui"></span> x S/9000/12</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="meses_liqui"></span> x <span class="tipo_moneda"></span><span class="sueldo_rm"></span>/12</h1>
                                                         </div>
                                                         <div class="col-4 text-center">
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                         </div>
                                                         <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">S/.4500</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_sldo_mes"></span></h1>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -4507,7 +4430,7 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                         </div>
                                                         <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">S/.94500</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_total_lq"></span> </h1>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -4526,7 +4449,7 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
                                                         <div class="col-4" style="text-align: right !important;">
-                                                            <h1  style="color: #000;font-weight: 600;font-size: 12px;">132.00</h1>
+                                                            <h1 class="sueldo_rm"  style="color: #000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -4566,40 +4489,40 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                         </div>
                                                         <div class="col-4" style="text-align: right !important;">
-                                                            <h1 class="tiempo_liqui_imp" style="color: #000;font-weight: 600;font-size: 12px;"></h1>
+                                                            <h1 class="tiempo_lq_total" style="color: #000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-4 text-left">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"> <span class="anios_liqui"></span> x S/. 90000</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"> <span class="anios_liqui"></span> x <span class="tipo_moneda"></span> <span class="sueldo_rm"></span></h1>
                                                         </div>
                                                         <div class="col-4 text-center">
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                         </div>
                                                         <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">792.00</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="monto_sldo_anio"></span></h1>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-4 text-left">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="meses_liqui"></span> x S/9000/12</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="meses_liqui"></span> x <span class="tipo_moneda"></span><span class="sueldo_rm"></span>/12</h1>
                                                         </div>
                                                         <div class="col-4 text-center">
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                         </div>
                                                         <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">88.00</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"> <span class="monto_sldo_mes"></span></h1>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-4 text-left">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="anios_liqui"></span> x S/9000/12/30</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="dias_liqui"></span> x <span class="tipo_moneda"></span><span class="sueldo_rm"></span>/12/30</h1>
                                                         </div>
                                                         <div class="col-4 text-center">
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                         </div>
                                                         <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">5.50</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="monto_sldo_dia"></span></h1>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -4610,7 +4533,7 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                         </div>
                                                         <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">885.50</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="monto_total_lq"></span></h1>
                                                         </div>
                                                     </div>
                                                     <br>
@@ -4628,7 +4551,7 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
                                                         <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">S/ 885.50</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_total_lq"></span></h1>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -4758,58 +4681,6 @@
                                                     </div>-->
                                                 </div>
                                                 <div style="border-bottom: solid; margin-bottom: 10px;"></div>
-                                                <div id="" class="prev_modelo_liqui modelo_60_79">
-                                                    <div class="text-center">
-                                                        <div  style="text-align: center !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px; letter-spacing: 2.4px;"><u>CÁLCULO POR TIEMPO DE SERVICIO</u></h1>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                    <div class="row">
-                                                        <div class="col-4 text-left">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="desde_imp_num"></span> AL <span class="hasta_imp_num"></span></h1>
-                                                        </div>
-                                                        <div class="col-4 text-center">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
-                                                        </div>
-                                                        <div class="col-4" style="text-align: right !important;">
-                                                            <h1 class="tiempo_liqui_imp" style="color: #000;font-weight: 600;font-size: 12px;"></h1>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-4 text-left">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"> <span class="anios_liqui"></span> x S/. 90000</h1>
-                                                        </div>
-                                                        <div class="col-4 text-center">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
-                                                        </div>
-                                                        <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">S/.90000</h1>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-4 text-left">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="meses_liqui"></span> x S/9000/12</h1>
-                                                        </div>
-                                                        <div class="col-4 text-center">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
-                                                        </div>
-                                                        <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">S/.4500</h1>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-4 text-left">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">NETO A PAGAR:</h1>
-                                                        </div>
-                                                        <div class="col-4 text-center">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
-                                                        </div>
-                                                        <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">S/.94500</h1>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                                 <div id="" class="prev_modelo_liqui modelo_80_99">
                                                     <div class="text-center">
                                                         <div  style="text-align: center !important;">
@@ -4825,7 +4696,7 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
                                                         <div class="col-4" style="text-align: right !important;">
-                                                            <h1  style="color: #000;font-weight: 600;font-size: 12px;">132.00</h1>
+                                                            <h1 class="sueldo_rm"  style="color: #000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -4865,40 +4736,40 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                         </div>
                                                         <div class="col-4" style="text-align: right !important;">
-                                                            <h1 class="tiempo_liqui_imp" style="color: #000;font-weight: 600;font-size: 12px;"></h1>
+                                                            <h1 class="tiempo_lq_total" style="color: #000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-4 text-left">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"> <span class="anios_liqui"></span> x S/. 90000</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"> <span class="anios_liqui"></span> x <span class="tipo_moneda"></span> <span class="sueldo_rm"></span></h1>
                                                         </div>
                                                         <div class="col-4 text-center">
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                         </div>
                                                         <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">792.00</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="monto_sldo_anio"></span></h1>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-4 text-left">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="meses_liqui"></span> x S/9000/12</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="meses_liqui"></span> x <span class="tipo_moneda"></span><span class="sueldo_rm"></span>/12</h1>
                                                         </div>
                                                         <div class="col-4 text-center">
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                         </div>
                                                         <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">88.00</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"> <span class="monto_sldo_mes"></span></h1>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-4 text-left">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="anios_liqui"></span> x S/9000/12/30</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="dias_liqui"></span> x <span class="tipo_moneda"></span><span class="sueldo_rm"></span>/12/30</h1>
                                                         </div>
                                                         <div class="col-4 text-center">
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                         </div>
                                                         <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">5.50</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="monto_sldo_dia"></span></h1>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -4909,7 +4780,7 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                         </div>
                                                         <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">885.50</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="monto_total_lq"></span></h1>
                                                         </div>
                                                     </div>
                                                     <br>
@@ -4927,7 +4798,7 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
                                                         <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">S/ 885.50</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_total_lq"></span></h1>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -5064,59 +4935,8 @@
                                                     </div>-->
                                                 </div>
                                                 <div style="border-bottom: solid; margin-bottom: 10px;"></div>
-                                                <div id="" class="prev_modelo_liqui modelo_60_79">
-                                                    <div class="text-center">
-                                                        <div  style="text-align: center !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px; letter-spacing: 2.4px;"><u>CÁLCULO POR TIEMPO DE SERVICIO</u></h1>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                    <div class="row">
-                                                        <div class="col-4 text-left">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="desde_imp_num"></span> AL <span class="hasta_imp_num"></span></h1>
-                                                        </div>
-                                                        <div class="col-4 text-center">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
-                                                        </div>
-                                                        <div class="col-4" style="text-align: right !important;">
-                                                            <h1 class="tiempo_liqui_imp" style="color: #000;font-weight: 600;font-size: 12px;"></h1>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-4 text-left">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"> <span class="anios_liqui"></span> x S/. 90000</h1>
-                                                        </div>
-                                                        <div class="col-4 text-center">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
-                                                        </div>
-                                                        <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">S/.90000</h1>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-4 text-left">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="meses_liqui"></span> x S/9000/12</h1>
-                                                        </div>
-                                                        <div class="col-4 text-center">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
-                                                        </div>
-                                                        <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">S/.4500</h1>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-4 text-left">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">NETO A PAGAR:</h1>
-                                                        </div>
-                                                        <div class="col-4 text-center">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
-                                                        </div>
-                                                        <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">S/.94500</h1>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div  class="prev_modelo_liqui modelo_80_99">
+
+                                                <div id="" class="prev_modelo_liqui modelo_80_99">
                                                     <div class="text-center">
                                                         <div  style="text-align: center !important;">
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px; letter-spacing: 2.4px;"><u>COMPENSACION POR TIEMPO DE SERVICIOS</u></h1>
@@ -5131,7 +4951,7 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
                                                         <div class="col-4" style="text-align: right !important;">
-                                                            <h1  style="color: #000;font-weight: 600;font-size: 12px;">132.00</h1>
+                                                            <h1 class="sueldo_rm"  style="color: #000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -5171,40 +4991,40 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                         </div>
                                                         <div class="col-4" style="text-align: right !important;">
-                                                            <h1 class="tiempo_liqui_imp" style="color: #000;font-weight: 600;font-size: 12px;"></h1>
+                                                            <h1 class="tiempo_lq_total" style="color: #000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-4 text-left">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"> <span class="anios_liqui"></span> x S/. 90000</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"> <span class="anios_liqui"></span> x <span class="tipo_moneda"></span> <span class="sueldo_rm"></span></h1>
                                                         </div>
                                                         <div class="col-4 text-center">
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                         </div>
                                                         <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">792.00</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="monto_sldo_anio"></span></h1>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-4 text-left">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="meses_liqui"></span> x S/9000/12</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="meses_liqui"></span> x <span class="tipo_moneda"></span><span class="sueldo_rm"></span>/12</h1>
                                                         </div>
                                                         <div class="col-4 text-center">
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                         </div>
                                                         <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">88.00</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"> <span class="monto_sldo_mes"></span></h1>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-4 text-left">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="dias_liqui"></span> x S/9000/12/30</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="dias_liqui"></span> x <span class="tipo_moneda"></span><span class="sueldo_rm"></span>/12/30</h1>
                                                         </div>
                                                         <div class="col-4 text-center">
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                         </div>
                                                         <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">5.50</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="monto_sldo_dia"></span></h1>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -5215,7 +5035,7 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                         </div>
                                                         <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">885.50</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="monto_total_lq"></span></h1>
                                                         </div>
                                                     </div>
                                                     <br>
@@ -5233,7 +5053,7 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
                                                         <div class="col-4" style="text-align: right !important;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">S/ 885.50</h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_total_lq"></span></h1>
                                                         </div>
                                                     </div>
                                                 </div>
