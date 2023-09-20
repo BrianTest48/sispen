@@ -51,7 +51,7 @@ $(document).ready(function(){
         minimumResultsForSearch: Infinity
     });
     $('#combo_prev_liqui').select2({
-        placeholder: "Motivo de Retiro",
+        placeholder: "Seleccione",
         minimumResultsForSearch: Infinity
     });
     
@@ -533,6 +533,8 @@ function BuscarEmp(a){
 }
 
 function mostrardetalle(a, b, c){  
+
+    $('#combo_prev_liqui').select2("val", "0");
     OcultarPrev();
     suma_anios = 0;
     suma_meses = 0;
@@ -1457,10 +1459,36 @@ $(document).on("click","#btnprevli", function(){
     $('.monto_total_lq').html(monto_total_lq);
     $('.monto_prueba').html(monto_texto);
 
+
+    let divs = "";
+    var total_neto = Number(monto_total_lq);
+
+    $(".liqui_bonif").each(function() {
+
+        if($(this).val() != 0){
+            var nombres = $(this).attr('name');
+            var valor = Number($(this).val()).toFixed(2);
+            total_neto+= Number(valor);
+
+
+            divs+='<div class="row">';
+            divs+='    <div class="col-4 text-left">';
+            divs+='        <h1 style="color: #000;font-weight: 600;font-size: 12px;">'+nombres+'</h1>';
+            divs+='    </div>';
+            divs+='    <div class="col-4 text-center">';
+            divs+='        <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>';
+            divs+='    </div>';
+            divs+='    <div class="col-4" style="text-align: right !important;">';
+            divs+='        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span>'+moneda_rm+'</span> <span>'+valor+'</span> </h1>';
+            divs+='    </div>';
+            divs+='</div>';
+        }
+	});
+
     $.ajax({
         url: "../../controller/pensioncontrolador.php?op=letras_monto",
         type: "POST",
-        data: {valor : monto_texto},
+        data: {valor : total_neto},
         success: function(data){
             //console.log(data);
             $('.letras_monto').html(data);
@@ -1469,6 +1497,11 @@ $(document).on("click","#btnprevli", function(){
             console.log(error);
         }
     });
+
+
+    $('.bonif_liquidacion').html(divs);
+    $('.monto_total_lq_neto').html(Number(total_neto).toFixed(2));
+
 });
 
 $(document).on("click","#btnprevbol", function(){

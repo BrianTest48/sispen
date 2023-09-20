@@ -184,61 +184,61 @@
                                                     <div class="col-lg-12">
                                                         <div class="row mg-b-5">
                                                             <label class="form-control-label col-lg-6">Adelanto: </label>
-                                                            <input class="form-control col-lg-6 " type="number" name="empresa" value="0" placeholder="" required>
+                                                            <input class="form-control col-lg-6 liqui_bonif" type="number" name="ADELANTO" value="0" placeholder="" required>
                                                         </div>
                                                     </div><!-- col-4 -->
                                                     <div class="col-lg-12">
                                                         <div class="row mg-b-5">
                                                             <label class="form-control-label col-lg-6">Vacaciones:</label>
-                                                            <input class="form-control col-lg-6" type="number" name="empresa"  value="0" placeholder="" required>
+                                                            <input class="form-control col-lg-6 liqui_bonif" type="number" name="VACACIONES"  value="0" placeholder="" required>
                                                         </div>
                                                     </div><!-- col-4 -->
                                                     <div class="col-lg-12">
                                                         <div class="row mg-b-5">
                                                             <label class="form-control-label col-lg-6">Gratificaciones: </label>
-                                                            <input class="form-control col-lg-6" type="number" name="empresa"  value="0" placeholder="" required>
+                                                            <input class="form-control col-lg-6 liqui_bonif" type="number" name="GRATIFICACIONES"  value="0" placeholder="" required>
                                                         </div>
                                                     </div><!-- col-4 -->
                                                     <div class="col-lg-12">
                                                         <div class="row mg-b-5">
                                                             <label class="form-control-label col-lg-6">Reintegro: </label>
-                                                            <input class="form-control col-lg-6" type="number" name="empresa"  value="0" placeholder="" required>
+                                                            <input class="form-control col-lg-6 liqui_bonif" type="number" name="REINTEGRO"  value="0" placeholder="" required>
                                                         </div>
                                                     </div><!-- col-4 -->
                                                     <div class="col-lg-12">
                                                         <div class="row mg-b-5">
                                                             <label class="form-control-label col-lg-6">Incentivo: </label>
-                                                            <input class="form-control col-lg-6" type="number" name="empresa"  value="0" placeholder="" required>
+                                                            <input class="form-control col-lg-6 liqui_bonif" type="number" name="INCENTIVO" id="incentivo" value="0" placeholder="" required>
                                                         </div>
                                                     </div><!-- col-4 -->
                                                     <div class="col-lg-12">
                                                         <div class="row mg-b-5">
                                                             <label class="form-control-label col-lg-6">Bonificacion: </label>
-                                                            <input class="form-control col-lg-6" type="number" name="empresa" id="bonif" value="0" placeholder="" required>
+                                                            <input class="form-control col-lg-6 liqui_bonif" type="number" name="BONIFICACION" id="bonif" value="0" placeholder="" required>
                                                         </div>
                                                     </div><!-- col-4 -->
                                                     <div class="col-lg-12">
                                                         <div class="row mg-b-5">
                                                             <label class="form-control-label col-lg-6">Bon. Extraordinaria:</label>
-                                                            <input class="form-control col-lg-6" type="number" name="empresa" id="bonif_extra" value="0" placeholder="" required>
+                                                            <input class="form-control col-lg-6 liqui_bonif" type="number" name="BON. EXTRAORDINARIA" id="bonif_extra" value="0" placeholder="" required>
                                                         </div>
                                                     </div><!-- col-4 -->
                                                     <div class="col-lg-12">
                                                         <div class="row mg-b-5">
                                                             <label class="form-control-label col-lg-6">Bon. Graciosa: </label>
-                                                            <input class="form-control col-lg-6" type="number" name="empresa" id="bonif_gra" value="0" placeholder="" required>
+                                                            <input class="form-control col-lg-6 liqui_bonif" type="number" name="BON. GRACIOSA" id="bonif_gra" value="0" placeholder="" required>
                                                         </div>
                                                     </div><!-- col-4 -->
                                                     <div class="col-lg-12">
                                                         <div class="row mg-b-5">
                                                             <label class="form-control-label col-lg-6">Bon. Por Cumplimiento de Meta: </label>
-                                                            <input class="form-control col-lg-6" type="number" name="empresa" id="bonif_meta" value="0" placeholder="" required>
+                                                            <input class="form-control col-lg-6 liqui_bonif" type="number" name="BON. POR CUMPLIENTO DE META" id="bonif_meta" value="0" placeholder="" required>
                                                         </div>
                                                     </div><!-- col-4 -->
                                                     <div class="col-lg-12">
                                                         <div class="row mg-b-5">
                                                             <label class="form-control-label col-lg-6">Bon. Por Dias Festivos: </label>
-                                                            <input class="form-control col-lg-6" type="number" name="empresa" id="bonif_dias" value="0" placeholder="" required>
+                                                            <input class="form-control col-lg-6 liqui_bonif" type="number" name="BON. POR DIAS FESTIVOS" id="bonif_dias" value="0" placeholder="" required>
                                                         </div>
                                                     </div><!-- col-4 -->
                                                     
@@ -4095,7 +4095,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-4 text-left">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">NETO A PAGAR:</h1>
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">SUB - TOTAL:</h1>
                                                     </div>
                                                     <div class="col-4 text-center">
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
@@ -4104,13 +4104,26 @@
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_total_lq"></span> </h1>
                                                     </div>
                                                 </div>
+                                                
+                                                <div class="bonif_liquidacion"></div>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">NETO A PAGAR:</h1>
+                                                    </div>
+                                                    <div class="col-4 text-center">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_total_lq_neto"></span> </h1>
+                                                    </div>
+                                                </div>
                                             </div>
                     
                                             <div style="border-bottom: 0.5mm solid; margin-bottom: 10px; margin-top: 10px;"></div>
                                             <br>
                                             <div class="text-center">
                                                 <div  style="text-align: justify !important;">
-                                                    <p style="color: #000;font-weight: 600;font-size: 12px;">He recibido de la empresa <span class="emp_imp"></span>, la suma de S/ <span class="monto_prueba"></span> ( <span class="letras_monto"></span> SOLES DE ORO), por el concepto de mi indemnización por mi tiempo de servicios, conforme a Ley.</p>
+                                                    <p style="color: #000;font-weight: 600;font-size: 12px;">He recibido de la empresa <span class="emp_imp"></span>, la suma de S/ <span class="monto_total_lq_neto"></span> ( <span class="letras_monto"></span> SOLES DE ORO), por el concepto de mi indemnización por mi tiempo de servicios, conforme a Ley.</p>
                                                 </div>
                                             </div>
                                             <div class="text-center">
@@ -4271,13 +4284,26 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-4 text-left">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">NETO A PAGAR:</h1>
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">SUB - TOTAL:</h1>
                                                     </div>
                                                     <div class="col-4 text-center">
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                     </div>
                                                     <div class="col-4" style="text-align: right !important;">
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_total_lq"></span> </h1>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="bonif_liquidacion"></div>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">NETO A PAGAR:</h1>
+                                                    </div>
+                                                    <div class="col-4 text-center">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_total_lq_neto"></span> </h1>
                                                     </div>
                                                 </div>
                                             </div>
@@ -4347,7 +4373,7 @@
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                     </div>
                                                     <div class="col-4" style="text-align: right !important;">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="monto_sldo_anio"></span></h1>
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_sldo_anio"></span></h1>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -4358,7 +4384,7 @@
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                     </div>
                                                     <div class="col-4" style="text-align: right !important;">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"> <span class="monto_sldo_mes"></span></h1>
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_sldo_mes"></span></h1>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -4369,7 +4395,7 @@
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                     </div>
                                                     <div class="col-4" style="text-align: right !important;">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="monto_sldo_dia"></span></h1>
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_sldo_dia"></span></h1>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -4380,9 +4406,10 @@
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                     </div>
                                                     <div class="col-4" style="text-align: right !important;">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="monto_total_lq"></span></h1>
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_total_lq"></span></h1>
                                                     </div>
                                                 </div>
+                                                <div class="bonif_liquidacion"></div>
                                                 <br>
                                                 <div class="text-left">
                                                     <div  style="text-align: left !important;">
@@ -4398,7 +4425,7 @@
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px;"></h1>
                                                     </div>
                                                     <div class="col-4" style="text-align: right !important;">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_total_lq"></span></h1>
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_total_lq_neto"></span></h1>
                                                     </div>
                                                 </div>
                                             </div>
@@ -4507,7 +4534,7 @@
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px;">TOTAL A COBRAR</h1>
                                                     </div>
                                                     <div class="col-6 text-left">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">S/.0.00</h1>
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_total_lq_neto"></span></h1>
                                                     </div>
                                                 </div>
                                                 <!--<div class="row">
@@ -4594,7 +4621,7 @@
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                     </div>
                                                     <div class="col-4" style="text-align: right !important;">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="monto_sldo_anio"></span></h1>
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_sldo_anio"></span></h1>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -4605,7 +4632,7 @@
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                     </div>
                                                     <div class="col-4" style="text-align: right !important;">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"> <span class="monto_sldo_mes"></span></h1>
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_sldo_mes"></span></h1>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -4616,7 +4643,7 @@
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                     </div>
                                                     <div class="col-4" style="text-align: right !important;">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="monto_sldo_dia"></span></h1>
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_sldo_dia"></span></h1>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -4627,9 +4654,10 @@
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                     </div>
                                                     <div class="col-4" style="text-align: right !important;">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="monto_total_lq"></span></h1>
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_total_lq"></span></h1>
                                                     </div>
                                                 </div>
+                                                <div class="bonif_liquidacion"></div>
                                                 <br>
                                                 <div class="text-left">
                                                     <div  style="text-align: left !important;">
@@ -4645,7 +4673,7 @@
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px;"></h1>
                                                     </div>
                                                     <div class="col-4" style="text-align: right !important;">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_total_lq"></span></h1>
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_total_lq_neto"></span></h1>
                                                     </div>
                                                 </div>
                                             </div>
@@ -4761,7 +4789,7 @@
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px;">TOTAL A COBRAR</h1>
                                                     </div>
                                                     <div class="col-6 text-left">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">S/.0.00</h1>
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_total_lq_neto"></span></h1>
                                                     </div>
                                                 </div>
                                                 <!--<div class="row">
@@ -4849,7 +4877,7 @@
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                     </div>
                                                     <div class="col-4" style="text-align: right !important;">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="monto_sldo_anio"></span></h1>
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_sldo_anio"></span></h1>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -4860,7 +4888,7 @@
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                     </div>
                                                     <div class="col-4" style="text-align: right !important;">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"> <span class="monto_sldo_mes"></span></h1>
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_sldo_mes"></span></h1>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -4871,7 +4899,7 @@
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                     </div>
                                                     <div class="col-4" style="text-align: right !important;">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="monto_sldo_dia"></span></h1>
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_sldo_dia"></span></h1>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -4882,9 +4910,10 @@
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
                                                     </div>
                                                     <div class="col-4" style="text-align: right !important;">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="monto_total_lq"></span></h1>
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_total_lq"></span></h1>
                                                     </div>
                                                 </div>
+                                                <div class="bonif_liquidacion"></div>
                                                 <br>
                                                 <div class="text-left">
                                                     <div  style="text-align: left !important;">
@@ -4900,7 +4929,7 @@
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px;"></h1>
                                                     </div>
                                                     <div class="col-4" style="text-align: right !important;">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_total_lq"></span></h1>
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_total_lq_neto"></span></h1>
                                                     </div>
                                                 </div>
                                             </div>
