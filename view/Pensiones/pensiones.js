@@ -480,26 +480,39 @@ function BuscarEmp(a){
         var fechanac = new Date(manana);
         var fechain = new Date(fech1)
         var fechafi=  new Date(fech_final_1);
+        var fecha_limite = new Date('1999-06-30');
         var fechaimod = fechain.toLocaleString('en-US', {
             timeZone: 'Europe/London'
         });
         var fechafmod = fechafi.toLocaleString('en-US', {
             timeZone: 'Europe/London'
         });
+        var fechafmodlimite = fecha_limite.toLocaleString('en-US', {
+            timeZone: 'Europe/London'
+        });
         var fechai = new Date(fechaimod);
         var fechaf=  new Date(fechafmod);
-
+        var fecha_final=  new Date(fechafmodlimite);
+        
         if(fechai >= fechanac){
             if(fechai < fechaf){
-
-                $.post("../../controller/pensioncontrolador.php?op=combo",{txtdateinicio: fech1 , txtdatefin: fech_final_1}, function(data){
-                    if(data == ""){
-                        console.log("NO EXISTE DATA");
-                    }else {
-                        $("#lst_emp_"+a).html(data);
-                    }
-                });
-              
+                if(fechaf <= fecha_final){
+                    $.post("../../controller/pensioncontrolador.php?op=combo",{txtdateinicio: fech1 , txtdatefin: fech_final_1}, function(data){
+                        if(data == ""){
+                            console.log("NO EXISTE DATA");
+                        }else {
+                            $("#lst_emp_"+a).html(data);
+                        }
+                    });
+                }else {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'info',
+                        title: 'Introduzca una fecha final correcta',
+                        showConfirmButton: false,
+                        timer:1500
+                    });
+                }
             }else {
                 Swal.fire({
                     position: 'center',
@@ -576,137 +589,152 @@ function mostrardetalle(a, b, c){
         var fechanac = new Date(manana);
         var fechain = new Date(fech1)
         var fechafi=  new Date(fech_final_1);
+        var fecha_limite = new Date('1999-06-30');
         var fechaimod = fechain.toLocaleString('en-US', {
             timeZone: 'Europe/London'
         });
         var fechafmod = fechafi.toLocaleString('en-US', {
             timeZone: 'Europe/London'
         });
+        var fechafmodlimite = fecha_limite.toLocaleString('en-US', {
+            timeZone: 'Europe/London'
+        });
         var fechai = new Date(fechaimod);
         var fechaf=  new Date(fechafmod);
+        var fecha_final=  new Date(fechafmodlimite);
 
         if(fechai >= fechanac){
             if(fechai < fechaf){
-
+                if(fechaf <= fecha_final){
                
-                $.post("../../controller/pensioncontrolador.php?op=buscardpto",{txtdateinicio: fech1 , txtdatefin: fech_final_1, txtrazon : razsocialruc},function(data){
-                    //console.log("SEGUNDA BUSQUEDA");
+                    $.post("../../controller/pensioncontrolador.php?op=buscardpto",{txtdateinicio: fech1 , txtdatefin: fech_final_1, txtrazon : razsocialruc},function(data){
+                        //console.log("SEGUNDA BUSQUEDA");
 
-                    if(data == ""){
-                        Swal.fire({
-                            position: 'center',
-                            icon: 'info',
-                            title: 'No existe informacion',
-                            showConfirmButton: false,
-                            timer:1500
-                        });
-                    }else {
-                        //console.log(data);
-                        data = JSON.parse(data);
-                        //$("#lst_emp_"+a).val(data[0]['ruc']).trigger('change');
-                        $('#nom_emp_'+a).html(data[0]['empleador']);
-                        $('#fech_sueldo_'+a).val(data[0]['moneda_sueldo']);
-                        $('#cant_sueldo_'+a).val(data[0]['fechsueldo']);
-                        $('#nom_emp_lab').html(data[0]['empleador']);
-                        $('#nom_emp_lab').val(data[0]['empleador']);
-                        //$('#tiempo_'+a).html(data[0]['Anios']+' Años '+ data[0]['Meses']+' Meses '+data[0]['Dias']+' Dias');
-                        $('#tiempo_header_'+a).html(data[0]['Anios']+' Años '+ data[0]['Meses']+' Meses '+data[0]['Dias']+' Dias');
-                        $('#anios_emp_'+a).val(data[0]['Anios']);
-                        $('#meses_emp_'+a).val(data[0]['Meses']);
-                        $('#dias_emp_'+a).val(data[0]['Dias']);
-                        $('#ruc_emp_'+a).val(data[0]['ruc']);
-                        $('#tipo_emp_'+a).val(data[0]['tipo_emp']);
-                        $('#emp_tipo').val(data[0]['tipo_emp']).trigger('change');
-                        $('#fech_inicio_emp').val(fech1);
-                        $('#fech_final_emp').val(fech_final_1);
-                        $('#cargo_emp').val(cargo);
-                        $('#dpto_emp_'+a).val(data[0]['dpto']);
-                        $('#rango_emp_'+a).val(data[0]['f_inic_act'] +" / "+ data[0]["f_baja_act"]);  
-
-                        //console.log($('#firmante'+a).val());
-                        /*OBETNER COMBO FIRMANTE */
-                        /*$.post("../../controller/firmacontrolador.php?op=combo",{numero : data[0]['ruc']}, function(data){
+                        if(data == ""){
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'info',
+                                title: 'No existe informacion',
+                                showConfirmButton: false,
+                                timer:1500
+                            });
+                        }else {
                             //console.log(data);
-                            $("#firmante"+a).html(data);  
-                        });*/
+                            data = JSON.parse(data);
+                            //$("#lst_emp_"+a).val(data[0]['ruc']).trigger('change');
+                            $('#nom_emp_'+a).html(data[0]['empleador']);
+                            $('#fech_sueldo_'+a).val(data[0]['moneda_sueldo']);
+                            $('#cant_sueldo_'+a).val(data[0]['fechsueldo']);
+                            $('#nom_emp_lab').html(data[0]['empleador']);
+                            $('#nom_emp_lab').val(data[0]['empleador']);
+                            //$('#tiempo_'+a).html(data[0]['Anios']+' Años '+ data[0]['Meses']+' Meses '+data[0]['Dias']+' Dias');
+                            $('#tiempo_header_'+a).html(data[0]['Anios']+' Años '+ data[0]['Meses']+' Meses '+data[0]['Dias']+' Dias');
+                            $('#anios_emp_'+a).val(data[0]['Anios']);
+                            $('#meses_emp_'+a).val(data[0]['Meses']);
+                            $('#dias_emp_'+a).val(data[0]['Dias']);
+                            $('#ruc_emp_'+a).val(data[0]['ruc']);
+                            $('#tipo_emp_'+a).val(data[0]['tipo_emp']);
+                            $('#emp_tipo').val(data[0]['tipo_emp']).trigger('change');
+                            $('#fech_inicio_emp').val(fech1);
+                            $('#fech_final_emp').val(fech_final_1);
+                            $('#cargo_emp').val(cargo);
+                            $('#dpto_emp_'+a).val(data[0]['dpto']);
+                            $('#rango_emp_'+a).val(data[0]['f_inic_act'] +" / "+ data[0]["f_baja_act"]);  
+
+                            //console.log($('#firmante'+a).val());
+                            /*OBETNER COMBO FIRMANTE */
+                            /*$.post("../../controller/firmacontrolador.php?op=combo",{numero : data[0]['ruc']}, function(data){
+                                //console.log(data);
+                                $("#firmante"+a).html(data);  
+                            });*/
+                            
+                            
+                            /****DATOS DE DIAS */
+                            //$("#lst_emp_"+a).val(data[0]['ruc']).trigger('change');
+                            nom = $('#nom_emp_lab').val();
+                            var dpto1= $('#dpto_emp_'+a).val();
+                            temp = $('#tiempo_header_'+a).html();
+                            //sdlo= $('#fech_sueldo_'+a).html();
+                            nombres= $('#txtnombre').val();
+                            apelli= $('#txtapellido').val();
+                            firm = $('#firmante'+a).val();
+                            tmp = parseInt($('#anios_emp_'+a).val(),"10");
+
+                            tot = tmp * 132;
+                            rp = $('#rep_legal_'+a).val();
+                            dnia = $('#dni_a_'+a).val();
+                            
+                            //console.log(firm);
+                            //$('#firmante'+a).val(firm).trigger('change');
+                            
+                            $('.emp_imp').html(nom);
+                            $('.nombre_imp').html(nombres+" "+apelli);
+                            $('.cargo_imp').html(cargo);
+                            $('.desde_imp').html(fechai.toLocaleDateString("es-ES", options).toUpperCase());
+                            $('.hasta_imp').html(fechaf.toLocaleDateString("es-ES", options).toUpperCase());
+                            $('.lugardia').html(dpto1+", "+fechaf.toLocaleDateString("es-ES", options).toUpperCase());
+                            $('.desde_imp_low').html(fechai.toLocaleDateString("es-ES", options));
+                            $('.hasta_imp_low').html(fechaf.toLocaleDateString("es-ES", options));
+                            $('.lugardia_low').html(dpto1+", "+fechaf.toLocaleDateString("es-ES", options));
+                            $('.tiempo_total_imp').html(temp);
+                            $('.img_logo').attr("src","../../assets/img/"+logos);
+                            $('.firmante_nom').html(firm);
+                            $('.departamento_imp').html(dpto1.toUpperCase());
+                            $('.cargo_imp_low').html(cargo.toLowerCase());
+
+                            $('.tiempo_imp').html(data[0]['Anios']+' Años '+ data[0]['Meses']+' Meses '+data[0]['Dias']+' Dias');
+                            $('.tiempo_liqui_imp').html(data[0]['Anios']+' Años '+ data[0]['Meses']+' Meses ');
+                            $('.anios_temp').html(data[0]['Anios']);
+                            $('.tot_imp').html(tot);
+                            $('.nom_emp_ap').html(apelli+" "+nombres);
+                            $('.ruc_emp_imp').val(data[0]['ruc']);
+                            $('.nom_emp_ap_rp').html(rp);
+                            $('.dni_imp_rp').html(dnia);
+                            $('.desde_imp_num').html(convertDateFormat(fech1));
+                            $('.hasta_imp_num').html(convertDateFormat(fech_final_1));
+                            $('.lugardia_num').html(dpto1 +", "+convertDateFormat(fech_final_1));
+
+
+                            /* CERTIFICADO */
+                            $('#emp_certificado').val(nom);
+                            $('#nombre_certificado').val(nombres+" "+apelli);
+                            $('#f_ini_certificado').val(convertDateFormat(fech1));
+                            $('#f_baj_certificado').val(convertDateFormat(fech_final_1));
+                            $('#cargo_certificado').val(cargo);
+                            $('#firmante_certificado').val(firm);
+                            $('#lugar_certificado').val(dpto1+", "+convertDateFormat(fech_final_1));
+                            $('#sueldo_emp').val(data[0]['fechsueldo']);
+                            $('#moneda_emp').val(data[0]['moneda_rm']);
+
+                            /* LIQUIDACION */
+                            $('#dias_liqui').val(data[0]['Dias']);
+                            $('#meses_liqui').val(data[0]['Meses']);
+                            $('#anios_liqui').val(data[0]['Anios']);
+
+                            $('#sueldo_liquidacion').val(data[0]['fechsueldo']);
+
+                            sumarfechas();
+                            MostrarCertificados(data[0]['tipo_emp']);
+                            MostrarLiquidacion(fech_final_1, data[0]['tipo_emp']);
+                            
+                        }
                         
-                        
-                        /****DATOS DE DIAS */
-                        //$("#lst_emp_"+a).val(data[0]['ruc']).trigger('change');
-                        nom = $('#nom_emp_lab').val();
-                        var dpto1= $('#dpto_emp_'+a).val();
-                        temp = $('#tiempo_header_'+a).html();
-                        //sdlo= $('#fech_sueldo_'+a).html();
-                        nombres= $('#txtnombre').val();
-                        apelli= $('#txtapellido').val();
-                        firm = $('#firmante'+a).val();
-                        tmp = parseInt($('#anios_emp_'+a).val(),"10");
-
-                        tot = tmp * 132;
-                        rp = $('#rep_legal_'+a).val();
-                        dnia = $('#dni_a_'+a).val();
-                        
-                        //console.log(firm);
-                        //$('#firmante'+a).val(firm).trigger('change');
-                        
-                        $('.emp_imp').html(nom);
-                        $('.nombre_imp').html(nombres+" "+apelli);
-                        $('.cargo_imp').html(cargo);
-                        $('.desde_imp').html(fechai.toLocaleDateString("es-ES", options).toUpperCase());
-                        $('.hasta_imp').html(fechaf.toLocaleDateString("es-ES", options).toUpperCase());
-                        $('.lugardia').html(dpto1+", "+fechaf.toLocaleDateString("es-ES", options).toUpperCase());
-                        $('.desde_imp_low').html(fechai.toLocaleDateString("es-ES", options));
-                        $('.hasta_imp_low').html(fechaf.toLocaleDateString("es-ES", options));
-                        $('.lugardia_low').html(dpto1+", "+fechaf.toLocaleDateString("es-ES", options));
-                        $('.tiempo_total_imp').html(temp);
-                        $('.img_logo').attr("src","../../assets/img/"+logos);
-                        $('.firmante_nom').html(firm);
-                        $('.departamento_imp').html(dpto1.toUpperCase());
-                        $('.cargo_imp_low').html(cargo.toLowerCase());
-
-                        $('.tiempo_imp').html(data[0]['Anios']+' Años '+ data[0]['Meses']+' Meses '+data[0]['Dias']+' Dias');
-                        $('.tiempo_liqui_imp').html(data[0]['Anios']+' Años '+ data[0]['Meses']+' Meses ');
-                        $('.anios_temp').html(data[0]['Anios']);
-                        $('.tot_imp').html(tot);
-                        $('.nom_emp_ap').html(apelli+" "+nombres);
-                        $('.ruc_emp_imp').val(data[0]['ruc']);
-                        $('.nom_emp_ap_rp').html(rp);
-                        $('.dni_imp_rp').html(dnia);
-                        $('.desde_imp_num').html(convertDateFormat(fech1));
-                        $('.hasta_imp_num').html(convertDateFormat(fech_final_1));
-                        $('.lugardia_num').html(dpto1 +", "+convertDateFormat(fech_final_1));
-
-
-                        /* CERTIFICADO */
-                        $('#emp_certificado').val(nom);
-                        $('#nombre_certificado').val(nombres+" "+apelli);
-                        $('#f_ini_certificado').val(convertDateFormat(fech1));
-                        $('#f_baj_certificado').val(convertDateFormat(fech_final_1));
-                        $('#cargo_certificado').val(cargo);
-                        $('#firmante_certificado').val(firm);
-                        $('#lugar_certificado').val(dpto1+", "+convertDateFormat(fech_final_1));
-                        $('#sueldo_emp').val(data[0]['fechsueldo']);
-                        $('#moneda_emp').val(data[0]['moneda_rm']);
-
-                        /* LIQUIDACION */
-                        $('#dias_liqui').val(data[0]['Dias']);
-                        $('#meses_liqui').val(data[0]['Meses']);
-                        $('#anios_liqui').val(data[0]['Anios']);
-
-                        sumarfechas();
-                        MostrarCertificados(data[0]['tipo_emp']);
-                        MostrarLiquidacion(fech_final_1, data[0]['tipo_emp']);
-                        
-                    }
+                    });
                     
-                });
-                
-
-                //$("#lst_emp_"+a).val(razsocialruc).trigger('change');
-                $("#contemp1").show();
-                $("#resultado_pdf").show();
-                $("#prev1").show();
-                //$("#prev_certificado_1").show();
+                    //$("#lst_emp_"+a).val(razsocialruc).trigger('change');
+                    $("#contemp1").show();
+                    $("#resultado_pdf").show();
+                    $("#prev1").show();
+                    //$("#prev_certificado_1").show();
+                }else {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'info',
+                        title: 'Introduzca una fecha final correcta',
+                        showConfirmButton: false,
+                        timer:1500
+                    });
+                }    
             }else {
                 Swal.fire({
                     position: 'center',
@@ -1283,7 +1311,7 @@ function imprimir_certificado(){
     ventimp1.document.write('<html><head><title>Certificado</title>');
     ventimp1.document.write('<link rel="stylesheet" href="../../public/css/bracket.css"></link>');
     ventimp1.document.write('<link rel="stylesheet" href="../../public/lib/bootstrap5/bootstrap.min.css">');
-    ventimp1.document.write('<style> .certificado_imp{ padding-left: 200px; padding-right: 200px;}</style>');
+    ventimp1.document.write('<style> .certificado_imp{ padding-left: 50px; padding-right: 50px;}</style>');
     ventimp1.document.write('</head><body >');
     ventimp1.document.write(contenido.innerHTML);
     ventimp1.document.write('</body></html>');

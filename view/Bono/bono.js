@@ -746,6 +746,8 @@ function mostrardetalle(a,b,c){
                         $('#meses_liqui').val(data[0]['Meses']);
                         $('#anios_liqui').val(data[0]['Anios']);
 
+                        $('#sueldo_liquidacion').val(data[0]['fechsueldo']);
+
                         sumarfechas();
                         sumarbono(a);
                         MostrarCertificados(data[0]['tipo_emp']);

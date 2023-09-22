@@ -281,6 +281,12 @@
                                                         <div class="row">
                                                             <div class="col-lg-12">
                                                                 <div class="row mg-b-5">
+                                                                    <label class="form-control-label col-lg-6">Sueldo: </label>
+                                                                    <input class="form-control col-lg-6" type="number" name="SUELDO" id="sueldo_liquidacion" value="0" placeholder="" disabled>
+                                                                </div>
+                                                            </div><!-- col-4 -->
+                                                            <div class="col-lg-12">
+                                                                <div class="row mg-b-5">
                                                                     <label class="form-control-label col-lg-6">Adelanto: </label>
                                                                     <input class="form-control col-lg-6 liqui_bonif " type="number" name="ADELANTO" value="0" placeholder="" required>
                                                                 </div>
@@ -508,7 +514,6 @@
                                             <button type="button" id="btnimprimir" name="btnimprimir"  class="btn btn-info">Imprimir Certificado</button>
                                         </div> form-layout-footer -->
                                 </div>
-
                                 <div class="prevs_certificado" id="prev1">
                                     <div class="container prev_certificado" style="max-width: 1020px !important;" id="prev_certificado_p1">
                                         <div class="card" style="margin-top: 60px;">
@@ -703,22 +708,8 @@
                                                     </div>
                                                     <div class="text-center">
                                                         <div style="text-align: justify !important;">
-                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">ha laborado en el cargo de <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 18px;">______________________</span></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="text-center">
-                                                        <div style="text-align: justify !important;">
-                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">en el periodo comprendido desde <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">_________________</span></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="text-center">
-                                                        <div style="text-align: justify !important;">
-                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">hasta <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">_______________________</span>, fecha que se retira</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="text-center">
-                                                        <div style="text-align: justify !important;">
-                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">voluntariamente mediante carta notarial.</p>
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">ha laborado en el cargo de <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 18px;">______________________</span> en el periodo comprendido desde <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">_________________</span> 
+                                                            hasta <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">_______________________</span>, fecha que se retira voluntariamente mediante carta notarial.</p>
                                                         </div>
                                                     </div>
                                                     <div class="text-center">
@@ -771,22 +762,11 @@
                                                     </div>
                                                     <div class="text-center">
                                                         <div style="text-align: justify !important;">
-                                                            <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">________________________________________</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="text-center">
-                                                        <div style="text-align: justify !important;">
-                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">ha laborado al servicio nuestro por el periodo</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="text-center">
-                                                        <div style="text-align: justify !important;">
-                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">desde: <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">________________</span>hasta<span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">________________</span></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="text-center">
-                                                        <div style="text-align: justify !important;">
-                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">siendo su último cargo<span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 18px;">_________________________</span></p>
+                                                            <p style="color: #000;font-weight: 600;font-size: 20px;">
+                                                                <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">________________________________________</span> ha laborado al servicio nuestro por el periodo
+                                                                desde: <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">________________</span> hasta <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">________________</span>
+                                                                siendo su último cargo <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 18px;">_________________________</span>
+                                                            </p>
                                                         </div>
                                                     </div>
                                                     <div class="text-center">
@@ -834,17 +814,20 @@
                                                     </div>
                                                     <div class="text-center">
                                                         <div style="text-align: justify !important;">
-                                                            <p style="text-indent: 5em; color: #000;font-weight: 600;font-size: 20px;">Que el Sr. <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">________________________</span></p>
+                                                            <p style="text-indent: 5em; color: #000;font-weight: 600;font-size: 20px;">
+                                                                Que el Sr. <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">________________________</span> se desempeño como <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 18px;">______________________</span> en el
+                                                                periodo desde <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">_____________</span> hasta <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">_____________</span>.
+                                                            </p>
                                                         </div>
                                                     </div>
                                                     <div class="text-center">
                                                         <div style="text-align: justify !important;">
-                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">se desempeño como <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 18px;">______________________</span> en el</p>
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;"></p>
                                                         </div>
                                                     </div>
                                                     <div class="text-center">
                                                         <div style="text-align: justify !important;">
-                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">periodo desde <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">_____________</span> hasta <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">_____________</span></p>
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;"></p>
                                                         </div>
                                                     </div>
                                                     <div class="text-center">
@@ -891,20 +874,15 @@
                                                 <br><br>
                                                 <div class="certificado_imp">
                                                     <div class="text-center">
-                                                        <div >
-                                                            <p style="color: #000;font-weight: 600;font-size: 20px;">Se Certifica A <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">______________________________</span></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="text-center">
                                                         <div style="text-align: justify !important;">
-                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">por haber laborado desde el <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">_____________________</span></p>
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">
+                                                                Se Certifica A <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">______________________________</span>
+                                                                por haber laborado desde el <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">_____________________</span>
+                                                                hasta el <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">_____________</span>, siendo su último cargo <span style="color: #FF0000;font-weight: 600;font-size: 30px;" class="cargo_imp">___________________</span>.
+                                                            </p>
                                                         </div>
                                                     </div>
-                                                    <div class="text-center">
-                                                        <div style="text-align: justify !important;">
-                                                            <p style="color: #000;font-weight: 600;font-size: 18px;"> hasta el <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">_____________</span>, siendo su último cargo <span style="color: #FF0000;font-weight: 600;font-size: 30px;">___________________</span>.</p>
-                                                        </div>
-                                                    </div>
+                                                    
                                                     <div class="text-center">
                                                         <div style="text-align: justify !important;">
                                                             <p style="color: #000;font-weight: 600;font-size: 18px;">Durante el desarrollo de sus actividades, fue felicitado en reiteradas oportunidades, distinguiéndose por su puntualidad, honradez y dedicación exclusiva a las labores encomendadas.</p>
@@ -949,23 +927,13 @@
                                                 <br><br>
                                                 <div class="certificado_imp">
                                                     <div class="text-center">
-                                                        <div >
-                                                            <p style="color: #000;font-weight: 600;font-size: 20px;">Se Certifica A :<span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">_____________________________</span></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="text-center">
                                                         <div style="text-align: justify !important;">
-                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">quien trabajó en el cargo de <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 18px;">_____________________</span></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="text-center">
-                                                        <div style="text-align: justify !important;">
-                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">con fecha de ingreso el <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">_________________________</span></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="text-center">
-                                                        <div style="text-align: justify !important;">
-                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">y fecha de cese <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">_____________</span>, retirándose voluntariamente mediante aviso notarial.</p>
+                                                            <p style=" text-indent: 5em; color: #000;font-weight: 600;font-size: 18px;">
+                                                                Se Certifica A :<span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 18px;">_____________________________</span>
+                                                                quien trabajó en el cargo de <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 18px;">_____________________</span>
+                                                                con fecha de ingreso el <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">_________________________</span>
+                                                                y fecha de cese <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">_____________</span>, retirándose voluntariamente mediante aviso notarial.
+                                                            </p>
                                                         </div>
                                                     </div>
                                                     <div class="text-center">
@@ -1006,25 +974,15 @@
                                                     </div>
                                                 </div>
                                                 <br><br>
-                                                <div style="padding-left: 150px; padding-right: 150px;">
-                                                    <div class="text-center">
-                                                        <div>
-                                                            <p style="text-indent: 5em;  color: #000;font-weight: 600;font-size: 20px;">Se deja constancia que :<span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">______________</span></p>
-                                                        </div>
-                                                    </div>
+                                                <div class="certificado_imp">
                                                     <div class="text-center">
                                                         <div style="text-align: justify !important;">
-                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">,ha prestado servicios en el cargo de <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 18px;">_______________</span>,</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="text-center">
-                                                        <div style="text-align: justify !important;">
-                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">desde el <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">______________</span> hasta el <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">______________</span>,</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="text-center">
-                                                        <div style="text-align: justify !important;">
-                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">fecha que se retira mediante carta de retiro.</p>
+                                                            <p style="text-indent: 5em;  color: #000;font-weight: 600;font-size: 18px;">
+                                                                Se deja constancia que : <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 18px;">______________</span>
+                                                                , ha prestado servicios en el cargo de <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 18px;">_______________</span>,
+                                                                desde el <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">______________</span> hasta el <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">______________</span>,
+                                                                fecha que se retira mediante carta de retiro.
+                                                            </p>
                                                         </div>
                                                     </div>
                                                     <div class="text-center">
@@ -1063,25 +1021,15 @@
                                                     </div>
                                                 </div>
                                                 <br><br>
-                                                <div style="padding-left: 150px; padding-right: 150px;">
-                                                    <div class="text-center">
-                                                        <div>
-                                                            <p style="color: #000;font-weight: 600;font-size: 20px;">Se certifica : A <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">_____________________________</span></p>
-                                                        </div>
-                                                    </div>
+                                                <div class="certificado_imp">
                                                     <div class="text-center">
                                                         <div style="text-align: justify !important;">
-                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">quien ha laborado desde el <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">______________________</span></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="text-center">
-                                                        <div style="text-align: justify !important;">
-                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">hasta el <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">______________________</span> , desempeñando el</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="text-center">
-                                                        <div style="text-align: justify !important;">
-                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">cargo de: <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 18px;">_________________________________</span></p>
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">
+                                                                Se certifica : A <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 18px;">_____________________________</span>
+                                                                quien ha laborado desde el <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">______________________</span>
+                                                                hasta el <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">______________________</span> , desempeñando el
+                                                                cargo de: <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 18px;">_________________________________</span>
+                                                            </p>
                                                         </div>
                                                     </div>
                                                     <div class="text-center">
@@ -1125,20 +1073,14 @@
                                                     </div>
                                                 </div>
                                                 <br><br>
-                                                <div style="padding-left: 150px; padding-right: 150px;">
-                                                    <div class="text-center">
-                                                        <div>
-                                                            <p style="color: #000;font-weight: 600;font-size: 20px;">A favor de <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">________________________________</span></p>
-                                                        </div>
-                                                    </div>
+                                                <div class="certificado_imp">
                                                     <div class="text-center">
                                                         <div style="text-align: justify !important;">
-                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">quién laboró como <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 18px;">___________________________</span></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="text-center">
-                                                        <div style="text-align: justify !important;">
-                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">desde <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">________________</span>hasta <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">________________</span></p>
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">
+                                                                A favor de <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 18px;">________________________________</span>
+                                                                quién laboró como <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 18px;">___________________________</span>
+                                                                desde <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">________________</span> hasta <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">________________</span>
+                                                            </p>
                                                         </div>
                                                     </div>
                                                     <div class="text-center">
@@ -1182,25 +1124,15 @@
                                                     </div>
                                                 </div>
                                                 <br><br>
-                                                <div style="padding-left: 150px; padding-right: 150px;">
-                                                    <div class="text-center">
-                                                        <div>
-                                                            <p style="color: #000;font-weight: 600;font-size: 20px;">Se Certifica: A: <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">____________________________</span>,</p>
-                                                        </div>
-                                                    </div>
+                                                <div class="certificado_imp">
                                                     <div class="text-center">
                                                         <div style="text-align: justify !important;">
-                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">al haberse desempeñado como empleado en el cargo de:</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="text-center">
-                                                        <div style="text-align: justify !important;">
-                                                            <p style="color: #000;font-weight: 600;font-size: 18px;"><span clas="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 18px;">___________________</span>, desde <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">________________</span></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="text-center">
-                                                        <div style="text-align: justify !important;">
-                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">Hasta: <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">______________</span>, fecha en que se retira voluntariamente por motivos particulares, desempeñándose a nuestra entera y completa satisfacción.</p>
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">
+                                                                Se Certifica: A: <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 18px;">____________________________</span>,
+                                                                al haberse desempeñado como empleado en el cargo de:
+                                                                <span clas="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 18px;">___________________</span>, desde <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">________________</span>
+                                                                Hasta: <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">______________</span>, fecha en que se retira voluntariamente por motivos particulares, desempeñándose a nuestra entera y completa satisfacción.
+                                                            </p>
                                                         </div>
                                                     </div>
                                                     <div class="text-center">
@@ -1239,22 +1171,17 @@
                                                     </div>
                                                 </div>
                                                 <br><br>
-                                                <div style="padding-left: 150px; padding-right: 150px;">
-                                                    <div class="text-center">
-                                                        <div>
-                                                            <p style="color: #000;font-weight: 600;font-size: 20px;">El que suscribe la presente deja constancia que el Sr.(a) <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">_______________________________________</span>,</p>
-                                                        </div>
-                                                    </div>
+                                                <div class="certificado_imp">
                                                     <div class="text-center">
                                                         <div style="text-align: justify !important;">
-                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">ha trabajado en el Area de <span style="color: #FF0000;font-weight: 600;font-size: 18px;">______________________</span></p>
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">
+                                                                El que suscribe la presente deja constancia que el Sr.(a) <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 18px;">_______________________________________</span>,
+                                                                ha trabajado en el Area de <span style="color: #FF0000;font-weight: 600;font-size: 18px;">______________________</span>
+                                                                en el cargo de <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 18px;">______________________________</span>.
+                                                            </p>
                                                         </div>
                                                     </div>
-                                                    <div class="text-center">
-                                                        <div style="text-align: justify !important;">
-                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">en el cargo de <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 18px;">______________________________</span></p>
-                                                        </div>
-                                                    </div>
+                                                
                                                     <div class="text-center">
                                                         <div style="text-align: justify !important;">
                                                             <p style="color: #000;font-weight: 600;font-size: 18px;">-desde el : <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">_________________________________</span></p>
@@ -1279,7 +1206,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>  
+                                    </div>
+                                    
+                                    
                                     <div class="container prev_certificado" style="max-width: 1020px !important;" id="prev_certificado_g1">
                                         <div class="card" style="margin-top: 60px;">
                                             <div class="card-header d-flex justify-content-between">
@@ -1301,7 +1230,7 @@
                                                     </div>
                                                 </div>
                                                 <br><br><br>
-                                                <div >
+                                                <div class="certificado_imp">
                                                     <div class="text-center">
                                                         <div style="text-align: left !important;">
                                                             <h1 style="color: #000;font-weight: 600;font-size: 22px;"><u>SE CERTIFICA QUE:</u></h1>
@@ -1364,32 +1293,35 @@
                                                     </div>
                                                 </div>
                                                 <br><br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: left !important;">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 22px;"><u>CERTIFICADO DE TRABAJO:</u></h1>
+                                                <div class="certificado_imp">
+                                                    <div class="text-center">
+                                                        <div style="text-align: left !important;">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 22px;"><u>CERTIFICADO DE TRABAJO:</u></h1>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <br><br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">EL FUNCIONARIO DE LA EMPRESA DEL RUBRO CERTIFICA: </p>
-                                                    </div>
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">A Don <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> el haber desempeñado sus labores durante el periodo desde el <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> hasta <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> fecha que se retira voluntariamente por razones personales.</p>
-                                                    </div>
-                                                    <br><br>
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">Se hace hincapié que Don <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> fué un personal diligente y colaborador siempre dispuesto a colaborar en la medida de sus posibilidades, por lo que se cumple con emitirle este certificado para los fines que le convenga.</p>
-                                                    </div>
+                                                    <br><br><br>
+                                                    <div class="text-center">
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">EL FUNCIONARIO DE LA EMPRESA DEL RUBRO CERTIFICA: </p>
+                                                        </div>
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">A Don <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> el haber desempeñado sus labores durante el periodo desde el <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> hasta <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> fecha que se retira voluntariamente por razones personales.</p>
+                                                        </div>
+                                                        <br><br>
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">Se hace hincapié que Don <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> fué un personal diligente y colaborador siempre dispuesto a colaborar en la medida de sus posibilidades, por lo que se cumple con emitirle este certificado para los fines que le convenga.</p>
+                                                        </div>
 
-                                                </div>
-                                                
-                                                <br><br><br><br>
-                                                <div class="text-right">
-                                                    <div style="text-align: left !important;">
-                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;"></p>
+                                                    </div>
+                                                    
+                                                    <br><br><br><br>
+                                                    <div class="text-right">
+                                                        <div style="text-align: left !important;">
+                                                            <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;"></p>
+                                                        </div>
                                                     </div>
                                                 </div>
+                                            
                                             </div>
                                         </div>
                                     </div>
@@ -1408,36 +1340,38 @@
                                                     </div>
                                                 </div>
                                                 <br><br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: center !important;">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 20px;"><u>CONSTANCIA DE SERVICIO LABORAL</u></h1>
+                                                <div class="certificado_imp">
+                                                    <div class="text-center">
+                                                        <div style="text-align: center !important;">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 20px;"><u>CONSTANCIA DE SERVICIO LABORAL</u></h1>
+                                                        </div>
+                                                        <br><br>
+                                                        <div style="text-align: left !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">El representante legal de la empresa conforme a las leyes laborales en vigencia</p>
+                                                        </div>
                                                     </div>
                                                     <br><br>
-                                                    <div style="text-align: left !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">El representante legal de la empresa conforme a las leyes laborales en vigencia</p>
+                                                    <div class="text-center">
+                                                        <div style="text-align: left !important;">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 22px;"><u>CERTIFICA QUE:</u></h1>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: left !important;">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 22px;"><u>CERTIFICA QUE:</u></h1>
+                                                    <br><br><br>
+                                                    <div class="text-center">
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">Al Don: <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> que se desempeñó como empleado ejerciendo el cargo de <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> en el periodo comprendido del <span class="desde_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> hasta el <span class="hasta_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span>, fecha que hizo su retiro voluntariamente. </p>
+                                                        </div>
+                                                        <br><br>
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">Se deja establecido que durante el ejercicio de sus funciones se distinguió por su puntualidad, laboriocidad recibiendo felicitaciones por parte de funcionarios de la empresa; emitiendose la presente para los usos o fines que tenga por conveniente.</p>
+                                                        </div>                  
                                                     </div>
-                                                </div>
-                                                <br><br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">Al Don: <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> que se desempeñó como empleado ejerciendo el cargo de <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> en el periodo comprendido del <span class="desde_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> hasta el <span class="hasta_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span>, fecha que hizo su retiro voluntariamente. </p>
-                                                    </div>
-                                                    <br><br>
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">Se deja establecido que durante el ejercicio de sus funciones se distinguió por su puntualidad, laboriocidad recibiendo felicitaciones por parte de funcionarios de la empresa; emitiendose la presente para los usos o fines que tenga por conveniente.</p>
-                                                    </div>                  
-                                                </div>
 
-                                                <br><br><br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: center !important;">
-                                                        <p class="lugardia" style="color: #FF0000;font-weight: 600;font-size: 18px;"></p>
+                                                    <br><br><br><br>
+                                                    <div class="text-center">
+                                                        <div style="text-align: center !important;">
+                                                            <p class="lugardia" style="color: #FF0000;font-weight: 600;font-size: 18px;"></p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1458,36 +1392,38 @@
                                                     </div>
                                                 </div>
                                                 <br><br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: center !important;">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 20px;"><u>CERTIFICADO DE TRABAJO</u></h1>
+                                                <div class="certificado_imp">
+                                                    <div class="text-center">
+                                                        <div style="text-align: center !important;">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 20px;"><u>CERTIFICADO DE TRABAJO</u></h1>
+                                                        </div>
+                                                        <br><br>
+                                                        <div style="text-align: left !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">El personal directivo de la empresa que suscribe</p>
+                                                        </div>
                                                     </div>
                                                     <br><br>
-                                                    <div style="text-align: left !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">El personal directivo de la empresa que suscribe</p>
-                                                    </div>
-                                                </div>
-                                                <br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: left !important;">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 22px;">C E R T I F I C A </h1>
-                                                    </div>
-                                                </div>
-                                                <br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">Que, el Sr <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> estuvo laborando a favor nuestro en el periodo comprendido desde el <span class="desde_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> hasta el <span class="hasta_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> retirándose mediante carta notarial. </p>
+                                                    <div class="text-center">
+                                                        <div style="text-align: left !important;">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 22px;">C E R T I F I C A </h1>
+                                                        </div>
                                                     </div>
                                                     <br><br>
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">Nuestro trabajador tuvo un desempeño satisfactorio en el Cargo de <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> siendo felicitado en reiteradas oportunidades por lo que se le extiende este certificado para los usos que estime conveniente. </p>
+                                                    <div class="text-center">
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">Que, el Sr <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> estuvo laborando a favor nuestro en el periodo comprendido desde el <span class="desde_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> hasta el <span class="hasta_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> retirándose mediante carta notarial. </p>
+                                                        </div>
+                                                        <br><br>
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">Nuestro trabajador tuvo un desempeño satisfactorio en el Cargo de <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> siendo felicitado en reiteradas oportunidades por lo que se le extiende este certificado para los usos que estime conveniente. </p>
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <br><br><br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: center !important;">
-                                                        <p class="lugardia" style="color: #FF0000;font-weight: 600;font-size: 18px;"></p>
+                                                    <br><br><br><br>
+                                                    <div class="text-center">
+                                                        <div style="text-align: center !important;">
+                                                            <p class="lugardia" style="color: #FF0000;font-weight: 600;font-size: 18px;"></p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1508,41 +1444,43 @@
                                                     </div>
                                                 </div>
                                                 <br><br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: center !important;">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 20px;"><u>CONSTANCIA DE LABORES</u></h1>
+                                                <div class="certificado_imp">
+                                                    <div class="text-center">
+                                                        <div style="text-align: center !important;">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 20px;"><u>CONSTANCIA DE LABORES</u></h1>
+                                                        </div>
+                                                        <br><br>
+                                                        <div style="text-align: left !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">EL PERSONAL REPRESENTANTE LEGAL DE LA EMPRESA</p>
+                                                        </div>
                                                     </div>
                                                     <br><br>
-                                                    <div style="text-align: left !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">EL PERSONAL REPRESENTANTE LEGAL DE LA EMPRESA</p>
-                                                    </div>
-                                                </div>
-                                                <br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: left !important;">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 22px;">CERTIFICA:</h1>
-                                                    </div>
-                                                </div>
-                                                <br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">Al Sr. <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> por haber laborado a nuestro favor en el cargo de  <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span></p>
-                                                        <br>
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">Desde : <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span></p>
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">Hasta : <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span></p>
+                                                    <div class="text-center">
+                                                        <div style="text-align: left !important;">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 22px;">CERTIFICA:</h1>
+                                                        </div>
                                                     </div>
                                                     <br><br>
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">Retirándose voluntariamente por razones personales. </p>
-                                                        <br>
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">Expedímos este documento solicitado por la parte interesada para los fines que estime necesario. </p>
+                                                    <div class="text-center">
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">Al Sr. <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> por haber laborado a nuestro favor en el cargo de  <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span></p>
+                                                            <br>
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">Desde : <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span></p>
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">Hasta : <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span></p>
+                                                        </div>
+                                                        <br><br>
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">Retirándose voluntariamente por razones personales. </p>
+                                                            <br>
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">Expedímos este documento solicitado por la parte interesada para los fines que estime necesario. </p>
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <br><br><br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: right !important;">
-                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;"></p>
+                                                    <br><br><br><br>
+                                                    <div class="text-center">
+                                                        <div style="text-align: right !important;">
+                                                            <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;"></p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1563,32 +1501,34 @@
                                                     </div>
                                                 </div>
                                                 <br><br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: center !important;">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 20px;"><u>C e r t i f i c a d o</u></h1>
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 20px;"><u>d e</u></h1>
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 20px;"><u>T r a b a j o</u></h1>
-                                                    </div>
-                                                </div>
-                                                <br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;"><u>Se Certifica</u> A <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> en el cargo de   <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span>, durante el tiempo comprendido desde <span class="desde_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> hasta <span class="hasta_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span>, fecha que se hace su retiro voluntario.</p>
+                                                <div class="certificado_imp">
+                                                    <div class="text-center">
+                                                        <div style="text-align: center !important;">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 20px;"><u>C e r t i f i c a d o</u></h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 20px;"><u>d e</u></h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 20px;"><u>T r a b a j o</u></h1>
+                                                        </div>
                                                     </div>
                                                     <br><br>
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">Cuando estuvo bajo nuestra dependencia se distinguió por su alto sentido de responsabilidad, eficiencia y descreción.</p>
+                                                    <div class="text-center">
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;"><u>Se Certifica</u> A <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> en el cargo de   <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span>, durante el tiempo comprendido desde <span class="desde_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> hasta <span class="hasta_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span>, fecha que se hace su retiro voluntario.</p>
+                                                        </div>
+                                                        <br><br>
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">Cuando estuvo bajo nuestra dependencia se distinguió por su alto sentido de responsabilidad, eficiencia y descreción.</p>
+                                                        </div>
+                                                        <br><br>
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">Se le expide el presente documento a solicitud verbal de la parte interesada para los fines que estime por conveniente.</p>
+                                                        </div>
                                                     </div>
-                                                    <br><br>
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">Se le expide el presente documento a solicitud verbal de la parte interesada para los fines que estime por conveniente.</p>
-                                                    </div>
-                                                </div>
 
-                                                <br><br><br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: center !important;">
-                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;"></p>
+                                                    <br><br><br><br>
+                                                    <div class="text-center">
+                                                        <div style="text-align: center !important;">
+                                                            <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;"></p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1609,30 +1549,32 @@
                                                     </div>
                                                 </div>
                                                 <br><br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: center !important;">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 20px;"><u>Certificado de Trabajo</u></h1>
-                                                    </div>
-                                                </div>
-                                                <br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;"><u>Se Certifica</u> A: <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> quien ha laborado en nuestra representada, como <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span>, durante el periodo que comprende desde <span class="desde_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> hasta <span class="hasta_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span>.</p>
+                                                <div class="certificado_imp">
+                                                    <div class="text-center">
+                                                        <div style="text-align: center !important;">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 20px;"><u>Certificado de Trabajo</u></h1>
+                                                        </div>
                                                     </div>
                                                     <br><br>
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">Cuando estuvo bajo nuestra dependencia su labor fué satisfactoria, en todo momento apoyó en los trabajos encomendados, siendo puntual, con una honradez acrisolada.</p>
+                                                    <div class="text-center">
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;"><u>Se Certifica</u> A: <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> quien ha laborado en nuestra representada, como <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span>, durante el periodo que comprende desde <span class="desde_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> hasta <span class="hasta_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span>.</p>
+                                                        </div>
+                                                        <br><br>
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">Cuando estuvo bajo nuestra dependencia su labor fué satisfactoria, en todo momento apoyó en los trabajos encomendados, siendo puntual, con una honradez acrisolada.</p>
+                                                        </div>
+                                                        <br><br>
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">Se le emite este documento en concordancia con lo dispuesto a las leyes laborales.</p>
+                                                        </div>
                                                     </div>
-                                                    <br><br>
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">Se le emite este documento en concordancia con lo dispuesto a las leyes laborales.</p>
-                                                    </div>
-                                                </div>
 
-                                                <br><br><br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: right !important;">
-                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;"></p>
+                                                    <br><br><br><br>
+                                                    <div class="text-center">
+                                                        <div style="text-align: right !important;">
+                                                            <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;"></p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1653,30 +1595,32 @@
                                                     </div>
                                                 </div>
                                                 <br><br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: left !important;">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 20px;"><u>CONSTANCIA LABORAL</u></h1>
-                                                    </div>
-                                                </div>
-                                                <br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;"> El que suscribe deja establecido que <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span>, ha trabajado como <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span>, con fecha de ingreso: <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span>, y de salida <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span>.</p>
+                                                <div class="certificado_imp">
+                                                    <div class="text-center">
+                                                        <div style="text-align: left !important;">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 20px;"><u>CONSTANCIA LABORAL</u></h1>
+                                                        </div>
                                                     </div>
                                                     <br><br>
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">Durante el tiempo de su permanencia fué una persona disciplinada de buena conducta y una honradez a toda prueba.</p>
+                                                    <div class="text-center">
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;"> El que suscribe deja establecido que <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span>, ha trabajado como <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span>, con fecha de ingreso: <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span>, y de salida <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span>.</p>
+                                                        </div>
+                                                        <br><br>
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">Durante el tiempo de su permanencia fué una persona disciplinada de buena conducta y una honradez a toda prueba.</p>
+                                                        </div>
+                                                        <br><br>
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">A solicitud de la parte interesada se le otorga este documento.</p>
+                                                        </div>
                                                     </div>
-                                                    <br><br>
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">A solicitud de la parte interesada se le otorga este documento.</p>
-                                                    </div>
-                                                </div>
 
-                                                <br><br><br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: right !important;">
-                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;"></p>
+                                                    <br><br><br><br>
+                                                    <div class="text-center">
+                                                        <div style="text-align: right !important;">
+                                                            <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;"></p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1697,30 +1641,32 @@
                                                     </div>
                                                 </div>
                                                 <br><br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: left !important;">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 20px;"><u>Certificado Laboral</u></h1>
-                                                    </div>
-                                                </div>
-                                                <br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;"> El Funcionario del rubro deja constancia que la persona de <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> fue trabajador de nuestra representada con fecha de ingreso: <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> hasta <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> siendo su último cargo <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span></p>
+                                                <div class="certificado_imp">
+                                                    <div class="text-center">
+                                                        <div style="text-align: left !important;">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 20px;"><u>Certificado Laboral</u></h1>
+                                                        </div>
                                                     </div>
                                                     <br><br>
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">Durante el desempeño de sus actividades fue un personal eficiente de espíritu de superación, diligente y honradez.</p>
+                                                    <div class="text-center">
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;"> El Funcionario del rubro deja constancia que la persona de <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> fue trabajador de nuestra representada con fecha de ingreso: <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> hasta <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> siendo su último cargo <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span></p>
+                                                        </div>
+                                                        <br><br>
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">Durante el desempeño de sus actividades fue un personal eficiente de espíritu de superación, diligente y honradez.</p>
+                                                        </div>
+                                                        <br><br>
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">Se le otorga para los fines que estime conveniente.</p>
+                                                        </div>
                                                     </div>
-                                                    <br><br>
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">Se le otorga para los fines que estime conveniente.</p>
-                                                    </div>
-                                                </div>
 
-                                                <br><br><br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: left !important;">
-                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;"></p>
+                                                    <br><br><br><br>
+                                                    <div class="text-center">
+                                                        <div style="text-align: left !important;">
+                                                            <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;"></p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1741,30 +1687,32 @@
                                                     </div>
                                                 </div>
                                                 <br><br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: center !important;">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 20px;"><u>CERTIFICADO DE TRABAJO</u></h1>
-                                                    </div>
-                                                </div>
-                                                <br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;"> El Funcionario que suscribe hace constar que: <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span>, ha laborado a favor nuestro en el cargo de <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> con fecha de Ingreso: <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> Fecha de Salida: <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span></p>
+                                                <div class="certificado_imp">
+                                                    <div class="text-center">
+                                                        <div style="text-align: center !important;">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 20px;"><u>CERTIFICADO DE TRABAJO</u></h1>
+                                                        </div>
                                                     </div>
                                                     <br><br>
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">Desarrollando sus actividades a nuestra completa y entera satisfaccion con disciplina, buena conducta y honradez.</p>
+                                                    <div class="text-center">
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;"> El Funcionario que suscribe hace constar que: <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span>, ha laborado a favor nuestro en el cargo de <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> con fecha de Ingreso: <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> Fecha de Salida: <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span></p>
+                                                        </div>
+                                                        <br><br>
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">Desarrollando sus actividades a nuestra completa y entera satisfaccion con disciplina, buena conducta y honradez.</p>
+                                                        </div>
+                                                        <br><br>
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">Se le otorga para los fines del caso.</p>
+                                                        </div>
                                                     </div>
-                                                    <br><br>
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">Se le otorga para los fines del caso.</p>
-                                                    </div>
-                                                </div>
 
-                                                <br><br><br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: right !important;">
-                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;"></p>
+                                                    <br><br><br><br>
+                                                    <div class="text-center">
+                                                        <div style="text-align: right !important;">
+                                                            <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;"></p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1785,32 +1733,34 @@
                                                     </div>
                                                 </div>
                                                 <br><br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: center !important;">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 20px;"><u>CERTIFICADO DE TRABAJO</u></h1>
-                                                    </div>
-                                                </div>
-                                                <br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;"> El suscrito de conformidad a las leyes laborales en vigencia hace constar que: </p>
-                                                        <br>
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;"> El trabajador: <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span>, ha laborado desde: <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> hasta el: <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> siendo su último cargo: <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span>.</p>
+                                                <div class="certificado_imp">
+                                                    <div class="text-center">
+                                                        <div style="text-align: center !important;">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 20px;"><u>CERTIFICADO DE TRABAJO</u></h1>
+                                                        </div>
                                                     </div>
                                                     <br><br>
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">Durante el tiempo de servicio se distingue por su puntualidad, eficiencia y desempeño laboral conforme a los alienamientos de la empresa.</p>
+                                                    <div class="text-center">
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;"> El suscrito de conformidad a las leyes laborales en vigencia hace constar que: </p>
+                                                            <br>
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;"> El trabajador: <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span>, ha laborado desde: <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> hasta el: <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> siendo su último cargo: <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span>.</p>
+                                                        </div>
+                                                        <br><br>
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">Durante el tiempo de servicio se distingue por su puntualidad, eficiencia y desempeño laboral conforme a los alienamientos de la empresa.</p>
+                                                        </div>
+                                                        <br><br>
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">Se expide para los fines que sean necesarios.</p>
+                                                        </div>
                                                     </div>
-                                                    <br><br>
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">Se expide para los fines que sean necesarios.</p>
-                                                    </div>
-                                                </div>
 
-                                                <br><br><br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: right !important;">
-                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;"></p>
+                                                    <br><br><br><br>
+                                                    <div class="text-center">
+                                                        <div style="text-align: right !important;">
+                                                            <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;"></p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1831,33 +1781,36 @@
                                                     </div>
                                                 </div>
                                                 <br><br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: center !important;">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 20px;"><u>C e r t i f i c a d o</u></h1>
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 20px;"><u>d e</u></h1>
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 20px;"><u>T r a b a j o</u></h1>
-                                                    </div>
-                                                </div>
-                                                <br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;"> Que, de nuestros archivos se acredita que la persona de <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> ha presentado servicios en el cargo de <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span>, desde el <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> hasta <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span>, que se retira voluntariamente.</p>
+                                                <div class="certificado_imp">
+                                                    <div class="text-center">
+                                                        <div style="text-align: center !important;">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 20px;"><u>C e r t i f i c a d o</u></h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 20px;"><u>d e</u></h1>
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 20px;"><u>T r a b a j o</u></h1>
+                                                        </div>
                                                     </div>
                                                     <br><br>
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">Se deja constancia que el trabajador durante su dependencia demostró eficiencia, puntualidad, dedicación exclusiva a las labores encomendadas, por lo que se le otorga este documento para los fines que le pueda convenir.</p>
+                                                    <div class="text-center">
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;"> Que, de nuestros archivos se acredita que la persona de <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> ha presentado servicios en el cargo de <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span>, desde el <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> hasta <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span>, que se retira voluntariamente.</p>
+                                                        </div>
+                                                        <br><br>
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">Se deja constancia que el trabajador durante su dependencia demostró eficiencia, puntualidad, dedicación exclusiva a las labores encomendadas, por lo que se le otorga este documento para los fines que le pueda convenir.</p>
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <br><br><br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: right !important;">
-                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;"></p>
+                                                    <br><br><br><br>
+                                                    <div class="text-center">
+                                                        <div style="text-align: right !important;">
+                                                            <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;"></p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="container prev_certificado" style="max-width: 1020px !important;" id="prev_certificado_0">
                                         <div class="card" style="margin-top: 60px;">
                                             <div class="card-header d-flex justify-content-between">
@@ -1911,7 +1864,7 @@
                                                 <br><br>
                                                 <div class="text-right">
                                                     <div  style="text-align: right !important;">
-                                                        <p class="firmante_nom" id="firmante_nom_1" style="color: #000;font-weight: 600;font-size: 16px;" ></p>
+                                                        <p class="firmante_nom" style="color: #000;font-weight: 600;font-size: 16px;" ></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1922,7 +1875,7 @@
                                             <div class="card-header d-flex justify-content-between">
                                                 <h3>PREVISUALIZACIÓN</h3>
                                                 <div>
-                                                    <button class="btn btn-info" onclick="imprimir_certificado()">Imprimir</button>
+                                                    <button class="btn btn-info" onclick="imprimir_certificado();">Imprimir</button>
                                                 </div>
                                             </div>
                                             <div id="contenido_certificado_1" class="card-body m-5 p-5">
