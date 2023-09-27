@@ -805,7 +805,7 @@
                                                         <p style="color: #000;font-weight: 600;font-size: 18px;">
                                                             Se Certifica A <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">______________________________</span>
                                                              por haber laborado desde el <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">_____________________</span>
-                                                             hasta el <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">_____________</span>, siendo su último cargo <span style="color: #FF0000;font-weight: 600;font-size: 30px;" class="cargo_imp">___________________</span>.
+                                                             hasta el <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">_____________</span>, siendo su último cargo <span style="color: #FF0000;font-weight: 600;font-size: 18px;" class="cargo_imp">___________________</span>.
                                                         </p>
                                                     </div>
                                                 </div>
@@ -1057,7 +1057,7 @@
                                                         <p style="color: #000;font-weight: 600;font-size: 18px;">
                                                             Se Certifica: A: <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 18px;">____________________________</span>,
                                                              al haberse desempeñado como empleado en el cargo de:
-                                                            <span clas="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 18px;">___________________</span>, desde <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">________________</span>
+                                                            <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 18px;">___________________</span>, desde <span class="desde_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">________________</span>
                                                              Hasta: <span class="hasta_imp_num" style="color: #FF0000;font-weight: 600;font-size: 18px;">______________</span>, fecha en que se retira voluntariamente por motivos particulares, desempeñándose a nuestra entera y completa satisfacción.
                                                         </p>
                                                     </div>
