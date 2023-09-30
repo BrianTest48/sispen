@@ -501,6 +501,7 @@ function BuscarEmp(a){
                         if(data == ""){
                             console.log("NO EXISTE DATA");
                         }else {
+                            //console.log(data);
                             $("#lst_emp_"+a).html(data);
                         }
                     });
@@ -508,18 +509,18 @@ function BuscarEmp(a){
                     Swal.fire({
                         position: 'center',
                         icon: 'info',
-                        title: 'Introduzca una fecha final correcta',
+                        title: 'La fecha maxima a ingresar es 30/06/1999',
                         showConfirmButton: false,
-                        timer:1500
+                        timer:2500
                     });
                 }
             }else {
                 Swal.fire({
                     position: 'center',
                     icon: 'info',
-                    title: 'Introduzca las fechas correctas',
+                    title: 'La fecha debe ser mayor o igual a la fecha inicio',
                     showConfirmButton: false,
-                    timer:1500
+                    timer:2500
                 });
             }
         }else {
@@ -528,7 +529,7 @@ function BuscarEmp(a){
                 icon: 'info',
                 title: 'La fecha de nacimiento debe ser mayor a la fecha de inicio ',
                 showConfirmButton: false,
-                timer:1500
+                timer:2500
             });
         }
     }else {
@@ -537,7 +538,7 @@ function BuscarEmp(a){
             icon: 'info',
             title: 'Introduzca fechas de inicio y fin ',
             showConfirmButton: false,
-            timer:1500
+            timer:2500
         });
     }
 
@@ -730,18 +731,18 @@ function mostrardetalle(a, b, c){
                     Swal.fire({
                         position: 'center',
                         icon: 'info',
-                        title: 'Introduzca una fecha final correcta',
+                        title: 'La fecha maxima a ingresar es 30/06/1999',
                         showConfirmButton: false,
-                        timer:1500
+                        timer:2500
                     });
                 }    
             }else {
                 Swal.fire({
                     position: 'center',
                     icon: 'info',
-                    title: 'Introduzca las fechas correctas',
+                    title: 'La fecha debe ser mayor o igual a la fecha inicio',
                     showConfirmButton: false,
-                    timer:1500
+                    timer:2500
                 });
             }
         }else {
@@ -750,7 +751,7 @@ function mostrardetalle(a, b, c){
                 icon: 'info',
                 title: 'La fecha de nacimiento debe ser mayor a la fecha de inicio ',
                 showConfirmButton: false,
-                timer:1500
+                timer:2500
             });
         }
     }else {
@@ -759,7 +760,7 @@ function mostrardetalle(a, b, c){
             icon: 'info',
             title: 'Introduzca fechas de inicio y fin ',
             showConfirmButton: false,
-            timer:1500
+            timer:2500
         });
     }
     $('#orcinea-tab').click();

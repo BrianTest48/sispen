@@ -1152,9 +1152,9 @@ function BuscarEmp(a){
                 Swal.fire({
                     position: 'center',
                     icon: 'info',
-                    title: 'Introduzca las fechas correctas',
+                    title: 'La fecha debe ser mayor o igual a la fecha inicio',
                     showConfirmButton: false,
-                    timer:1500
+                    timer:2500
                 });
             }
         }else {
@@ -1163,7 +1163,7 @@ function BuscarEmp(a){
                 icon: 'info',
                 title: 'La fecha de nacimiento debe ser mayor a la fecha de inicio ',
                 showConfirmButton: false,
-                timer:1500
+                timer:2500
             });
         }
     }else {
@@ -1172,7 +1172,7 @@ function BuscarEmp(a){
             icon: 'info',
             title: 'Introduzca fechas de inicio y fin ',
             showConfirmButton: false,
-            timer:1500
+            timer:2500
         });
     }
 
@@ -1417,9 +1417,9 @@ function mostrardetalle(a, b, c){
                 Swal.fire({
                     position: 'center',
                     icon: 'info',
-                    title: 'Introduzca las fechas correctas',
+                    title: 'La fecha debe ser mayor o igual a la fecha inicio',
                     showConfirmButton: false,
-                    timer:1500
+                    timer:2500
                 });
     
             }
@@ -1429,7 +1429,7 @@ function mostrardetalle(a, b, c){
                 icon: 'info',
                 title: 'La fecha de nacimiento debe ser mayor a la fecha de inicio ',
                 showConfirmButton: false,
-                timer:1500
+                timer:2500
             });
         }
 
@@ -1439,7 +1439,7 @@ function mostrardetalle(a, b, c){
             icon: 'info',
             title: 'Introduzca fechas de inicio y fin ',
             showConfirmButton: false,
-            timer:1500
+            timer:2500
         });
     }
 

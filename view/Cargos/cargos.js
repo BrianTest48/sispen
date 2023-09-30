@@ -77,7 +77,6 @@ function guardaryeditar(e){
         contentType: false,
         processData: false,
         success: function(datos){
-
             console.log(datos);
             $('#cargo_form')[0].reset();
             $("#modalcargos").modal('hide');

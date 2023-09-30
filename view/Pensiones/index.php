@@ -5857,6 +5857,21 @@
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
                                                                     <td>TOTAL HABER</td>
                                                                     <td class="total_boleta"></td>
                                                                     <td></td>
@@ -6044,6 +6059,38 @@
                                                     </div>
                                                     <div class="col-8">
                                                         <h1 class="sueldo_afiliado" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">.</h1>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <h1 style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">.</h1>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <h1 style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">.</h1>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <h1 style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">.</h1>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <h1 style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -6324,12 +6371,43 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-3">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">.</h1>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <h1 style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">.</h1>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <h1 style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">.</h1>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <h1 style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">.</h1>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <h1 style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-3">
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px;">Otros: </h1>
                                                     </div>
                                                     <div class="col-8">
                                                         <h1 class="otros_afiliado" style="color: #FF0000;font-weight: 600;font-size: 12px;"><u></u></h1>
                                                     </div>
-
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-3">
@@ -6907,6 +6985,34 @@
                                                         <td></td>
                                                     </tr>
                                                     <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
                                                         <td>SUB-TOTALES</td>
                                                         <td>
                                                             <div style="border-bottom: solid; margin-bottom: 10px;"></div>
@@ -7037,6 +7143,38 @@
                                                     </div>
                                                     <div class="col-8">
                                                         <h1 class="sueldo_afiliado" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 16px;">.</h1>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 16px;">.</h1>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 16px;">.</h1>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 16px;">.</h1>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -7519,6 +7657,38 @@
                                                     </div>
                                                     <div class="col-4 text-left">
                                                         <h1  class="rem_vaca_afiliado" style="color: #FF0000;font-weight: 600;font-size: 14px;"></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-8 text-left" style="border-right: 2px dashed black; ">
+                                                        <h1  style="color: #000;font-weight: 600;font-size: 14px;">.</h1>
+                                                    </div>
+                                                    <div class="col-4 text-left">
+                                                        <h1  style="color: #FF0000;font-weight: 600;font-size: 14px;"></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-8 text-left" style="border-right: 2px dashed black; ">
+                                                        <h1  style="color: #000;font-weight: 600;font-size: 14px;">.</h1>
+                                                    </div>
+                                                    <div class="col-4 text-left">
+                                                        <h1  style="color: #FF0000;font-weight: 600;font-size: 14px;"></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-8 text-left" style="border-right: 2px dashed black; ">
+                                                        <h1  style="color: #000;font-weight: 600;font-size: 14px;">.</h1>
+                                                    </div>
+                                                    <div class="col-4 text-left">
+                                                        <h1  style="color: #FF0000;font-weight: 600;font-size: 14px;"></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-8 text-left" style="border-right: 2px dashed black; ">
+                                                        <h1  style="color: #000;font-weight: 600;font-size: 14px;">.</h1>
+                                                    </div>
+                                                    <div class="col-4 text-left">
+                                                        <h1  style="color: #FF0000;font-weight: 600;font-size: 14px;"></h1>
                                                     </div>
                                                 </div>
 
@@ -8317,7 +8487,249 @@
                                     </div>
                                 </div>
                                 <div class="container prev_boleta" style="max-width: 1020px !important;" id="prev_boleta_14">
+                                    <div class="card" style="margin-top: 60px;">
+                                        <div class="card-header d-flex justify-content-between">
+                                            <h3>PREVISUALIZACIÓN</h3>
+                                            <div>
+                                                <button class="btn btn-info" onclick="imprimir_boleta()">Imprimir</button>
+                                            </div>
+                                        </div>
+                                        <div id="contenido_boleta_14" class="card-body m-5 p-5">
+                                            <div class="text-center">
+                                                <div style="text-align: center !important;">
+                                                    <h1 style="color: #000;font-weight: 600;font-size: 24px;"><u>BOLETA DE PAGO</u></h1>
+                                                </div>
+                                            </div>
+                                            <div class="text-left">
+                                                <div style="text-align: left !important;">
+                                                    <p class="emp_imp" style="color: dark;font-weight: 600;font-size: 20px;">EMPRESA AURIFERA GABY EIRLTDA.</p>
+                                                </div>
+                                            </div>
+                                            <br>
 
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 16px;">NOMBRES Y APELLIDOS: </h1>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <h1 class="nombre_afiliado" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXX</h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 16px;">FECHA DE INGRESO:</h1>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <h1 class="fecha_ingreso_afiliado" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 16px;">CONCEPTO DE LA REMUNERACION</h1>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;">Remuneracion <span class="mes_anio_imp"></span></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 16px;">DIRECCION:</h1>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 16px;">SUELDO:</h1>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <h1 class="sueldo_afiliado" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 16px;">OTROS:</h1>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 16px;"><u>VACACIONES:</u></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 16px;">SALIDA:</h1>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 16px;">REGRESO:</h1>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 16px;">FECHA DE CESE:</h1>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 16px;"><u>APORTACIONES DEL TRABAJADOR:</u></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 16px;">I.P.S.S.:</h1>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <h1 class="dsc_at_ss_monto" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 16px;">S.N.P.:</h1>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <h1 class="dsc_at_pension_monto" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 16px;">FONAVI:</h1>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <h1 class="dsc_at_fonavi_monto" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 16px;">ADELANTO QUINCENA:</h1>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 16px;">OTROS DESCUENTOS:</h1>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 16px;">TOTAL DESCUENTOS:</h1>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <h1 class="total_dsc_trabajador_boleta" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 16px;">NETO A PAGAR:</h1>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                    </div>
+
+                                                    <div class="col-6">
+                                                        <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 16px;"><u>APORTACIONES DEL EMPLEADOR:</u></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 16px;">I.P.S.S.:</h1>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <h1 class="dsc_ap_ss_monto" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 16px;">S.N.P.:</h1>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <h1 class="dsc_ap_pension_monto" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 16px;">FONAVI:</h1>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <h1 class="dsc_ap_fonavi_monto" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 16px;">OTROS:</h1>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 16px;">TOTAL DESCUENTOS:</h1>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <h1 class="total_dsc_empleador_boleta" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                    </div>
+                                                </div>
+                                                <br><br>
+
+                                                <div class="col">
+                                                    <p class="fecha_boleta">__________ de ________ de _________</p>
+                                                </div>
+
+                                                <br><br>
+                                                <div class="text-center">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">.........................................................</p>
+                                                            <p class="emp_imp" class="emp_imp" style="color: dark;font-weight: 600;font-size: 16px;">EMPLEADOR</p>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">.........................................................</p>
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">TRABAJADOR</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="container prev_boleta" style="max-width: 1020px !important;" id="prev_boleta_15">
