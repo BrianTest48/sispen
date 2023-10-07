@@ -15,7 +15,27 @@ var fecha_inicial_5;
 var fecha_fin_5;
 
 
-$(document).ready(function(){ 
+$(document).ready(function(){
+    $('.menus').on('click', function(e) {
+        e.preventDefault();
+        var linkUrl = $(this).attr('href');
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: 'Todos los cambios no guardados se perderán.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, abandonar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Si el usuario confirma, redirige al enlace original
+                window.location.href = linkUrl;
+            }
+        });
+    });
+
     OcultarPrev();
     $("#divresultado").hide();
     $("#form_datos").hide();
@@ -623,7 +643,7 @@ function mostrardetalle(a, b, c){
                             //console.log(data);
                             data = JSON.parse(data);
                             //$("#lst_emp_"+a).val(data[0]['ruc']).trigger('change');
-                            $('#nom_emp_'+a).html(data[0]['empleador']);
+                            $('#nom_emp_'+a).html(data[0]['ruc']+" - "+data[0]['empleador']);
                             $('#fech_sueldo_'+a).val(data[0]['moneda_sueldo']);
                             $('#cant_sueldo_'+a).val(data[0]['fechsueldo']);
                             $('#nom_emp_lab').html(data[0]['empleador']);

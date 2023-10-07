@@ -5817,7 +5817,7 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">Categ. Ocupación:</h1>
                                                         </div>
                                                         <div class="col-2">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">_____________</h1>
+                                                            <h1 class="cargo_afiliado" style="color: #000;font-weight: 600;font-size: 12px;">_____________</h1>
                                                         </div>
                                                         <div class="col-3">
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">Fecha de Ingreso:</h1>
@@ -6648,7 +6648,7 @@
                                                         <td colspan="2">OCUPACION PARTIDA</td>
                                                     </tr>
                                                     <tr class="text-center">
-                                                        <td>&nbsp;</td>
+                                                        <td class="fecha_ingreso_afiliado"></td>
                                                         <td></td>
                                                         <td class="doc_afiliado"></td>
                                                         <td></td>
@@ -6945,7 +6945,7 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 16px;">Ingreso:</h1>
                                                         </div>
                                                         <div class="col-3">
-                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                            <h1 class="fecha_ingreso_afiliado" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
                                                         </div>
                                                         <div class="col-3">
                                                             <h1 style="color: #000;font-weight: 600;font-size: 16px;">Dias Feriados:</h1>
@@ -7461,13 +7461,13 @@
                                                             <td>L.S.S.S.P</td>
                                                             <td>Ocupacion</td>
                                                             <td>F. Ingreso</td>
-                                                            <td  colspan="2">Remuneracion</td>
+                                                            <td colspan="2">Remuneracion</td>
                                                         </tr>
                                                         <tr>
                                                             <td>&nbsp;</td>
                                                             <td class="cargo_imp">&nbsp;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&nbsp;</td>
+                                                            <td class="fecha_ingreso_afiliado"></td>
+                                                            <td></td>
                                                             <td class="sueldo_afiliado">&nbsp;</td>
                                                         </tr>
                                                         <tr>
@@ -9989,26 +9989,26 @@
                                                     <div class="col-5">
                                                         <div class="row">
                                                             <div class="col-4" style=" border: 1px dashed black;">
-                                                                <h1 style="color: #000;font-weight: 600;font-size: 9px;">TOTAL INGRESOS</h1>
+                                                                <h1 class=""  style="color: #000;font-weight: 600;font-size: 9px;margin-top : 5px;">TOTAL INGRESOS</h1>
                                                             </div>
-                                                            <div class="col-2" style="border: 1px dashed black;">
-                                                                <h1 class="total_boleta" style="color: #000;font-weight: 600;font-size: 9px;"></h1>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-4" style=" border: 1px dashed black;">
-                                                                <h1 style="color: #000;font-weight: 600;font-size: 9px;">TOTAL DESCUENTOS</h1>
-                                                            </div>
-                                                            <div class="col-2" style="border: 1px dashed black;">
-                                                                <h1 class="total_dsc_trabajador_boleta" style="color: #000;font-weight: 600;font-size: 9px;"></h1>
+                                                            <div class="col-4 " style="border: 1px dashed black;">
+                                                                <h1 class="total_boleta" style="color: #000;font-weight: 600;font-size: 9px;margin-top : 5px;"></h1>
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-4" style=" border: 1px dashed black;">
-                                                                <h1 style="color: #000;font-weight: 600;font-size: 9px;">NETO A PAGAR</h1>
+                                                                <h1 class="" style="color: #000;font-weight: 600;font-size: 9px;margin-top : 5px;">TOTAL DESCUENTOS</h1>
                                                             </div>
-                                                            <div class="col-2" style="border: 1px dashed black;">
-                                                                <h1 class="total_neto_pagar_boleta" style="color: #000;font-weight: 600;font-size: 9px;"></h1>
+                                                            <div class="col-4 " style="border: 1px dashed black;">
+                                                                <h1 class="total_dsc_trabajador_boleta " style="color: #000;font-weight: 600;font-size: 9px;margin-top : 5px;"></h1>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-4 " style=" border: 1px dashed black;">
+                                                                <h1 class="" style="color: #000;font-weight: 600;font-size: 9px;margin-top : 5px;">NETO A PAGAR</h1>
+                                                            </div>
+                                                            <div class="col-4" style="border: 1px dashed black;">
+                                                                <h1 class="total_neto_pagar_boleta" style="color: #000;font-weight: 600;font-size: 9px;margin-top : 5px;"></h1>
                                                             </div>
                                                         </div>
                                                     </div>

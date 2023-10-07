@@ -1357,8 +1357,8 @@ function mostrardetalle(a, b, c){
                         tmp = parseInt($('#anios_emp_'+a).val(),"10");
                         sldo = Number(data[0]['fechsueldo'])
                         tot = tmp * sldo;
-                        rp = $('#rep_legal_'+a).val();
-                        dnia = $('#dni_a_'+a).val();
+                        rp =  data[0]['rep_legal'];
+                        dnia = data[0]['dni_a'];
                         firm = $('#firmante'+a).val();
                 
                         $('.emp_imp').html(nom);

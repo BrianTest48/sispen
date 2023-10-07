@@ -421,7 +421,6 @@
                                                     <div class="col-12 col-sm-8">
                                                         <select class="form-control select2" name="combo_prev_boleta" id="combo_prev_boleta" style="width: 100%;">
                                                             <option value="1">Modelo Boleta 1</option>
-                                                            <option value="1">Modelo Boleta 1</option>
                                                             <option value="2">Modelo Boleta 2</option>
                                                             <option value="3">Modelo Boleta 3</option>
                                                             <option value="4">Modelo Boleta 4</option>
@@ -553,6 +552,7 @@
                                                         <select class="form-control select2" name="combo_prev_bono" id="combo_prev_bono" style="width: 100%;">
                                                             <option value="1">Fecha de 1992</option>
                                                             <option value="2">Fecha de 1992 - 1996</option>
+                                                            <option value="4">Fecha de 1992 - 1996</option>
                                                             <option value="3">Fecha de 1992 - 1996 - 2001</option>
                                                         </select>
                                                     </div>
@@ -5871,7 +5871,7 @@
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px;">Categ. Ocupación:</h1>
                                                     </div>
                                                     <div class="col-2">
-                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">_____________</h1>
+                                                        <h1 class="cargo_afiliado" style="color: #000;font-weight: 600;font-size: 12px;">_____________</h1>
                                                     </div>
                                                     <div class="col-3">
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px;">Fecha de Ingreso:</h1>
@@ -6702,7 +6702,7 @@
                                                     <td colspan="2">OCUPACION PARTIDA</td>
                                                 </tr>
                                                 <tr class="text-center">
-                                                    <td>&nbsp;</td>
+                                                    <td class="fecha_ingreso_afiliado"></td>
                                                     <td></td>
                                                     <td class="doc_afiliado"></td>
                                                     <td></td>
@@ -6999,7 +6999,7 @@
                                                         <h1 style="color: #000;font-weight: 600;font-size: 16px;">Ingreso:</h1>
                                                     </div>
                                                     <div class="col-3">
-                                                        <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                        <h1 class="fecha_ingreso_afiliado" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
                                                     </div>
                                                     <div class="col-3">
                                                         <h1 style="color: #000;font-weight: 600;font-size: 16px;">Dias Feriados:</h1>
@@ -7515,13 +7515,13 @@
                                                         <td>L.S.S.S.P</td>
                                                         <td>Ocupacion</td>
                                                         <td>F. Ingreso</td>
-                                                        <td  colspan="2">Remuneracion</td>
+                                                        <td colspan="2">Remuneracion</td>
                                                     </tr>
                                                     <tr>
                                                         <td>&nbsp;</td>
                                                         <td class="cargo_imp">&nbsp;</td>
-                                                        <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
+                                                        <td class="fecha_ingreso_afiliado"></td>
+                                                        <td></td>
                                                         <td class="sueldo_afiliado">&nbsp;</td>
                                                     </tr>
                                                     <tr>
@@ -10043,26 +10043,26 @@
                                                 <div class="col-5">
                                                     <div class="row">
                                                         <div class="col-4" style=" border: 1px dashed black;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 9px;">TOTAL INGRESOS</h1>
+                                                            <h1 class=""  style="color: #000;font-weight: 600;font-size: 9px;margin-top : 5px;">TOTAL INGRESOS</h1>
                                                         </div>
-                                                        <div class="col-2" style="border: 1px dashed black;">
-                                                            <h1 class="total_boleta" style="color: #000;font-weight: 600;font-size: 9px;"></h1>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-4" style=" border: 1px dashed black;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 9px;">TOTAL DESCUENTOS</h1>
-                                                        </div>
-                                                        <div class="col-2" style="border: 1px dashed black;">
-                                                            <h1 class="total_dsc_trabajador_boleta" style="color: #000;font-weight: 600;font-size: 9px;"></h1>
+                                                        <div class="col-4 " style="border: 1px dashed black;">
+                                                            <h1 class="total_boleta" style="color: #000;font-weight: 600;font-size: 9px;margin-top : 5px;"></h1>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-4" style=" border: 1px dashed black;">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 9px;">NETO A PAGAR</h1>
+                                                            <h1 class="" style="color: #000;font-weight: 600;font-size: 9px;margin-top : 5px;">TOTAL DESCUENTOS</h1>
                                                         </div>
-                                                        <div class="col-2" style="border: 1px dashed black;">
-                                                            <h1 class="total_neto_pagar_boleta" style="color: #000;font-weight: 600;font-size: 9px;"></h1>
+                                                        <div class="col-4 " style="border: 1px dashed black;">
+                                                            <h1 class="total_dsc_trabajador_boleta " style="color: #000;font-weight: 600;font-size: 9px;margin-top : 5px;"></h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4 " style=" border: 1px dashed black;">
+                                                            <h1 class="" style="color: #000;font-weight: 600;font-size: 9px;margin-top : 5px;">NETO A PAGAR</h1>
+                                                        </div>
+                                                        <div class="col-4" style="border: 1px dashed black;">
+                                                            <h1 class="total_neto_pagar_boleta" style="color: #000;font-weight: 600;font-size: 9px;margin-top : 5px;"></h1>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -10355,8 +10355,8 @@
                                             <div class="text-center">
                                                 <div style="text-align: center !important;">
                                                     <h1 style="color: #000;font-weight: 600;font-size: 20px;"><u>DECLARACIÓN JURADA DEL EMPLEADOR</u></h1>
-                                                    <p style="color: #000;font-weight: 600;font-size: 13px;">(Resolucion N° <span style="color: #FF0000;font-weight: 600;font-size: 16px;">________</span> - EF/SAFP)</p>
-                                                    <p style="color: #000;font-weight: 600;font-size: 13px;">(Para los fines señalados en el Art. <span style="color: #FF0000;font-weight: 600;font-size: 16px;">______</span> - EF/SAFP)</p>
+                                                    <p style="color: #000;font-weight: 600;font-size: 13px;">(Resolucion N° 053-95 - EF/SAFP)</p>
+                                                    <p style="color: #000;font-weight: 600;font-size: 13px;">(Para los fines señalados en el Art. 6 del D.S N 180-94 - EF/SAFP)</p>
 
                                                 </div>
                                             </div>
@@ -10843,8 +10843,261 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+                                <div class="container prev_bono" style="max-width: 1020px !important;" id="prev_bono_4">
+                                    <div class="card" style="margin-top: 60px;">
+                                        <div class="card-header d-flex justify-content-between">
+                                            <h3>PREVISUALIZACIÓN</h3>
+                                            <div>
+                                                <button class="btn btn-info" onclick="imprimir_bono()">Imprimir</button>
+                                            </div>
+                                        </div>
+                                        <div id="contenido_bono_4" class="card-body m-5 p-5">
 
+                                            <div class="text-center">
+                                                <div style="text-align: center !important;">
+                                                    <h1 style="color: #000;font-weight: 600;font-size: 20px;"><u>DECLARACIÓN JURADA DEL EMPLEADOR</u></h1>
+                                                    <p style="color: #000;font-weight: 600;font-size: 11px;">Requisito para la presentacion de la solicitud de Bono de Reconocimiento de acuerdo</p>
+                                                    <p style="color: #000;font-weight: 600;font-size: 11px;">Art. 6 Del D.S N° 180-94 EF</p>
+                                                </div>
+                                            </div>
+                                            <br>
+
+                                            <div class="text-center">
+                                                <div style="text-align: justify !important;">
+                                                    <p style="color: #000;font-weight: 600;font-size: 13px;">Por la presente yo 
+                                                        <span class="nom_emp_ap_rp" style="color: #FF0000;font-weight: 600;font-size: 13px;">
+                                                        </span> identificado con D.N.I. N° 
+                                                            <span class="dni_imp_rp" style="color: #FF0000;font-weight: 600;font-size: 13px;">
+                                                            </span> en calidad de representante legal de la empresa 
+                                                            <span class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 13px;">
+                                                            </span> identificada con Registro Único de Contribuyente - RUC 
+                                                            <span class="ruc_emp_imp" style="color: #FF0000;font-weight: 600;font-size: 13px;">
+                                                            </span> declaro bajo juramento que el señor(a) 
+                                                            <span class="nom_emp_ap" style="color: #FF0000;font-weight: 600;font-size: 13px;">
+                                                            </span> identificado con D.N.I. N° 
+                                                            <span class="dni_imp" style="color: #FF0000;font-weight: 600;font-size: 13px;">
+                                                            </span> codigo IPSS N° <span style="color: #FF0000;font-weight: 600;font-size: 13px;">___________
+                                                            </span> Y Código único SPP - CUSPP N° <span style="color: #FF0000;font-weight: 600;font-size: 13px;">__________ 
+                                                         </span> quien se encuentra tramintando el siguiente tipo de Bono d Reconocimiento.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="d-flex justify-content-center bd-highlight mb-3d-flex justify-content-center bd-highlight mb-3">
+                                                <div class="p-2 bd-highlight d-flex align-items-center" style="border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; height: 10px; width: 70px;"></div>
+                                                <div class="bd-highlight" style="padding-left: 10px;">
+                                                    <h1 style="color: #000;font-weight: 600;font-size: 13px; text-align: left !important;">Bono de Reconocimiento 1992 (Decreto Supremo N°054-97-EF)</h1>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-center bd-highlight mb-3d-flex justify-content-center bd-highlight mb-3">
+                                                <div class="p-2 bd-highlight d-flex align-items-center" style="border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; height: 10px; width: 70px;"></div>
+                                                <div class="bd-highlight" style="padding-left: 10px;">
+                                                    <h1 style="color: #000;font-weight: 600;font-size: 13px; text-align: left !important;">Bono de Reconocimiento 1996 (Decreto Supremo N°054-97-EF)</h1>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col-6 table-responsive">
+                                                        <p style="color: #000;font-weight: 600;font-size: 13px;">1. Meses Laborados (1)</p>
+                                                        <table class="table table-borderless" style="margin-bottom: 0px; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; height: 10px;">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th colspan="2" style="font-size: 13px; text-align: center; padding-bottom: 0px;">DESDE</th>
+                                                                    <th colspan="2" style="font-size: 13px; text-align: center; padding-bottom: 0px;">HASTA</th>
+                                                                    <th style="font-size: 13px; text-align: center; padding-bottom: 0px;">N° de</th>
+                                                                </tr>
+                                                                <tr class="text-center">
+                                                                    <th scope="col" style="font-size: 11px;">Mes</th>
+                                                                    <th style="font-size: 11px;">Año</th>
+                                                                    <th style="font-size: 11px;">Mes</th>
+                                                                    <th style="font-size: 11px;">Año</th>
+                                                                    <th style="font-size: 11px;">Meses</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody class="text-center" style="font-size: 12px;">
+                                                                <tr>
+                                                                    <th class="mon_ini"  scope="row" style="padding-bottom: 0px;"></th>
+                                                                    <th class="year_ini"  scope="row" style="padding-bottom: 0px;"></th>
+                                                                    <th class="mon_fin"   scope="row" style="padding-bottom: 0px;"></th>
+                                                                    <th class="year_fin"   scope="row" style="padding-bottom: 0px;"></th>
+                                                                    <th class="cant_meses"  scope="row" style="padding-bottom: 0px;"></th>
+                                                                </tr>
+                                                                <tr style="visibility: hidden;">
+                                                                <th scope="row" style="padding-bottom: 0px;">01</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">92</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">12</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">0.36</th>
+                                                                </tr>
+                                                                <tr style="visibility: hidden;">
+                                                                <th scope="row" style="padding-bottom: 0px;">02</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">92</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">12</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">0.36</th>
+                                                                </tr>
+                                                                <tr style="visibility: hidden;">
+                                                                <th scope="row" style="padding-bottom: 0px;">03</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">92</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">12</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">0.36</th>
+                                                                </tr>
+                                                                <tr style="visibility: hidden;">
+                                                                <th scope="row" style="padding-bottom: 0px;">04</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">92</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">12</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">0.36</th>
+                                                                </tr>
+                                                                <tr style="visibility: hidden;">
+                                                                <th scope="row" style="padding-bottom: 0px;">05</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">92</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">12</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">0.36</th>
+                                                                </tr>
+                                                                <tr style="visibility: hidden;">
+                                                                <th scope="row" style="padding-bottom: 0px;">06</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">92</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">12</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">0.36</th>
+                                                                </tr>
+                                                                <tr style="visibility: hidden;">
+                                                                <th scope="row" style="padding-bottom: 0px;">07</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">92</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">12</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">0.36</th>
+                                                                </tr>
+                                                                <tr style="visibility: hidden;">
+                                                                <th scope="row" style="padding-bottom: 0px;">08</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">92</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">12</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">0.36</th>
+                                                                </tr>
+                                                                <tr style="visibility: hidden;">
+                                                                <th scope="row" style="padding-bottom: 0px;">09</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">92</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">12</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">0.36</th>
+                                                                </tr>
+                                                                <tr style="visibility: hidden;">
+                                                                <th scope="row" style="padding-bottom: 0px;">10</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">92</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">12</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">0.36</th>
+                                                                </tr>
+                                                
+                                                            </tbody>
+                                                        </table>
+                                                    
+                                                    </div>
+                                                    <div class="col-6 table-responsive">
+                                                        <p style="color: #000;font-weight: 600;font-size: 13px;">2. Últimas doce (12) Remuneraciones (1)</p>
+                                                        <table class="table table-borderless" style="margin-bottom: 0px; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; height: 10px;width: 100%;">
+                                                            <thead>
+                                                                <tr class="text-center">
+                                                                    <th scope="col" style="font-size: 11px;" style="padding-bottom: 0px;">Mes</th>
+                                                                    <th scope="col" style="font-size: 11px;" style="padding-bottom: 0px;">Año</th>
+                                                                    <th scope="col" style="font-size: 11px;" style="padding-bottom: 0px;">Remuneración (S/) 2/</th>
+                                                                    <th scope="col" style="font-size: 11px;" style="padding-bottom: 0px;">Retención 3/</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody class="text-center" style="font-size: 12px;">
+                                                                <tr>
+                                                                    <th scope="row" style="padding-bottom: 0px;">12</th>
+                                                                    <th scope="row" style="padding-bottom: 0px;">91</th>
+                                                                    <th class="dic_91_imp" scope="row" style="padding-bottom: 0px;" ></th>
+                                                                    <th class="dic_91_imp_rst" scope="row" style="padding-bottom: 0px;"></th>
+                                                                </tr>
+                                                                <tr>
+                                                                <th scope="row" style="padding-bottom: 0px;">01</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">92</th>
+                                                                <th class="ene_92_imp" scope="row" style="padding-bottom: 0px;"></th>
+                                                                <th class="ene_92_imp_rst" scope="row" style="padding-bottom: 0px;"></th>
+                                                                </tr>
+                                                                <tr>
+                                                                <th scope="row" style="padding-bottom: 0px;">02</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">92</th>
+                                                                <th scope="row" style="padding-bottom: 0px;" class="feb_92_imp"></th>
+                                                                <th scope="row" style="padding-bottom: 0px;" class="feb_92_imp_rst"></th>
+                                                                </tr>
+                                                                <tr>
+                                                                <th scope="row" style="padding-bottom: 0px;">03</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">92</th>
+                                                                <th scope="row" style="padding-bottom: 0px;" class="mar_92_imp"></th>
+                                                                <th scope="row" style="padding-bottom: 0px;" class="mar_92_imp_rst"></th>
+                                                                </tr>
+                                                                <tr>
+                                                                <th scope="row" style="padding-bottom: 0px;">04</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">92</th>
+                                                                <th scope="row" style="padding-bottom: 0px;" class="abr_92_imp"></th>
+                                                                <th scope="row" style="padding-bottom: 0px;" class="abr_92_imp_rst"></th>
+                                                                </tr>
+                                                                <tr>
+                                                                <th scope="row" style="padding-bottom: 0px;">05</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">92</th>
+                                                                <th scope="row" style="padding-bottom: 0px;" class="may_92_imp"></th>
+                                                                <th scope="row" style="padding-bottom: 0px;" class="may_92_imp_rst"></th>
+                                                                </tr>
+                                                                <tr>
+                                                                <th scope="row" style="padding-bottom: 0px;">06</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">92</th>
+                                                                <th scope="row" style="padding-bottom: 0px;" class="jun_92_imp"></th>
+                                                                <th scope="row" style="padding-bottom: 0px;" class="jun_92_imp_rst"></th>
+                                                                </tr>
+                                                                <tr>
+                                                                <th scope="row" style="padding-bottom: 0px;">07</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">92</th>
+                                                                <th scope="row" style="padding-bottom: 0px;" class="jul_92_imp"></th>
+                                                                <th scope="row" style="padding-bottom: 0px;" class="jul_92_imp_rst"></th>
+                                                                </tr>
+                                                                <tr>
+                                                                <th scope="row" style="padding-bottom: 0px;">08</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">92</th>
+                                                                <th scope="row" style="padding-bottom: 0px;" class="ago_92_imp"></th>
+                                                                <th scope="row" style="padding-bottom: 0px;" class="ago_92_imp_rst"></th>
+                                                                </tr>
+                                                                <tr>
+                                                                <th scope="row" style="padding-bottom: 0px;">09</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">92</th>
+                                                                <th scope="row" style="padding-bottom: 0px;" class="sep_92_imp"></th>
+                                                                <th scope="row" style="padding-bottom: 0px;" class="sep_92_imp_rst"></th>
+                                                                </tr>
+                                                                <tr>
+                                                                <th scope="row" style="padding-bottom: 0px;">10</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">92</th>
+                                                                <th scope="row" style="padding-bottom: 0px;" class="oct_92_imp"></th>
+                                                                <th scope="row" style="padding-bottom: 0px;" class="oct_92_imp_rst"></th>
+                                                                </tr>
+                                                                <tr>
+                                                                <th scope="row" style="padding-bottom: 0px;">11</th>
+                                                                <th scope="row" style="padding-bottom: 0px;">92</th>
+                                                                <th scope="row" style="padding-bottom: 0px;" class="nov_92_imp"></th>
+                                                                <th scope="row" style="padding-bottom: 0px;" class="nov_92_imp_rst"></th>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <br>
+                                            <div class="text-center">
+                                                <div style="text-align: justify !important;">
+                                                    <p style="color: #000;font-weight: 600;font-size: 13px;">Por lo demás, declaro que en los meses a que se hace referencia en las secciones de Meses Laborados y retenciones por concepto de los aportes de alguno de los Sistema de Pensiones administrados por la ONP</p>
+                                                </div>
+                                                <br><br>
+                                                <div class="row align-items-center">
+                                                    <div class="col">
+                                                        __________ de ________ de _________
+                                                    </div>
+                                                    <div class="col">
+                                                        ___________________________________
+                                                        <p>Firma de Representante legal</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
