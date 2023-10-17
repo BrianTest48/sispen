@@ -7,21 +7,7 @@
     $letras = new EnLetras();
 
     switch($_GET["op"]){
-        case 'pensionaleatorio':
-            $datos = $pension->pension_aleatorio($_POST["txtdate"], $_POST["cant_emp"]);
-            $data = Array();
-            if(is_array($datos)==true and count($datos)>0){
-                foreach($datos as $row){
-                    $sub_array = array();
-                    $sub_array['id'] = $row["id"];
-                    $sub_array['empleador'] = $row["empleador"];
-                    $sub_array['fecha_inicio'] = $row["f_inic_act"];
-                    $sub_array['fecha_baja'] = $row["f_baja_act"];
-                    $data[] = $sub_array;
-                }
-                echo json_encode($data);
-            }
-            break;
+       
         case 'afiliado':
             if(empty($_POST["af_id"])){    
                 $datos = $pension->insert_afiliado($_POST["tipo_doc"], $_POST["num_doc"], $_POST["txtnombre"], $_POST["txtapellido"], $_POST["txtdate"]);
@@ -118,17 +104,20 @@
         
         case 'pensionaleatorioempresa':
 
-            $datos = $pension->pension_aleatorio_empresa($_POST["txtdateinicio"], $_POST["txtdatefin"]);
+            $datos = $pension->pension_aleatorio_empresa($_POST["txtdateinicio"], $_POST["txtdatefin"], $_POST["tipo"]);
             $data = Array();
             if(is_array($datos)==true and count($datos)>0){
                 foreach($datos as $row){
                     $sub_array = array();
+                    $sub_array['tipo_emp'] = $row["tipo_emp"];
                     $sub_array['ruc'] = $row["ruc"];
                     $sub_array['empleador'] = $row["empleador"];
                     $sub_array['Anios'] = $row["Anios"];
                     $sub_array['Meses'] = $row["Meses"];
                     $sub_array['Dias'] = $row["Dias"];
                     $sub_array['fechsueldo'] = $row["fechsueldo"];
+                    $sub_array['moneda_sueldo'] = $row["moneda_sueldo"];
+                    $sub_array['moneda_rm'] = $row["moneda_rm"];
                     $sub_array['dpto'] = $row["dpto"];
                     $sub_array['rep_legal'] = $row["rep_legal"];
                     $sub_array['dni_a'] = $row["dni_a"];
@@ -147,7 +136,7 @@
 
             break;
         case 'combo':
-            $datos = $pension->pension_aleatorio_empresa($_POST["txtdateinicio"], $_POST["txtdatefin"]);
+            $datos = $pension->pension_aleatorio_empresa($_POST["txtdateinicio"], $_POST["txtdatefin"], $_POST["tipo"]);
             if(is_array($datos)==true and count($datos)>0){
                 //$html ="<option value='0' label='Seleccione' ></option>";
                 $html="";

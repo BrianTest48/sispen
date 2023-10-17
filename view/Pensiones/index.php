@@ -30,6 +30,7 @@
                             <h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-b-10">Formulario de Pensiones</h6>
                         </div>
                         <div class="col-12 col-sm-1 mg-b-10">
+                            <input type="hidden" name="valorguardar" id="valorguardar">
                             <button  type="button" id="btnguardarpension" name="btnguardarpension" class="btn btn-info" onclick="GuardarLista()" style="width :100%;background-color : #A20036;" >Guardar</button>
                         </div>
                     </div>
@@ -9967,6 +9968,7 @@
             require_once("../Main/mainjs.php");
             require_once("./modalboleta_info.php");
         ?>
+    
         <script src="pensiones.js" type="text/javascript"></script>
     </body>
 </html>

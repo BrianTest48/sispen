@@ -1,25 +1,6 @@
 <?php
     class Pension extends Conectar{
-        public function pension_aleatorio($f_nacimiento, $cant_emp, $cant_an){
-            $conectar = parent::conexion();
-            parent::set_names();
-            /*$sql = "SELECT id , empleador , DATE_FORMAT(f_inic_act, '%e-%c-%Y') as f_inic_act, DATE_FORMAT(f_baja_act, '%e-%c-%Y') as f_baja_act FROM empresas 
-            WHERE f_inic_act > DATE_ADD(?, interval 18 year) AND est = 1
-            ORDER BY rand() 
-            LIMIT 3;";*/
-            /*$sql="SELECT id , empleador , DATE_FORMAT(f_inic_act, '%e-%c-%Y') as f_inic_act, DATE_FORMAT(f_baja_act, '%e-%c-%Y') as f_baja_act FROM empresas 
-            WHERE f_inic_act > DATE_ADD( ?, INTERVAL 18 YEAR)  AND f_inic_act < '1994-12-31'
-            ORDER BY rand() 
-            LIMIT ? ;";*/
-            $sql= "CALL mostrar_empresas (? , ?, ?);";
-            $sql=$conectar->prepare($sql);
-            $sql->bindValue(1,$f_nacimiento);
-            $sql->bindValue(2,$cant_an , PDO::PARAM_INT);
-            $sql->bindValue(3,$cant_emp, PDO::PARAM_INT);
-            $sql->execute();
-            return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
-        }
-
+       
         public function insert_afiliado($tipo_doc, $num_doc, $nom, $ape, $f_nacimiento){
             $conectar= parent::conexion();
             parent::set_names();
@@ -50,13 +31,14 @@
             return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        public function pension_aleatorio_empresa($f_inicio, $f_fin){
+        public function pension_aleatorio_empresa($f_inicio, $f_fin, $tipo){
             $conectar = parent::conexion();
             parent::set_names();
-            $sql="CALL obtenerListadoEmpresas(?, ?);";
+            $sql="CALL obtenerListadoEmpresas(?, ?, ?);";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1,$f_inicio);
             $sql->bindValue(2,$f_fin);
+            $sql->bindValue(3,$tipo);
             $sql->execute();
             return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
         }

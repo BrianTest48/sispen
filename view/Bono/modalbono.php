@@ -10,7 +10,7 @@
                         <div class="row">
                             <div class="col-12 col-sm-6">
                                 
-                                    <table id="" class="tables dataTable responsive nowrap" style="width: 100%; font-size: 16px" >
+                                    <!-- <table id="" class="tables dataTable responsive nowrap" style="width: 100%; font-size: 16px" >
                                         <thead>
                                             <th colspan = '2'>Calculo Bono</th>
                                         </thead>
@@ -33,7 +33,7 @@
                                             <th>Total</th>
                                             <th id="prom_total"></th>
                                         </tfoot>
-                                    </table>
+                                    </table> -->
                                 
                             </div>
                             

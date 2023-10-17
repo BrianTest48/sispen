@@ -93,14 +93,14 @@
             $datos = $firmante->get_firmante_empresa($_POST["numero"]);
             if(is_array($datos)==true and count($datos)>0){
                 
-                $html="<option value=' '>SIN FIRMANTE</option>";
+                $html="<option value='SIN'>SIN FIRMANTE</option>";
                 foreach($datos as $row) {
                     $html.= "<option value='".$row["firma_nombre"]."'>".$row["firma_nombre"]." / ".$row["fech_inicio"]." / ".$row["fech_fin"]." / ".$row["estado"]." / ".$row["fecha_f"]."</option>";
                     //$html.= "<option value='".$row["id"]."'>".$row["firma_nombre"]."<div>".$row["imagen"]."</div></option>";
                 }
                 echo $html;
             }else {
-                $html="<option value=' '>SIN FIRMANTE</option>";
+                $html="<option value='SIN'>SIN FIRMANTE</option>";
                 echo $html;
             }
         break;
