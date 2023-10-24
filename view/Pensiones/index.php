@@ -131,6 +131,8 @@
                                 <input  type="hidden" id="moneda_emp" name="moneda_emp">
                                 <input  type="hidden" id="cargo_emp" name="cargo_emp">
                                 <input  type="hidden" id="dpto_emp" name="dpto_emp">
+                                <input  type="hidden" id="tipo_emp" name="tipo_emp">
+                                <input  type="hidden" id="logo_nombre" name="logo_nombre">
                                 <h5 class="text-center" id="nom_emp_lab"></h5>
                                 <br>
                                 <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist" style="border-bottom : 0px">
@@ -162,7 +164,6 @@
                                                             <label class="form-control-label col-lg-6">Certificado: </label>
                                                             <div class="col-lg-6 pd-0">
                                                                 <select class="form-control col-lg-6 select2" data-placeholder="Seleccione" id="select_certificado"  style="width: 100%" >
-                                                                   
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -170,6 +171,7 @@
                                                 </div><!-- row -->
                                             </div>
                                             <div class="form-layout-footer text-right mg-t-20">
+                                                <button type="button" id="" class="btn btn-info" onclick="imprimir_word()">Descargar en Word</button>
                                                 <button type="button" id="btnprevcer" name="btnprevcer"  class="btn btn-secondary mg-l-10">Previsualizar</button>
                                                 <!--<button type="button" id="btnimprimirbol" name="btnimprimirbol"  class="btn btn-info">Imprimir Boleta</button>-->
                                             </div>
@@ -177,9 +179,9 @@
                                     </div>
                                     <div id="liquidacion" class="tab-pane fade">
                                         <form id="form_liqui" action="" method="post" autocomplete="off">
-                                            <input type="hidden" name="" id="dias_liqui">
-                                            <input type="hidden" name="" id="meses_liqui">
-                                            <input type="hidden" name="" id="anios_liqui">
+                                            <input type="hidden" name="dias_liqui" id="dias_liqui">
+                                            <input type="hidden" name="meses_liqui" id="meses_liqui">
+                                            <input type="hidden" name="anios_liqui" id="anios_liqui">
                                             <div class="form-layout form-layout-1">
                                                 <div class="row">
                                                     <div class="col-lg-12">
@@ -253,11 +255,14 @@
                                             </div>
                                             <div class="form-layout-footer text-right mg-t-20">
                                                 <div class="row">
-                                                    <div class="col-12 col-sm-8">
+                                                    <div class="col-12 col-sm-6">
                                                         <select class="form-control select2" data-placeholder="Motivo de Retiro" name="combo_prev_liqui" id="combo_prev_liqui" style="width: 100%;">
                                                         </select>
                                                     </div>
-                                                    <div class="col-12 col-sm-4">
+                                                    <div class="col-12 col-sm-3">
+                                                        <button type="button" id="" class="btn btn-info" onclick="imprimir_liquidacion_word()">Descargar en Word</button>
+                                                    </div>
+                                                    <div class="col-12 col-sm-3">
                                                         <button type="button" id="btnprevli" name="btnprevli"  class="btn btn-secondary mg-l-10">Previsualizar</button>
                                                     </div>
                                                 </div>
@@ -880,7 +885,6 @@
                                         </div>
                                     </div>
                                 </div>  
-
                                 <div class="container prev_certificado" style="max-width: 1020px !important;" id="prev_certificado_m1">
                                     <div class="card" style="margin-top: 60px;">
                                         <div class="card-header d-flex justify-content-between">

@@ -83,11 +83,11 @@
                 
                 
                 $lista->update_lista_pension($_POST["af_id"], $_POST["documento"], $_POST["txtcant_emp"],$_POST["tipo"], $_POST["txtdate"], 
-                        $_POST["f_inicio_1"], $_POST["f_final_1"], $_POST["ruc_emp1"], $_POST["cargoc1"], $_POST["firmante1"], $_POST["logo1"],
-                        $_POST["f_inicio_2"], $_POST["f_final_2"], $_POST["ruc_emp2"], $_POST["cargoc2"], $_POST["firmante2"], $_POST["logo2"],
-                        $_POST["f_inicio_3"], $_POST["f_final_3"], $_POST["ruc_emp3"], $_POST["cargoc3"], $_POST["firmante3"], $_POST["logo3"],
-                        $_POST["f_inicio_4"], $_POST["f_final_4"], $_POST["ruc_emp4"], $_POST["cargoc4"], $_POST["firmante4"], $_POST["logo4"],
-                        $_POST["f_inicio_5"], $_POST["f_final_5"], $_POST["ruc_emp5"], $_POST["cargoc5"], $_POST["firmante5"], $_POST["logo5"], $_POST["lista"]
+                        $_POST["f_inicio_1"], $_POST["f_final_1"], $_POST["tipo_1"], $_POST["ruc_emp1"], $_POST["cargoc1"], $_POST["firmante1"], $_POST["logo1"],
+                        $_POST["f_inicio_2"], $_POST["f_final_2"], $_POST["tipo_2"], $_POST["ruc_emp2"], $_POST["cargoc2"], $_POST["firmante2"], $_POST["logo2"],
+                        $_POST["f_inicio_3"], $_POST["f_final_3"], $_POST["tipo_3"], $_POST["ruc_emp3"], $_POST["cargoc3"], $_POST["firmante3"], $_POST["logo3"],
+                        $_POST["f_inicio_4"], $_POST["f_final_4"], $_POST["tipo_4"], $_POST["ruc_emp4"], $_POST["cargoc4"], $_POST["firmante4"], $_POST["logo4"],
+                        $_POST["f_inicio_5"], $_POST["f_final_5"], $_POST["tipo_5"], $_POST["ruc_emp5"], $_POST["cargoc5"], $_POST["firmante5"], $_POST["logo5"], $_POST["lista"]
                     );
                 /*$empresa->update_empresa($_POST["emp_id"],$_POST["emp_ruc"],$_POST["emp_razonsocial"],$_POST["emp_direccion"],$_POST["emp_dpto"],$_POST["emp_prov"],$_POST["emp_dist"],$_POST["emp_ini_act"],$_POST["emp_fin_act"],$_POST["emp_rep_legal"],$_POST["emp_dni"], $_POST["emp_fech_rep_legal"],$_POST["emp_seg_rep"],$_POST["emp_dni_seg_rep"], $_POST["emp_fech_seg_rep_legal"]);
                 echo json_encode($empresa);*/

@@ -77,11 +77,11 @@
         }
 
         public function update_lista_pension($id_afiliado, $num_doc, $cantidad, $tipo, $fech_nac, 
-                $fech1, $fech_final_1, $ruc1, $cargo1, $firmante1, $logo1,
-                $fech2, $fech_final_2, $ruc2, $cargo2, $firmante2, $logo2,
-                $fech3, $fech_final_3, $ruc3, $cargo3, $firmante3, $logo3,
-                $fech4, $fech_final_4, $ruc4, $cargo4, $firmante4, $logo4,
-                $fech5, $fech_final_5, $ruc5, $cargo5, $firmante5, $logo5, $idpension)
+                $fech1, $fech_final_1, $tipo_1, $ruc1, $cargo1, $firmante1, $logo1,
+                $fech2, $fech_final_2, $tipo_2, $ruc2, $cargo2, $firmante2, $logo2,
+                $fech3, $fech_final_3, $tipo_3, $ruc3, $cargo3, $firmante3, $logo3,
+                $fech4, $fech_final_4, $tipo_4, $ruc4, $cargo4, $firmante4, $logo4,
+                $fech5, $fech_final_5, $tipo_5, $ruc5, $cargo5, $firmante5, $logo5, $idpension)
             {
 
             $conectar= parent::conexion();
@@ -94,30 +94,35 @@
                     fech_nac = ?, 
                     fech1 = ?,
                     fech_final_1 = ?,
+                    tipo_1 = ?,
                     ruc1 = ?,
                     cargo1 = ?,
                     firmante1 = ?,
                     logo1 = ?, 
                     fech2 = ?,
                     fech_final_2 = ?,
+                    tipo_2 = ?,
                     ruc2 = ?,
                     cargo2 = ?,
                     firmante2 = ?,
                     logo2 = ?,  
                     fech3 = ?,
                     fech_final_3 = ?,
+                    tipo_3 = ?,
                     ruc3 = ?,
                     cargo3 = ?,
                     firmante3 = ?,
                     logo3 = ?,  
                     fech4 = ?,
                     fech_final_4 = ?,
+                    tipo_4 = ?,
                     ruc4 = ?,
                     cargo4 = ?,
                     firmante4 = ?,
                     logo4 = ?,
                     fech5 = ?,
                     fech_final_5 = ?,
+                    tipo_5 = ?,
                     ruc5 = ?,
                     cargo5 = ?,
                     firmante5 = ?,
@@ -132,36 +137,41 @@
             $sql->bindValue(4,$fech_nac);
             $sql->bindValue(5,$fech1);
             $sql->bindValue(6,$fech_final_1);
-            $sql->bindValue(7,$ruc1);
-            $sql->bindValue(8,$cargo1);
-            $sql->bindValue(9,$firmante1);
-            $sql->bindValue(10,$logo1);
-            $sql->bindValue(11,$fech2);
-            $sql->bindValue(12,$fech_final_2);
-            $sql->bindValue(13,$ruc2);
-            $sql->bindValue(14,$cargo2);
-            $sql->bindValue(15,$firmante2);
-            $sql->bindValue(16,$logo2);
-            $sql->bindValue(17,$fech3);
-            $sql->bindValue(18,$fech_final_3);
-            $sql->bindValue(19,$ruc3);
-            $sql->bindValue(20,$cargo3);
-            $sql->bindValue(21,$firmante3);
-            $sql->bindValue(22,$logo3);
-            $sql->bindValue(23,$fech4);
-            $sql->bindValue(24,$fech_final_4);
-            $sql->bindValue(25,$ruc4);
-            $sql->bindValue(26,$cargo4);
-            $sql->bindValue(27,$firmante4);
-            $sql->bindValue(28,$logo4);
-            $sql->bindValue(29,$fech5);
-            $sql->bindValue(30,$fech_final_5);
-            $sql->bindValue(31,$ruc5);
-            $sql->bindValue(32,$cargo5);
-            $sql->bindValue(33,$firmante5);
-            $sql->bindValue(34,$logo5);
-            $sql->bindValue(35,$idpension);
-            $sql->bindValue(36,$tipo);
+            $sql->bindValue(7,$tipo_1);
+            $sql->bindValue(8,$ruc1);
+            $sql->bindValue(9,$cargo1);
+            $sql->bindValue(10,$firmante1);
+            $sql->bindValue(11,$logo1);
+            $sql->bindValue(12,$fech2);
+            $sql->bindValue(13,$fech_final_2);
+            $sql->bindValue(14,$tipo_2);
+            $sql->bindValue(15,$ruc2);
+            $sql->bindValue(16,$cargo2);
+            $sql->bindValue(17,$firmante2);
+            $sql->bindValue(18,$logo2);
+            $sql->bindValue(19,$fech3);
+            $sql->bindValue(20,$fech_final_3);
+            $sql->bindValue(21,$tipo_3);
+            $sql->bindValue(22,$ruc3);
+            $sql->bindValue(23,$cargo3);
+            $sql->bindValue(24,$firmante3);
+            $sql->bindValue(25,$logo3);
+            $sql->bindValue(26,$fech4);
+            $sql->bindValue(27,$fech_final_4);
+            $sql->bindValue(28,$tipo_4);
+            $sql->bindValue(29,$ruc4);
+            $sql->bindValue(30,$cargo4);
+            $sql->bindValue(31,$firmante4);
+            $sql->bindValue(32,$logo4);
+            $sql->bindValue(33,$fech5);
+            $sql->bindValue(34,$fech_final_5);
+            $sql->bindValue(35,$tipo_5);
+            $sql->bindValue(36,$ruc5);
+            $sql->bindValue(37,$cargo5);
+            $sql->bindValue(38,$firmante5);
+            $sql->bindValue(39,$logo5);
+            $sql->bindValue(40,$idpension);
+            $sql->bindValue(41,$tipo);
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }

@@ -59,7 +59,7 @@
                                             </div>
                                         </div><!-- col-4 -->
                                         <div class="col-lg-4  d-flex align-items-center justify-content-center">
-                                            <button type="button" id="btnbuscar" name="btnbuscar"  class="btn btn-info" style="" >Buscar</button>
+                                            <button type="button" id="btnbuscar" name="btnbuscar"  class="btn btn-info" >Buscar</button>
                                         </div><!-- col-4 -->
                                     </div>
                                     <br>
@@ -119,7 +119,7 @@
                                                 <input type="number" max="4" min="1" class="form-control" name="txtcant_host" id="txtcant_host" required>
                                             </div>
                                             <div class="col-lg-4 text-center">
-                                                <button type="submit" id="btnautogenerar" name=""  class="btn btn-info" style="" >Generar</button>
+                                                <button type="submit" id="btnautogenerar" name=""  class="btn btn-info"  >Generar</button>
                                             </div>	
                                         </div>
                                     </div>
@@ -182,7 +182,7 @@
                                 </div><!-- row -->
                             </div><!-- form-layout -->
                             <br>
-                            <div id="" class="" style="" >
+                            <div id="" class="" >
                                 <div id="contemp1" name="contemp1" class="form-layout form-layout-1">
                                     <input  type="hidden" id="fech_inicio_emp" name="fech_inicio_emp">
                                     <input  type="hidden" id="fech_final_emp" name="fech_final_emp">
