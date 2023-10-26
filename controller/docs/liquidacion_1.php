@@ -14,7 +14,7 @@ use PhpOffice\PhpWord\SimpleType\Jc;
 
 $phpWord = new \PhpOffice\PhpWord\PhpWord();
 $letras = new EnLetras();
-
+$rutaFuente = '../../assets/fonts/typewriter/JMH Typewriter-Black.ttf';
 $nombre_emp = $_POST["empresa"];
 $nombre_afi = $_POST["afiliado"];
 $nombre_carpeta = $_POST["nombre_carpeta"];
@@ -30,6 +30,7 @@ $anios_lq = $_POST["anios_liqui"];
 $sueldo = $_POST["sueldo"];
 $moneda = $_POST["moneda"];
 $retiro = $_POST["motivo"];
+$cuerpo = $_POST["cuerpo"];
 
 //ADICIONALES
 $adelanto = number_format($_POST["ADELANTO"], 2, '.', '');
@@ -77,7 +78,7 @@ $section = $phpWord->addSection(array('marginTop'=>2000));
 // );
 $footer = $section->createFooter();
 
-$phpWord->setDefaultFontName('Roboto');
+$phpWord->setDefaultFontName($rutaFuente);
 $phpWord->addFontStyle('font-xxl', array('bold'=>false, 'italic'=>false, 'size'=>32));
 $phpWord->addFontStyle('font-xxl', array('bold'=>false, 'italic'=>false, 'size'=>24));
 $phpWord->addFontStyle('font-lg', array('bold'=>false, 'italic'=>false, 'size'=>12));
@@ -94,12 +95,20 @@ $phpWord->addParagraphStyle('pnStyle', array('align'=>'left','indentation' => ar
 //Justificar parrafo
 $phpWord->addParagraphStyle('text-just', array('alignment' => Jc::BOTH));
 
+
+//Me
+$phpWord->addFontStyle('font-lg-negrita', array('bold'=>true, 'italic'=>false, 'size'=>12, 'underline' => \PhpOffice\PhpWord\Style\Font::UNDERLINE_SINGLE));
+$phpWord->addFontStyle('font-md-justificado', array('bold'=>false, 'italic'=>false, 'size'=>12));
+$phpWord->addParagraphStyle('sangria', array('indentation' => array('left' => 250), 'spacing'=>150));
+$phpWord->addParagraphStyle('text-justify', array('align'=>'both'));
+$phpWord->addFontStyle('font-md-negrita', array('bold'=>true, 'italic'=>false, 'size'=>8));
+
 //$section->addText('B.S.013-72-','font-sm','text-right');
 //$section->addText('RAZON SOCIAL: DE OSMA ELIAS FELIPE','font-u-lg','text-center');
 $section->addText($nombre_emp,'font-lg','text-left');
 
 $section->addTextBreak(1);
-$section->addText('LIQUIDACION DE BENEFICIOS SOCIALES','font-lg','text-center');
+$section->addText('LIQUIDACION DE BENEFICIOS SOCIALES','font-lg-negrita','text-center');
 
 
 $tableStyleName = 'tabla_1';
@@ -136,24 +145,76 @@ $table->addRow();
 $table->addCell(4500)->addText("MOTIVO DE RETIRO",'font-md');
 $table->addCell(4500)->addText($retiro,'font-md');
 
-$section->addText('CALCULO POR TIEMPO DE SERVICIOS','font-md','text-center');
-$table_1 = $section->addTable($tableStyleName);
-$table_1->addRow();
-$table_1->addCell(4000)->addText($fecha_inicio_num." AL ".$fecha_final_num,'font-md');
-$table_1->addCell(1000)->addText("=",'font-md','text-center');
-$table_1->addCell(4000)->addText($anios_lq." Años y ".$meses_lq_nv." Meses",'font-md','text-right');
-$table_1->addRow();
-$table_1->addCell(4000)->addText($anios_lq." Años x ".$moneda." ".$sueldo,'font-md');
-$table_1->addCell(1000)->addText("=",'font-md','text-center');
-$table_1->addCell(4000)->addText($moneda." ".$anios_sueldo,'font-md','text-right');
-$table_1->addRow();
-$table_1->addCell(4000)->addText($meses_lq_nv." Meses x ".$moneda." ".$sueldo."/12",'font-md');
-$table_1->addCell(1000)->addText("=",'font-md','text-center');
-$table_1->addCell(4000)->addText($moneda." ".$meses_sueldo,'font-md','text-right');
-$table_1->addRow();
-$table_1->addCell(4000)->addText("SUB- TOTAL:",'font-md');
-$table_1->addCell(1000)->addText("=",'font-md','text-center');
-$table_1->addCell(4000)->addText($moneda." ".$subtotal,'font-md','text-right');
+if($cuerpo == 1){
+    $section->addText('CALCULO POR TIEMPO DE SERVICIOS','font-md-negrita','text-center');
+    $table_1 = $section->addTable($tableStyleName);
+    $table_1->addRow();
+    $table_1->addCell(4000)->addText($fecha_inicio_num." AL ".$fecha_final_num,'font-md');
+    $table_1->addCell(1000)->addText("=",'font-md','text-center');
+    $table_1->addCell(4000)->addText($anios_lq." Años y ".$meses_lq_nv." Meses",'font-md','text-right');
+    $table_1->addRow();
+    $table_1->addCell(4000)->addText($anios_lq." Años x ".$moneda." ".$sueldo,'font-md');
+    $table_1->addCell(1000)->addText("=",'font-md','text-center');
+    $table_1->addCell(4000)->addText($moneda." ".$anios_sueldo,'font-md','text-right');
+    $table_1->addRow();
+    $table_1->addCell(4000)->addText($meses_lq_nv." Meses x ".$moneda." ".$sueldo."/12",'font-md');
+    $table_1->addCell(1000)->addText("=",'font-md','text-center');
+    $table_1->addCell(4000)->addText($moneda." ".$meses_sueldo,'font-md','text-right');
+    $table_1->addRow();
+    $table_1->addCell(4000)->addText("SUB- TOTAL:",'font-md');
+    $table_1->addCell(1000)->addText("=",'font-md','text-center');
+    $table_1->addCell(4000)->addText($moneda." ".$subtotal,'font-md','text-right');
+}
+
+if($cuerpo == 2){
+    $section->addText('RESUMEN','font-md-negrita','text-center');
+    $table_1 = $section->addTable($tableStyleName);
+    $table_1->addRow();
+    $table_1->addCell(4000)->addText($fecha_inicio_num." HASTA ".$fecha_final_num,'font-md');
+    $table_1->addCell(1000)->addText(" ",'font-md','text-center');
+    $table_1->addCell(4000)->addText('ULTIMO SUELDO '.$moneda.' '.$sueldo,'font-md','text-right');
+    $table_1->addRow();
+    $table_1->addCell(4000)->addText($anios_lq." Años y ".$meses_lq_nv." Meses",'font-md');
+    $table_1->addCell(1000)->addText(" ",'font-md','text-center');
+    $table_1->addCell(4000)->addText('REDONDEO','font-md','text-right');
+    $table_1->addRow();
+    $table_1->addCell(4000)->addText($moneda." ".$sueldo.' x '.$anios_lq." Años",'font-md');
+    $table_1->addCell(1000)->addText("",'font-md','text-center');
+    $table_1->addCell(4000)->addText($moneda." ".$anios_sueldo,'font-md','text-right');
+    $table_1->addRow();
+    $table_1->addCell(4000)->addText($moneda." ".$sueldo."/12 x ".$meses_lq_nv." Meses",'font-md');
+    $table_1->addCell(1000)->addText("",'font-md','text-center');
+    $table_1->addCell(4000)->addText($moneda." ".$meses_sueldo,'font-md','text-right');
+    $table_1->addRow();
+    $table_1->addCell(4000)->addText("SUB- TOTAL:",'font-md');
+    $table_1->addCell(1000)->addText("=",'font-md','text-center');
+    $table_1->addCell(4000)->addText($moneda." ".$subtotal,'font-md','text-right');
+}
+
+if($cuerpo == 3){
+    $section->addText('CALCULO DE BENEFICIOS SOCIALES','font-md-negrita','text-center');
+    $table_1 = $section->addTable($tableStyleName);
+    $table_1->addRow();
+    $table_1->addCell(7000)->addText($fecha_inicio." -".$fecha_final,'font-md');
+    $table_1->addCell(1000)->addText(" ",'font-md','text-center');
+    $table_1->addCell(1000)->addText(' ','font-md','text-right');
+    $table_1->addRow();
+    $table_1->addCell(4000)->addText($anios_lq." Años y ".$meses_lq_nv." Meses, REDONDEO",'font-md');
+    $table_1->addCell(1000)->addText(" ",'font-md','text-center');
+    $table_1->addCell(4000)->addText(' ','font-md','text-right');
+    $table_1->addRow();
+    $table_1->addCell(4000)->addText($moneda." ".$sueldo.' x '.$anios_lq." Años",'font-md');
+    $table_1->addCell(1000)->addText("",'font-md','text-center');
+    $table_1->addCell(4000)->addText($moneda." ".$anios_sueldo,'font-md','text-right');
+    $table_1->addRow();
+    $table_1->addCell(4000)->addText($moneda." ".$sueldo."/12 x ".$meses_lq_nv." Meses",'font-md');
+    $table_1->addCell(1000)->addText("",'font-md','text-center');
+    $table_1->addCell(4000)->addText($moneda." ".$meses_sueldo,'font-md','text-right');
+    $table_1->addRow();
+    $table_1->addCell(4000)->addText("SUB- TOTAL:",'font-md');
+    $table_1->addCell(1000)->addText("=",'font-md','text-center');
+    $table_1->addCell(4000)->addText($moneda." ".$subtotal,'font-md','text-right');
+}
 
 if($adelanto != "0"){
     $table_1->addRow();
@@ -218,9 +279,9 @@ if($bonif_fest != "0"){
 
 
 $table_1->addRow();
-$table_1->addCell(4000)->addText("NETO A PAGAR:",'font-md');
+$table_1->addCell(4000)->addText("NETO A PAGAR:",'font-md-negrita');
 $table_1->addCell(1000)->addText("=",'font-md','text-center');
-$table_1->addCell(4000)->addText($moneda." ".$montototal,'font-md','text-right');
+$table_1->addCell(4000)->addText($moneda." ".$montototal,'font-md-negrita','text-right');
 
 
 $section->addTextBreak(1);
@@ -248,7 +309,7 @@ $directorio = "../../files/";
 
 $creacion_carpeta = zipeaArchivo::crearCarpeta($directorio . $nombre_carpeta);
 
-exportarWord::write($phpWord, $directorio . $nombre_carpeta, $nombre_afi.'-LQ2', $writers);
+exportarWord::write($phpWord, $directorio . $nombre_carpeta, $nombre_afi.'-LQ1', $writers);
 sleep(1);
 
 echo "1";

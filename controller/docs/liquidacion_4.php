@@ -14,7 +14,7 @@ use PhpOffice\PhpWord\SimpleType\Jc;
 
 $phpWord = new \PhpOffice\PhpWord\PhpWord();
 $letras = new EnLetras();
-
+$rutaFuente = '../../assets/fonts/typewriter/JMH Typewriter-Black.ttf';
 $nombre_emp = $_POST["empresa"];
 $nombre_afi = $_POST["afiliado"];
 $nombre_carpeta = $_POST["nombre_carpeta"];
@@ -31,6 +31,7 @@ $sueldo = $_POST["sueldo"];
 $moneda = $_POST["moneda"];
 $retiro = $_POST["motivo"];
 $anio = $_POST["anio_final"];
+$cuerpo = $_POST["cuerpo"];
 
 //ADICIONALES
 $adelanto = number_format($_POST["ADELANTO"], 2, '.', '');
@@ -55,6 +56,10 @@ $subtotal = number_format(($anios_sueldo + $meses_sueldo + $dias_sueldo), 2, '.'
 $m_total = $anios_sueldo + $meses_sueldo + $dias_sueldo + $adelanto + $vacaciones + $gratificaciones + $reintegro + $incentivo + $bonif + $bonif_extra + $bonif_grac + $bonif_meta  + $bonif_fest;
 $montototal = number_format($m_total, 2, '.', '');
 
+$total_cp = $adelanto + $vacaciones + $gratificaciones + $reintegro + $incentivo + $bonif + $bonif_extra + $bonif_grac + $bonif_meta  + $bonif_fest;
+$total_concepto = number_format($total_cp, 2, '.', '');
+
+
 $monto_letra= $letras->ValorEnLetras($montototal,"");
 
 //$zipFile = new \PhpZip\ZipFile();
@@ -73,7 +78,7 @@ $section = $phpWord->addSection(array('marginTop'=>2000));
 // );
 $footer = $section->createFooter();
 
-$phpWord->setDefaultFontName('Roboto');
+$phpWord->setDefaultFontName($rutaFuente);
 $phpWord->addFontStyle('font-xxl', array('bold'=>false, 'italic'=>false, 'size'=>32));
 $phpWord->addFontStyle('font-xxl', array('bold'=>false, 'italic'=>false, 'size'=>24));
 $phpWord->addFontStyle('font-lg', array('bold'=>false, 'italic'=>false, 'size'=>12));
@@ -89,6 +94,12 @@ $phpWord->addParagraphStyle('text-right', array('align'=>'right', 'spaceAfter'=>
 $phpWord->addParagraphStyle('pnStyle', array('align'=>'left','indentation' => array('left' => 250), 'spacing'=>150));
 //Justificar parrafo
 $phpWord->addParagraphStyle('text-just', array('alignment' => Jc::BOTH));
+//Me
+$phpWord->addFontStyle('font-lg-negrita', array('bold'=>true, 'italic'=>false, 'size'=>12, 'underline' => \PhpOffice\PhpWord\Style\Font::UNDERLINE_SINGLE));
+$phpWord->addFontStyle('font-md-justificado', array('bold'=>false, 'italic'=>false, 'size'=>12));
+$phpWord->addParagraphStyle('sangria', array('indentation' => array('left' => 250), 'spacing'=>150));
+$phpWord->addParagraphStyle('text-justify', array('align'=>'both'));
+$phpWord->addFontStyle('font-md-negrita', array('bold'=>true, 'italic'=>false, 'size'=>8));
 
 //$section->addText('B.S.013-72-','font-sm','text-right');
 //$section->addText('RAZON SOCIAL: DE OSMA ELIAS FELIPE','font-u-lg','text-center');
@@ -136,113 +147,228 @@ $table->addCell(4500)->addText("TOTAL A COBRAR",'font-md');
 $table->addCell(4500)->addText($moneda." ".$montototal,'font-md');
 
 
-$section->addText('COMPENSACION POR TIEMPO DE SERVICIOS','font-md','text-center');
-$table_0 = $section->addTable($tableStyleName);
-$table_0->addRow();
-$table_0->addCell(4000)->addText('REMUNERACION MENSUAL','font-md');
-$table_0->addCell(1000)->addText(" ",'font-md','text-center');
-$table_0->addCell(4000)->addText($moneda.' '.$sueldo,'font-md','text-right');
-$table_0->addRow();
-$table_0->addCell(4000)->addText('VACACIONES TRUNCAS','font-md');
-$table_0->addCell(1000)->addText(' ','font-md','text-center');
-$table_0->addCell(4000)->addText('CANCELADO','font-md','text-right');
-$table_0->addRow();
-$table_0->addCell(4000)->addText('GRATIFICACIONES TRUNCAS','font-md');
-$table_0->addCell(1000)->addText(' ','font-md','text-center');
-$table_0->addCell(4000)->addText('CANCELADO','font-md','text-right');
+if($cuerpo == 1){
+    $section->addText('COMPENSACION POR TIEMPO DE SERVICIOS','font-md-negrita','text-center');
+    $table_0 = $section->addTable($tableStyleName);
+    $table_0->addRow();
+    $table_0->addCell(4000)->addText('REMUNERACION MENSUAL','font-md');
+    $table_0->addCell(1000)->addText(" ",'font-md','text-center');
+    $table_0->addCell(4000)->addText($moneda.' '.$sueldo,'font-md','text-right');
+    $table_0->addRow();
+    $table_0->addCell(4000)->addText('VACACIONES TRUNCAS','font-md');
+    $table_0->addCell(1000)->addText(' ','font-md','text-center');
+    $table_0->addCell(4000)->addText('CANCELADO','font-md','text-right');
+    $table_0->addRow();
+    $table_0->addCell(4000)->addText('GRATIFICACIONES TRUNCAS','font-md');
+    $table_0->addCell(1000)->addText(' ','font-md','text-center');
+    $table_0->addCell(4000)->addText('CANCELADO','font-md','text-right');
 
-$section->addText('CALCULO DE LIQUIDACION','font-md','text-center');
-$table_1 = $section->addTable($tableStyleName);
-$table_1->addRow();
-$table_1->addCell(4000)->addText($fecha_inicio_num." AL ".$fecha_final_num,'font-md');
-$table_1->addCell(1000)->addText("=",'font-md','text-center');
-$table_1->addCell(4000)->addText($anios_lq." Años y ".$meses_lq_nv." Meses",'font-md','text-right');
-$table_1->addRow();
-$table_1->addCell(4000)->addText($anios_lq." Años x ".$moneda." ".$sueldo,'font-md');
-$table_1->addCell(1000)->addText("=",'font-md','text-center');
-$table_1->addCell(4000)->addText($moneda." ".$anios_sueldo,'font-md','text-right');
-$table_1->addRow();
-$table_1->addCell(4000)->addText($meses_lq_nv." Meses x ".$moneda." ".$sueldo."/12",'font-md');
-$table_1->addCell(1000)->addText("=",'font-md','text-center');
-$table_1->addCell(4000)->addText($moneda." ".$meses_sueldo,'font-md','text-right');
-$table_1->addRow();
-$table_1->addCell(4000)->addText($dias_lq." Días x ".$moneda." ".$sueldo."/12/30",'font-md');
-$table_1->addCell(1000)->addText("=",'font-md','text-center');
-$table_1->addCell(4000)->addText($moneda." ".$dias_sueldo,'font-md','text-right');
-$table_1->addRow();
-$table_1->addCell(4000)->addText("SUB- TOTAL:",'font-md');
-$table_1->addCell(1000)->addText("=",'font-md','text-center');
-$table_1->addCell(4000)->addText($moneda." ".$subtotal,'font-md','text-right');
-
-if($adelanto != "0"){
+    $section->addText('CALCULO DE LIQUIDACION','font-md-negrita','text-center');
+    $table_1 = $section->addTable($tableStyleName);
     $table_1->addRow();
-    $table_1->addCell(4000)->addText("ADELANTO:",'font-md');
+    $table_1->addCell(4000)->addText($anios_lq." Años x ".$moneda." ".$sueldo,'font-md');
     $table_1->addCell(1000)->addText("=",'font-md','text-center');
-    $table_1->addCell(4000)->addText($moneda." ".$adelanto,'font-md','text-right');
-}
-if($vacaciones != "0"){
+    $table_1->addCell(4000)->addText($moneda." ".$anios_sueldo,'font-md','text-right');
     $table_1->addRow();
-    $table_1->addCell(4000)->addText("VACACIONES:",'font-md');
+    $table_1->addCell(4000)->addText($meses_lq_nv." Meses x ".$moneda." ".$sueldo."/12",'font-md');
     $table_1->addCell(1000)->addText("=",'font-md','text-center');
-    $table_1->addCell(4000)->addText($moneda." ".$vacaciones,'font-md','text-right');
-}
-if($gratificaciones != "0"){
+    $table_1->addCell(4000)->addText($moneda." ".$meses_sueldo,'font-md','text-right');
     $table_1->addRow();
-    $table_1->addCell(4000)->addText("GRATIFICACIONES:",'font-md');
+    $table_1->addCell(4000)->addText($dias_lq." Días x ".$moneda." ".$sueldo."/12/30",'font-md');
     $table_1->addCell(1000)->addText("=",'font-md','text-center');
-    $table_1->addCell(4000)->addText($moneda." ".$gratificaciones,'font-md','text-right');
-}
-if($reintegro != "0"){
+    $table_1->addCell(4000)->addText($moneda." ".$dias_sueldo,'font-md','text-right');
     $table_1->addRow();
-    $table_1->addCell(4000)->addText("REINTEGRO:",'font-md');
+    $table_1->addCell(4000)->addText("SUB- TOTAL:",'font-md');
     $table_1->addCell(1000)->addText("=",'font-md','text-center');
-    $table_1->addCell(4000)->addText($moneda." ".$reintegro,'font-md','text-right');
-}
-if($incentivo != "0"){
-    $table_1->addRow();
-    $table_1->addCell(4000)->addText("INCENTIVO:",'font-md');
-    $table_1->addCell(1000)->addText("=",'font-md','text-center');
-    $table_1->addCell(4000)->addText($moneda." ".$incentivo,'font-md','text-right');
-}
-if($bonif != "0"){
-    $table_1->addRow();
-    $table_1->addCell(4000)->addText("BONIFICACION:",'font-md');
-    $table_1->addCell(1000)->addText("=",'font-md','text-center');
-    $table_1->addCell(4000)->addText($moneda." ".$bonif,'font-md','text-right');
-}
-if($bonif_extra != "0"){
-    $table_1->addRow();
-    $table_1->addCell(4000)->addText("BON. EXTRAORDINARIA:",'font-md');
-    $table_1->addCell(1000)->addText("=",'font-md','text-center');
-    $table_1->addCell(4000)->addText($moneda." ".$bonif_extra,'font-md','text-right');
-}
-if($bonif_grac != "0"){
-    $table_1->addRow();
-    $table_1->addCell(4000)->addText("BON. GRACIOSA:",'font-md');
-    $table_1->addCell(1000)->addText("=",'font-md','text-center');
-    $table_1->addCell(4000)->addText($moneda." ".$bonif_grac,'font-md','text-right');
-}
-if($bonif_meta != "0"){
-    $table_1->addRow();
-    $table_1->addCell(4000)->addText("BON. POR CUMPLIENTO DE META:",'font-md');
-    $table_1->addCell(1000)->addText("=",'font-md','text-center');
-    $table_1->addCell(4000)->addText($moneda." ".$bonif_meta,'font-md','text-right');
-}
-if($bonif_fest != "0"){
-    $table_1->addRow();
-    $table_1->addCell(4000)->addText("BON. POR DIAS FESTIVOS:",'font-md');
-    $table_1->addCell(1000)->addText("=",'font-md','text-center');
-    $table_1->addCell(4000)->addText($moneda." ".$bonif_fest,'font-md','text-right');
+    $table_1->addCell(4000)->addText($moneda." ".$subtotal,'font-md','text-right');
+        
 }
 
-$table_1->addRow();
-$table_1->addCell(4000)->addText("NETO A PAGAR:",'font-u-md');
-$table_1->addCell(1000)->addText(" ",'font-md','text-center');
-$table_1->addCell(4000)->addText(' ','font-md','text-right');
-$table_1->addRow();
-$table_1->addCell(4000)->addText("A DEPOSITAR",'font-md');
-$table_1->addCell(1000)->addText(" ",'font-md','text-center');
-$table_1->addCell(4000)->addText($moneda." ".$montototal,'font-md','text-right');
+if($cuerpo == 2){
+    $section->addText('LIQUIDACION','font-md-negrita','text-center');
+    $table_1 = $section->addTable($tableStyleName);
+    $table_1->addRow();
+    $table_1->addCell(4000)->addText($anios_lq." Años, ".$meses_lq_nv." Meses y ".$dias_lq.' Dias x '.$moneda.' '.$sueldo,'font-md');
+    $table_1->addCell(1000)->addText(" ",'font-md','text-center');
+    $table_1->addCell(4000)->addText($moneda." ".$subtotal,'font-md','text-right');
+}
+if($cuerpo == 3){
+
+    //darle un valor a v3
+    $version3 = 1;
+
+    $section->addText('CALCULO DE LIQUIDACION DE BENEFICIOS SOCIALES','font-md-negrita','text-center');
+    $table_1 = $section->addTable($tableStyleName);
+    $table_1->addRow();
+    $table_1->addCell(3000)->addText('CONTABILIZACIÓN','font-md','text-left');
+    $table_1->addCell(3000)->addText(' ','font-md','text-left');
+    $table_1->addCell(3000)->addText(' ','font-md','text-left');
+    $table_1->addRow();
+    $table_1->addCell(3000)->addText($anios_lq." Años x ".$moneda." ".$sueldo,'font-md');
+    $table_1->addCell(3000)->addText($moneda." ".$anios_sueldo,'font-md','text-right');
+    $table_1->addCell(3000)->addText("",'font-md','text-right');
+    $table_1->addRow();
+    $table_1->addCell(3000)->addText($meses_lq_nv." Meses x ".$moneda." ".$sueldo."/12",'font-md');
+    $table_1->addCell(3000)->addText($moneda." ".$meses_sueldo,'font-md','text-right');
+    $table_1->addCell(3000)->addText("",'font-md','text-right');
+    $table_1->addRow();
+    $table_1->addCell(3000)->addText($dias_lq." Días x ".$moneda." ".$sueldo."/12/30",'font-md');
+    $table_1->addCell(3000)->addText($moneda." ".$dias_sueldo,'font-md','text-right');
+    $table_1->addCell(3000)->addText("",'font-md','text-right');
+    $table_1->addRow();
+    $table_1->addCell(3000)->addText(" ",'font-md');
+    $table_1->addCell(3000)->addText(" ",'font-md','text-center');
+    $table_1->addCell(3000)->addText($moneda." ".$subtotal,'font-md','text-right');
+
+    if($adelanto != "0"){
+        $table_1->addRow();
+        $table_1->addCell(3000)->addText("ADELANTO:",'font-md');
+        $table_1->addCell(3000)->addText($moneda." ".$adelanto,'font-md','text-right');
+        $table_1->addCell(3000)->addText(" ",'font-md','text-center');
+    }
+    if($vacaciones != "0"){
+        $table_1->addRow();
+        $table_1->addCell(3000)->addText("VACACIONES:",'font-md');
+        $table_1->addCell(3000)->addText($moneda." ".$vacaciones,'font-md','text-right');
+        $table_1->addCell(3000)->addText(" ",'font-md','text-center');
+    }
+    if($gratificaciones != "0"){
+        $table_1->addRow();
+        $table_1->addCell(3000)->addText("GRATIFICACIONES:",'font-md');
+        $table_1->addCell(4000)->addText($moneda." ".$gratificaciones,'font-md','text-right');
+        $table_1->addCell(4000)->addText(" ",'font-md','text-center');
+    }
+    if($reintegro != "0"){
+        $table_1->addRow();
+        $table_1->addCell(3000)->addText("REINTEGRO:",'font-md');
+        $table_1->addCell(3000)->addText($moneda." ".$reintegro,'font-md','text-right');
+        $table_1->addCell(3000)->addText(" ",'font-md','text-center');
+    }
+    if($incentivo != "0"){
+        $table_1->addRow();
+        $table_1->addCell(3000)->addText("INCENTIVO:",'font-md');
+        $table_1->addCell(3000)->addText($moneda." ".$incentivo,'font-md','text-right');
+        $table_1->addCell(3000)->addText(" ",'font-md','text-center');
+    }
+    if($bonif != "0"){
+        $table_1->addRow();
+        $table_1->addCell(3000)->addText("BONIFICACION:",'font-md');
+        $table_1->addCell(3000)->addText($moneda." ".$bonif,'font-md','text-right');
+        $table_1->addCell(3000)->addText(" ",'font-md','text-center');
+    }
+    if($bonif_extra != "0"){
+        $table_1->addRow();
+        $table_1->addCell(3000)->addText("BON. EXTRAORDINARIA:",'font-md');
+        $table_1->addCell(3000)->addText($moneda." ".$bonif_extra,'font-md','text-right');
+        $table_1->addCell(3000)->addText(" ",'font-md','text-center');
+    }
+    if($bonif_grac != "0"){
+        $table_1->addRow();
+        $table_1->addCell(3000)->addText("BON. GRACIOSA:",'font-md');
+        $table_1->addCell(3000)->addText($moneda." ".$bonif_grac,'font-md','text-right');
+        $table_1->addCell(3000)->addText(" ",'font-md','text-center');
+    }
+    if($bonif_meta != "0"){
+        $table_1->addRow();
+        $table_1->addCell(3000)->addText("BON. POR CUMPLIENTO DE META:",'font-md');
+        $table_1->addCell(3000)->addText($moneda." ".$bonif_meta,'font-md','text-right');
+        $table_1->addCell(3000)->addText(" ",'font-md','text-center');
+    }
+    if($bonif_fest != "0"){
+        $table_1->addRow();
+        $table_1->addCell(3000)->addText("BON. POR DIAS FESTIVOS:",'font-md');
+        $table_1->addCell(3000)->addText($moneda." ".$bonif_fest,'font-md','text-right');
+        $table_1->addCell(3000)->addText(" ",'font-md','text-center');
+    }
+
+    $table_1->addRow();
+    $table_1->addCell(3000)->addText(" ",'font-md');
+    $table_1->addCell(3000)->addText(" ",'font-md','text-center');
+    $table_1->addCell(3000)->addText($moneda." ".$total_concepto,'font-md','text-right');
+
+}
+
+if($version3 == 0){
+    if($adelanto != "0"){
+        $table_1->addRow();
+        $table_1->addCell(4000)->addText("ADELANTO:",'font-md');
+        $table_1->addCell(1000)->addText("=",'font-md','text-center');
+        $table_1->addCell(4000)->addText($moneda." ".$adelanto,'font-md','text-right');
+    }
+    if($vacaciones != "0"){
+        $table_1->addRow();
+        $table_1->addCell(4000)->addText("VACACIONES:",'font-md');
+        $table_1->addCell(1000)->addText("=",'font-md','text-center');
+        $table_1->addCell(4000)->addText($moneda." ".$vacaciones,'font-md','text-right');
+    }
+    if($gratificaciones != "0"){
+        $table_1->addRow();
+        $table_1->addCell(4000)->addText("GRATIFICACIONES:",'font-md');
+        $table_1->addCell(1000)->addText("=",'font-md','text-center');
+        $table_1->addCell(4000)->addText($moneda." ".$gratificaciones,'font-md','text-right');
+    }
+    if($reintegro != "0"){
+        $table_1->addRow();
+        $table_1->addCell(4000)->addText("REINTEGRO:",'font-md');
+        $table_1->addCell(1000)->addText("=",'font-md','text-center');
+        $table_1->addCell(4000)->addText($moneda." ".$reintegro,'font-md','text-right');
+    }
+    if($incentivo != "0"){
+        $table_1->addRow();
+        $table_1->addCell(4000)->addText("INCENTIVO:",'font-md');
+        $table_1->addCell(1000)->addText("=",'font-md','text-center');
+        $table_1->addCell(4000)->addText($moneda." ".$incentivo,'font-md','text-right');
+    }
+    if($bonif != "0"){
+        $table_1->addRow();
+        $table_1->addCell(4000)->addText("BONIFICACION:",'font-md');
+        $table_1->addCell(1000)->addText("=",'font-md','text-center');
+        $table_1->addCell(4000)->addText($moneda." ".$bonif,'font-md','text-right');
+    }
+    if($bonif_extra != "0"){
+        $table_1->addRow();
+        $table_1->addCell(4000)->addText("BON. EXTRAORDINARIA:",'font-md');
+        $table_1->addCell(1000)->addText("=",'font-md','text-center');
+        $table_1->addCell(4000)->addText($moneda." ".$bonif_extra,'font-md','text-right');
+    }
+    if($bonif_grac != "0"){
+        $table_1->addRow();
+        $table_1->addCell(4000)->addText("BON. GRACIOSA:",'font-md');
+        $table_1->addCell(1000)->addText("=",'font-md','text-center');
+        $table_1->addCell(4000)->addText($moneda." ".$bonif_grac,'font-md','text-right');
+    }
+    if($bonif_meta != "0"){
+        $table_1->addRow();
+        $table_1->addCell(4000)->addText("BON. POR CUMPLIENTO DE META:",'font-md');
+        $table_1->addCell(1000)->addText("=",'font-md','text-center');
+        $table_1->addCell(4000)->addText($moneda." ".$bonif_meta,'font-md','text-right');
+    }
+    if($bonif_fest != "0"){
+        $table_1->addRow();
+        $table_1->addCell(4000)->addText("BON. POR DIAS FESTIVOS:",'font-md');
+        $table_1->addCell(1000)->addText("=",'font-md','text-center');
+        $table_1->addCell(4000)->addText($moneda." ".$bonif_fest,'font-md','text-right');
+    }
+}
+
+if($cuerpo == 1){
+    $table_1->addRow();
+    $table_1->addCell(4000)->addText("A DEPOSITAR:",'font-md-negrita');
+    $table_1->addCell(1000)->addText(" ",'font-md','text-center');
+    $table_1->addCell(4000)->addText($moneda." ".$montototal,'font-md-negrita','text-right');
+}
+if($cuerpo == 2){
+    $table_1->addRow();
+    $table_1->addCell(4000)->addText("TOTAL A PAGAR:",'font-md-negrita');
+    $table_1->addCell(1000)->addText(" ",'font-md','text-center');
+    $table_1->addCell(4000)->addText($moneda." ".$montototal,'font-md-negrita','text-right');
+}
+if($cuerpo == 3){
+    $table_1->addRow();
+    $table_1->addCell(4000)->addText("TOTAL A COBRAR:",'font-md-negrita');
+    $table_1->addCell(1000)->addText(" ",'font-md','text-center');
+    $table_1->addCell(4000)->addText($moneda." ".$montototal,'font-md-negrita','text-right');
+}
 
 $section->addTextBreak(1);
 $section->addText('DECLARO: Haber recibido de la empresa '.$nombre_emp,'font-sm','text-left');
