@@ -87,6 +87,7 @@ $(document).ready(function(){
     });
     
     $('#btnguardarpension').hide();
+    $('#btnzipear').hide();
     //$('.tables').DataTable();
 
     //Recuperar datos del combo MOTIVO CESE
@@ -202,6 +203,7 @@ function generar(e){
             creardivsempresa();
             $("#divresultado").show();
             $('#btnguardarpension').show();
+            $('#btnzipear').show();
             activarcargos();
                 
             /** SETEAR FECHAS A LOS DIV */
@@ -1532,13 +1534,16 @@ function imprimir_word(){
     var cargo = $('#cargo_emp').val();
     var logo = $('#logo_nombre').val();
     var firmante = $('.firmante_nom').html();
-    
+    var link = '../../controller/docs/certificado_'+tipoprev+'.php';
+
 
     $.ajax({
         type: "POST",
         //url: "../../controller/docs/certificado_m3.php",
         //url: "../../controller/docs/certificadosword.php",
-        url: "../../controller/docs/"+nombreruta+".php",
+        //url: "../../controller/docs/"+nombreruta+".php",
+        //url: "../../controller/docs/prueba_2.php",
+        url: link,
         data : {
             empresa : nombre_emp,
             afiliado: nombre_com,
@@ -1554,39 +1559,33 @@ function imprimir_word(){
             firmante : firmante
         },
         success: function(response){
-           
-            console.log(response);
-            if(response == "1"){
-                swal.fire(
-                    'Documento generado exitosamente',
-                    '',
-                    'success'
-                );
+
+            //console.log(response);
+            resp = JSON.parse(response);
+            if(resp.estado == 1){
+                    swal.fire(
+                        'Documento generado exitosamente',
+                        '',
+                        'success'
+                    );
             }
-            /*if( response != "" )
-            {
-                let data_return = JSON.parse(response);
-                if( data_return['status'] == 0 )
-                {
-                    //alert(data_return['message'] + ": "  + data_return['data']['file_zip'] + " - Archivos creados en el zip: " + data_return['data']['numFiles'] );
-                    swal.close();    
-                    var enlace = document.createElement('a');
-                    enlace.href = '../../files/' + nom_carpeta+"/"+nom_carpeta+".zip";
-                    enlace.download = nom_carpeta+".zip";
-                    enlace.style.display = 'none';
-                    document.body.appendChild(enlace);
-                    enlace.click();
-                    document.body.removeChild(enlace);
-                }
-                else
-                {
-                    console.log("Sucedio un error en el servidor");
-                }
-            }
-            else
-            {
-                console.log("Sucedio un error en el servidor");
-            }*/
+            // URL del archivo que deseas descargar
+            var url = '../../files/'+nom_carpeta+'/'+resp.archivo+'.docx';
+
+            // Crear un elemento <a> oculto
+            var link = document.createElement('a');
+            link.href = url;
+            link.download = resp.archivo+'-'+num_doc; // Nombre del archivo para descargar
+            link.style.display = 'none';
+
+            // Añadir el elemento <a> al DOM
+            document.body.appendChild(link);
+
+            // Simular un clic en el enlace para iniciar la descarga
+            link.click();
+
+            // Eliminar el elemento <a> del DOM después de la descarga
+            document.body.removeChild(link);
         }
     });
 }
@@ -1667,44 +1666,49 @@ function imprimir_liquidacion_word(){
         contentType: false, // No establece el tipo de contenido (necesario al usar FormData)
         success: function(response){  
             console.log(response);
-            if(response == "1"){
+            /*if(response == "1"){
                 swal.fire(
                     'Documento generado exitosamente',
                     '',
                     'success'
                 );
+            }*/
+            //console.log(response);
+            resp = JSON.parse(response);
+            if(resp.estado == 1){
+                    swal.fire(
+                        'Documento generado exitosamente',
+                        '',
+                        'success'
+                    );
             }
-            // if( response != "" )
-            // {
-            //     let data_return = JSON.parse(response);
-            //     if( data_return['status'] == 0 )
-            //     {
-            //         //alert(data_return['message'] + ": "  + data_return['data']['file_zip'] + " - Archivos creados en el zip: " + data_return['data']['numFiles'] );
-            //         swal.close();    
-            //         var enlace = document.createElement('a');
-            //         enlace.href = '../../files/' + nom_carpeta+"/"+nom_carpeta+".zip";
-            //         enlace.download = nom_carpeta+".zip";
-            //         enlace.style.display = 'none';
-            //         document.body.appendChild(enlace);
-            //         enlace.click();
-            //         document.body.removeChild(enlace);
-            //     }
-            //     else
-            //     {
-            //         alert("Sucedio un error en el servidor");
-            //     }
-            // }
-            // else
-            // {
-            //     alert("Sucedio un error en el servidor");
-            // }
+            // URL del archivo que deseas descargar
+            var url = '../../files/'+nom_carpeta+'/'+resp.archivo+'.docx';
+
+            // Crear un elemento <a> oculto
+            var link = document.createElement('a');
+            link.href = url;
+            link.download = resp.archivo+'-'+num_doc; // Nombre del archivo para descargar
+            link.style.display = 'none';
+
+            // Añadir el elemento <a> al DOM
+            document.body.appendChild(link);
+
+            // Simular un clic en el enlace para iniciar la descarga
+            link.click();
+
+            // Eliminar el elemento <a> del DOM después de la descarga
+            document.body.removeChild(link);
+           
+           
         }
     });
 }
 
 
 function imprimir_liquidacion_boleta(){
-    var nombreruta          = 'boleta_1.php';          
+    var nombreruta          = 'boleta_1.php'; 
+
     var boleta              = $('#combo_prev_boleta').val();
     var nombre              = $('#txtnombre').val();
     var apellido            = $('#txtapellido').val();
@@ -1721,20 +1725,22 @@ function imprimir_liquidacion_boleta(){
     var sueldo              = $('#sueldo_emp').val();
     var moneda              = $('#moneda_emp').val();
     var motivo              = $('select[name="combo_prev_liqui"] option:selected').text();
-    //Agregar los bonos 
-    var bonif_ext           = $('#bonif_extra').val();
-    var bonif_gra           = $('#bonif_gra').val();
-    var bonif_met           = $('#bonif_meta').val();
-    var bonif_dias          = $('#bonif_dias').val();
     //Agregar año para la condicional 
     var fecha_final         = $("#fech_final_emp").val();
     var fecha               = new Date(fecha_final);
     var anio                = fecha.getFullYear();
 
+    //datos de la boleta
+    var total_boleta = $('.total_boleta').html();
+    var total_neto_1 = $('.total_neto_1').html();
+    var mes_anio = $('.mes_anio_imp').html();
+
     // Serializa el formulario
     var formData = new FormData($('#form_bol')[0]);
 
     // Agrega los datos adicionales al objeto FormData
+    formData.append('nombre', nombre); 
+    formData.append('apellido', apellido);
     formData.append('empresa', nombre_emp); 
     formData.append('afiliado', nombre_com);
     formData.append('nombre_carpeta', nom_carpeta); 
@@ -1747,31 +1753,44 @@ function imprimir_liquidacion_boleta(){
     formData.append('sueldo', sueldo);   
     formData.append('moneda', moneda);  
     formData.append('motivo', motivo); 
-    formData.append('bonif_ext', bonif_ext);  
-    formData.append('bonif_gra', bonif_gra);   
-    formData.append('bonif_met', bonif_met);  
-    formData.append('bonif_dias', bonif_dias);
     formData.append('anio_final', anio);  
-    formData.append('cuerpo', cuerpo);  
+    formData.append('total_boleta', total_boleta); 
+    formData.append('total_neto_1', total_neto_1); 
+    formData.append('mes_anio', mes_anio); 
 
     $.ajax({
         type: "POST",
-        //url: "../../controller/docs/certificadosword.php",
         url: "../../controller/docs/"+nombreruta,
-        //url: "../../controller/docs/liquidacion_4.php",
         data : formData,
         processData: false, // Evita que jQuery procese los datos (necesario al usar FormData)
         contentType: false, // No establece el tipo de contenido (necesario al usar FormData)
         success: function(response){  
-            console.log(response);
-            if(response == "1"){
-                swal.fire(
-                    'Documento generado exitosamente',
-                    '',
-                    'success'
-                );
+            resp = JSON.parse(response);
+            if(resp.estado == 1){
+                    swal.fire(
+                        'Documento generado exitosamente',
+                        '',
+                        'success'
+                    );
             }
-            
+            // URL del archivo que deseas descargar
+            var url = '../../files/'+nom_carpeta+'/'+resp.archivo+'.docx';
+
+            // Crear un elemento <a> oculto
+            var link = document.createElement('a');
+            link.href = url;
+            link.download = resp.archivo+'-'+num_doc; // Nombre del archivo para descargar
+            link.style.display = 'none';
+
+            // Añadir el elemento <a> al DOM
+            document.body.appendChild(link);
+
+            // Simular un clic en el enlace para iniciar la descarga
+            link.click();
+
+            // Eliminar el elemento <a> del DOM después de la descarga
+            document.body.removeChild(link);
+           
         }
     });
 
@@ -2226,26 +2245,26 @@ $(document).on("click","#boleta-tab", function(){
     let fecha_12_84 = new Date("1985-01-01");
     
 
-    $('.bonif').attr("disabled", "disabled");
+    $('.bonif').attr("readonly", "readonly");
 
     if(fecha > fecha_01_65 && fecha < fecha_07_99){
-        $('#boni_boleta').attr("disabled", false);
-        $('#reintegro_boleta').attr("disabled", false);
-        $('#bonificacion_pasajes_boleta').attr("disabled", false);
-        $('#bonificacion_uniforme_boleta').attr("disabled", false);
-        $('#bonificacion_gratificacion_boleta').attr("disabled", false);
+        $('#boni_boleta').attr("readonly", false);
+        $('#reintegro_boleta').attr("readonly", false);
+        $('#bonificacion_pasajes_boleta').attr("readonly", false);
+        $('#bonificacion_uniforme_boleta').attr("readonly", false);
+        $('#bonificacion_gratificacion_boleta').attr("readonly", false);
     }
     if(fecha > fecha_07_80 && fecha < fecha_07_99){
-        $('#bonificacion_metas_boleta').attr("disabled", false);
+        $('#bonificacion_metas_boleta').attr("readonly", false);
     }
     if(fecha > fecha_01_65 && fecha < fecha_12_82){
-        $('#bonificacion_alimentos_boleta').attr("disabled", false);
+        $('#bonificacion_alimentos_boleta').attr("readonly", false);
     }
     if(fecha > fecha_01_70 && fecha < fecha_07_99){
-        $('#bonificacion_logros_boleta').attr("disabled", false);
+        $('#bonificacion_logros_boleta').attr("readonly", false);
     }
     if(fecha > fecha_01_65 && fecha < fecha_12_84){
-        $('#bonificacion_festivos_boleta').attr("disabled", false);  
+        $('#bonificacion_festivos_boleta').attr("readonly", false);  
     }  
 });
 

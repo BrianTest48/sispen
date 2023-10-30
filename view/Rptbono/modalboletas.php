@@ -124,18 +124,18 @@
                                         <tfoot>
                                             <tr>
                                                 <td>Total</td>
-                                                <td><input id="dic_total" class="table_row totalmesboleta" type="number" value="" disabled ></td>
-                                                <td><input id="ene_total" class="table_row totalmesboleta" type="number" value="" disabled ></td>
-                                                <td><input id="feb_total" class="table_row totalmesboleta" type="number" value="" disabled ></td>
-                                                <td><input id="mar_total" class="table_row totalmesboleta" type="number" value="" disabled ></td>
-                                                <td><input id="abr_total" class="table_row totalmesboleta" type="number" value="" disabled ></td>
-                                                <td><input id="may_total" class="table_row totalmesboleta" type="number" value="" disabled ></td>
-                                                <td><input id="jun_total" class="table_row totalmesboleta" type="number" value="" disabled ></td>
-                                                <td><input id="jul_total" class="table_row totalmesboleta" type="number" value="" disabled ></td>
-                                                <td><input id="ago_total" class="table_row totalmesboleta" type="number" value="" disabled ></td>
-                                                <td><input id="sep_total" class="table_row totalmesboleta" type="number" value="" disabled ></td>
-                                                <td><input id="oct_total" class="table_row totalmesboleta" type="number" value="" disabled ></td>
-                                                <td><input id="nov_total" class="table_row totalmesboleta" type="number" value="" disabled ></td>
+                                                <td><span id="dic_total" class="totalmesboleta"></span></td>
+                                                <td><span id="ene_total" class="totalmesboleta"></span></td>
+                                                <td><span id="feb_total" class="totalmesboleta"></span></td>
+                                                <td><span id="mar_total" class="totalmesboleta"></span></td>
+                                                <td><span id="abr_total" class="totalmesboleta"></span></td>
+                                                <td><span id="may_total" class="totalmesboleta"></span></td>
+                                                <td><span id="jun_total" class="totalmesboleta"></span></td>
+                                                <td><span id="jul_total" class="totalmesboleta"></span></td>
+                                                <td><span id="ago_total" class="totalmesboleta"></span></td>
+                                                <td><span id="sep_total" class="totalmesboleta"></span></td>
+                                                <td><span id="oct_total" class="totalmesboleta"></span></td>
+                                                <td><span id="nov_total" class="totalmesboleta"></span></td>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -146,7 +146,7 @@
                         <div class="row">
                             <div class="col-12 col-sm-6">
                                 <h5>Calculo de Bono</h5>
-                                <p>DNI - <span id="dni_cal_bono">0000000</span></p>
+                                <p>DNI - <span id="dni_cal_bono">0000000</span> - <span id="fecha_inicio_bol"></span> - <span id="fecha_final_bol"></span></p>
                                 <table id="" class="tables dataTable responsive nowrap" style="width: 100%; font-size: 16px" >
                                     <thead>
                                         <th colspan = '2'>Calculo Bono</th>
@@ -171,7 +171,7 @@
                                         </tr>
                                         <tr>
                                             <td>Variable</td>
-                                            <td><input type="number" id="variable" value="1"></td>
+                                            <td><input type="number" id="variable" value="1" style="width: 20%; text-align: right;"></td>
                                         </tr>
                                     </tbody>
                                     <tfoot>

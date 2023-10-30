@@ -56,7 +56,25 @@
         height: 35px;
     }
 
+    #tabla_boleta td {
+      padding: 0.78rem;
+      width: 50px;
+    }
 
+    #tabla_boleta th {
+      padding: 0.78rem !important;
+      font-size: 14px;
+      
+    }
+
+    #tabla_boleta tfoot td {
+        padding: 0.78rem !important;
+    }
+
+    .table_row{
+        width: 50px;
+        text-align: right;
+    }
 
 </style>
 <style>

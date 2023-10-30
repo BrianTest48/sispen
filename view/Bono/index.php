@@ -30,9 +30,16 @@
                             
                         </div>
 
-                        <div class="col-12 col-sm-1 mg-b-10">
-                            <input type="hidden" name="valorguardar" id="valorguardar">
-                            <button  type="button" id="btnguardarpension" name="btnguardarpension" class="btn btn-info" onclick="GuardarLista()" style="width :100%;background-color : #A20036;" >Guardar</button>
+                        <div class="col-12 col-sm-6 mg-b-10">
+                            <div class="row justify-content-end">
+                                <div class="col-6 col-sm-3">
+                                    <button  type="button" id="btnzipear" name="btnzipear" class="btn btn-info" onclick="" style="width :100%;" >Descargar en ZIP</button>
+                                </div>
+                                <div class="col-6 col-sm-3">
+                                    <input type="hidden" name="valorguardar" id="valorguardar">
+                                    <button  type="button" id="btnguardarpension" name="btnguardarpension" class="btn btn-info" onclick="GuardarLista()" style="width :100%;background-color : #A20036;" >Guardar</button>
+                                </div>
+                            </div>
                         </div>
                         
                     </div>
@@ -105,8 +112,16 @@
                                             </div><!-- col-4 -->
                                         </div><!-- row -->
                                         <div class="form-layout-footer text-center">
-                                            <button type="submit" id="btnautogenerar" name="btnautogenerar"  class="btn btn-info">Gestionar</button>
-                                            <button type="button" id="btnlimpiar" name="" class="btn btn-secondary">Limpiar</button>
+                                            <div class="row justify-content-center">
+                                                <div class="col-12 col-sm-3">
+                                                    <button type="submit" id="btnautogenerar" name="btnautogenerar"  class="btn btn-info" style="width:100% !important">Gestionar</button>
+                                                </div>
+                                                <div class="col-12 col-sm-3">
+                                                    <button type="button" id="btnlimpiar" name="" class="btn btn-secondary" style="width:100%">Limpiar</button>
+                                                </div>
+                                            </div>
+                                            
+                                            
                                         </div><!-- form-layout-footer -->
                                     </div><!-- form-datos -->
                             </form>
@@ -132,6 +147,8 @@
                                 <input  type="hidden" id="moneda_emp" name="moneda_emp">
                                 <input  type="hidden" id="cargo_emp" name="cargo_emp">
                                 <input  type="hidden" id="dpto_emp" name="dpto_emp">
+                                <input  type="hidden" id="tipo_emp" name="tipo_emp">
+                                <input  type="hidden" id="logo_nombre" name="logo_nombre">
                                 <h5 class="text-center" id="nom_emp_lab"></h5>
                                 <br>
                                 <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist" style="border-bottom : 0px">
@@ -206,16 +223,23 @@
                                                 </div><!-- row -->
                                             </div>
                                             <div class="form-layout-footer text-right mg-t-20">
-                                                <button type="button" id="btnprevcer_bono" name="btnprevcer_bono"  class="btn btn-secondary mg-l-10">Previsualizar</button>
+                                                <div class="row justify-content-end">
+                                                    <div class="col-12 col-sm-4">
+                                                        <button type="button" id="" class="btn btn-info" onclick="imprimir_word()" style="width: 100%">Descargar en Word</button>
+                                                    </div>
+                                                    <div class="col-12 col-sm-4">
+                                                        <button type="button" id="btnprevcer_bono" name="btnprevcer_bono"  class="btn btn-secondary" style="width: 100%">Previsualizar</button>
+                                                    </div>
+                                                </div>
                                                 <!--<button type="button" id="btnimprimirbol" name="btnimprimirbol"  class="btn btn-info">Imprimir Boleta</button>-->
                                             </div>
                                         </form>
                                     </div>
                                     <div id="liquidacion" class="tab-pane fade">
                                         <form id="form_liqui" action="" method="post" autocomplete="off">
-                                            <input type="hidden" name="" id="dias_liqui">
-                                            <input type="hidden" name="" id="meses_liqui">
-                                            <input type="hidden" name="" id="anios_liqui">
+                                            <input type="hidden" name="dias_liqui" id="dias_liqui">
+                                            <input type="hidden" name="meses_liqui" id="meses_liqui">
+                                            <input type="hidden" name="anios_liqui" id="anios_liqui">
                                             <div class="form-layout form-layout-1">
                                                 <div class="row">
                                                     <div class="col-lg-12">
@@ -289,12 +313,31 @@
                                             </div>
                                             <div class="form-layout-footer text-right mg-t-20">
                                                 <div class="row">
-                                                    <div class="col-12 col-sm-8">
-                                                        <select class="form-control select2" data-placeholder="Motivo de Retiro" name="combo_prev_liqui" id="combo_prev_liqui" style="width: 100%;">
-                                                        </select>
+                                                    <div class="col-12 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label text-left">Tipos de Cuerpo</label>
+                                                            <select class="form-control select2" data-placeholder="Seleccione" name="combo_prev_cuerpo" id="combo_prev_cuerpo" style="width: 100%;">
+                                                                <option value="1">Modelo 1</option>
+                                                                <option value="2">Modelo 2</option>
+                                                                <option value="3">Modelo 3</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label text-left">Motivo de Retiro</label>
+                                                            <select class="form-control select2" data-placeholder="Motivo de Retiro" name="combo_prev_liqui" id="combo_prev_liqui" style="width: 100%;">
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row justify-content-end">
+                                                   
+                                                    <div class="col-12 col-sm-4">
+                                                        <button type="button" id="" class="btn btn-info" onclick="imprimir_liquidacion_word()" style="width:100%">Descargar en Word</button>
                                                     </div>
                                                     <div class="col-12 col-sm-4">
-                                                        <button type="button" id="btnprevli" name="btnprevli"  class="btn btn-secondary mg-l-10">Previsualizar</button>
+                                                        <button type="button" id="btnprevli" name="btnprevli"  class="btn btn-secondary" style="width:100%">  Previsualizar  </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -303,12 +346,12 @@
                                     <div id="boleta" class="tab-pane fade">
                                         <form id="form_bol" action="" method="post" autocomplete="off">
                                             <div class="form-layout form-layout-1">
-                                                <div class="row">
-                                                    <div class="col-12 col-sm-6">
-                                                        <button type="button" id="btnboletas" name="btnboletas"  class="btn btn-info" >Visualizar Boletas</button>
+                                                <div class="row justify-content-around">
+                                                    <div class="col-12 col-sm-4">
+                                                        <button type="button" id="btnboletas" name="btnboletas"  class="btn btn-info" style="width: 100%" >Visualizar Boletas</button>
                                                     </div>
-                                                    <div class="col-12 col-sm-6">
-                                                        <button type="button" id="btnboletas_dsc" name="btnboletas_dsc"  class="btn btn-info" >Visualizar Descuentos</button>
+                                                    <div class="col-12 col-sm-4">
+                                                        <button type="button" id="btnboletas_dsc" name="btnboletas_dsc"  class="btn btn-info" style="width: 100%" >Visualizar Descuentos</button>
                                                     </div>
                                                 </div>
                                                 <br>
@@ -568,7 +611,6 @@
                                 </div>
                             </div>
                             <br>
-                            
                             <div class="prevs_certificado" id="prev1">
                                 <div class="container prev_certificado" style="max-width: 1020px !important;" id="prev_certificado_p1">
                                     <div class="card" style="margin-top: 60px;">
@@ -579,10 +621,14 @@
                                             </div>
                                         </div>
                                         <div id="contenido_certificado_p1" class="card-body m-5 p-5">
-                                            <div class="d-flex justify-content-between mb-5">
+                                          
+                                            <div class="d-flex justify-content-between mb-5 divimagen" >
                                                 <div  style="text-align: right !important;">
                                                     <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
                                                 </div>
+                                                <div class="div_logo_pdf" style="text-align: right !important;">
+                                                    <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                </div> 
                                             </div>
                                             <br><br><br>
                                             <div class="text-center">
@@ -623,6 +669,16 @@
                                                         <span class="lugardia" style="color: #FF0000;font-weight: 600;font-size: 18px;"> ............de............19</span>
                                                     </div>
                                                 </div>
+                                                <br><br><br><br>
+                                                <div class="text-center">
+                                                    <div style="text-align: center !important;">
+
+                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">
+                                                            .........................................................</p>
+                                                        <p class="firmante_nom" style="color: #000;font-weight: 600;font-size: 16px;">LUIS TORRES HERNANDEZ.</p>
+                                                        <!--<p style="color: #000;font-weight: 600;font-size: 16px;">GERENTE</p>-->
+                                                    </div>
+                                                </div>
                                             </div>
                                             
                                         </div>
@@ -637,10 +693,13 @@
                                             </div>
                                         </div>
                                         <div id="contenido_certificado_p2" class="card-body m-5 p-5">
-                                            <div class="d-flex justify-content-between mb-5">
+                                            <div class="d-flex justify-content-between mb-5 divimagen" >
                                                 <div  style="text-align: right !important;">
                                                     <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
                                                 </div>
+                                                <div class="div_logo_pdf" style="text-align: right !important;">
+                                                    <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                </div> 
                                             </div>
                                             <br><br><br>
                                             <div class="text-center">
@@ -676,6 +735,16 @@
                                                         <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;"></p>
                                                     </div>
                                                 </div>
+                                                <br><br><br><br>
+                                                <div class="text-center">
+                                                    <div style="text-align: center !important;">
+
+                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">
+                                                            .........................................................</p>
+                                                        <p class="firmante_nom" style="color: #000;font-weight: 600;font-size: 16px;">LUIS TORRES HERNANDEZ.</p>
+                                                        <!--<p style="color: #000;font-weight: 600;font-size: 16px;">GERENTE</p>-->
+                                                    </div>
+                                                </div>
                                             </div>
                                             
                                         </div>
@@ -690,10 +759,13 @@
                                             </div>
                                         </div>
                                         <div id="contenido_certificado_p3" class="card-body m-5 p-5">
-                                            <div class="d-flex justify-content-between mb-5">
+                                            <div class="d-flex justify-content-between mb-5 divimagen" >
                                                 <div  style="text-align: right !important;">
                                                     <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
                                                 </div>
+                                                <div class="div_logo_pdf" style="text-align: right !important;">
+                                                    <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                </div> 
                                             </div>
                                             <br><br><br>
                                             <div class="text-center">
@@ -729,6 +801,16 @@
                                                         <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;"></p>
                                                     </div>
                                                 </div>
+                                                <br><br><br><br>
+                                                <div class="text-center">
+                                                    <div style="text-align: center !important;">
+
+                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">
+                                                            .........................................................</p>
+                                                        <p class="firmante_nom" style="color: #000;font-weight: 600;font-size: 16px;">LUIS TORRES HERNANDEZ.</p>
+                                                        <!--<p style="color: #000;font-weight: 600;font-size: 16px;">GERENTE</p>-->
+                                                    </div>
+                                                </div>
                                             </div>
                                             
                                         </div>
@@ -743,10 +825,13 @@
                                             </div>
                                         </div>
                                         <div id="contenido_certificado_p4" class="card-body m-5 p-5">
-                                            <div class="d-flex justify-content-between mb-5">
+                                            <div class="d-flex justify-content-between mb-5 divimagen" >
                                                 <div  style="text-align: right !important;">
                                                     <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
                                                 </div>
+                                                <div class="div_logo_pdf" style="text-align: right !important;">
+                                                    <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                </div> 
                                             </div>
                                             <br><br><br>
                                             <div class="text-center">
@@ -783,6 +868,16 @@
                                                         <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;"></p>
                                                     </div>
                                                 </div>
+                                                <br><br><br><br>
+                                                <div class="text-center">
+                                                    <div style="text-align: center !important;">
+
+                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">
+                                                            .........................................................</p>
+                                                        <p class="firmante_nom" style="color: #000;font-weight: 600;font-size: 16px;">LUIS TORRES HERNANDEZ.</p>
+                                                        <!--<p style="color: #000;font-weight: 600;font-size: 16px;">GERENTE</p>-->
+                                                    </div>
+                                                </div>
                                             </div>
                                             
                                         </div>
@@ -797,10 +892,13 @@
                                             </div>
                                         </div>
                                         <div id="contenido_certificado_p5" class="card-body m-5 p-5">
-                                            <div class="d-flex justify-content-between mb-5">
+                                            <div class="d-flex justify-content-between mb-5 divimagen" >
                                                 <div  style="text-align: right !important;">
                                                     <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
                                                 </div>
+                                                <div class="div_logo_pdf" style="text-align: right !important;">
+                                                    <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                </div> 
                                             </div>
                                             <br><br><br>
                                             <div class="text-center">
@@ -835,6 +933,16 @@
                                                         <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;"></p>
                                                     </div>
                                                 </div>
+                                                <br><br><br><br>
+                                                <div class="text-center">
+                                                    <div style="text-align: center !important;">
+
+                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">
+                                                            .........................................................</p>
+                                                        <p class="firmante_nom" style="color: #000;font-weight: 600;font-size: 16px;">LUIS TORRES HERNANDEZ.</p>
+                                                        <!--<p style="color: #000;font-weight: 600;font-size: 16px;">GERENTE</p>-->
+                                                    </div>
+                                                </div>
                                             </div>
                                             
                                         </div>
@@ -849,10 +957,13 @@
                                             </div>
                                         </div>
                                         <div id="contenido_certificado_p6" class="card-body m-5 p-5">
-                                            <div class="d-flex justify-content-between mb-5">
+                                            <div class="d-flex justify-content-between mb-5 divimagen" >
                                                 <div  style="text-align: right !important;">
                                                     <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
                                                 </div>
+                                                <div class="div_logo_pdf" style="text-align: right !important;">
+                                                    <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                </div> 
                                             </div>
                                             <br><br><br>
                                             <div class="text-center">
@@ -901,6 +1012,16 @@
                                                         <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;"></p>
                                                     </div>
                                                 </div>
+                                                <br><br><br><br>
+                                                <div class="text-center">
+                                                    <div style="text-align: center !important;">
+
+                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">
+                                                            .........................................................</p>
+                                                        <p class="firmante_nom" style="color: #000;font-weight: 600;font-size: 16px;">LUIS TORRES HERNANDEZ.</p>
+                                                        <!--<p style="color: #000;font-weight: 600;font-size: 16px;">GERENTE</p>-->
+                                                    </div>
+                                                </div>
                                             </div>
                                             
                                         </div>
@@ -915,10 +1036,13 @@
                                             </div>
                                         </div>
                                         <div id="contenido_certificado_p7" class="card-body m-5 p-5">
-                                            <div class="d-flex justify-content-between mb-5">
+                                            <div class="d-flex justify-content-between mb-5 divimagen" >
                                                 <div  style="text-align: right !important;">
                                                     <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
                                                 </div>
+                                                <div class="div_logo_pdf" style="text-align: right !important;">
+                                                    <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                </div> 
                                             </div>
                                             <br><br><br>
                                             <div class="text-center">
@@ -954,6 +1078,16 @@
                                                         <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;"></p>
                                                     </div>
                                                 </div>
+                                                <br><br><br><br>
+                                                <div class="text-center">
+                                                    <div style="text-align: center !important;">
+
+                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">
+                                                            .........................................................</p>
+                                                        <p class="firmante_nom" style="color: #000;font-weight: 600;font-size: 16px;">LUIS TORRES HERNANDEZ.</p>
+                                                        <!--<p style="color: #000;font-weight: 600;font-size: 16px;">GERENTE</p>-->
+                                                    </div>
+                                                </div>
                                             </div>
                                             
                                         </div>
@@ -968,10 +1102,13 @@
                                             </div>
                                         </div>
                                         <div id="contenido_certificado_p8" class="card-body m-5 p-5">
-                                            <div class="d-flex justify-content-between mb-5">
+                                            <div class="d-flex justify-content-between mb-5 divimagen" >
                                                 <div  style="text-align: right !important;">
                                                     <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
                                                 </div>
+                                                <div class="div_logo_pdf" style="text-align: right !important;">
+                                                    <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                </div> 
                                             </div>
                                             <br><br><br>
                                             <div class="text-center">
@@ -1002,12 +1139,21 @@
                                                         <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;"></p>
                                                     </div>
                                                 </div>
+                                                <br><br><br><br>
+                                                <div class="text-center">
+                                                    <div style="text-align: center !important;">
+
+                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">
+                                                            .........................................................</p>
+                                                        <p class="firmante_nom" style="color: #000;font-weight: 600;font-size: 16px;">LUIS TORRES HERNANDEZ.</p>
+                                                        <!--<p style="color: #000;font-weight: 600;font-size: 16px;">GERENTE</p>-->
+                                                    </div>
+                                                </div>
                                             </div>
                                             
                                         </div>
                                     </div>
                                 </div>  
-
                                 <div class="container prev_certificado" style="max-width: 1020px !important;" id="prev_certificado_m1">
                                     <div class="card" style="margin-top: 60px;">
                                         <div class="card-header d-flex justify-content-between">
@@ -1017,10 +1163,13 @@
                                             </div>
                                         </div>
                                         <div id="contenido_certificado_m1" class="card-body m-5 p-5">
-                                            <div class="d-flex justify-content-between mb-5">
+                                            <div class="d-flex justify-content-between mb-5 divimagen" >
                                                 <div  style="text-align: right !important;">
                                                     <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
                                                 </div>
+                                                <div class="div_logo_pdf" style="text-align: right !important;">
+                                                    <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                </div> 
                                             </div>
                                             <br><br><br>
                                             <div class="text-center">
@@ -1051,6 +1200,16 @@
                                                         <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;"></p>
                                                     </div>
                                                 </div>
+                                                <br><br><br><br>
+                                                <div class="text-center">
+                                                    <div style="text-align: center !important;">
+
+                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">
+                                                            .........................................................</p>
+                                                        <p class="firmante_nom" style="color: #000;font-weight: 600;font-size: 16px;">LUIS TORRES HERNANDEZ.</p>
+                                                        <!--<p style="color: #000;font-weight: 600;font-size: 16px;">GERENTE</p>-->
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1064,10 +1223,13 @@
                                             </div>
                                         </div>
                                         <div id="contenido_certificado_m2" class="card-body m-5 p-5">
-                                            <div class="d-flex justify-content-between mb-5">
+                                            <div class="d-flex justify-content-between mb-5 divimagen" >
                                                 <div  style="text-align: right !important;">
                                                     <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
                                                 </div>
+                                                <div class="div_logo_pdf" style="text-align: right !important;">
+                                                    <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                </div> 
                                             </div>
                                             <br><br><br>
                                             <div class="text-center">
@@ -1103,6 +1265,16 @@
                                                         <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;"></p>
                                                     </div>
                                                 </div>
+                                                <br><br><br><br>
+                                                <div class="text-center">
+                                                    <div style="text-align: center !important;">
+
+                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">
+                                                            .........................................................</p>
+                                                        <p class="firmante_nom" style="color: #000;font-weight: 600;font-size: 16px;">LUIS TORRES HERNANDEZ.</p>
+                                                        <!--<p style="color: #000;font-weight: 600;font-size: 16px;">GERENTE</p>-->
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1116,10 +1288,13 @@
                                             </div>
                                         </div>
                                         <div id="contenido_certificado_m3" class="card-body m-5 p-5">
-                                            <div class="d-flex justify-content-between mb-5">
+                                            <div class="d-flex justify-content-between mb-5 divimagen" >
                                                 <div  style="text-align: right !important;">
                                                     <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
                                                 </div>
+                                                <div class="div_logo_pdf" style="text-align: right !important;">
+                                                    <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                </div> 
                                             </div>
                                             <br><br><br>
                                             <div class="text-center">
@@ -1154,6 +1329,16 @@
                                                         <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;"></p>
                                                     </div>
                                                 </div>
+                                                <br><br><br><br>
+                                                <div class="text-center">
+                                                    <div style="text-align: center !important;">
+
+                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">
+                                                            .........................................................</p>
+                                                        <p class="firmante_nom" style="color: #000;font-weight: 600;font-size: 16px;">LUIS TORRES HERNANDEZ.</p>
+                                                        <!--<p style="color: #000;font-weight: 600;font-size: 16px;">GERENTE</p>-->
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1167,10 +1352,13 @@
                                             </div>
                                         </div>
                                         <div id="contenido_certificado_m4" class="card-body m-5 p-5">
-                                            <div class="d-flex justify-content-between mb-5">
+                                            <div class="d-flex justify-content-between mb-5 divimagen" >
                                                 <div  style="text-align: right !important;">
                                                     <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
                                                 </div>
+                                                <div class="div_logo_pdf" style="text-align: right !important;">
+                                                    <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                </div> 
                                             </div>
                                             <br><br><br>
                                             <div class="text-center">
@@ -1201,6 +1389,16 @@
                                                         <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;"></p>
                                                     </div>
                                                 </div>
+                                                <br><br><br><br>
+                                                <div class="text-center">
+                                                    <div style="text-align: center !important;">
+
+                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">
+                                                            .........................................................</p>
+                                                        <p class="firmante_nom" style="color: #000;font-weight: 600;font-size: 16px;">LUIS TORRES HERNANDEZ.</p>
+                                                        <!--<p style="color: #000;font-weight: 600;font-size: 16px;">GERENTE</p>-->
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1214,10 +1412,13 @@
                                             </div>
                                         </div>
                                         <div id="contenido_certificado_m5" class="card-body m-5 p-5">
-                                            <div class="d-flex justify-content-between mb-5">
+                                            <div class="d-flex justify-content-between mb-5 divimagen" >
                                                 <div  style="text-align: right !important;">
-                                                    <h1  class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                    <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
                                                 </div>
+                                                <div class="div_logo_pdf" style="text-align: right !important;">
+                                                    <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                </div> 
                                             </div>
                                             <br><br><br>
                                             <div class="text-center">
@@ -1258,6 +1459,16 @@
                                                         <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;"></p>
                                                     </div>
                                                 </div>
+                                                <br><br><br><br>
+                                                <div class="text-center">
+                                                    <div style="text-align: center !important;">
+
+                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">
+                                                            .........................................................</p>
+                                                        <p class="firmante_nom" style="color: #000;font-weight: 600;font-size: 16px;">LUIS TORRES HERNANDEZ.</p>
+                                                        <!--<p style="color: #000;font-weight: 600;font-size: 16px;">GERENTE</p>-->
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1273,10 +1484,13 @@
                                             </div>
                                         </div>
                                         <div id="contenido_certificado_g1" class="card-body m-5 p-5">
-                                            <div class="d-flex justify-content-between mb-5">
+                                            <div class="d-flex justify-content-between mb-5 divimagen" >
                                                 <div  style="text-align: right !important;">
                                                     <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
                                                 </div>
+                                                <div class="div_logo_pdf" style="text-align: right !important;">
+                                                    <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                </div> 
                                             </div>
                                             <br><br><br>
                                             <div class="text-center">
@@ -1323,10 +1537,20 @@
                                                         <p style="color: #000;font-weight: 600;font-size: 16px;">Se le extiende este documento para los fines que le convenga.</p>
                                                     </div>
                                                 </div>
+                                                <br>
+                                                <div class="text-left">
+                                                    <div style="text-align: left !important;">
+                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;"></p>
+                                                    </div>
+                                                </div>
                                                 <br><br><br><br>
                                                 <div class="text-center">
                                                     <div style="text-align: center !important;">
-                                                        <p class="lugardia" style="color: #FF0000;font-weight: 600;font-size: 18px;"></p>
+
+                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">
+                                                            .........................................................</p>
+                                                        <p class="firmante_nom" style="color: #000;font-weight: 600;font-size: 16px;">LUIS TORRES HERNANDEZ.</p>
+                                                        <!--<p style="color: #000;font-weight: 600;font-size: 16px;">GERENTE</p>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -1342,10 +1566,13 @@
                                             </div>
                                         </div>
                                         <div id="contenido_certificado_g2" class="card-body m-5 p-5">
-                                            <div class="d-flex justify-content-between mb-5">
+                                            <div class="d-flex justify-content-between mb-5 divimagen" >
                                                 <div  style="text-align: right !important;">
                                                     <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
                                                 </div>
+                                                <div class="div_logo_pdf" style="text-align: right !important;">
+                                                    <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                </div> 
                                             </div>
                                             <br><br><br>
                                             <div class="certificado_imp">
@@ -1369,10 +1596,20 @@
 
                                                 </div>
                                                 
-                                                <br><br><br><br>
+                                                <br>
                                                 <div class="text-right">
-                                                    <div style="text-align: left !important;">
-                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;"></p>
+                                                    <div style="text-align: right !important;">
+                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;"></p>
+                                                    </div>
+                                                </div>
+                                                <br><br><br><br>
+                                                <div class="text-center">
+                                                    <div style="text-align: center !important;">
+
+                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">
+                                                            .........................................................</p>
+                                                        <p class="firmante_nom" style="color: #000;font-weight: 600;font-size: 16px;">LUIS TORRES HERNANDEZ.</p>
+                                                        <!--<p style="color: #000;font-weight: 600;font-size: 16px;">GERENTE</p>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -1389,10 +1626,13 @@
                                             </div>
                                         </div>
                                         <div id="contenido_certificado_g3" class="card-body m-5 p-5">
-                                            <div class="d-flex justify-content-between mb-5">
+                                            <div class="d-flex justify-content-between mb-5 divimagen" >
                                                 <div  style="text-align: right !important;">
                                                     <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
                                                 </div>
+                                                <div class="div_logo_pdf" style="text-align: right !important;">
+                                                    <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                </div> 
                                             </div>
                                             <br><br><br>
                                             <div class="certificado_imp">
@@ -1422,10 +1662,20 @@
                                                     </div>                  
                                                 </div>
 
+                                                <br>
+                                                <div class="text-right">
+                                                    <div style="text-align: right !important;">
+                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;"></p>
+                                                    </div>
+                                                </div>
                                                 <br><br><br><br>
                                                 <div class="text-center">
                                                     <div style="text-align: center !important;">
-                                                        <p class="lugardia" style="color: #FF0000;font-weight: 600;font-size: 18px;"></p>
+
+                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">
+                                                            .........................................................</p>
+                                                        <p class="firmante_nom" style="color: #000;font-weight: 600;font-size: 16px;">LUIS TORRES HERNANDEZ.</p>
+                                                        <!--<p style="color: #000;font-weight: 600;font-size: 16px;">GERENTE</p>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -1441,10 +1691,13 @@
                                             </div>
                                         </div>
                                         <div id="contenido_certificado_g4" class="card-body m-5 p-5">
-                                            <div class="d-flex justify-content-between mb-5">
+                                            <div class="d-flex justify-content-between mb-5 divimagen" >
                                                 <div  style="text-align: right !important;">
                                                     <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
                                                 </div>
+                                                <div class="div_logo_pdf" style="text-align: right !important;">
+                                                    <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                </div> 
                                             </div>
                                             <br><br><br>
                                             <div class="certificado_imp">
@@ -1463,21 +1716,20 @@
                                                         <h1 style="color: #000;font-weight: 600;font-size: 22px;">C E R T I F I C A </h1>
                                                     </div>
                                                 </div>
-                                                <br><br>
-                                                <div class="text-center">
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">Que, el Sr <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> estuvo laborando a favor nuestro en el periodo comprendido desde el <span class="desde_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> hasta el <span class="hasta_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> retirándose mediante carta notarial. </p>
-                                                    </div>
-                                                    <br><br>
-                                                    <div style="text-align: justify !important;">
-                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">Nuestro trabajador tuvo un desempeño satisfactorio en el Cargo de <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> siendo felicitado en reiteradas oportunidades por lo que se le extiende este certificado para los usos que estime conveniente. </p>
+                                                <br>
+                                                <div class="text-right">
+                                                    <div style="text-align: right !important;">
+                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;"></p>
                                                     </div>
                                                 </div>
-
                                                 <br><br><br><br>
                                                 <div class="text-center">
                                                     <div style="text-align: center !important;">
-                                                        <p class="lugardia" style="color: #FF0000;font-weight: 600;font-size: 18px;"></p>
+
+                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">
+                                                            .........................................................</p>
+                                                        <p class="firmante_nom" style="color: #000;font-weight: 600;font-size: 16px;">LUIS TORRES HERNANDEZ.</p>
+                                                        <!--<p style="color: #000;font-weight: 600;font-size: 16px;">GERENTE</p>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -1493,10 +1745,13 @@
                                             </div>
                                         </div>
                                         <div id="contenido_certificado_g5" class="card-body m-5 p-5">
-                                            <div class="d-flex justify-content-between mb-5">
+                                            <div class="d-flex justify-content-between mb-5 divimagen" >
                                                 <div  style="text-align: right !important;">
                                                     <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
                                                 </div>
+                                                <div class="div_logo_pdf" style="text-align: right !important;">
+                                                    <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                </div> 
                                             </div>
                                             <br><br><br>
                                             <div class="certificado_imp">
@@ -1531,10 +1786,20 @@
                                                     </div>
                                                 </div>
 
+                                                <br>
+                                                <div class="text-right">
+                                                    <div style="text-align: right !important;">
+                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;"></p>
+                                                    </div>
+                                                </div>
                                                 <br><br><br><br>
                                                 <div class="text-center">
-                                                    <div style="text-align: right !important;">
-                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;"></p>
+                                                    <div style="text-align: center !important;">
+
+                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">
+                                                            .........................................................</p>
+                                                        <p class="firmante_nom" style="color: #000;font-weight: 600;font-size: 16px;">LUIS TORRES HERNANDEZ.</p>
+                                                        <!--<p style="color: #000;font-weight: 600;font-size: 16px;">GERENTE</p>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -1550,10 +1815,13 @@
                                             </div>
                                         </div>
                                         <div id="contenido_certificado_g6" class="card-body m-5 p-5">
-                                            <div class="d-flex justify-content-between mb-5">
+                                            <div class="d-flex justify-content-between mb-5 divimagen" >
                                                 <div  style="text-align: right !important;">
                                                     <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
                                                 </div>
+                                                <div class="div_logo_pdf" style="text-align: right !important;">
+                                                    <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                </div> 
                                             </div>
                                             <br><br><br>
                                             <div class="certificado_imp">
@@ -1579,10 +1847,20 @@
                                                     </div>
                                                 </div>
 
+                                                <br>
+                                                <div class="text-left">
+                                                    <div style="text-align: left !important;">
+                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;"></p>
+                                                    </div>
+                                                </div>
                                                 <br><br><br><br>
                                                 <div class="text-center">
                                                     <div style="text-align: center !important;">
-                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;"></p>
+
+                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">
+                                                            .........................................................</p>
+                                                        <p class="firmante_nom" style="color: #000;font-weight: 600;font-size: 16px;">LUIS TORRES HERNANDEZ.</p>
+                                                        <!--<p style="color: #000;font-weight: 600;font-size: 16px;">GERENTE</p>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -1598,10 +1876,13 @@
                                             </div>
                                         </div>
                                         <div id="contenido_certificado_g7" class="card-body m-5 p-5">
-                                            <div class="d-flex justify-content-between mb-5">
+                                            <div class="d-flex justify-content-between mb-5 divimagen" >
                                                 <div  style="text-align: right !important;">
                                                     <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
                                                 </div>
+                                                <div class="div_logo_pdf" style="text-align: right !important;">
+                                                    <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                </div> 
                                             </div>
                                             <br><br><br>
                                             <div class="certificado_imp">
@@ -1625,10 +1906,20 @@
                                                     </div>
                                                 </div>
 
+                                                <br>
+                                                <div class="text-right">
+                                                    <div style="text-align: right !important;">
+                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;"></p>
+                                                    </div>
+                                                </div>
                                                 <br><br><br><br>
                                                 <div class="text-center">
-                                                    <div style="text-align: right !important;">
-                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;"></p>
+                                                    <div style="text-align: center !important;">
+
+                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">
+                                                            .........................................................</p>
+                                                        <p class="firmante_nom" style="color: #000;font-weight: 600;font-size: 16px;">LUIS TORRES HERNANDEZ.</p>
+                                                        <!--<p style="color: #000;font-weight: 600;font-size: 16px;">GERENTE</p>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -1644,10 +1935,13 @@
                                             </div>
                                         </div>
                                         <div id="contenido_certificado_g8" class="card-body m-5 p-5">
-                                            <div class="d-flex justify-content-between mb-5">
+                                            <div class="d-flex justify-content-between mb-5 divimagen" >
                                                 <div  style="text-align: right !important;">
                                                     <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
                                                 </div>
+                                                <div class="div_logo_pdf" style="text-align: right !important;">
+                                                    <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                </div> 
                                             </div>
                                             <br><br><br>
                                             <div class="certificado_imp">
@@ -1671,10 +1965,20 @@
                                                     </div>
                                                 </div>
 
+                                                <br>
+                                                <div class="text-right">
+                                                    <div style="text-align: right !important;">
+                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;"></p>
+                                                    </div>
+                                                </div>
                                                 <br><br><br><br>
                                                 <div class="text-center">
-                                                    <div style="text-align: right !important;">
-                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;"></p>
+                                                    <div style="text-align: center !important;">
+
+                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">
+                                                            .........................................................</p>
+                                                        <p class="firmante_nom" style="color: #000;font-weight: 600;font-size: 16px;">LUIS TORRES HERNANDEZ.</p>
+                                                        <!--<p style="color: #000;font-weight: 600;font-size: 16px;">GERENTE</p>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -1690,10 +1994,13 @@
                                             </div>
                                         </div>
                                         <div id="contenido_certificado_g9" class="card-body m-5 p-5">
-                                            <div class="d-flex justify-content-between mb-5">
+                                            <div class="d-flex justify-content-between mb-5 divimagen" >
                                                 <div  style="text-align: right !important;">
                                                     <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
                                                 </div>
+                                                <div class="div_logo_pdf" style="text-align: right !important;">
+                                                    <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                </div> 
                                             </div>
                                             <br><br><br>
                                             <div class="certificado_imp">
@@ -1717,10 +2024,20 @@
                                                     </div>
                                                 </div>
 
+                                                <br>
+                                                <div class="text-left">
+                                                    <div style="text-align: left !important;">
+                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;"></p>
+                                                    </div>
+                                                </div>
                                                 <br><br><br><br>
                                                 <div class="text-center">
-                                                    <div style="text-align: left !important;">
-                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;"></p>
+                                                    <div style="text-align: center !important;">
+
+                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">
+                                                            .........................................................</p>
+                                                        <p class="firmante_nom" style="color: #000;font-weight: 600;font-size: 16px;">LUIS TORRES HERNANDEZ.</p>
+                                                        <!--<p style="color: #000;font-weight: 600;font-size: 16px;">GERENTE</p>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -1736,10 +2053,13 @@
                                             </div>
                                         </div>
                                         <div id="contenido_certificado_g10" class="card-body m-5 p-5">
-                                            <div class="d-flex justify-content-between mb-5">
+                                            <div class="d-flex justify-content-between mb-5 divimagen" >
                                                 <div  style="text-align: right !important;">
                                                     <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
                                                 </div>
+                                                <div class="div_logo_pdf" style="text-align: right !important;">
+                                                    <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                </div> 
                                             </div>
                                             <br><br><br>
                                             <div class="certificado_imp">
@@ -1763,10 +2083,20 @@
                                                     </div>
                                                 </div>
 
+                                                <br>
+                                                <div class="text-right">
+                                                    <div style="text-align: right !important;">
+                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;"></p>
+                                                    </div>
+                                                </div>
                                                 <br><br><br><br>
                                                 <div class="text-center">
-                                                    <div style="text-align: right !important;">
-                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;"></p>
+                                                    <div style="text-align: center !important;">
+
+                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">
+                                                            .........................................................</p>
+                                                        <p class="firmante_nom" style="color: #000;font-weight: 600;font-size: 16px;">LUIS TORRES HERNANDEZ.</p>
+                                                        <!--<p style="color: #000;font-weight: 600;font-size: 16px;">GERENTE</p>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -1782,10 +2112,13 @@
                                             </div>
                                         </div>
                                         <div id="contenido_certificado_g11" class="card-body m-5 p-5">
-                                            <div class="d-flex justify-content-between mb-5">
+                                            <div class="d-flex justify-content-between mb-5 divimagen" >
                                                 <div  style="text-align: right !important;">
                                                     <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
                                                 </div>
+                                                <div class="div_logo_pdf" style="text-align: right !important;">
+                                                    <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                </div> 
                                             </div>
                                             <br><br><br>
                                             <div class="certificado_imp">
@@ -1811,10 +2144,20 @@
                                                     </div>
                                                 </div>
 
+                                                <br>
+                                                <div class="text-right">
+                                                    <div style="text-align: right !important;">
+                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;"></p>
+                                                    </div>
+                                                </div>
                                                 <br><br><br><br>
                                                 <div class="text-center">
-                                                    <div style="text-align: right !important;">
-                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;"></p>
+                                                    <div style="text-align: center !important;">
+
+                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">
+                                                            .........................................................</p>
+                                                        <p class="firmante_nom" style="color: #000;font-weight: 600;font-size: 16px;">LUIS TORRES HERNANDEZ.</p>
+                                                        <!--<p style="color: #000;font-weight: 600;font-size: 16px;">GERENTE</p>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -1830,10 +2173,13 @@
                                             </div>
                                         </div>
                                         <div id="contenido_certificado_g12" class="card-body m-5 p-5">
-                                            <div class="d-flex justify-content-between mb-5">
+                                            <div class="d-flex justify-content-between mb-5 divimagen" >
                                                 <div  style="text-align: right !important;">
                                                     <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
                                                 </div>
+                                                <div class="div_logo_pdf" style="text-align: right !important;">
+                                                    <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                </div> 
                                             </div>
                                             <br><br><br>
                                             <div class="certificado_imp">
@@ -1855,10 +2201,20 @@
                                                     </div>
                                                 </div>
 
+                                                <br>
+                                                <div class="text-left">
+                                                    <div style="text-align: left !important;">
+                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;"></p>
+                                                    </div>
+                                                </div>
                                                 <br><br><br><br>
                                                 <div class="text-center">
-                                                    <div style="text-align: right !important;">
-                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;"></p>
+                                                    <div style="text-align: center !important;">
+
+                                                        <p style="color: #000;font-weight: 600;font-size: 16px;">
+                                                            .........................................................</p>
+                                                        <p class="firmante_nom" style="color: #000;font-weight: 600;font-size: 16px;">LUIS TORRES HERNANDEZ.</p>
+                                                        <!--<p style="color: #000;font-weight: 600;font-size: 16px;">GERENTE</p>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -4134,7 +4490,7 @@
                                             </div>
                                             <div style="border-bottom: solid; margin-bottom: 10px;"></div>
                                            
-                                            <div id="" class="prev_modelo_liqui modelo_60_79">
+                                            <div id="" class="prev_modelo_liqui modelo_60_79_cuerpo_1">
                                                 <div class="text-center">
                                                     <div  style="text-align: center !important;">
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px; letter-spacing: 2.4px;"><u>CÁLCULO POR TIEMPO DE SERVICIO</u></h1>
@@ -4166,6 +4522,138 @@
                                                 <div class="row">
                                                     <div class="col-4 text-left">
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="meses_liqui"></span> x <span class="tipo_moneda"></span><span class="sueldo_rm"></span>/12</h1>
+                                                    </div>
+                                                    <div class="col-4 text-center">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_sldo_mes"></span></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">SUB - TOTAL:</h1>
+                                                    </div>
+                                                    <div class="col-4 text-center">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_total_lq"></span> </h1>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="bonif_liquidacion"></div>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">NETO A PAGAR:</h1>
+                                                    </div>
+                                                    <div class="col-4 text-center">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_total_lq_neto"></span> </h1>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div id="" class="prev_modelo_liqui modelo_60_79_cuerpo_2">
+                                                <div class="text-center">
+                                                    <div  style="text-align: center !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px; letter-spacing: 2.4px;"><u>RESUMEN</u></h1>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-6 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="desde_imp_num"></span> HASTA <span class="hasta_imp_num"></span></h1>
+                                                    </div>
+                                                    
+                                                    <div class="col-6" style="text-align: right !important;">
+                                                        <h1 class="" style="color: #000;font-weight: 600;font-size: 12px;"> ULTIMO SUELDO  <span class="tipo_moneda"></span> <span class="sueldo_rm"></span></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-6 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"> <span class="anios_liqui"></span> y <span class="meses_liqui"></span></h1>
+                                                    </div>
+                                                    <div class="col-6" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">REDONDEO</h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-6 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="sueldo_rm"></span> x <span class="anios_liqui"></span></h1>
+                                                    </div>
+                                                    <div class="col-6" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_sldo_anio"></span></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-6 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="sueldo_rm"></span>/12 x<span class="meses_liqui"></span></h1>
+                                                    </div>
+                                                    <div class="col-6" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_sldo_mes"></span></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-6 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">SUB - TOTAL:</h1>
+                                                    </div>
+                                                    <div class="col-6" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_total_lq"></span> </h1>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="bonif_liquidacion"></div>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">NETO A PAGAR:</h1>
+                                                    </div>
+                                                    <div class="col-4 text-center">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_total_lq_neto"></span> </h1>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div id="" class="prev_modelo_liqui modelo_60_79_cuerpo_3">
+                                                <div class="text-center">
+                                                    <div  style="text-align: center !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px; letter-spacing: 2.4px;"><u>CÁLCULO DE BENEFICIOS SOCIALES</u></h1>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-12 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="desde_imp"></span> - <span class="hasta_imp"></span></h1>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-6 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"> <span class="anios_liqui"></span> y <span class="meses_liqui"></span>, REDONDEO</h1>
+                                                    </div>
+                                                    <div class="col-6" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="sueldo_rm"></span> x <span class="anios_liqui"></span></h1>
+                                                    </div>
+                                                    <div class="col-4 text-center">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_sldo_anio"></span></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="sueldo_rm"></span>/12 x<span class="meses_liqui"></span></h1>
                                                     </div>
                                                     <div class="col-4 text-center">
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
@@ -4323,7 +4811,7 @@
                                                 </div>-->
                                             </div>
                                             <div style="border-bottom: solid; margin-bottom: 10px;"></div>
-                                            <div id="" class="prev_modelo_liqui modelo_60_79">
+                                            <div class="prev_modelo_liqui modelo_60_79_cuerpo_1">
                                                 <div class="text-center">
                                                     <div  style="text-align: center !important;">
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px; letter-spacing: 2.4px;"><u>CÁLCULO POR TIEMPO DE SERVICIO</u></h1>
@@ -4388,7 +4876,137 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div id="" class="prev_modelo_liqui modelo_80_99">
+                                            <div class="prev_modelo_liqui modelo_60_79_cuerpo_2">
+                                                <div class="text-center">
+                                                    <div  style="text-align: center !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px; letter-spacing: 2.4px;"><u>RESUMEN</u></h1>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-6 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="desde_imp_num"></span> HASTA <span class="hasta_imp_num"></span></h1>
+                                                    </div>
+                                                    
+                                                    <div class="col-6" style="text-align: right !important;">
+                                                        <h1 class="" style="color: #000;font-weight: 600;font-size: 12px;"> ULTIMO SUELDO  <span class="tipo_moneda"></span> <span class="sueldo_rm"></span></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-6 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"> <span class="anios_liqui"></span> y <span class="meses_liqui"></span></h1>
+                                                    </div>
+                                                    <div class="col-6" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">REDONDEO</h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-6 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="sueldo_rm"></span> x <span class="anios_liqui"></span></h1>
+                                                    </div>
+                                                    <div class="col-6" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_sldo_anio"></span></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-6 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="sueldo_rm"></span>/12 x<span class="meses_liqui"></span></h1>
+                                                    </div>
+                                                    <div class="col-6" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_sldo_mes"></span></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-6 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">SUB - TOTAL:</h1>
+                                                    </div>
+                                                    <div class="col-6" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_total_lq"></span> </h1>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="bonif_liquidacion"></div>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">NETO A PAGAR:</h1>
+                                                    </div>
+                                                    <div class="col-4 text-center">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_total_lq_neto"></span> </h1>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="prev_modelo_liqui modelo_60_79_cuerpo_3">
+                                                <div class="text-center">
+                                                    <div  style="text-align: center !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px; letter-spacing: 2.4px;"><u>CÁLCULO DE BENEFICIOS SOCIALES</u></h1>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-12 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="desde_imp"></span> - <span class="hasta_imp"></span></h1>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-6 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"> <span class="anios_liqui"></span> y <span class="meses_liqui"></span>, REDONDEO</h1>
+                                                    </div>
+                                                    <div class="col-6" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="sueldo_rm"></span> x <span class="anios_liqui"></span></h1>
+                                                    </div>
+                                                    <div class="col-4 text-center">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_sldo_anio"></span></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="sueldo_rm"></span>/12 x<span class="meses_liqui"></span></h1>
+                                                    </div>
+                                                    <div class="col-4 text-center">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_sldo_mes"></span></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">SUB - TOTAL:</h1>
+                                                    </div>
+                                                    <div class="col-4 text-center">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_total_lq"></span> </h1>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="bonif_liquidacion"></div>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">NETO A PAGAR:</h1>
+                                                    </div>
+                                                    <div class="col-4 text-center">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_total_lq_neto"></span> </h1>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div  class="prev_modelo_liqui modelo_80_99_cuerpo_1">
                                                  <div class="text-center">
                                                     <div  style="text-align: center !important;">
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px; letter-spacing: 2.4px;"><u>COMPENSACION POR TIEMPO DE SERVICIOS</u></h1>
@@ -4501,6 +5119,105 @@
                                                 <div class="row">
                                                     <div class="col-4 text-left">
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px;">A DEPOSITAR</h1>
+                                                    </div>
+                                                    <div class="col-4 text-center">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"></h1>
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_total_lq_neto"></span></h1>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div  class="prev_modelo_liqui modelo_80_99_cuerpo_2">
+                                                 <div class="text-center">
+                                                    <div  style="text-align: center !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px; letter-spacing: 2.4px;"><u>LIQUIDACIÓN</u></h1>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-9 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="anios_liqui"></span>, <span class="meses_liqui"></span> y <span class="dias_liqui"></span> x <span class="tipo_moneda"></span><span class="sueldo_rm"></span></h1>
+                                                    </div>
+                                                    
+                                                    <div class="col-3" style="text-align: right !important;">
+                                                        <h1 class="" style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_total_lq"></span></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="bonif_liquidacion"></div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">TOTAL A PAGAR</h1>
+                                                    </div>
+                                                    <div class="col-4 text-center">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"></h1>
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_total_lq_neto"></span></h1>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div  class="prev_modelo_liqui modelo_80_99_cuerpo_3">
+                                                <div class="text-center">
+                                                    <div  style="text-align: center !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px; letter-spacing: 2.4px;"><u>CALCULO DE LIQUIDACION DE BENEFICIOS SOCIALES</u></h1>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="text-left">
+                                                    <div  style="text-align: left !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px; letter-spacing: 2.4px;">CONTABILIZACION</h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"> <span class="anios_liqui"></span> x <span class="tipo_moneda"></span> <span class="sueldo_rm"></span></h1>
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_sldo_anio"></span></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="meses_liqui"></span> x <span class="tipo_moneda"></span><span class="sueldo_rm"></span>/12</h1>
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_sldo_mes"></span></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="dias_liqui"></span> x <span class="tipo_moneda"></span><span class="sueldo_rm"></span>/12/30</h1>
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_sldo_dia"></span></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                    </div>
+                                                    <div class="col-4 text-left">
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_total_lq"></span></h1>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="bonif_liquidacion"></div>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                    </div>
+                                                    <div class="col-4 text-left">
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_conceptos_total"></span></h1>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">TOTAL A COBRAR</h1>
                                                     </div>
                                                     <div class="col-4 text-center">
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px;"></h1>
@@ -4636,7 +5353,7 @@
                                                 </div>-->
                                             </div>
                                             <div style="border-bottom: solid; margin-bottom: 10px;"></div>
-                                            <div id="" class="prev_modelo_liqui modelo_80_99">
+                                            <div  class="prev_modelo_liqui modelo_80_99_cuerpo_1">
                                                  <div class="text-center">
                                                     <div  style="text-align: center !important;">
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px; letter-spacing: 2.4px;"><u>COMPENSACION POR TIEMPO DE SERVICIOS</u></h1>
@@ -4749,6 +5466,105 @@
                                                 <div class="row">
                                                     <div class="col-4 text-left">
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px;">A DEPOSITAR</h1>
+                                                    </div>
+                                                    <div class="col-4 text-center">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"></h1>
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_total_lq_neto"></span></h1>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div  class="prev_modelo_liqui modelo_80_99_cuerpo_2">
+                                                 <div class="text-center">
+                                                    <div  style="text-align: center !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px; letter-spacing: 2.4px;"><u>LIQUIDACIÓN</u></h1>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-9 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="anios_liqui"></span>, <span class="meses_liqui"></span> y <span class="dias_liqui"></span> x <span class="tipo_moneda"></span><span class="sueldo_rm"></span></h1>
+                                                    </div>
+                                                    
+                                                    <div class="col-3" style="text-align: right !important;">
+                                                        <h1 class="" style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_total_lq"></span></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="bonif_liquidacion"></div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">TOTAL A PAGAR</h1>
+                                                    </div>
+                                                    <div class="col-4 text-center">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"></h1>
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_total_lq_neto"></span></h1>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div  class="prev_modelo_liqui modelo_80_99_cuerpo_3">
+                                                <div class="text-center">
+                                                    <div  style="text-align: center !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px; letter-spacing: 2.4px;"><u>CALCULO DE LIQUIDACION DE BENEFICIOS SOCIALES</u></h1>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="text-left">
+                                                    <div  style="text-align: left !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px; letter-spacing: 2.4px;">CONTABILIZACION</h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"> <span class="anios_liqui"></span> x <span class="tipo_moneda"></span> <span class="sueldo_rm"></span></h1>
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_sldo_anio"></span></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="meses_liqui"></span> x <span class="tipo_moneda"></span><span class="sueldo_rm"></span>/12</h1>
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_sldo_mes"></span></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="dias_liqui"></span> x <span class="tipo_moneda"></span><span class="sueldo_rm"></span>/12/30</h1>
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_sldo_dia"></span></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                    </div>
+                                                    <div class="col-4 text-left">
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_total_lq"></span></h1>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="bonif_liquidacion"></div>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                    </div>
+                                                    <div class="col-4 text-left">
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_conceptos_total"></span></h1>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">TOTAL A COBRAR</h1>
                                                     </div>
                                                     <div class="col-4 text-center">
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px;"></h1>
@@ -4892,7 +5708,7 @@
                                             </div>
                                             <div style="border-bottom: solid; margin-bottom: 10px;"></div>
 
-                                            <div id="" class="prev_modelo_liqui modelo_80_99">
+                                            <div  class="prev_modelo_liqui modelo_80_99_cuerpo_1">
                                                  <div class="text-center">
                                                     <div  style="text-align: center !important;">
                                                         <h1 style="color: #000;font-weight: 600;font-size: 12px; letter-spacing: 2.4px;"><u>COMPENSACION POR TIEMPO DE SERVICIOS</u></h1>
@@ -5014,6 +5830,106 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div  class="prev_modelo_liqui modelo_80_99_cuerpo_2">
+                                                 <div class="text-center">
+                                                    <div  style="text-align: center !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px; letter-spacing: 2.4px;"><u>LIQUIDACIÓN</u></h1>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-9 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="anios_liqui"></span>, <span class="meses_liqui"></span> y <span class="dias_liqui"></span> x <span class="tipo_moneda"></span><span class="sueldo_rm"></span></h1>
+                                                    </div>
+                                                    
+                                                    <div class="col-3" style="text-align: right !important;">
+                                                        <h1 class="" style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_total_lq"></span></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="bonif_liquidacion"></div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">TOTAL A PAGAR</h1>
+                                                    </div>
+                                                    <div class="col-4 text-center">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"></h1>
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_total_lq_neto"></span></h1>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div  class="prev_modelo_liqui modelo_80_99_cuerpo_3">
+                                                <div class="text-center">
+                                                    <div  style="text-align: center !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px; letter-spacing: 2.4px;"><u>CALCULO DE LIQUIDACION DE BENEFICIOS SOCIALES</u></h1>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="text-left">
+                                                    <div  style="text-align: left !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px; letter-spacing: 2.4px;">CONTABILIZACION</h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"> <span class="anios_liqui"></span> x <span class="tipo_moneda"></span> <span class="sueldo_rm"></span></h1>
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_sldo_anio"></span></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="meses_liqui"></span> x <span class="tipo_moneda"></span><span class="sueldo_rm"></span>/12</h1>
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_sldo_mes"></span></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="dias_liqui"></span> x <span class="tipo_moneda"></span><span class="sueldo_rm"></span>/12/30</h1>
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_sldo_dia"></span></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                    </div>
+                                                    <div class="col-4 text-left">
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_total_lq"></span></h1>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="bonif_liquidacion"></div>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                    </div>
+                                                    <div class="col-4 text-left">
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span><span class="monto_conceptos_total"></span></h1>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-4 text-left">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;">TOTAL A COBRAR</h1>
+                                                    </div>
+                                                    <div class="col-4 text-center">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"></h1>
+                                                    </div>
+                                                    <div class="col-4" style="text-align: right !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span class="tipo_moneda"></span> <span class="monto_total_lq_neto"></span></h1>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
                                             <div style="border-bottom: 0.5mm solid; margin-bottom: 10px; margin-top: 10px;"></div>
                                             <br>
                                             <div class="text-center">

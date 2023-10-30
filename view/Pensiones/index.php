@@ -29,9 +29,17 @@
                         <div class="col-12 col-sm-6">
                             <h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-b-10">Formulario de Pensiones</h6>
                         </div>
-                        <div class="col-12 col-sm-1 mg-b-10">
-                            <input type="hidden" name="valorguardar" id="valorguardar">
-                            <button  type="button" id="btnguardarpension" name="btnguardarpension" class="btn btn-info" onclick="GuardarLista()" style="width :100%;background-color : #A20036;" >Guardar</button>
+                        <div class="col-12 col-sm-6 mg-b-10">
+                            <div class="row justify-content-end">
+                                <div class="col-6 col-sm-3">
+                                    <button  type="button" id="btnzipear" name="btnzipear" class="btn btn-info" onclick="" style="width :100%;" >Descargar en ZIP</button>
+                                </div>
+                                <div class="col-6 col-sm-3">
+                                    <input type="hidden" name="valorguardar" id="valorguardar">
+                                    <button  type="button" id="btnguardarpension" name="btnguardarpension" class="btn btn-info" onclick="GuardarLista()" style="width :100%;background-color : #A20036;" >Guardar</button>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                     <div class="row">
@@ -105,8 +113,16 @@
                                         </div><!-- col-4 -->
                                     </div><!-- row -->
                                     <div class="form-layout-footer text-center">
-                                        <button type="submit" id="btnautogenerar" name="btnautogenerar"   class="btn btn-info">Gestionar</button>
-                                        <button type="button" id="btnlimpiar" name="btnlimpiar" class="btn btn-secondary">Limpiar</button>
+                                        <div class="row justify-content-center">
+                                            <div class="col-12 col-sm-3">
+                                                <button type="submit" id="btnautogenerar" name="btnautogenerar"   class="btn btn-info" style="width:100%">Gestionar</button>
+                                            </div>
+                                            <div class="col-12 col-sm-3">
+                                                <button type="button" id="btnlimpiar" name="btnlimpiar" class="btn btn-secondary" style="width: 100%">Limpiar</button>
+                                            </div>
+                                        </div>
+                                        
+                                        
                                     </div><!-- form-layout-footer -->
                                 </div><!-- form-datos -->
                             </form>
@@ -171,8 +187,16 @@
                                                 </div><!-- row -->
                                             </div>
                                             <div class="form-layout-footer text-right mg-t-20">
-                                                <button type="button" id="" class="btn btn-info" onclick="imprimir_word()">Descargar en Word</button>
-                                                <button type="button" id="btnprevcer" name="btnprevcer"  class="btn btn-secondary mg-l-10">Previsualizar</button>
+                                                <div class="row justify-content-end">
+                                                    <div class="col-12 col-sm-4">
+                                                        <button type="button" id="" class="btn btn-info" onclick="imprimir_word()" style="width: 100%;">Descargar en Word</button>
+                                                    </div>
+                                                    <div class="col-12 col-sm-4">
+                                                        <button type="button" id="btnprevcer" name="btnprevcer"  class="btn btn-secondary" style="width: 100%;">Previsualizar</button>
+                                                    </div>
+                                                </div>
+                                                
+                                                
                                                 <!--<button type="button" id="btnimprimirbol" name="btnimprimirbol"  class="btn btn-info">Imprimir Boleta</button>-->
                                             </div>
                                         </form>
@@ -259,9 +283,9 @@
                                                         <div class="form-group">
                                                             <label class="form-control-label text-left">Tipos de Cuerpo</label>
                                                             <select class="form-control select2" data-placeholder="Seleccione" name="combo_prev_cuerpo" id="combo_prev_cuerpo" style="width: 100%;">
-                                                                <option value="1">Cuerpo 1</option>
-                                                                <option value="2">Cuerpo 2</option>
-                                                                <option value="3">Cuerpo 3</option>
+                                                                <option value="1">Modelo 1</option>
+                                                                <option value="2">Modelo 2</option>
+                                                                <option value="3">Modelo 3</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -273,15 +297,13 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-12 col-sm-6">
-                                                        
+                                                <div class="row justify-content-end">
+                                                   
+                                                    <div class="col-12 col-sm-4">
+                                                        <button type="button" id="" class="btn btn-info" onclick="imprimir_liquidacion_word()" style="width:100%">Descargar en Word</button>
                                                     </div>
-                                                    <div class="col-12 col-sm-3">
-                                                        <button type="button" id="" class="btn btn-info" onclick="imprimir_liquidacion_word()" >Descargar en Word</button>
-                                                    </div>
-                                                    <div class="col-12 col-sm-3">
-                                                        <button type="button" id="btnprevli" name="btnprevli"  class="btn btn-secondary mg-l-10" >  Previsualizar  </button>
+                                                    <div class="col-12 col-sm-4">
+                                                        <button type="button" id="btnprevli" name="btnprevli"  class="btn btn-secondary mg-l-10" style="width:100%">  Previsualizar  </button>
                                                     </div>
                                                 </div>
                                                 
@@ -292,18 +314,18 @@
                                     <div id="boleta" class="tab-pane fade">
                                         <form id="form_bol" action="" method="post" autocomplete="off">
                                             <div class="form-layout form-layout-1">
-                                                <div class="row">
+                                                <div class="row justify-content-around">
                                                     <!--<div class="col-12 col-sm-4">
                                                         <button type="button" id="btnboletas" name="btnboletas"  class="btn btn-info"  style="width:100%; font-size: 12px">Visualizar Boletas</button>
                                                     </div>-->
-                                                    <div class="col-12 col-sm-6">
+                                                    <div class="col-12 col-sm-4">
                                                         <div class="row justify-content-center">
-                                                            <button type="button" id="btnboletas_dsc" name="btnboletas_dsc"  class="btn btn-info"   style="width:60%; font-size: 12px">Visualizar Descuentos</button>
+                                                            <button type="button" id="btnboletas_dsc" name="btnboletas_dsc"  class="btn btn-info"   style="width:100%; font-size: 12px">Visualizar Descuentos</button>
                                                         </div>
                                                     </div>
-                                                    <div class="col-12 col-sm-6 ">
+                                                    <div class="col-12 col-sm-4">
                                                         <div class="row justify-content-center">
-                                                            <button type="button" id="btnboletas_dsc_mes" name="btnboletas_dsc_mes"  class="btn btn-info" style="width:60%; font-size: 12px">Visualizar Boleta Actual</button>
+                                                            <button type="button" id="btnboletas_dsc_mes" name="btnboletas_dsc_mes"  class="btn btn-info" style="width:100%; font-size: 12px">Visualizar Boleta Actual</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -351,7 +373,7 @@
                                                     <div class="col-lg-12">
                                                         <div class="row mg-b-5">
                                                             <label class="form-control-label col-lg-6">Sueldo: </label>
-                                                            <input class="form-control col-lg-6" type="number" name="sueldo_boleta" id="sueldo_boleta" oninput="calcularTotalBoleta()"   placeholder="" >
+                                                            <input class="form-control col-lg-6" type="number" name="sueldo_boleta" id="sueldo_boleta" oninput="calcularTotalBoleta()"   placeholder=""  >
                                                         </div>
                                                     </div><!-- col-4 -->
                                                     <div class="col-lg-12">
@@ -363,7 +385,7 @@
                                                     <div class="col-lg-12">
                                                         <div class="row mg-b-5">
                                                             <label class="form-control-label col-lg-6">Reintegro: </label>
-                                                            <input class="form-control col-lg-6 bonif" type="number" name="reintegro_boleta" id="reintegro_boleta" oninput="calcularTotalBoleta()"  placeholder="" >
+                                                            <input class="form-control col-lg-6 bonif" type="number" name="reintegro_boleta" id="reintegro_boleta" oninput="calcularTotalBoleta()"  placeholder=""  >
                                                         </div>
                                                     </div><!-- col-4 -->
                                                     <div class="col-lg-12">
@@ -411,7 +433,7 @@
                                                     <div class="col-lg-12">
                                                         <div class="row mg-b-5">
                                                             <label class="form-control-label col-lg-6">Uniforme: </label>
-                                                            <input class="form-control col-lg-6 bonif" type="number" name="bonificacion_uniforme_boleta" id="bonificacion_uniforme_boleta"  oninput="calcularTotalBoleta()" placeholder="" >
+                                                            <input class="form-control col-lg-6 bonif" type="number" name="bonificacion_uniforme_boleta" id="bonificacion_uniforme_boleta"  oninput="calcularTotalBoleta()" placeholder="">
                                                         </div>
                                                     </div><!-- col-4 -->
                                                     <div class="col-lg-12">
@@ -430,7 +452,7 @@
                                             </div>
                                             <div class="form-layout-footer text-right mg-t-20">
                                                 <div class="row">
-                                                    <div class="col-12 col-sm-6">
+                                                    <div class="col-12 col-sm-4">
                                                         <select class="form-control select2" name="combo_prev_boleta" id="combo_prev_boleta" style="width: 100%;">
                                                             <option value="1">Modelo Boleta 1</option>
                                                             <option value="2">Modelo Boleta 2</option>
@@ -451,11 +473,11 @@
                                                            <option value="17">Modelo Boleta 17</option>
                                                         </select>
                                                     </div>
-                                                    <div class="col-12 col-sm-3">
-                                                        <button type="button" id="" class="btn btn-info" onclick="imprimir_liquidacion_boleta()" >Descargar en Word</button>
+                                                    <div class="col-12 col-sm-4">
+                                                        <button type="button" id="" class="btn btn-info" onclick="imprimir_liquidacion_boleta()" style="width:100%">Descargar en Word</button>
                                                     </div>
-                                                    <div class="col-12 col-sm-3">
-                                                        <button type="button" id="btnprevbol" name="btnprevbol"  class="btn btn-secondary mg-l-10">Previsualizar</button>
+                                                    <div class="col-12 col-sm-4">
+                                                        <button type="button" id="btnprevbol" name="btnprevbol"  class="btn btn-secondary" style="width:100%">Previsualizar</button>
                                                     </div>
                                                 </div>
                                             </div>

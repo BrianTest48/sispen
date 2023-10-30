@@ -33,7 +33,7 @@ $(document).ready(function(){
 		"responsive": true,
 		"bInfo":true,
 		"iDisplayLength": 10,//Por cada 5 registros hace una paginación
-	    "order": [[ 6, "desc" ]],//Ordenar (columna,orden)
+	    "order": [[ 7, "desc" ],[6, "desc"]],//Ordenar (columna,orden)
 	    "language": {
             "sProcessing":     "Procesando...",
             "sLengthMenu":     "Mostrar _MENU_ registros",

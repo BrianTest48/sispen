@@ -70,6 +70,7 @@ $(document).ready(function(){
     $('#temp_servicio').hide();
     $("#nav-bono").hide();
     $('#btnguardarpension').hide();
+    $('#btnzipear').hide();
 
     //Select2 a todos los combobox
     $('#tipo_doc').select2({
@@ -217,6 +218,7 @@ function generar(e){
             activarcargos();
             $("#divresultado").show();
             $('#btnguardarpension').show();
+            $('#btnzipear').show();
 
             /** SETEAR FECHAS A LOS DIV */
             let fnac = $('#txtdate').val();
@@ -309,6 +311,11 @@ function creardivsempresa(){
                     "<div id='collapse_"+i+"' class='accordion-collapse collapse' aria-labelledby='heading"+i+"' data-bs-parent='#accordionExample'>"+
                         "<div class='accordion-body'>"+
                             "<div class='acer'>"+
+                                "<div class='row mb-1' >"+
+                                    "<div class='col-3'>"+
+                                        "<button class='btn btn-outline-info btn-icon' onclick='CopiarEmp("+i+")'><div><i class='fa fa-copy'></i></div></button>"+
+                                    "</div>"+
+                                "</div>"+
                                 "<div class='row' id='fechas' >"+
                                     "<div class='col-12 col-sm-4'>"+
                                         "<div class='form-group' >"+
@@ -392,7 +399,6 @@ function creardivsempresa(){
                                     "</div>"+
                                 "</div><!-- row -->"+
                                 "<div class='form-layout-footer text-end'>"+
-                                    "<button style='margin: 0 5px;' type='button' class='btn btn-secondary' id='copiar_"+i+"' onclick='CopiarEmp("+i+")'>Copiar Raz. Social</button>"+
                                     "<button type='button' id='btnmostrarempr_"+i+"' name='btnmostrarempr_"+i+"' onclick='mostrardetalle("+i+", 0, 0)' class='btn btn-info' >Mostrar Documentos</button>"+
                                 "</div>"+
                             "</div><!-- form-layout -->"+
@@ -403,6 +409,9 @@ function creardivsempresa(){
     }
     $("#acc_resultado").html(div);
 }
+
+//boton de copiar comentado para reutilizar
+//"<button style='margin: 0 5px;' type='button' class='btn btn-secondary' id='copiar_"+i+"' onclick='CopiarEmp("+i+")'>Copiar Raz. Social</button>"+
 
 function validarInputs(){
     if(document.getElementById("tipo_doc").value =="D.N.I")
@@ -495,7 +504,7 @@ $(document).on("click","#btnbuscar", function(){
 
                 $.post("../../controller/listacontrolador.php?op=mostrar",{num_doc: doc, lista: t_lista},function(datos){
                     if(datos != ""){
-                        console.log(datos);
+                        //console.log(datos);
                         datos = JSON.parse(datos);
                         $("#lista_id").val(datos.id);
                         $("#txtcant_emp").val(datos.cantidad);
@@ -572,6 +581,8 @@ function mostrardetalle(a,b,c){
     let fnac = $('#txtdate').val();
     let manana = moment(fnac).add(16, 'years').format('YYYY-MM-DD');
 
+    $('#logo_nombre').val(logos);
+
     switch (a) {
         case 1:
             if(fecha_inicial_1 == fech1 && fecha_fin_1 == fech_final_1 && cbx_tipo_1 == cbx_tipo) {
@@ -645,7 +656,7 @@ function mostrardetalle(a,b,c){
     if(logos == "" || logos == "no-fotos.png"){
         $('.div_logo_pdf').hide();
     }else {
-        //$('.div_logo_pdf').show();
+        $('.div_logo_pdf').show();
     }
 
     var options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -1343,10 +1354,15 @@ function ListarLogo(a){
 function Sumarmonto(mes) {
     let num =  0;
     for( i = 1 ; i <= 6 ; i++ ){
-        num += Number($('#'+mes+'_'+i).val()); 
-    }
+        let numero = $('#'+mes+'_'+i).val();
 
-    $('#'+mes+'_total').val(num);
+        //num += Number(desformatearNumero(numero));
+        let valorNumerico = Number(desformatearNumero(numero));
+        if (!isNaN(valorNumerico)) {
+            num += valorNumerico;
+        } 
+    }
+    $('#'+mes+'_total').html(formatearNumeroEntero(num));
     //console.log("El mes es: " + num);
 }
 
@@ -1391,6 +1407,249 @@ function OcultarPrev(){
     $('.prev_boleta').hide();
     $('.prev_bono').hide();
     $('.prev_modelo_liqui').hide();
+}
+
+function imprimir_word(){
+
+
+    // swal.fire({
+    //     title: "Cargando...",
+    //     text: "Por favor, espera un momento.",
+    //     allowOutsideClick: false, // Evita que el usuario cierre el modal haciendo clic fuera de él
+    //     onOpen: () => {
+    //         swal.showLoading(); // Muestra el ícono de carga en el modal
+    //     }
+    // });
+    var tipo = $('#tipo_emp').val();
+    let tipoprev = $('#select_certificado').val();
+    let nombreruta = 'certificado_'+tipoprev;
+    var nombre = $('#txtnombre').val();
+    var apellido = $('#txtapellido').val();
+    var nombre_emp = $('#nom_emp_lab').html();
+    var nombre_com = nombre + ' ' + apellido;
+    var num_doc = $('#num_doc').val();
+    var nom_carpeta = "BONOS-"+ num_doc;
+    var fecha_inicio = $('.desde_imp').html();
+    var fecha_hasta = $('.hasta_imp').html();
+    var fecha_inicio_num = $('.desde_imp_num').html();
+    var fecha_hasta_num = $('.hasta_imp_num').html();
+    var lugar_dia = $('.lugardia').html();
+    var cargo = $('#cargo_emp').val();
+    var logo = $('#logo_nombre').val();
+    var firmante = $('.firmante_nom').html();
+    
+
+    $.ajax({
+        type: "POST",
+        //url: "../../controller/docs/certificado_m3.php",
+        //url: "../../controller/docs/certificadosword.php",
+        url: "../../controller/docs/"+nombreruta+".php",
+        data : {
+            empresa : nombre_emp,
+            afiliado: nombre_com,
+            nombre_carpeta : nom_carpeta,
+            fecha_inicio : fecha_inicio,
+            fecha_final: fecha_hasta,
+            fecha_inicio_num : fecha_inicio_num,
+            fecha_final_num : fecha_hasta_num,
+            fecha_footer : lugar_dia,
+            cargo : cargo,
+            tipo : tipo,
+            logo : logo,
+            firmante : firmante
+        },
+        success: function(response){
+           
+            //console.log(response);
+            resp = JSON.parse(response);
+            if(resp.estado == 1){
+                    swal.fire(
+                        'Documento generado exitosamente',
+                        '',
+                        'success'
+                    );
+            }
+            // URL del archivo que deseas descargar
+            var url = '../../files/'+nom_carpeta+'/'+resp.archivo+'.docx';
+
+            // Crear un elemento <a> oculto
+            var link = document.createElement('a');
+            link.href = url;
+            link.download = resp.archivo+'-'+num_doc; // Nombre del archivo para descargar
+            link.style.display = 'none';
+
+            // Añadir el elemento <a> al DOM
+            document.body.appendChild(link);
+
+            // Simular un clic en el enlace para iniciar la descarga
+            link.click();
+
+            // Eliminar el elemento <a> del DOM después de la descarga
+            document.body.removeChild(link);
+            /*if( response != "" )
+            {
+                let data_return = JSON.parse(response);
+                if( data_return['status'] == 0 )
+                {
+                    //alert(data_return['message'] + ": "  + data_return['data']['file_zip'] + " - Archivos creados en el zip: " + data_return['data']['numFiles'] );
+                    swal.close();    
+                    var enlace = document.createElement('a');
+                    enlace.href = '../../files/' + nom_carpeta+"/"+nom_carpeta+".zip";
+                    enlace.download = nom_carpeta+".zip";
+                    enlace.style.display = 'none';
+                    document.body.appendChild(enlace);
+                    enlace.click();
+                    document.body.removeChild(enlace);
+                }
+                else
+                {
+                    console.log("Sucedio un error en el servidor");
+                }
+            }
+            else
+            {
+                console.log("Sucedio un error en el servidor");
+            }*/
+        }
+    });
+}
+
+function imprimir_liquidacion_word(){
+
+    var nombreruta;          
+    var cuerpo              = $('#combo_prev_cuerpo').val();
+    var nombre              = $('#txtnombre').val();
+    var apellido            = $('#txtapellido').val();
+    var nombre_emp          = $('#nom_emp_lab').html();
+    var nombre_com          = nombre + ' ' + apellido;
+    var num_doc             = $('#num_doc').val();
+    var nom_carpeta         = "BONOS-"+ num_doc;
+    var fecha_inicio        = $('.desde_imp').html();
+    var fecha_hasta         = $('.hasta_imp').html();
+    var fecha_inicio_num    = $('.desde_imp_num').html();
+    var fecha_hasta_num     = $('.hasta_imp_num').html();
+    var lugar_dia           = $('.lugardia').html();
+    var cargo               = $('#cargo_emp').val();
+    var sueldo              = $('#sueldo_emp').val();
+    var moneda              = $('#moneda_emp').val();
+    var motivo              = $('select[name="combo_prev_liqui"] option:selected').text();
+    //Agregar los bonos 
+    var bonif_ext           = $('#bonif_extra').val();
+    var bonif_gra           = $('#bonif_gra').val();
+    var bonif_met           = $('#bonif_meta').val();
+    var bonif_dias          = $('#bonif_dias').val();
+    //Agregar año para la condicional 
+    var fecha_final         = $("#fech_final_emp").val();
+    var fecha               = new Date(fecha_final);
+    var anio                = fecha.getFullYear();
+
+    //Elegir el doc de liquidacion por año
+    if(anio >= 1960 && anio <= 1970){
+        nombreruta = 'liquidacion_1.php'
+    }
+    if(anio >= 1971 && anio <= 1985){
+        nombreruta = 'liquidacion_2.php'
+    }
+    if(anio >= 1986 && anio <= 1991){
+        nombreruta = 'liquidacion_3.php'
+    }
+    if(anio >= 1992 && anio <= 1999){
+        nombreruta = 'liquidacion_4.php'
+    }
+
+    // Serializa el formulario
+    var formData = new FormData($('#form_liqui')[0]);
+
+    // Agrega los datos adicionales al objeto FormData
+    formData.append('empresa', nombre_emp); 
+    formData.append('afiliado', nombre_com);
+    formData.append('nombre_carpeta', nom_carpeta); 
+    formData.append('fecha_inicio', fecha_inicio); 
+    formData.append('fecha_final', fecha_hasta); 
+    formData.append('fecha_inicio_num', fecha_inicio_num);
+    formData.append('fecha_final_num', fecha_hasta_num); 
+    formData.append('fecha_footer', lugar_dia);   
+    formData.append('cargo', cargo);  
+    formData.append('sueldo', sueldo);   
+    formData.append('moneda', moneda);  
+    formData.append('motivo', motivo); 
+    formData.append('bonif_ext', bonif_ext);  
+    formData.append('bonif_gra', bonif_gra);   
+    formData.append('bonif_met', bonif_met);  
+    formData.append('bonif_dias', bonif_dias);
+    formData.append('anio_final', anio);  
+    formData.append('cuerpo', cuerpo);  
+
+    $.ajax({
+        type: "POST",
+        //url: "../../controller/docs/certificadosword.php",
+        url: "../../controller/docs/"+nombreruta,
+        //url: "../../controller/docs/liquidacion_4.php",
+        data : formData,
+        processData: false, // Evita que jQuery procese los datos (necesario al usar FormData)
+        contentType: false, // No establece el tipo de contenido (necesario al usar FormData)
+        success: function(response){  
+            console.log(response);
+            /*if(response == "1"){
+                swal.fire(
+                    'Documento generado exitosamente',
+                    '',
+                    'success'
+                );
+            }*/
+            //console.log(response);
+            resp = JSON.parse(response);
+            if(resp.estado == 1){
+                    swal.fire(
+                        'Documento generado exitosamente',
+                        '',
+                        'success'
+                    );
+            }
+            // URL del archivo que deseas descargar
+            var url = '../../files/'+nom_carpeta+'/'+resp.archivo+'.docx';
+
+            // Crear un elemento <a> oculto
+            var link = document.createElement('a');
+            link.href = url;
+            link.download = resp.archivo+'-'+num_doc; // Nombre del archivo para descargar
+            link.style.display = 'none';
+
+            // Añadir el elemento <a> al DOM
+            document.body.appendChild(link);
+
+            // Simular un clic en el enlace para iniciar la descarga
+            link.click();
+
+            // Eliminar el elemento <a> del DOM después de la descarga
+            document.body.removeChild(link);
+           
+            // if( response != "" )
+            // {
+            //     let data_return = JSON.parse(response);
+            //     if( data_return['status'] == 0 )
+            //     {
+            //         //alert(data_return['message'] + ": "  + data_return['data']['file_zip'] + " - Archivos creados en el zip: " + data_return['data']['numFiles'] );
+            //         swal.close();    
+            //         var enlace = document.createElement('a');
+            //         enlace.href = '../../files/' + nom_carpeta+"/"+nom_carpeta+".zip";
+            //         enlace.download = nom_carpeta+".zip";
+            //         enlace.style.display = 'none';
+            //         document.body.appendChild(enlace);
+            //         enlace.click();
+            //         document.body.removeChild(enlace);
+            //     }
+            //     else
+            //     {
+            //         alert("Sucedio un error en el servidor");
+            //     }
+            // }
+            // else
+            // {
+            //     alert("Sucedio un error en el servidor");
+            // }
+        }
+    });
 }
 
 function imprimir_certificado(){
@@ -1489,6 +1748,13 @@ function imprimir_bono(){
     };
 }
 
+function agregarComas(numero) {
+    var numeroString = numero.toString().replace(/\,/g,'');
+    var partesNumero = numeroString.split('.');
+    partesNumero[0] = partesNumero[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return partesNumero.join('.');
+  }
+
 function formatearNumero(numero) {
     // Redondea el número a dos decimales y convierte a cadena
     var numeroRedondeado = parseFloat(numero).toFixed(2);
@@ -1498,6 +1764,37 @@ function formatearNumero(numero) {
     // Une las partes y agrega .00 al final si no hay decimales
     var numeroFormateado = partes.join(".");
     return numeroFormateado;
+}
+
+function formatearNumeroEntero(numero) {
+    // Redondea el número hacia abajo y lo convierte a cadena
+    var numeroRedondeado = Math.floor(parseFloat(numero)).toString();
+    // Formatea el número con comas como separadores de miles
+    var partes = [];
+    var longitud = numeroRedondeado.length;
+    var contador = 0;
+    for (var i = longitud - 1; i >= 0; i--) {
+        contador++;
+        partes.unshift(numeroRedondeado[i]);
+        if (contador === 3 && i !== 0) {
+            partes.unshift(",");
+            contador = 0;
+        }
+    }
+    // Une las partes en una cadena
+    var numeroFormateado = partes.join("");
+    return numeroFormateado;
+}
+
+
+
+function desformatearNumero(numeroFormateado) {
+    // Elimina las comas del número formateado
+    var numeroSinComas = numeroFormateado.replace(/,/g, '');
+    // Convierte el número sin comas a punto flotante (float) y redondea a dos decimales
+    var numeroFloat = parseFloat(numeroSinComas).toFixed(2);
+    // Convierte el número de nuevo a float y devuelve el resultado
+    return parseFloat(numeroFloat);
 }
 
 
@@ -1530,15 +1827,31 @@ $(document).on("click","#btnboletas_dsc", function(){
 
 $(".conceptos").on("input", function() {
     var total = 0;
-    
+
     // Itera sobre todos los elementos con la clase ".conceptos"
     $(".conceptos").each(function() {
-        // Obtiene el valor del campo como un número flotante
-        var valor = parseFloat($(this).val()) || 0; // Si el valor no es un número, asigna 0
-        // Suma el valor al total si es diferente de 0
+        
+        //var valor = parseFloat($(this).val()) || 0; // Si el valor no es un número, asigna 0
+        
+        //var valor = parseFloat($(this).val() || 0);
+
+        
+        /*var valor = Number($(this).val().replace(/[^\d]/g, ''));
+        var numeroFormateado = agregarComas(valor);
+        $(this).val(numeroFormateado);
+
         if (valor !== 0) {
             total += valor;
+        }  */
+
+        var valor = parseFloat($(this).val().replace(/[^\d.]/g, '')); // Obtiene el valor como número
+        var numeroFormateado = agregarComas(valor);
+
+        if (!isNaN(valor) && valor !== 0  && valor !== "") {
+            total += valor; // Suma solo si el valor es un número y no es 0
+            $(this).val(numeroFormateado);
         }
+    
     });
     
     // Muestra el total en la consola o donde desees mostrarlo
@@ -1553,22 +1866,38 @@ $(".conceptos").on("input", function() {
     let prom_total = (Number(prom_meses) * Number(sum_mes) * constante ).toFixed(2);
     $('#prom_meses').html(prom_meses.toFixed(2));
     $('#cant_meses_bono').html(sum_mes);
+    //$('#prom_total').html(formatearNumero(prom_total));
+    //$('#monto_final').html(formatearNumero(prom_total));
     $('#prom_total').html(formatearNumero(prom_total));
     $('#monto_final').html(formatearNumero(prom_total));
-    // Si deseas hacer algo con el total, puedes hacerlo aquí
+
 });
 
 $("#variable").on("input", function() {
+
+    if ($(this).val().length > 2) {
+        $(this).val($(this).val().slice(0, 2));
+    }
     var valor = $(this).val();
     // Realiza acciones con el valor, por ejemplo, mostrarlo en la consola
    // console.log("Valor del campo de entrada: " + valor);
-    var total = parseFloat($('#prom_total').html());
+    let total = desformatearNumero($('#prom_total').html());
+    //var total = parseFloat($('#prom_total').html());
     var montofinal = Number(Number(valor) * Number(total)).toFixed(2);
+    //$('#monto_final').html(formatearNumero(montofinal));
     $('#monto_final').html(formatearNumero(montofinal));
 });
 
 
 $(document).on("click","#btnboletas", function(){
+
+    //Obtener las fechas al lado del DNI
+    let fecha_ini = $('#fech_inicio_emp').val();
+    let fecha_fin = $('#fech_final_emp').val();
+    //Asignar las fechas
+    $('#fecha_inicio_bol').html(convertDateFormat(fecha_ini));
+    $('#fecha_final_bol').html(convertDateFormat(fecha_fin));
+
     $('#mdltitulo').html('Tabla de Boletas');
     $('#modalboletas').modal('show');
     $('#select_mes_boleta').select2("val", "0");
@@ -1576,8 +1905,8 @@ $(document).on("click","#btnboletas", function(){
 
     var total_neto = 0;
     $(".totalmesboleta").each(function() {
-        if ($(this).val() != 0) {
-            var valor = parseFloat($(this).val()); // Convierte el valor a un número flotante
+        if ($(this).html() != 0) {
+            var valor = desformatearNumero($(this).html()); // Convierte el valor a un número flotante
             total_neto += valor; // Suma el valor al total_neto
         }
     });
@@ -1589,11 +1918,16 @@ $(document).on("click","#btnboletas", function(){
     const constante = 0.1831;
     let prom_meses = Number(total_neto) / 12;
     let prom_total = (Number(prom_meses) * Number(sum_mes) * constante ).toFixed(2);
-    $('#prom_meses').html(prom_meses.toFixed(2));
+
+
+    $('#prom_meses').html(formatearNumero(prom_meses.toFixed(2)));
     $('#cant_meses_bono').html(sum_mes);
+    //$('#prom_total').html(formatearNumero(prom_total));
+    //$('#monto_final').html(formatearNumero(prom_total));
+
+
     $('#prom_total').html(formatearNumero(prom_total));
     $('#monto_final').html(formatearNumero(prom_total));
-
     $('#dni_cal_bono').html($('#num_doc').val());
 });
 
@@ -1648,42 +1982,45 @@ $(document).on("click","#bono-tab", function(){
     SumarMeses();
     let sum_mes = suma_anios1 * 12 + suma_meses1;
     const constante = 0.1831;
+    console.log(sum_mes);
 
     /*MOSTRAR MONTOS DE CADA MES EN PANEL BONO */
-    let total_dic = $('#dic_total').val();
-    let total_ene = $('#ene_total').val();
-    let total_feb = $('#feb_total').val();
-    let total_mar = $('#mar_total').val();
-    let total_abr = $('#abr_total').val();
-    let total_may = $('#may_total').val();
-    let total_jun = $('#jun_total').val();
-    let total_jul = $('#jul_total').val();
-    let total_ago = $('#ago_total').val();
-    let total_sep = $('#sep_total').val();
-    let total_oct = $('#oct_total').val();
-    let total_nov = $('#nov_total').val();
+    let total_dic = $('#dic_total').html();
+    let total_ene = $('#ene_total').html();
+    let total_feb = $('#feb_total').html();
+    let total_mar = $('#mar_total').html();
+    let total_abr = $('#abr_total').html();
+    let total_may = $('#may_total').html();
+    let total_jun = $('#jun_total').html();
+    let total_jul = $('#jul_total').html();
+    let total_ago = $('#ago_total').html();
+    let total_sep = $('#sep_total').html();
+    let total_oct = $('#oct_total').html();
+    let total_nov = $('#nov_total').html();
     
-    $('#dic_91').val(total_dic);
-    $('#ene_92').val(total_ene);
-    $('#feb_92').val(total_feb);
-    $('#mar_92').val(total_mar);
-    $('#abr_92').val(total_abr);
-    $('#may_92').val(total_may);
-    $('#jun_92').val(total_jun);
-    $('#jul_92').val(total_jul);
-    $('#ago_92').val(total_ago);
-    $('#sep_92').val(total_sep);
-    $('#oct_92').val(total_oct);
-    $('#nov_92').val(total_nov);
+    $('#dic_91').val(desformatearNumero(total_dic));
+    $('#ene_92').val(desformatearNumero(total_ene));
+    $('#feb_92').val(desformatearNumero(total_feb));
+    $('#mar_92').val(desformatearNumero(total_mar));
+    $('#abr_92').val(desformatearNumero(total_abr));
+    $('#may_92').val(desformatearNumero(total_may));
+    $('#jun_92').val(desformatearNumero(total_jun));
+    $('#jul_92').val(desformatearNumero(total_jul));
+    $('#ago_92').val(desformatearNumero(total_ago));
+    $('#sep_92').val(desformatearNumero(total_sep));
+    $('#oct_92').val(desformatearNumero(total_oct));
+    $('#nov_92').val(desformatearNumero(total_nov));
 
 
     let prom_meses = (Number(total_dic) + Number(total_ene) + Number(total_feb) + Number(total_mar) + Number(total_abr) + Number(total_may) + Number(total_jun) + Number(total_jul) + Number(total_ago) + Number(total_sep) + Number(total_oct) + Number(total_nov)) / 12;
     let prom_total = (Number(prom_meses) * Number(sum_mes) * constante ).toFixed(2);
 
     $('#prom_meses').html(prom_meses.toFixed(2));
-    $('#cant_meses_bono').html(sum_mes);
+    $('.cant_meses').html(sum_mes);
     $('#prom_total').html(prom_total);
     $('#cal_bono').val(prom_total);
+
+    //$('.cant_meses').html(dife1);
 
 });
 
@@ -1739,9 +2076,11 @@ $(document).on("click","#btnprevli", function(){
     let anios_lq    = $('#anios_liqui').val();
     let monto_texto;
     let motivo      = $('select[name="combo_prev_liqui"] option:selected').text();
+    let cuerpo      = $('#combo_prev_cuerpo').val();
     let fecha_final = $("#fech_final_emp").val();
     let fecha       = new Date(fecha_final);
     let anio        = fecha.getFullYear();
+    var tipo3 = 0;
 
     /*CALCULO DEL CUERPO DE AÑOS POR SUELDO */
     let moneda_rm = $('#moneda_emp').val();
@@ -1770,7 +2109,7 @@ $(document).on("click","#btnprevli", function(){
 
 
    
-    if(anio >= 60 && anio <= 1979){
+    if(anio >= 1960 && anio <= 1979){
         if(dias_lq > 0){
             meses_sld_lq = Number(meses_lq) + 1;
         }else {
@@ -1785,7 +2124,18 @@ $(document).on("click","#btnprevli", function(){
         $('.meses_liqui').html(meses_sld_lq + " Meses");
         $('.tiempo_lq_total').html(anios_lq + " Años " + meses_sld_lq + " Meses");
 
-        $('.modelo_60_79').show();
+        //$('.modelo_60_79').show();
+        switch (cuerpo) {
+            case '1':
+                $('.modelo_60_79_cuerpo_1').show();
+                break;
+            case '2':
+                $('.modelo_60_79_cuerpo_2').show();
+                break;
+            case '3':
+                $('.modelo_60_79_cuerpo_3').show();
+                break;
+        }
         
     }
     if(anio >= 1980 && anio <= 1999){
@@ -1801,7 +2151,20 @@ $(document).on("click","#btnprevli", function(){
         $('.dias_liqui').html(dias_lq + " Dias");
         $('.tiempo_lq_total').html(anios_lq + " Años " + meses_sld_lq + " Meses " + dias_lq + " Dias");
 
-        $('.modelo_80_99').show();
+        //$('.modelo_80_99').show();
+        switch (cuerpo) {
+            case '1':
+                $('.modelo_80_99_cuerpo_1').show();
+                break;
+            case '2':
+                $('.modelo_80_99_cuerpo_2').show();
+                
+                break;
+            case '3':
+                $('.modelo_80_99_cuerpo_3').show();
+                tipo3 = 1;
+                break;
+        }
     }
 
     $('.tipo_moneda').html(moneda_rm);
@@ -1812,9 +2175,10 @@ $(document).on("click","#btnprevli", function(){
     $('.monto_total_lq').html(monto_total_lq);
     $('.monto_prueba').html(monto_texto);
 
-    
+
     let divs = "";
     var total_neto = Number(monto_total_lq);
+    var total_conceptos = 0.00;
 
     $(".liqui_bonif").each(function() {
 
@@ -1822,15 +2186,19 @@ $(document).on("click","#btnprevli", function(){
             var nombres = $(this).attr('name');
             var valor = Number($(this).val()).toFixed(2);
             total_neto+= Number(valor);
-
+            total_conceptos+= Number(valor);
 
             divs+='<div class="row">';
             divs+='    <div class="col-4 text-left">';
             divs+='        <h1 style="color: #000;font-weight: 600;font-size: 12px;">'+nombres+'</h1>';
             divs+='    </div>';
-            divs+='    <div class="col-4 text-center">';
-            divs+='        <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>';
-            divs+='    </div>';
+
+            if(tipo3 == 0){
+                divs+='    <div class="col-4 text-center">';
+                divs+='        <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>';
+                divs+='    </div>';
+            }
+    
             divs+='    <div class="col-4" style="text-align: right !important;">';
             divs+='        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span>'+moneda_rm+'</span> <span>'+valor+'</span> </h1>';
             divs+='    </div>';
@@ -1854,6 +2222,8 @@ $(document).on("click","#btnprevli", function(){
 
     $('.bonif_liquidacion').html(divs);
     $('.monto_total_lq_neto').html(Number(total_neto).toFixed(2));
+    $('.monto_conceptos_total').html(Number(total_conceptos).toFixed(2));
+
 });
 
 $(document).on("click","#btnprevbono", function(){
@@ -1888,33 +2258,33 @@ $(document).on("click","#btnprevbono", function(){
     let mes11 = parseFloat($('#nov_92').val()) | 0
 
     $('.dni_imp').html(dni);
-    $('.dic_91_imp').html(mes12);
-    $('.ene_92_imp').html(mes01);
-    $('.feb_92_imp').html(mes02);
-    $('.mar_92_imp').html(mes03);
-    $('.abr_92_imp').html(mes04);
-    $('.may_92_imp').html(mes05);
-    $('.jun_92_imp').html(mes06);
-    $('.jul_92_imp').html(mes07);
-    $('.ago_92_imp').html(mes08);
-    $('.sep_92_imp').html(mes09);
-    $('.oct_92_imp').html(mes10);
-    $('.nov_92_imp').html(mes11);
+    $('.dic_91_imp').html(formatearNumero(mes12));
+    $('.ene_92_imp').html(formatearNumero(mes01));
+    $('.feb_92_imp').html(formatearNumero(mes02));
+    $('.mar_92_imp').html(formatearNumero(mes03));
+    $('.abr_92_imp').html(formatearNumero(mes04));
+    $('.may_92_imp').html(formatearNumero(mes05));
+    $('.jun_92_imp').html(formatearNumero(mes06));
+    $('.jul_92_imp').html(formatearNumero(mes07));
+    $('.ago_92_imp').html(formatearNumero(mes08));
+    $('.sep_92_imp').html(formatearNumero(mes09));
+    $('.oct_92_imp').html(formatearNumero(mes10));
+    $('.nov_92_imp').html(formatearNumero(mes11));
 
-    $('.dic_91_imp_rst').html((mes12*0.03).toFixed(2));
-    $('.ene_92_imp_rst').html((mes01*0.03).toFixed(2));
-    $('.feb_92_imp_rst').html((mes02*0.03).toFixed(2));
-    $('.mar_92_imp_rst').html((mes03*0.03).toFixed(2));
-    $('.abr_92_imp_rst').html((mes04*0.03).toFixed(2));
-    $('.may_92_imp_rst').html((mes05*0.03).toFixed(2));
-    $('.jun_92_imp_rst').html((mes06*0.03).toFixed(2));
-    $('.jul_92_imp_rst').html((mes07*0.03).toFixed(2));
-    $('.ago_92_imp_rst').html((mes08*0.03).toFixed(2));
-    $('.sep_92_imp_rst').html((mes09*0.03).toFixed(2));
-    $('.oct_92_imp_rst').html((mes10*0.03).toFixed(2));
-    $('.nov_92_imp_rst').html((mes11*0.03).toFixed(2));
+    $('.dic_91_imp_rst').html(formatearNumero((mes12*0.03).toFixed(2)));
+    $('.ene_92_imp_rst').html(formatearNumero((mes01*0.03).toFixed(2)));
+    $('.feb_92_imp_rst').html(formatearNumero((mes02*0.03).toFixed(2)));
+    $('.mar_92_imp_rst').html(formatearNumero((mes03*0.03).toFixed(2)));
+    $('.abr_92_imp_rst').html(formatearNumero((mes04*0.03).toFixed(2)));
+    $('.may_92_imp_rst').html(formatearNumero((mes05*0.03).toFixed(2)));
+    $('.jun_92_imp_rst').html(formatearNumero((mes06*0.03).toFixed(2)));
+    $('.jul_92_imp_rst').html(formatearNumero((mes07*0.03).toFixed(2)));
+    $('.ago_92_imp_rst').html(formatearNumero((mes08*0.03).toFixed(2)));
+    $('.sep_92_imp_rst').html(formatearNumero((mes09*0.03).toFixed(2)));
+    $('.oct_92_imp_rst').html(formatearNumero((mes10*0.03).toFixed(2)));
+    $('.nov_92_imp_rst').html(formatearNumero((mes11*0.03).toFixed(2)));
 
-    $('.cant_meses').html(dife1);
+    //$('.cant_meses').html(dife1);
     $('.year_ini').html(year_ini);
     $('.year_fin').html(year_fin);
     $('.mon_ini').html(mon_ini);

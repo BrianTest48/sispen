@@ -45,6 +45,7 @@ $bonif_grac = number_format($_POST["bonif_gra"], 2, '.', '');
 $bonif_meta = number_format($_POST["bonif_met"], 2, '.', '');
 $bonif_fest = number_format($_POST["bonif_dias"], 2, '.', '');
 $meses_lq_nv;
+$version3 = 0;
 
 $sueldo = number_format($sueldo, 2, '.', '');
 $meses_lq_nv = $meses_lq;
@@ -395,8 +396,16 @@ $creacion_carpeta = zipeaArchivo::crearCarpeta($directorio . $nombre_carpeta);
 exportarWord::write($phpWord, $directorio . $nombre_carpeta, $nombre_afi.'-LQ4', $writers);
 sleep(1);
 
-echo "1";
+//echo "1";
 
+// Datos que deseas enviar como JSON (número y texto)
+$responseData = array(
+    "estado" => 1,
+    "archivo" => $nombre_afi.'-LQ4'
+);
+
+// Convertir el array asociativo a JSON
+echo json_encode($responseData);
 /*if( $creacion_carpeta['status'] == 0 )
 {
     $archivos_a_zip = [];

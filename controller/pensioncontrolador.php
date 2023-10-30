@@ -48,7 +48,7 @@
             break;
 
         case 'consulta_dni_nac' :  
-            $token = '46294ae7-7fbd-4ad1-99c1-9a10947c167c';
+            $token = '4e3080aa-3abb-4d69-b448-b556701a41c3';
             //$dni    =   $_POST['dni'];
             $dni    =   $_POST['dni'];
             // Iniciar llamada a API

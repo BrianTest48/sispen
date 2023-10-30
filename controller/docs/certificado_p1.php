@@ -127,7 +127,16 @@ $creacion_carpeta = zipeaArchivo::crearCarpeta( $directorio . $nombre_carpeta);
 exportarWord::write($phpWord, $directorio . $nombre_carpeta, $nombre_afi.'-CP1', $writers);
 sleep(1);
 
-echo "1";
+//echo "1";
+
+// Datos que deseas enviar como JSON (número y texto)
+$responseData = array(
+    "estado" => 1,
+    "archivo" => $nombre_afi.'-CP1'
+);
+
+// Convertir el array asociativo a JSON
+echo json_encode($responseData);
 
 /*if( $creacion_carpeta['status'] == 0 )
 {
