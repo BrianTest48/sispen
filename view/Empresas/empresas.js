@@ -234,6 +234,12 @@ function activarcampos(){
     $('#emp_fech_seg_rep_legal').attr("readonly",false);
 }
 
+function CargaMasiva(){
+    console.log("Prueba");
+    $('#mdltitulo_carga').html('Subir Carga Masiva');
+    $('#modalcargamasiva').modal('show');
+}
+
 $(document).on("click","#btnnuevo", function(){
 
     $('#mdltitulo').html('Nuevo Registro de Empresa');
@@ -248,6 +254,11 @@ $(document).on("click","#btnnuevo", function(){
 $(document).on("click","#btnclosemodal", function(){
     $("#modalmantenimientoempresas").modal('hide');
 });
+
+$(document).on("click","#btnclosemodal_carga", function(){
+    $("#modalcargamasiva").modal('hide');
+});
+
 
 
 init();

@@ -294,7 +294,7 @@ $directorio = "../../files/";
 
 $creacion_carpeta = zipeaArchivo::crearCarpeta($directorio . $nombre_carpeta);
 
-exportarWord::write($phpWord, $directorio . $nombre_carpeta, $nombre_afi . ' -BO1', $writers);
+exportarWord::write($phpWord, $directorio . $nombre_carpeta, $nombre_afi . '-BO1', $writers);
 sleep(1);
 
 //echo "1";

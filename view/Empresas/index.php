@@ -24,8 +24,17 @@
             </div>
             <div class="br-pagebody">
                 <div class="br-section-wrapper">
+                    
                     <h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-b-10">Empresas</h6>
-                    <button id="btnnuevo" class="btn btn-outline-primary btn-block mg-b-10">Nuevo Registro de Empresa</button>
+                    <div class="row justify-content-between">
+                        <div class="col-12 col-sm-3">
+                            <button id="btncarga" onclick="CargaMasiva()" class="btn btn-outline-primary btn-block mg-b-10">Carga Masiva</button>
+                        </div>
+                        <div class="col-12 col-sm-3">
+                            <button id="btnnuevo" class="btn btn-primary btn-block mg-b-10">Nuevo Registro de Empresa</button>
+                        </div>
+                    </div>
+                    
                     <br>
                     <div class="table-wrapper" >
                         <table id="empresa_data" class="table display responsive nowrap" style="width: 100%">
@@ -67,6 +76,7 @@
         </div><!-- br-mainpanel -->
         <!-- ########## END: MAIN PANEL ########## -->
         <?php 
+            require_once("./modalcarga.php");
             require_once("./modalmantenimientoempresas.php");
             require_once("../Main/mainjs.php"); 
         ?>

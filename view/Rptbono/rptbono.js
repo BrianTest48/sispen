@@ -1116,7 +1116,7 @@ function creardivsempresa(){
                                     "</div>"+
                                     "<div class ='col-12 col-sm-4'>"+
                                         "<div class='form-group'  >"+
-                                            "<label class='form-control-label'>Tipo</label>"+
+                                            "<label class='form-control-label'>Tamaño de Empresa</label>"+
                                             "<select class='form-control select2 cbx_tipos' id='cbx_tipo_"+i+"' style='width: 100%'>"+
                                                 "<option value='P'>P</option>"+
                                                 "<option value='M'>M</option>"+
@@ -1268,7 +1268,7 @@ function BuscarEmp(a){
 
 function CopiarEmp(a) {
     // Obtén el contenido del elemento usando jQuery
-    let texto = $('#nom_emp_' + a).html();
+    let texto = $('#ruc_emp_' + a).val();
     // Crea un elemento de textarea temporal
     var textarea = document.createElement('textarea');
     textarea.value = texto;
@@ -1316,6 +1316,13 @@ function mostrardetalle(a, b, c){
     let valor_busqueda;
     var cantidad = $('#txtcant_emp').val();
     let manana = moment(fnac).add(16, 'years').format('YYYY-MM-DD');
+
+    //Agregar un dia a la siguiente empresa
+    if(cantidad > a){
+        var n_emp = a + 1 ;
+        var fecha_i_nueva = moment(fech_final_1).add(1, 'days').format('YYYY-MM-DD');
+        $('#f_inicio_'+n_emp).val(fecha_i_nueva);
+    }
 
     //setear en hidden el logo
     $('#logo_nombre').val(logos);
@@ -1804,6 +1811,13 @@ function CargarOrcinea(a){
     let dpto1 = "LIMA";
     let firmante = $('#firmante_orcinea_'+a).val();
     var options = { year: 'numeric', month: 'long', day: 'numeric' };
+    var cant = $('#txtcant_orcinea').val();
+    //Agregar un dia a la siguiente empresa
+    if(cant > a){
+        var n_emp = a + 1 ;
+        var fecha_i_nueva = moment(fech1f).add(1, 'days').format('YYYY-MM-DD');
+        $('#orcinea_inicio_'+n_emp).val(fecha_i_nueva);
+    }
 
     if(logos == "" || logos == "no-fotos.png"){
         $('.div_logo_pdf').hide();
@@ -1943,7 +1957,6 @@ function CargarOrcinea(a){
         });
     }
 }
-
 function CargarHost(a){
     //console.log(a);
     $('#form_liqui')[0].reset();
@@ -1965,6 +1978,13 @@ function CargarHost(a){
     $('#logo_nombre').val(logos);
     let dpto1 = "LIMA";
     let mananaf = moment(fechnc).add(16, 'years').format('YYYY-MM-DD');
+    var cant = $('#txtcant_host').val();
+    //Agregar un dia a la siguiente empresa
+    if(cant > a){
+        var n_emp = a + 1 ;
+        var fecha_i_nueva = moment(fech1f).add(1, 'days').format('YYYY-MM-DD');
+        $('#host_inicio_'+n_emp).val(fecha_i_nueva);
+    }
 
     if(logos == "" || logos == "no-fotos.png"){
         $('.div_logo_pdf').hide();

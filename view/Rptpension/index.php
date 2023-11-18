@@ -103,7 +103,7 @@
                                         </div>
                                     </div><!-- col-4 -->
                                     <div class="row mg-t-15">
-                                        <label class="col-sm-4 form-control-label">Nro Empresas: <span class="tx-danger">*</span></label>
+                                        <label class="col-sm-4 form-control-label">Nro Empresas: </label>
                                         <div class="row col-sm-6 mg-t-10 mg-sm-t-0">
                                             <div class="col-lg-8">
                                                 <input type="number" max="5" min="1" class="form-control" name="txtcant_emp" id="txtcant_emp" >
@@ -111,7 +111,7 @@
                                         </div>
                                     </div>
                                     <div class="row mg-t-15">
-                                        <label class="col-sm-4 form-control-label">Nro Orcinea: <span class="tx-danger">*</span></label>
+                                        <label class="col-sm-4 form-control-label">Nro Orcinea: </label>
                                         <div class="row col-sm-6 mg-t-10 mg-sm-t-0">
                                             <div class="col-lg-8">
                                                 <input type="number" max="4" min="1" class="form-control" name="txtcant_orcinea" id="txtcant_orcinea" >
@@ -119,11 +119,19 @@
                                            
                                         </div>
                                     </div>
-                                    <div class="row mg-t-15 mg-b-25 ">
-                                        <label class="col-sm-4 form-control-label">Nro Host: <span class="tx-danger">*</span></label>
+                                    <div class="row mg-t-15">
+                                        <label class="col-sm-4 form-control-label">Nro Host: </label>
                                         <div class="row col-sm-6 mg-t-10 mg-sm-t-0">
                                             <div class="col-lg-8">
                                                 <input type="number" max="4" min="1" class="form-control" name="txtcant_host" id="txtcant_host" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mg-t-15 mg-b-25 ">
+                                        <label class="col-sm-4 form-control-label">Reflex: </label>
+                                        <div class="row col-sm-6 mg-t-10 mg-sm-t-0">
+                                            <div class="col-lg-8">
+                                                <input type="number" max="1" min="0" class="form-control" name="txtcant_reflex" id="txtcant_reflex" >
                                             </div>
                                             <div class="col-lg-4 text-center">
                                                 <button type="submit" id="btnautogenerar" name=""  class="btn btn-info" >Generar</button>
@@ -139,7 +147,7 @@
                                     <div id="acc_orcinea">
                                     </div>
                                     
-                                    <div class="accordion-item">
+                                    <div class="accordion-item" id="item_reflex">
                                         <h2 class="accordion-header" id="headingThree">
                                             <button class="accordion-button collapsed" style="padding: 0.65rem 1rem" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                                 REFLEX
@@ -227,6 +235,11 @@
                                     </div>
                                 </div><!-- row -->
                             </div><!-- form-layout -->
+                            <br>
+                            <div id="tabs-empresas" class="form-layout form-layout-1">
+                                <ul class="nav nav-tabs" id="tabsNav"></ul>
+                                <div id="tabsContainer" class="tab-content mt-2"></div>
+                            </div>
                             <br>
                             <div id="" >
                                 <div id="contemp1" name="contemp1" class="form-layout form-layout-1">
@@ -399,11 +412,11 @@
                                             <div id="boleta" class="tab-pane fade">
                                                 <form id="form_bol" action="" method="post" autocomplete="off">
                                                     <div class="form-layout form-layout-1">
-                                                        <div class="row justify-content-around">
-                                                            <div class="col-12 col-sm-4">
+                                                        <div class="row justify-content-end">
+                                                            <!-- <div class="col-12 col-sm-4">
                                                                 <button type="button" id="btnboletas" name="btnboletas"  class="btn btn-info" style="width:100%" >Visualizar Boletas</button>
-                                                            </div>
-                                                            <div class="col-12 col-sm-4">
+                                                            </div> -->
+                                                            <div class="col-12 col-sm-4 p-0">
                                                                 <button type="button" id="btnboletas_dsc" name="btnboletas_dsc"  class="btn btn-info" style="width:100%" >Visualizar Descuentos</button>
                                                             </div>
                                                         </div>

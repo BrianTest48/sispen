@@ -140,6 +140,11 @@
                             </div>
                             <br>
                             <!-- AQUI VA TODO LA VISUALIZACION-->
+                            <div id="tabs-empresas" class="form-layout form-layout-1">
+                                <ul class="nav nav-tabs" id="tabsNav"></ul>
+                                <div id="tabsContainer" class="tab-content mt-2"></div>
+                            </div>
+                            <br>
                             <div id="contemp1" name="contemp1" class="form-layout form-layout-1">
                                 <input  type="hidden" id="fech_inicio_emp" name="fech_inicio_emp">
                                 <input  type="hidden" id="fech_final_emp" name="fech_final_emp">
@@ -192,7 +197,7 @@
                                                         <button type="button" id="" class="btn btn-info" onclick="imprimir_word()" style="width: 100%;">Descargar en Word</button>
                                                     </div>
                                                     <div class="col-12 col-sm-4">
-                                                        <button type="button" id="btnprevcer" name="btnprevcer"  class="btn btn-secondary" style="width: 100%;">Previsualizar</button>
+                                                        <button type="button" id="btnprevcer" name="btnprevcer"   class="btn btn-secondary" style="width: 100%;">Previsualizar</button>
                                                     </div>
                                                 </div>
                                                 
@@ -484,9 +489,6 @@
                                         </form>
                                     </div>
                                 </div>
-                                <!--<div class="form-layout-footer text-right mg-t-20">
-                                    <button type="button" id="btnimprimir" name="btnimprimir"  class="btn btn-info">Imprimir Certificado</button>
-                                </div> form-layout-footer -->
                             </div>
                             <br>
                         

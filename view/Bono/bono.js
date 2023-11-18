@@ -331,7 +331,7 @@ function creardivsempresa(){
                                     "</div>"+
                                      "<div class ='col-12 col-sm-4'>"+
                                         "<div class='form-group'  >"+
-                                            "<label class='form-control-label'>Tipo</label>"+
+                                            "<label class='form-control-label'>Tamaño de Empresa</label>"+
                                             "<select class='form-control select2 cbx_tipos' id='cbx_tipo_"+i+"' style='width: 100%'>"+
                                                 "<option value='P'>P</option>"+
                                                 "<option value='M'>M</option>"+
@@ -529,7 +529,7 @@ function convertDateFormat(string) {
 
 function CopiarEmp(a) {
     // Obtén el contenido del elemento usando jQuery
-    let texto = $('#nom_emp_' + a).html();
+    let texto = $('#ruc_emp_' + a).val();
     // Crea un elemento de textarea temporal
     var textarea = document.createElement('textarea');
     textarea.value = texto;
@@ -580,6 +580,14 @@ function mostrardetalle(a,b,c){
     var cantidad = $('#txtcant_emp').val();
     let fnac = $('#txtdate').val();
     let manana = moment(fnac).add(16, 'years').format('YYYY-MM-DD');
+    var cant = $('#txtcant_emp').val();
+
+    //Agregar un dia a la siguiente empresa
+    if(cant > a){
+        var n_emp = a + 1 ;
+        var fecha_i_nueva = moment(fech_final_1).add(1, 'days').format('YYYY-MM-DD');
+        $('#f_inicio_'+n_emp).val(fecha_i_nueva);
+    }
 
     $('#logo_nombre').val(logos);
 
