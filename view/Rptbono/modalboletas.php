@@ -1,4 +1,4 @@
-<div id="modalboletas_rpt_bono" class="modal fade">
+<div id="modalboletas" class="modal fade">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <!--<form method="post" id="firma_form">-->

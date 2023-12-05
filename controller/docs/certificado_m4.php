@@ -21,6 +21,7 @@ $fecha_final = $_POST["fecha_final"];
 $fecha_footer = $_POST["fecha_footer"];
 $logo = $_POST["logo"];
 $firmante = $_POST["firmante"];
+$ruc = $_POST["ruc"];
 //$zipFile = new \PhpZip\ZipFile();
 $section = $phpWord->addSection(array('marginTop'=>2000));
 // Crear una imagen como marca de agua
@@ -110,7 +111,7 @@ $directorio = "../../files/";
 
 $creacion_carpeta = zipeaArchivo::crearCarpeta( $directorio . $nombre_carpeta);
 
-exportarWord::write($phpWord, $directorio . $nombre_carpeta, $nombre_afi.'-CM4', $writers);
+exportarWord::write($phpWord, $directorio . $nombre_carpeta, $nombre_afi.'-CM4-'.$ruc, $writers);
 sleep(1);
 
 //echo "1";
@@ -118,7 +119,7 @@ sleep(1);
 // Datos que deseas enviar como JSON (número y texto)
 $responseData = array(
     "estado" => 1,
-    "archivo" => $nombre_afi.'-CM5'
+    "archivo" => $nombre_afi.'-CM4-'.$ruc
 );
 
 // Convertir el array asociativo a JSON

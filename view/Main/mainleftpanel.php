@@ -77,6 +77,17 @@
         <br>
         <a href="#" class="br-menu-link">
             <div class="br-menu-item">
+                <i class="menu-item-icon icon ion-document-text tx-24"></i>
+                <span class="menu-item-label">Comprimidos</span>
+                <i class="menu-item-arrow fa fa-angle-down"></i>
+            </div><!-- menu-item -->
+        </a><!-- br-menu-link -->
+        <ul class="br-menu-sub nav flex-column">
+            <li class="nav-item"><a href="../../view/Comprimidos" class="nav-link menus">Comprimidos</a></li>
+        </ul>
+        <br>
+        <a href="#" class="br-menu-link">
+            <div class="br-menu-item">
                 <i class="menu-item-icon icon ion-grid"></i>
                 <span class="menu-item-label">Config. de identidad</span>
                 <i class="menu-item-arrow fa fa-angle-down"></i>

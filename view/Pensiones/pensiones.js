@@ -317,6 +317,7 @@ function crearTabs(valor) {
         tabContent += '     <input  type="hidden" id="tipo_emp'+ i +'" name="tipo_emp">';
         tabContent += '     <input  type="hidden" id="logo_nombre'+ i +'" name="logo_nombre">';
         tabContent += '     <input type="hidden" id="firmante_emp'+ i +'" name="firmante_emp">';
+        tabContent += '     <input type="hidden" id="ruc_emp'+ i +'" name="ruc_emp">';
         tabContent += '     <h5 class="text-center" id="nom_emp_lab'+ i +'"></h5>';
         tabContent += '     <br>';
         tabContent += '     <ul class="nav nav-tabs mb-3" id="pills-tab'+ i +'" role="tablist" style="border-bottom : 0px">';
@@ -534,7 +535,7 @@ function crearTabs(valor) {
         tabContent += '                         <div class="col-lg-12">';
         tabContent += '                             <div class="row mg-b-5">';
         tabContent += '                                 <label class="form-control-label col-lg-6">Sueldo: </label>';
-        tabContent += '                                 <input class="form-control col-lg-6" type="number" name="sueldo_boleta" id="sueldo_boleta'+ i +'" oninput="calcularTotalBoleta()"   placeholder=""  >';
+        tabContent += '                                 <input class="form-control col-lg-6" type="number" name="sueldo_boleta" id="sueldo_boleta'+ i +'" oninput="calcularTotalBoleta('+ i +')"   placeholder=""  >';
         tabContent += '                             </div>';
         tabContent += '                         </div><!-- col-4 -->';
         tabContent += '                         <div class="col-lg-12">';
@@ -969,7 +970,7 @@ function mostrardetalle(a, b, c){
 
 
     //setear en hidden el logo
-    $('#logo_nombre').val(logos);
+    $('#logo_nombre'+ a).val(logos);
     //let ruc_empresa = $("#lst_emp_"+a).val();
     //console.log(ruc_empresa);
 
@@ -1184,7 +1185,7 @@ function mostrardetalle(a, b, c){
                                 $('#dias_liqui'+ a).val(data[0]['Dias']);
                                 $('#meses_liqui'+ a).val(data[0]['Meses']);
                                 $('#anios_liqui'+ a).val(data[0]['Anios']);
-    
+                                $('#ruc_emp'+ a).val(data[0]['ruc']);
                                 $('#sueldo_liquidacion'+a).val(data[0]['fechsueldo']);
     
                                 sumarfechas();
@@ -1307,7 +1308,7 @@ function mostrardetalle(a, b, c){
                                 $('#dias_liqui'+ a).val(data[0]['Dias']);
                                 $('#meses_liqui'+ a).val(data[0]['Meses']);
                                 $('#anios_liqui'+ a).val(data[0]['Anios']);
-    
+                                $('#ruc_emp'+ a).val(data[0]['ruc']);
                                 $('#sueldo_liquidacion'+a).val(data[0]['fechsueldo']);
     
                                 sumarfechas();
@@ -1921,14 +1922,6 @@ function Export2DocBoleta(){
 function imprimir_word(e){
 
 
-    // swal.fire({
-    //     title: "Cargando...",
-    //     text: "Por favor, espera un momento.",
-    //     allowOutsideClick: false, // Evita que el usuario cierre el modal haciendo clic fuera de él
-    //     onOpen: () => {
-    //         swal.showLoading(); // Muestra el ícono de carga en el modal
-    //     }
-    // });
     var tipo = $('#tipo_emp').val();
     let tipoprev = $('#select_certificado' + e).val();
     let nombreruta = 'certificado_'+tipoprev;
@@ -1947,6 +1940,7 @@ function imprimir_word(e){
     var logo = $('#logo_nombre'+ e).val();
     var firmante = $('.firmante_nom').html();
     var link = '../../controller/docs/certificado_'+tipoprev+'.php';
+    var ruc = $('#ruc_emp'+ e).val();
 
 
     $.ajax({
@@ -1968,7 +1962,8 @@ function imprimir_word(e){
             cargo : cargo,
             tipo : tipo,
             logo : logo,
-            firmante : firmante
+            firmante : firmante,
+            ruc: ruc
         },
         success: function(response){
 
@@ -2005,7 +2000,7 @@ function imprimir_word(e){
 function imprimir_liquidacion_word(e){
 
     var nombreruta;          
-    var cuerpo              = $('#combo_prev_cuerpo').val();
+    var cuerpo              = $('#combo_prev_cuerpo'+ e).val();
     var nombre              = $('#txtnombre').val();
     var apellido            = $('#txtapellido').val();
     var nombre_emp          = $('#nom_emp_lab'+ e).html();
@@ -2030,6 +2025,7 @@ function imprimir_liquidacion_word(e){
     var fecha_final         = $("#fech_final_emp"+ e).val();
     var fecha               = new Date(fecha_final);
     var anio                = fecha.getFullYear();
+    var ruc                 = $('#ruc_emp'+ e).val();
 
     //Elegir el doc de liquidacion por año
     if(anio >= 1960 && anio <= 1970){
@@ -2067,6 +2063,7 @@ function imprimir_liquidacion_word(e){
     formData.append('bonif_dias', bonif_dias);
     formData.append('anio_final', anio);  
     formData.append('cuerpo', cuerpo);  
+    formData.append('ruc', ruc); 
 
     $.ajax({
         type: "POST",
@@ -2146,6 +2143,7 @@ function imprimir_liquidacion_boleta(e){
     var total_boleta = $('.total_boleta').html();
     var total_neto_1 = $('.total_neto_1').html();
     var mes_anio = $('.mes_anio_imp').html();
+    var ruc         = $('#ruc_emp'+ e).val();
 
     // Serializa el formulario
     var formData = new FormData($('#form_bol'+ e)[0]);
@@ -2168,7 +2166,8 @@ function imprimir_liquidacion_boleta(e){
     formData.append('anio_final', anio);  
     formData.append('total_boleta', total_boleta); 
     formData.append('total_neto_1', total_neto_1); 
-    formData.append('mes_anio', mes_anio); 
+    formData.append('mes_anio', mes_anio);
+    formData.append('ruc', ruc);  
 
     $.ajax({
         type: "POST",
@@ -3373,6 +3372,8 @@ function PrevCertificado(e) {
     let firm = $('#firmante_emp'+ e).val();
     let fecha1 = new Date(fechai);
     let fecha2 = new Date(fechaf);
+    let fecha1num = moment(fecha1).format('DD-MM-YYYY');
+    let fecha2num = moment(fecha2).format('DD-MM-YYYY');
     
     //Asignar datos
     $('.emp_imp').html(nom);
@@ -3380,11 +3381,13 @@ function PrevCertificado(e) {
 
     $('.desde_imp').html(fecha1.toLocaleDateString("es-ES", options).toUpperCase());
     $('.hasta_imp').html(fecha2.toLocaleDateString("es-ES", options).toUpperCase());
+    $('.desde_imp_num').html(fecha1num);
+    $('.hasta_imp_num').html(fecha2num);
     $('.lugardia').html(dpto1+", "+fecha2.toLocaleDateString("es-ES", options).toUpperCase());
     $('.desde_imp_low').html(fecha1.toLocaleDateString("es-ES", options));
     $('.hasta_imp_low').html(fecha2.toLocaleDateString("es-ES", options));
     $('.lugardia_low').html(dpto1+", "+fecha2.toLocaleDateString("es-ES", options));
-    $('.tiempo_total_imp').html(temp);
+    //$('.tiempo_total_imp').html(temp);
     $('.img_logo').attr("src","../../assets/img/"+logos);
     $('.firmante_nom').html(firm);
     $('.departamento_imp').html(dpto1.toUpperCase());
@@ -3445,6 +3448,53 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+function DescargarZip(){
+    console.log("Descargar ZIP");
 
+    var num_doc             = $('#num_doc').val();
+    var nom_carpeta         = "PENSIONES-"+ num_doc;
+    var nombre              = $('#txtnombre').val();
+    var apellido            = $('#txtapellido').val();
+    var nombre_com          = nombre + ' ' + apellido;
+
+    // Realizar la solicitud AJAX
+    $.ajax({
+        url: "../../controller/docs/certificadosword.php",
+        method: "POST", // Método HTTP (GET, POST, PUT, DELETE, etc.)
+        data: {
+            nombre_carpeta:  nom_carpeta,
+            afiliado: nombre_com
+        },
+        dataType: "json",
+        success: function (data) {
+            // La función que se ejecutará si la solicitud tiene éxito
+            //console.log("Datos recibidos:", data);
+            if(data.status == 0){
+                //console.log(data.data.file_zip);
+                 // URL del archivo que deseas descargar
+                var url = '../../files/zips/'+data.data.file_zip;
+
+                // Crear un elemento <a> oculto
+                var link = document.createElement('a');
+                link.href = url;
+                link.download = data.data.file_zip; // Nombre del archivo para descargar
+                link.style.display = 'none';
+
+                // Añadir el elemento <a> al DOM
+                document.body.appendChild(link);
+
+                // Simular un clic en el enlace para iniciar la descarga
+                link.click();
+
+                // Eliminar el elemento <a> del DOM después de la descarga
+                document.body.removeChild(link);
+            }
+        },
+        error: function (error) {
+            // La función que se ejecutará si hay un error en la solicitud
+            console.error("Error en la solicitud:", error);
+        }
+    });
+}
 
 init();

@@ -1,45 +1,22 @@
 <?php  
-    $tipo = $_POST["tipo"];
 
-    switch ($tipo) {
-        case 'P':
-            # code...
-            $archivos = [
-                'certificado_p1.php',
-                'certificado_p2.php',
-                'certificado_p3.php',
-                'certificado_p4.php',
-                'certificado_p5.php',
-                'certificado_p6.php',
-                'certificado_p7.php',
-                'certificado_p8.php'
-            ];
-            break;
-        case 'M':
-            $archivos = [
-                'certificado_m1.php',
-                'certificado_m2.php',
-                'certificado_m3.php',
-                'certificado_m4.php',
-                'certificado_m5.php'
-            ];
-            break;
-        case 'G':
-            # code...
-            break;
-    }
+    require_once '../zipeaArchivo.php';
 
-    foreach ($archivos as $archivo) {
-        require_once $archivo;
-    }
-
+    date_default_timezone_set('America/Lima');
 
     $directorio = "../../files/";
+    $directorio2 = "../../files/zips/";
+    $fechaHoraActual = date('d-m-Y_H-i');
     //$nombre_carpeta = "zip_" . strtotime("now");
     $nombre_carpeta = $_POST["nombre_carpeta"];
+    $nombre = $_POST["afiliado"];
 
-    $creacion_carpeta = zipeaArchivo::crearCarpeta($directorio . $nombre_carpeta);
+    $creacion_carpeta = zipeaArchivo::crearCarpetaDown($directorio . $nombre_carpeta, $directorio2);
 
 
-    echo json_encode( zipeaArchivo::zipearArchivo($directorio . $nombre_carpeta, $nombre_carpeta.".zip") );
+    echo json_encode( zipeaArchivo::zipearArchivo($directorio . $nombre_carpeta, $directorio2 ,$fechaHoraActual.'_'.$nombre_carpeta."-".$nombre.".zip") );
+
+
+    
+
 ?>

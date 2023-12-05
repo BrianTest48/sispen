@@ -19,20 +19,20 @@
                                             <tr>
                                                 <td>IPPS</td>
                                                 <td class="monto_mes_total"></td>
-                                                <td>3%</td>
-                                                <td class="porcentaje_3"></td>
+                                                <td id ="dsc_at_ss"></td>
+                                                <td class="dsc_at_ss_monto"></td>
                                             </tr>
                                             <tr>
                                                 <td>SNP</td>
                                                 <td class="monto_mes_total"></td>
-                                                <td>3%</td>
-                                                <td class="porcentaje_3"></td>
+                                                <td id ="dsc_at_pension"></td>
+                                                <td class="dsc_at_pension_monto"></td>
                                             </tr>
                                             <tr>
                                                 <td>FONAVI</td>
                                                 <td class="monto_mes_total"></td>
-                                                <td>1%</td>
-                                                <td class="porcentaje_1"></td>
+                                                <td id ="dsc_at_fonavi"></td>
+                                                <td class="dsc_at_fonavi_monto"></td>
                                             </tr>
                                         </tbody>
                                         <tfoot>
@@ -52,20 +52,20 @@
                                             <tr>
                                                 <td>IPPS</td>
                                                 <td class="monto_mes_total"></td>
-                                                <td>6%</td>
-                                                <td class="porcentaje_6"></td>
+                                                <td id="dsc_ap_ss"></td>
+                                                <td class="dsc_ap_ss_monto"></td>
                                             </tr>
                                             <tr>
                                                 <td>SNP</td>
                                                 <td class="monto_mes_total"></td>
-                                                <td>6%</td>
-                                                <td class="porcentaje_6"></td>
+                                                <td id="dsc_ap_pension"></td>
+                                                <td class="dsc_ap_pension_monto"></td>
                                             </tr>
                                             <tr>
                                                 <td>FONAVI</td>
                                                 <td class="monto_mes_total"></td>
-                                                <td>6%</td>
-                                                <td class="porcentaje_6"></td>
+                                                <td id="dsc_ap_fonavi"></td>
+                                                <td class="dsc_ap_fonavi_monto"></td>
                                             </tr>
                                         </tbody>
                                         <tfoot>

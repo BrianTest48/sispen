@@ -32,7 +32,7 @@
                         <div class="col-12 col-sm-6 mg-b-10">
                             <div class="row justify-content-end">
                                 <div class="col-6 col-sm-3">
-                                    <button  type="button" id="btnzipear" name="btnzipear" class="btn btn-info" onclick="" style="width :100%;" >Descargar en ZIP</button>
+                                    <button  type="button" id="btnzipear" name="btnzipear" class="btn btn-info" onclick="DescargarZip()" style="width :100%;" >Descargar en ZIP</button>
                                 </div>
                                 <div class="col-6 col-sm-3">
                                     <input type="hidden" name="valorguardar" id="valorguardar">
@@ -154,6 +154,7 @@
                                 <input  type="hidden" id="dpto_emp" name="dpto_emp">
                                 <input  type="hidden" id="tipo_emp" name="tipo_emp">
                                 <input  type="hidden" id="logo_nombre" name="logo_nombre">
+                                <input  type="hidden" id="ruc_emp" name="ruc_emp">
                                 <h5 class="text-center" id="nom_emp_lab"></h5>
                                 <br>
                                 <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist" style="border-bottom : 0px">

@@ -32,6 +32,7 @@ $moneda = $_POST["moneda"];
 $retiro = $_POST["motivo"];
 $anio = $_POST["anio_final"];
 $cuerpo = $_POST["cuerpo"];
+$ruc = $_POST["ruc"];
 
 //ADICIONALES
 $adelanto = number_format($_POST["ADELANTO"], 2, '.', '');
@@ -495,7 +496,7 @@ $directorio = "../../files/";
 
 $creacion_carpeta = zipeaArchivo::crearCarpeta($directorio . $nombre_carpeta);
 
-exportarWord::write($phpWord, $directorio . $nombre_carpeta, $nombre_afi.'-LQ2', $writers);
+exportarWord::write($phpWord, $directorio . $nombre_carpeta, $nombre_afi.'-LQ2-'.$ruc, $writers);
 sleep(1);
 
 //echo "1";
@@ -503,7 +504,7 @@ sleep(1);
 // Datos que deseas enviar como JSON (número y texto)
 $responseData = array(
     "estado" => 1,
-    "archivo" => $nombre_afi.'-LQ2'
+    "archivo" => $nombre_afi.'-LQ2-'.$ruc
 );
 
 // Convertir el array asociativo a JSON

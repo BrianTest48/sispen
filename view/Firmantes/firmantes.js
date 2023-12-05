@@ -238,5 +238,11 @@ $(document).on("click","#btnclosemodal", function(){
     $("#modalfirma").modal('hide');
 });
 
+function CargaMasiva(){
+    console.log("Prueba");
+    $('#mdltitulo_carga').html('Subir Carga Masiva');
+    $('#modalcargamasiva').modal('show');
+}
+
 
 init();

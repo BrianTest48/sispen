@@ -31,7 +31,7 @@
                         <div class="col-12 col-sm-6 mg-b-10">
                             <div class="row justify-content-end">
                                 <div class="col-6 col-sm-3">
-                                    <button  type="button" id="btnzipear" name="btnzipear" class="btn btn-info" onclick="" style="width :100%;" >Descargar en ZIP</button>
+                                    <button  type="button" id="btnzipear" name="btnzipear" class="btn btn-info" onclick="DescargarZip()" style="width :100%;" >Descargar en ZIP</button>
                                 </div>
                                 <div class="col-6 col-sm-3">
                                     <input type="hidden" name="valorguardar" id="valorguardar">
@@ -251,6 +251,7 @@
                                         <input  type="hidden" id="dpto_emp" name="dpto_emp">
                                         <input  type="hidden" id="tipo_emp" name="tipo_emp">
                                         <input  type="hidden" id="logo_nombre" name="logo_nombre">
+                                        <input  type="hidden" id="ruc_emp" name="ruc_emp">
                                         <h5 class="text-center" id="nom_emp_lab"></h5>
                                         <br>
                                         <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist" style="border-bottom : 0px">
@@ -6341,8 +6342,8 @@
                                                             <td>HORAS EXTRAS</td>
                                                             <td class="h_extras_afiliado"></td>
                                                             <td>FONAVI</td>
-                                                            <td class="porcentaje_6_boleta"></td>
-                                                            <td class="porcentaje_1_boleta"></td>
+                                                            <td class="dsc_ap_fonavi_monto"></td>
+                                                            <td class="dsc_at_fonavi_monto"></td>
                                                         </tr>
                                                         <tr>
                                                             <td>ASIS. FAMILIA</td>
@@ -6424,7 +6425,7 @@
                                                             <td>TOTALES</td>
                                                             <td><label class="total_boleta"></label></td>
                                                             <td>NETO A PAGAR SA</td>
-                                                            <td></td>
+                                                            <td class="total_neto_1"></td>
                                                             <td></td>
                                                         </tr>
 
@@ -6493,7 +6494,7 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">F/INGRESO</h1>
                                                         </div>
                                                         <div class="col-8">
-                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                            <h1 class="fecha_ingreso_afiliado" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
                                                     </div>
                                                     <br>
@@ -6560,10 +6561,10 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">SNP.:</h1>
                                                         </div>
                                                         <div class="col-2">
-                                                            <h1 class="porcentaje_3_boleta" style="color: #FF0000;font-weight: 600;font-size: 12px;">xxxxx</h1>
+                                                            <h1 class="dsc_at_pension_monto" style="color: #FF0000;font-weight: 600;font-size: 12px;">xxxxx</h1>
                                                         </div>
                                                         <div class="col-6">
-                                                            <h1 class="porcentaje_6_boleta" style="color: #FF0000;font-weight: 600;font-size: 12px;">xxxxxxxx</h1>
+                                                            <h1 class="dsc_ap_pension_monto" style="color: #FF0000;font-weight: 600;font-size: 12px;">xxxxxxxx</h1>
                                                         </div>
 
                                                     </div>
@@ -6572,10 +6573,10 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">IPSS:</h1>
                                                         </div>
                                                         <div class="col-2">
-                                                            <h1 class="porcentaje_3_boleta" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                            <h1 class="dsc_at_ss_monto" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
                                                         <div class="col-6">
-                                                            <h1 class="porcentaje_6_boleta" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                            <h1 class="dsc_ap_ss_monto" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
 
                                                     </div>
@@ -6584,10 +6585,10 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">FONAVI:</h1>
                                                         </div>
                                                         <div class="col-2">
-                                                            <h1 class="porcentaje_1_boleta" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                            <h1 class="dsc_at_fonavi_monto" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
                                                         <div class="col-6">
-                                                            <h1 class="porcentaje_6_boleta" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                            <h1 class="dsc_ap_fonavi_monto" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
 
                                                     </div>
@@ -6737,13 +6738,13 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">Categ. Ocupación:</h1>
                                                         </div>
                                                         <div class="col-2">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">_____________</h1>
+                                                            <h1 class="cargo_afiliado" style="color: #000;font-weight: 600;font-size: 12px;">_____________</h1>
                                                         </div>
                                                         <div class="col-3">
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">Fecha de Ingreso:</h1>
                                                         </div>
                                                         <div class="col-2">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">_____________</h1>
+                                                            <h1 class="fecha_ingreso_afiliado" style="color: #000;font-weight: 600;font-size: 12px;">_____________</h1>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -6850,6 +6851,21 @@
                                                                         <td></td>
                                                                     </tr>
                                                                     <tr>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                    <tr>
                                                                         <td>TOTAL HABER</td>
                                                                         <td class="total_boleta"></td>
                                                                         <td></td>
@@ -6870,14 +6886,14 @@
                                                                     </tr>
                                                                     <tr>
                                                                         <td>Sist. Nac. Pens.</td>
-                                                                        <td class="porcentaje_3_boleta"></td>
-                                                                        <td class="porcentaje_6_boleta"></td>
+                                                                        <td class="dsc_at_pension_monto"></td>
+                                                                        <td class="dsc_ap_pension_monto"></td>
                                                                         <td></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>Seguro Social</td>
-                                                                        <td></td>
-                                                                        <td></td>
+                                                                        <td class="dsc_at_ss_monto"></td>
+                                                                        <td class="dsc_ap_ss_monto"></td>
                                                                         <td></td>
                                                                     </tr>
                                                                     <tr>
@@ -6888,8 +6904,8 @@
                                                                     </tr>
                                                                     <tr>
                                                                         <td>FONAVI</td>
-                                                                        <td class="porcentaje_1_boleta"></td>
-                                                                        <td class="porcentaje_6_boleta"></td>
+                                                                        <td class="dsc_at_fonavi_monto"></td>
+                                                                        <td class="dsc_ap_fonavi_monto"></td>
                                                                         <td></td>
                                                                     </tr>
                                                                     <tr>
@@ -6924,8 +6940,8 @@
                                                                     </tr>
                                                                     <tr>
                                                                         <td>Otros</td>
-                                                                        <td class="porcentaje_3_boleta"></td>
-                                                                        <td class="porcentaje_6_boleta"></td>
+                                                                        <td></td>
+                                                                        <td></td>
                                                                         <td></td>
                                                                     </tr>
                                                                     <tr>
@@ -7004,7 +7020,7 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">FECHA DE INGRESO:</h1>
                                                         </div>
                                                         <div class="col-8">
-                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                            <h1 class="fecha_ingreso_afiliado" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -7037,6 +7053,38 @@
                                                         </div>
                                                         <div class="col-8">
                                                             <h1 class="sueldo_afiliado" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">.</h1>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">.</h1>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">.</h1>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">.</h1>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -7089,7 +7137,7 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">I.P.S.S.:</h1>
                                                         </div>
                                                         <div class="col-2">
-                                                            <h1 class="porcentaje_3_boleta" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                            <h1 class="dsc_at_ss_monto" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
 
                                                     </div>
@@ -7098,7 +7146,7 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">S.N.P.:</h1>
                                                         </div>
                                                         <div class="col-2">
-                                                            <h1 class="porcentaje_3_boleta" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                            <h1 class="dsc_at_pension_monto" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
 
                                                     </div>
@@ -7107,7 +7155,7 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">FONAVI:</h1>
                                                         </div>
                                                         <div class="col-2">
-                                                            <h1 class="porcentaje_1_boleta" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                            <h1 class="dsc_at_fonavi_monto" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
 
                                                     </div>
@@ -7135,17 +7183,7 @@
                                                             <h1 class="total_dsc_trabajador_boleta" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-4">
-                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">NETO A PAGAR.:</h1>
-                                                        </div>
-                                                        <div class="col-2">
-                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
-                                                        </div>
-                                                    </div>
+                                                    
                                                     <br>
                                                     <div class="row">
                                                         <div class="col-4">
@@ -7157,7 +7195,7 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">I.P.S.S.:</h1>
                                                         </div>
                                                         <div class="col-2">
-                                                            <h1 class="porcentaje_6_boleta" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                            <h1 class="dsc_ap_ss_monto" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
 
                                                     </div>
@@ -7166,7 +7204,7 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">S.N.P.:</h1>
                                                         </div>
                                                         <div class="col-2">
-                                                            <h1 class="porcentaje_6_boleta" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                            <h1 class="dsc_ap_pension_monto" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
 
                                                     </div>
@@ -7175,7 +7213,7 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">FONAVI:</h1>
                                                         </div>
                                                         <div class="col-2">
-                                                            <h1 class="porcentaje_6_boleta" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                            <h1 class="dsc_ap_fonavi_monto" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
 
                                                     </div>
@@ -7194,6 +7232,17 @@
                                                         </div>
                                                         <div class="col-8">
                                                             <h1 class="total_dsc_empleador_boleta" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">NETO A PAGAR.:</h1>
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <h1 class="total_neto_pagar_boleta_4" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
                                                     </div>
                                                     <br><br>
@@ -7270,7 +7319,7 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">Fecha de Ingreso</h1>
                                                         </div>
                                                         <div class="col-8">
-                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                            <h1 class="fecha_ingreso_afiliado" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
                                                     </div>
                                                     <br>
@@ -7316,12 +7365,43 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-3">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">.</h1>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">.</h1>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">.</h1>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 12px;">.</h1>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-3">
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">Otros: </h1>
                                                         </div>
                                                         <div class="col-8">
                                                             <h1 class="otros_afiliado" style="color: #FF0000;font-weight: 600;font-size: 12px;"><u></u></h1>
                                                         </div>
-
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-3">
@@ -7348,10 +7428,10 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">S.N.P.:</h1>
                                                         </div>
                                                         <div class="col-3">
-                                                            <h1 class="porcentaje_3_boleta" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                            <h1 class="dsc_at_pension_monto" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
                                                         <div class="col-3">
-                                                            <h1 class="porcentaje_6_boleta" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                            <h1 class="dsc_ap_pension_monto" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -7359,10 +7439,10 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">IPSS:</h1>
                                                         </div>
                                                         <div class="col-3">
-                                                            <h1 class="porcentaje_3_boleta" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                            <h1 class="dsc_at_ss_monto" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
                                                         <div class="col-3">
-                                                            <h1 class="porcentaje_6_boleta" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                            <h1 class="dsc_ap_ss_monto" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -7370,10 +7450,10 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">FONAVI:</h1>
                                                         </div>
                                                         <div class="col-3">
-                                                            <h1 class="porcentaje_1_boleta" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                            <h1 class="dsc_at_fonavi_monto" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
                                                         <div class="col-3">
-                                                            <h1 class="porcentaje_6_boleta" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
+                                                            <h1 class="dsc_ap_fonavi_monto" style="color: #FF0000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -7489,7 +7569,7 @@
                                                         <td colspan="2">OCUPACION PARTIDA</td>
                                                     </tr>
                                                     <tr class="text-center">
-                                                        <td>&nbsp;</td>
+                                                        <td class="fecha_ingreso_afiliado"></td>
                                                         <td></td>
                                                         <td class="doc_afiliado"></td>
                                                         <td></td>
@@ -7561,7 +7641,7 @@
                                                     <tr>
                                                         <td>&nbsp; EXTRAS</td>
                                                         <td>&nbsp;</td>
-                                                        <td>&nbsp;</td>
+                                                        <td class="h_extras_afiliado"></td>
                                                         <td>&nbsp;</td>
                                                         <td>&nbsp;</td>
                                                     </tr>
@@ -7625,15 +7705,15 @@
                                                         <td>SEGURO SOCIAL DEL PERU</td>
                                                         <td>&nbsp;</td>
                                                         <td>&nbsp;</td>
-                                                        <td class="porcentaje_3_boleta"></td>
-                                                        <td class="porcentaje_6_boleta"></td>
+                                                        <td class="dsc_at_ss_monto"></td>
+                                                        <td class="dsc_ap_ss_monto"></td>
                                                     </tr>
                                                     <tr>
                                                         <td>SISTEMA NACIONAL DE PENSIONES</td>
                                                         <td>&nbsp;</td>
                                                         <td>&nbsp;</td>
-                                                        <td class="porcentaje_3_boleta"></td>
-                                                        <td class="porcentaje_6_boleta"></td>
+                                                        <td class="dsc_at_pension_monto"></td>
+                                                        <td class="dsc_ap_pension_monto"></td>
                                                     </tr>
                                                     <tr>
                                                         <td>IMPUESTO A LA REMUNERACION</td>
@@ -7646,8 +7726,8 @@
                                                         <td>FONDO NACIONAL DE VIVIENDA</td>
                                                         <td>&nbsp;</td>
                                                         <td>&nbsp;</td>
-                                                        <td class="porcentaje_1_boleta"></td>
-                                                        <td class="porcentaje_6_boleta"></td>
+                                                        <td class="dsc_at_fonavi_monto"></td>
+                                                        <td class="dsc_ap_fonavi_monto"></td>
                                                     </tr>
                                                     <tr>
                                                         <td>CONAFOVICFR</td>
@@ -7786,7 +7866,7 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 16px;">Ingreso:</h1>
                                                         </div>
                                                         <div class="col-3">
-                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                            <h1 class="fecha_ingreso_afiliado" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
                                                         </div>
                                                         <div class="col-3">
                                                             <h1 style="color: #000;font-weight: 600;font-size: 16px;">Dias Feriados:</h1>
@@ -7860,8 +7940,8 @@
                                                             <td>HORAS EXTRAS</td>
                                                             <td class="h_extras_afiliado"></td>
                                                             <td>FONAVI</td>
-                                                            <td class="porcentaje_6_boleta"></td>
-                                                            <td class="porcentaje_1_boleta"></td>
+                                                            <td class="dsc_ap_fonavi_monto"></td>
+                                                            <td class="dsc_at_fonavi_monto"></td>
                                                         </tr>
                                                         <tr>
                                                             <td>ASIG. FAMILIA</td>
@@ -7899,6 +7979,34 @@
                                                             <td></td>
                                                         </tr>
                                                         <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
                                                             <td>SUB-TOTALES</td>
                                                             <td>
                                                                 <div style="border-bottom: solid; margin-bottom: 10px;"></div>
@@ -7907,11 +8015,11 @@
                                                             <td></td>
                                                             <td>
                                                                 <div style="border-bottom: solid; margin-bottom: 10px;"></div>
-                                                                <span class="porcentaje_6_boleta"></span>
+                                                                <span class="dsc_ap_fonavi_monto"></span>
                                                             </td>
                                                             <td>
                                                                 <div style="border-bottom: solid; margin-bottom: 10px;"></div>
-                                                                <span class="porcentaje_1_boleta"></span>
+                                                                <span class="dsc_at_fonavi_monto"></span>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -8033,6 +8141,38 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 16px;">.</h1>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 16px;">.</h1>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 16px;">.</h1>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 16px;">.</h1>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4">
                                                             <h1 style="color: #000;font-weight: 600;font-size: 16px;">OTROS:</h1>
                                                         </div>
                                                         <div class="col-8">
@@ -8081,7 +8221,7 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 16px;">I.P.S.S.:</h1>
                                                         </div>
                                                         <div class="col-2">
-                                                            <h1 class="porcentaje_3_boleta" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                            <h1 class="dsc_at_ss_monto" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
                                                         </div>
 
                                                     </div>
@@ -8090,7 +8230,7 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 16px;">S.N.P.:</h1>
                                                         </div>
                                                         <div class="col-2">
-                                                            <h1 class="porcentaje_3_boleta" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                            <h1 class="dsc_at_pension_monto" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
                                                         </div>
 
                                                     </div>
@@ -8099,7 +8239,7 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 16px;">FONAVI:</h1>
                                                         </div>
                                                         <div class="col-2">
-                                                            <h1 class="porcentaje_1_boleta" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                            <h1 class="dsc_at_fonavi_monto" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
                                                         </div>
 
                                                     </div>
@@ -8150,7 +8290,7 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 16px;">I.P.S.S.:</h1>
                                                         </div>
                                                         <div class="col-2">
-                                                            <h1 class="porcentaje_6_boleta" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                            <h1 class="dsc_ap_ss_monto" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
                                                         </div>
 
                                                     </div>
@@ -8159,7 +8299,7 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 16px;">S.N.P.:</h1>
                                                         </div>
                                                         <div class="col-2">
-                                                            <h1 class="porcentaje_6_boleta" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                            <h1 class="dsc_ap_pension_monto" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
                                                         </div>
 
                                                     </div>
@@ -8168,7 +8308,7 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 16px;">FONAVI:</h1>
                                                         </div>
                                                         <div class="col-2">
-                                                            <h1 class="porcentaje_6_boleta" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                            <h1 class="dsc_ap_fonavi_monto" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
                                                         </div>
 
                                                     </div>
@@ -8242,13 +8382,13 @@
                                                             <td>L.S.S.S.P</td>
                                                             <td>Ocupacion</td>
                                                             <td>F. Ingreso</td>
-                                                            <td  colspan="2">Remuneracion</td>
+                                                            <td colspan="2">Remuneracion</td>
                                                         </tr>
                                                         <tr>
                                                             <td>&nbsp;</td>
                                                             <td class="cargo_imp">&nbsp;</td>
-                                                            <td>&nbsp;</td>
-                                                            <td>&nbsp;</td>
+                                                            <td class="fecha_ingreso_afiliado"></td>
+                                                            <td></td>
                                                             <td class="sueldo_afiliado">&nbsp;</td>
                                                         </tr>
                                                         <tr>
@@ -8321,13 +8461,13 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>S.S.C</td>
-                                                                <td class="porcentaje_6_boleta">&nbsp;</td>
-                                                                <td class="porcentaje_3_boleta">&nbsp;</td>
+                                                                <td class="dsc_ap_ss_monto">&nbsp;</td>
+                                                                <td class="dsc_at_ss_monto">&nbsp;</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Sis. Nac . Pens</td>
-                                                                <td class="porcentaje_6_boleta">&nbsp;</td>
-                                                                <td class="porcentaje_3_boleta">&nbsp;</td>
+                                                                <td class="dsc_ap_pension_monto">&nbsp;</td>
+                                                                <td class="dsc_at_pension_monto">&nbsp;</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>C.- No 19838</td>
@@ -8341,8 +8481,8 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>Otros</td>
-                                                                <td class="porcentaje_6_boleta">&nbsp;</td>
-                                                                <td class="porcentaje_1_boleta">&nbsp;</td>
+                                                                <td class="dsc_ap_fonavi_monto">&nbsp;</td>
+                                                                <td class="dsc_at_fonavi_monto">&nbsp;</td>
                                                             </tr>
                                                         </tbody>
 
@@ -8513,6 +8653,38 @@
                                                             <h1  class="rem_vaca_afiliado" style="color: #FF0000;font-weight: 600;font-size: 14px;"></h1>
                                                         </div>
                                                     </div>
+                                                    <div class="row">
+                                                        <div class="col-8 text-left" style="border-right: 2px dashed black; ">
+                                                            <h1  style="color: #000;font-weight: 600;font-size: 14px;">.</h1>
+                                                        </div>
+                                                        <div class="col-4 text-left">
+                                                            <h1  style="color: #FF0000;font-weight: 600;font-size: 14px;"></h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-8 text-left" style="border-right: 2px dashed black; ">
+                                                            <h1  style="color: #000;font-weight: 600;font-size: 14px;">.</h1>
+                                                        </div>
+                                                        <div class="col-4 text-left">
+                                                            <h1  style="color: #FF0000;font-weight: 600;font-size: 14px;"></h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-8 text-left" style="border-right: 2px dashed black; ">
+                                                            <h1  style="color: #000;font-weight: 600;font-size: 14px;">.</h1>
+                                                        </div>
+                                                        <div class="col-4 text-left">
+                                                            <h1  style="color: #FF0000;font-weight: 600;font-size: 14px;"></h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-8 text-left" style="border-right: 2px dashed black; ">
+                                                            <h1  style="color: #000;font-weight: 600;font-size: 14px;">.</h1>
+                                                        </div>
+                                                        <div class="col-4 text-left">
+                                                            <h1  style="color: #FF0000;font-weight: 600;font-size: 14px;"></h1>
+                                                        </div>
+                                                    </div>
 
                                                     <div class="row">
                                                         <div class="col-8 " style="border-top: 1px dashed black; border-bottom: 1px solid black; border-right: 2px dashed black; text-align: right !important;">
@@ -8535,7 +8707,7 @@
                                                         <h1 style="color: #000;font-weight: 600;font-size: 14px;">REG. PREST. SALUD 3%: </h1>
                                                     </div>
                                                     <div class="col-4 text-left">
-                                                        <h1 class="porcentaje_3_boleta" style="color: #FF0000;font-weight: 600;font-size: 14px;"></h1>
+                                                        <h1 style="color: #FF0000;font-weight: 600;font-size: 14px;"></h1>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -8543,7 +8715,7 @@
                                                         <h1 style="color: #000;font-weight: 600;font-size: 14px;">SIST. NAC. PENSIONES 3%: </h1>
                                                     </div>
                                                     <div class="col-4 text-left">
-                                                        <h1 class="porcentaje_3_boleta" style="color: #FF0000;font-weight: 600;font-size: 14px;"></h1>
+                                                        <h1 class="dsc_at_pension_monto" style="color: #FF0000;font-weight: 600;font-size: 14px;"></h1>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -8564,10 +8736,10 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-8 text-left" style="border-right: 2px dashed black; ">
-                                                        <h1 class="porcentaje_3_boleta" style="color: #000;font-weight: 600;font-size: 14px;">FONAVI 3%: </h1>
+                                                        <h1  style="color: #000;font-weight: 600;font-size: 14px;">FONAVI 3%: </h1>
                                                     </div>
                                                     <div class="col-4 text-left">
-                                                        <h1 style="color: #FF0000;font-weight: 600;font-size: 14px;"></h1>
+                                                        <h1 class="dsc_at_fonavi_monto" style="color: #FF0000;font-weight: 600;font-size: 14px;"></h1>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -8575,7 +8747,7 @@
                                                         <h1 style="color: #000;font-weight: 600;font-size: 14px;">CONTRIBUCIÓN IPSS. 1%: </h1>
                                                     </div>
                                                     <div class="col-4 text-left">
-                                                        <h1 class="porcentaje_1_boleta" style="color: #FF0000;font-weight: 600;font-size: 14px;"></h1>
+                                                        <h1 class="dsc_at_ss_monto" style="color: #FF0000;font-weight: 600;font-size: 14px;"></h1>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -8775,7 +8947,7 @@
                                                         <h1 style="color: #000;font-weight: 600;font-size: 14px;">S. S. P. </h1>
                                                     </div>
                                                     <div class="col-4 text-left">
-                                                        <h1 class="porcentaje_3_boleta" style="color: #FF0000;font-weight: 600;font-size: 14px;"></h1>
+                                                        <h1 class="dsc_at_ss_monto" style="color: #FF0000;font-weight: 600;font-size: 14px;"></h1>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -8783,7 +8955,7 @@
                                                         <h1 style="color: #000;font-weight: 600;font-size: 14px;">S. N. P. </h1>
                                                     </div>
                                                     <div class="col-4 text-left">
-                                                        <h1 class="porcentaje_3_boleta" style="color: #FF0000;font-weight: 600;font-size: 14px;"></h1>
+                                                        <h1 class="dsc_at_pension_monto" style="color: #FF0000;font-weight: 600;font-size: 14px;"></h1>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -8791,7 +8963,7 @@
                                                         <h1 style="color: #000;font-weight: 600;font-size: 14px;">FONAVI </h1>
                                                     </div>
                                                     <div class="col-4 text-left">
-                                                        <h1 class="porcentaje_1_boleta" style="color: #FF0000;font-weight: 600;font-size: 14px;">XX</h1>
+                                                        <h1 class="dsc_at_fonavi_monto" style="color: #FF0000;font-weight: 600;font-size: 14px;">XX</h1>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -9034,8 +9206,8 @@
                                                                 <tbody>
                                                                     <tr>
                                                                         <td>Seguro Social</th>
-                                                                        <td class="porcentaje_6_boleta"></td>
-                                                                        <td class="porcentaje_3_boleta"></td>
+                                                                        <td class="dsc_ap_ss_monto"></td>
+                                                                        <td class="dsc_at_ss_monto"></td>
                                                                         <td></td>
                                                                     </tr>
                                                                     <tr>
@@ -9047,8 +9219,8 @@
 
                                                                     <tr>
                                                                         <td>Sis. Nac. D Pens</th>
-                                                                        <td class="porcentaje_6_boleta"></td>
-                                                                        <td class="porcentaje_3_boleta"></td>
+                                                                        <td class="dsc_ap_pension_monto"></td>
+                                                                        <td class="dsc_at_pension_monto"></td>
                                                                         <td></td>
                                                                     </tr>
                                                                     <tr>
@@ -9065,8 +9237,8 @@
                                                                     </tr>
                                                                     <tr>
                                                                         <td>Fonavi</th>
-                                                                        <td class="porcentaje_6_boleta"></td>
-                                                                        <td class="porcentaje_1_boleta"></td>
+                                                                        <td class="dsc_ap_fonavi_monto"></td>
+                                                                        <td class="dsc_at_fonavi_monto"></td>
                                                                         <td></td>
                                                                     </tr>
                                                                     <tr>
@@ -9309,7 +9481,251 @@
                                         </div>
                                     </div>
                                     <div class="container prev_boleta" style="max-width: 1020px !important;" id="prev_boleta_14">
+                                        <div class="card" style="margin-top: 60px;">
+                                            <div class="card-header d-flex justify-content-between">
+                                                <h3>PREVISUALIZACIÓN</h3>
+                                                <div>
+                                                    <button class="btn btn-info" onclick="imprimir_boleta()">Imprimir</button>
+                                                </div>
+                                            </div>
+                                            <div id="contenido_boleta_14" class="card-body m-5 p-5">
+                                                <div class="text-center">
+                                                    <div style="text-align: center !important;">
+                                                        <h1 style="color: #000;font-weight: 600;font-size: 24px;"><u>BOLETA DE PAGO</u></h1>
+                                                    </div>
+                                                </div>
+                                                <div class="text-left">
+                                                    <div style="text-align: left !important;">
+                                                        <p class="emp_imp" style="color: dark;font-weight: 600;font-size: 20px;">EMPRESA AURIFERA GABY EIRLTDA.</p>
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <div>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 16px;">NOMBRES Y APELLIDOS: </h1>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <h1 class="nombre_afiliado" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXX</h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 16px;">FECHA DE INGRESO:</h1>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <h1 class="fecha_ingreso_afiliado" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 16px;">CONCEPTO DE LA REMUNERACION</h1>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;">Remuneracion <span class="mes_anio_imp"></span></h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 16px;">DIRECCION:</h1>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 16px;">SUELDO:</h1>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <h1 class="sueldo_afiliado" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 16px;">OTROS:</h1>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 16px;"><u>VACACIONES:</u></h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 16px;">SALIDA:</h1>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 16px;">REGRESO:</h1>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 16px;">FECHA DE CESE:</h1>
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 16px;"><u>APORTACIONES DEL TRABAJADOR:</u></h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 16px;">I.P.S.S.:</h1>
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <h1 class="dsc_at_ss_monto" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 16px;">S.N.P.:</h1>
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <h1 class="dsc_at_pension_monto" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 16px;">FONAVI:</h1>
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <h1 class="dsc_at_fonavi_monto" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 16px;">ADELANTO QUINCENA:</h1>
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 16px;">OTROS DESCUENTOS:</h1>
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 16px;">TOTAL DESCUENTOS:</h1>
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <h1 class="total_dsc_trabajador_boleta" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 16px;">NETO A PAGAR:</h1>
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                        </div>
+
+                                                        <div class="col-6">
+                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 16px;"><u>APORTACIONES DEL EMPLEADOR:</u></h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 16px;">I.P.S.S.:</h1>
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <h1 class="dsc_ap_ss_monto" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 16px;">S.N.P.:</h1>
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <h1 class="dsc_ap_pension_monto" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 16px;">FONAVI:</h1>
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <h1 class="dsc_ap_fonavi_monto" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 16px;">OTROS:</h1>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <h1 style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h1 style="color: #000;font-weight: 600;font-size: 16px;">TOTAL DESCUENTOS:</h1>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <h1 class="total_dsc_empleador_boleta" style="color: #FF0000;font-weight: 600;font-size: 16px;"></h1>
+                                                        </div>
+                                                    </div>
+                                                    <br><br>
+
+                                                    <div class="col">
+                                                        <p class="fecha_boleta">__________ de ________ de _________</p>
+                                                    </div>
+
+                                                    <br><br>
+                                                    <div class="text-center">
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <p style="color: #000;font-weight: 600;font-size: 16px;">.........................................................</p>
+                                                                <p class="emp_imp" class="emp_imp" style="color: dark;font-weight: 600;font-size: 16px;">EMPLEADOR</p>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <p style="color: #000;font-weight: 600;font-size: 16px;">.........................................................</p>
+                                                                <p style="color: #000;font-weight: 600;font-size: 16px;">TRABAJADOR</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+
                                     <div class="container prev_boleta" style="max-width: 1020px !important;" id="prev_boleta_15">
                                         <div class="card" style="margin-top: 60px;">
                                             <div class="card-header d-flex justify-content-between">
@@ -9549,10 +9965,10 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">Seguro Social</h1>
                                                         </div>
                                                         <div class="col-3">
-                                                            <h1 class="porcentaje_6_boleta" style="color: #000;font-weight: 600;font-size: 12px;">XXXXX</h1>
+                                                            <h1 class="dsc_ap_ss_monto" style="color: #000;font-weight: 600;font-size: 12px;">XXXXX</h1>
                                                         </div>
                                                         <div class="col-3">
-                                                            <h1 class="porcentaje_3_boleta" style="color: #000;font-weight: 600;font-size: 12px;">XXXXX</h1>
+                                                            <h1 class="dsc_at_ss_monto" style="color: #000;font-weight: 600;font-size: 12px;">XXXXX</h1>
                                                         </div>
                                                         <div class="col-2">
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;"></h1>
@@ -9564,10 +9980,10 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">Jubilacion </h1>
                                                         </div>
                                                         <div class="col-3">
-                                                            <h1  class="porcentaje_6_boleta" style="color: #000;font-weight: 600;font-size: 12px;">XXXXX</h1>
+                                                            <h1  class="dsc_ap_pension_monto" style="color: #000;font-weight: 600;font-size: 12px;">XXXXX</h1>
                                                         </div>
                                                         <div class="col-3">
-                                                            <h1 class="porcentaje_3_boleta" style="color: #000;font-weight: 600;font-size: 12px;">XXXXX</h1>
+                                                            <h1 class="dsc_at_pension_monto" style="color: #000;font-weight: 600;font-size: 12px;">XXXXX</h1>
                                                         </div>
                                                         <div class="col-2">
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;"></h1>
@@ -9594,10 +10010,10 @@
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;">FONAVI</h1>
                                                         </div>
                                                         <div class="col-3">
-                                                            <h1 class="porcentaje_6_boleta" style="color: #000;font-weight: 600;font-size: 12px;"></h1>
+                                                            <h1 class="dsc_ap_fonavi_monto" style="color: #000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
                                                         <div class="col-3">
-                                                            <h1 class="porcentaje_1_boleta" style="color: #000;font-weight: 600;font-size: 12px;"></h1>
+                                                            <h1 class="dsc_at_fonavi_monto" style="color: #000;font-weight: 600;font-size: 12px;"></h1>
                                                         </div>
                                                         <div class="col-2">
                                                             <h1 style="color: #000;font-weight: 600;font-size: 12px;"></h1>
@@ -9793,18 +10209,18 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>IPSS</td>
-                                                                <td class="porcentaje_3_boleta">&nbsp;</td>
-                                                                <td class="porcentaje_6_boleta">&nbsp;</td>
+                                                                <td class="dsc_at_ss_monto">&nbsp;</td>
+                                                                <td class="dsc_ap_ss_monto">&nbsp;</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>SNP</td>
-                                                                <td class="porcentaje_3_boleta"></td>
-                                                                <td class="porcentaje_6_boleta"></td>
+                                                                <td class="dsc_at_pension_monto"></td>
+                                                                <td class="dsc_ap_pension_monto"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>FONAVI</td>
-                                                                <td class="porcentaje_1_boleta"></td>
-                                                                <td class="porcentaje_6_boleta"></td>
+                                                                <td class="dsc_at_fonavi_monto"></td>
+                                                                <td class="dsc_ap_fonavi_monto"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>AFP-8</td>
@@ -10342,20 +10758,20 @@
                                                         <h1 style="color: #000;font-weight: 600;font-size: 9px;">SNP</h1>
                                                     </div>
                                                     <div class="col-2" style=" border-left: 1px dashed black;">
-                                                        <h1 class="porcentaje_3_boleta" style="color: #000;font-weight: 600;font-size: 9px;"></h1>
+                                                        <h1 class="dsc_at_pension_monto" style="color: #000;font-weight: 600;font-size: 9px;"></h1>
                                                     </div>
                                                     <div class="col-2" style=" border-left: 1px dashed black;">
                                                         <h1 style="color: #000;font-weight: 600;font-size: 9px;">FONAVI</h1>
                                                     </div>
                                                     <div class="col-2" style="border-left: 1px dashed black;">
-                                                        <h1 class="porcentaje_1_boleta" style="color: #000;font-weight: 600;font-size: 9px;"></h1>
+                                                        <h1 class="dsc_at_fonavi_monto" style="color: #000;font-weight: 600;font-size: 9px;"></h1>
                                                     </div>
                                                     <div class="col-2" style="border-left: 1px dashed black;">
                                                         <h1 style="color: #000;font-weight: 600;font-size: 9px;">IPSS</h1>
                                                     </div>
 
                                                     <div class="col-2" style="border-left: 1px dashed black; border-right: 1px dashed black;">
-                                                        <h1 class="porcentaje_3_boleta" style="color: #000;font-weight: 600;font-size: 9px;"></h1>
+                                                        <h1 class="dsc_at_ss_monto" style="color: #000;font-weight: 600;font-size: 9px;"></h1>
                                                     </div>
                                                 </div>
 
@@ -10471,13 +10887,13 @@
                                                                 <h1 style="color: #000;font-weight: 600;font-size: 9px;">SNP</h1>
                                                             </div>
                                                             <div class="col-5" style="border-left: 1px dashed black; border-right: 1px dashed black; ">
-                                                                <h1 class="porcentaje_6_boleta" style="color: #000;font-weight: 600;font-size: 9px;"></h1>
+                                                                <h1 class="dsc_ap_pension_monto" style="color: #000;font-weight: 600;font-size: 9px;"></h1>
                                                             </div>
                                                             <div class="col-5" style=" border-left: 1px dashed black;">
                                                                 <h1 style="color: #000;font-weight: 600;font-size: 9px;">FONAVI</h1>
                                                             </div>
                                                             <div class="col-5" style="border-left: 1px dashed black; border-right: 1px dashed black; ">
-                                                                <h1 class="porcentaje_6_boleta" style="color: #000;font-weight: 600;font-size: 9px;"></h1>
+                                                                <h1 class="dsc_ap_fonavi_monto" style="color: #000;font-weight: 600;font-size: 9px;"></h1>
                                                             </div>
                                                         </div>
                                                         <div class="row">
@@ -10486,7 +10902,7 @@
                                                             </div>
 
                                                             <div class="col-5" style="border-bottom: 1px dashed black; border-left: 1px dashed black; border-right: 1px dashed black; ">
-                                                                <h1 class="porcentaje_6_boleta" style="color: #000;font-weight: 600;font-size: 9px;"></h1>
+                                                                <h1 class="dsc_ap_ss_monto" style="color: #000;font-weight: 600;font-size: 9px;"></h1>
                                                             </div>
                                                         </div>
 
@@ -10494,26 +10910,26 @@
                                                     <div class="col-5">
                                                         <div class="row">
                                                             <div class="col-4" style=" border: 1px dashed black;">
-                                                                <h1 style="color: #000;font-weight: 600;font-size: 9px;">TOTAL INGRESOS</h1>
+                                                                <h1 class=""  style="color: #000;font-weight: 600;font-size: 9px;margin-top : 5px;">TOTAL INGRESOS</h1>
                                                             </div>
-                                                            <div class="col-2" style="border: 1px dashed black;">
-                                                                <h1 class="total_boleta" style="color: #000;font-weight: 600;font-size: 9px;"></h1>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-4" style=" border: 1px dashed black;">
-                                                                <h1 style="color: #000;font-weight: 600;font-size: 9px;">TOTAL DESCUENTOS</h1>
-                                                            </div>
-                                                            <div class="col-2" style="border: 1px dashed black;">
-                                                                <h1 class="total_dsc_trabajador_boleta" style="color: #000;font-weight: 600;font-size: 9px;"></h1>
+                                                            <div class="col-4 " style="border: 1px dashed black;">
+                                                                <h1 class="total_boleta" style="color: #000;font-weight: 600;font-size: 9px;margin-top : 5px;"></h1>
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-4" style=" border: 1px dashed black;">
-                                                                <h1 style="color: #000;font-weight: 600;font-size: 9px;">NETO A PAGAR</h1>
+                                                                <h1 class="" style="color: #000;font-weight: 600;font-size: 9px;margin-top : 5px;">TOTAL DESCUENTOS</h1>
                                                             </div>
-                                                            <div class="col-2" style="border: 1px dashed black;">
-                                                                <h1 class="total_neto_pagar_boleta" style="color: #000;font-weight: 600;font-size: 9px;"></h1>
+                                                            <div class="col-4 " style="border: 1px dashed black;">
+                                                                <h1 class="total_dsc_trabajador_boleta " style="color: #000;font-weight: 600;font-size: 9px;margin-top : 5px;"></h1>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-4 " style=" border: 1px dashed black;">
+                                                                <h1 class="" style="color: #000;font-weight: 600;font-size: 9px;margin-top : 5px;">NETO A PAGAR</h1>
+                                                            </div>
+                                                            <div class="col-4" style="border: 1px dashed black;">
+                                                                <h1 class="total_neto_pagar_boleta" style="color: #000;font-weight: 600;font-size: 9px;margin-top : 5px;"></h1>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -10521,7 +10937,8 @@
                                             </div>
 
                                         </div>
-                                    </div>    
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </div><!-- col-6 -->
@@ -10542,6 +10959,7 @@
         <?php 
             require_once("./modalboletas.php");
             require_once("./modalboletasdsc.php");
+            require_once("./modalboleta_info.php");
             require_once("../Main/mainjs.php"); 
         ?>
         <!--<script language="javascript">

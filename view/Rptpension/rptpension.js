@@ -950,7 +950,7 @@ function crearTabs(valor, orc, host) {
 
     // Crear tabs dinámicamente
     for (var i = 1; i <= orc; i++) {
-        var tabContent = '<div class="tab-pane fade" id="content' + i + '"><input type="hidden" id="num_emp">';
+        var tabContent = '<div class="tab-pane fade" id="content' + i + '"><input type="hidden" id="num_emp"><input type="hidden" id="tiempo_imp'+i+'">';
         tabContent += '<div class="contenedores_emp" id="contenedor_emp'+ i +'">';
         tabContent += '     <br>';    
         tabContent += '     <input  type="hidden" id="nombre_emp'+ i +'" name="nombre_emp">';
@@ -963,6 +963,7 @@ function crearTabs(valor, orc, host) {
         tabContent += '     <input  type="hidden" id="tipo_emp'+ i +'" name="tipo_emp">';
         tabContent += '     <input  type="hidden" id="logo_nombre'+ i +'" name="logo_nombre">';
         tabContent += '     <input type="hidden" id="firmante_emp'+ i +'" name="firmante_emp">';
+        tabContent += '     <input type="hidden" id="ruc_emp'+ i +'" name="ruc_emp">';
         tabContent += '     <h5 class="text-center" id="nom_emp_lab'+ i +'"></h5>';
         tabContent += '     <br>';
         tabContent += '     <ul class="nav nav-tabs mb-3" id="pills-tab'+ i +'" role="tablist" style="border-bottom : 0px">';
@@ -1303,7 +1304,7 @@ function crearTabs(valor, orc, host) {
     }
 
     for (var i = 5; i <= ht; i++) {
-        var tabContent = '<div class="tab-pane fade" id="content' + i + '">';
+        var tabContent = '<div class="tab-pane fade" id="content' + i + '"><input type="hidden" id="tiempo_imp'+i+'">';
         tabContent += '<div class="contenedores_emp" id="contenedor_emp'+ i +'">';
         tabContent += '     <br>';    
         tabContent += '     <input  type="hidden" id="nombre_emp'+ i +'" name="nombre_emp">';
@@ -1316,6 +1317,7 @@ function crearTabs(valor, orc, host) {
         tabContent += '     <input  type="hidden" id="tipo_emp'+ i +'" name="tipo_emp">';
         tabContent += '     <input  type="hidden" id="logo_nombre'+ i +'" name="logo_nombre">';
         tabContent += '     <input type="hidden" id="firmante_emp'+ i +'" name="firmante_emp">';
+        tabContent += '     <input type="hidden" id="ruc_emp'+ i +'" name="ruc_emp">';
         tabContent += '     <h5 class="text-center" id="nom_emp_lab'+ i +'"></h5>';
         tabContent += '     <br>';
         tabContent += '     <ul class="nav nav-tabs mb-3" id="pills-tab'+ i +'" role="tablist" style="border-bottom : 0px">';
@@ -1656,7 +1658,7 @@ function crearTabs(valor, orc, host) {
     }
 
     for (var i = 9; i <= emp; i++) {
-        var tabContent = '<div class="tab-pane fade" id="content' + i + '">';
+        var tabContent = '<div class="tab-pane fade" id="content' + i + '"><input type="hidden" id="tiempo_imp'+i+'">';
         tabContent += '<div class="contenedores_emp" id="contenedor_emp'+ i +'">';
         tabContent += '     <br>';    
         tabContent += '     <input  type="hidden" id="nombre_emp'+ i +'" name="nombre_emp">';
@@ -1669,6 +1671,7 @@ function crearTabs(valor, orc, host) {
         tabContent += '     <input  type="hidden" id="tipo_emp'+ i +'" name="tipo_emp">';
         tabContent += '     <input  type="hidden" id="logo_nombre'+ i +'" name="logo_nombre">';
         tabContent += '     <input type="hidden" id="firmante_emp'+ i +'" name="firmante_emp">';
+        tabContent += '     <input type="hidden" id="ruc_emp'+ i +'" name="ruc_emp">';
         tabContent += '     <h5 class="text-center" id="nom_emp_lab'+ i +'"></h5>';
         tabContent += '     <br>';
         tabContent += '     <ul class="nav nav-tabs mb-3" id="pills-tab'+ i +'" role="tablist" style="border-bottom : 0px">';
@@ -2279,7 +2282,6 @@ function creardivsempresa(){
                                 "<input type='hidden' value='0' id='dias_emp_"+i+"'>"+
                                 "<input type='hidden' value='' id='cant_sueldo_"+i+"'>"+
                                 //"<div class='pd-b-10 text-center fw-lighter fst-italic pb-2 border-bottom border-top border-info ' style='font-size: 13px;' >Tiempo de servicio: <label id='tiempo_"+i+"' ></label></div>"+
-                                "<div class=' text-center fw-lighter fst-italic pb-2 border-bottom border-info ' style='font-size: 13px;' >Último sueldo: <label id='fech_sueldo_"+i+"' ></label></div>"+
                                 "<div class='row mb-3 mt-2 '>"+
                                     "<label for='cargoc"+i+"' class='col-sm-3 col-form-label'>Cargo:</label>"+
                                     "<div class='col-sm-9'>"+
@@ -2441,7 +2443,7 @@ function mostrardetalle(a, b, c){
     }
 
     //setear en hidden el logo
-    $('#logo_nombre').val(logos);
+    $('#logo_nombre'+ num).val(logos);
 
     switch (a) {
         case 1:
@@ -2584,13 +2586,28 @@ function mostrardetalle(a, b, c){
             
             
             
-                            nom = $('#nom_emp_lab').val();
+                            nom = $('#nom_emp_lab'+num).val();
                             var dpto1= $('#dpto_emp_'+a).val();
                             nombres= $('#txtnombre').val();
                             apelli= $('#txtapellido').val();
                             tmp = parseInt($('#anios_emp_'+a).val(),"10");
                             tot = tmp * 132;
                             firm = $('#firmante'+a).val();
+
+                             //Asignar valores a TabsEmpresa
+                             $('#nom_emp_lab'+ num).html(data[0]['empleador']);
+                             $('#nombre_emp'+num).val(data[0]['empleador']);
+                             $('#cargo_emp'+num).val(cargo);
+                             $('#fech_inicio_emp'+num).val(fechai);
+                             $('#fech_final_emp'+num).val(fechaf)
+                             $('#dpto_emp'+num).val(dpto1);
+                             $('#logo_nombre'+num).val(logos);
+                             $('#firmante_emp'+num).val(firm)
+                             $('#sueldo_emp'+num).val(data[0]['fechsueldo']);
+                             $('#moneda_emp'+num).val(data[0]['moneda_rm']);
+                             $('#tiempo_imp'+ num).html(tmp +" Años");
+                             
+
                     
                             //$('.emp_imp').html(nom);
                             $('.nombre_imp').html(nombres+" "+apelli);
@@ -2612,21 +2629,21 @@ function mostrardetalle(a, b, c){
                             $('.desde_imp_num').html(convertDateFormat(fech1));
                             $('.hasta_imp_num').html(convertDateFormat(fech_final_1));
                             $('.lugardia_num').html(dpto1 +", "+convertDateFormat(fech_final_1));
-                            $('#sueldo_emp'+ a).val(data[0]['fechsueldo']);
-                            $('#moneda_emp'+ a).val(data[0]['moneda_rm']);
+                            $('#sueldo_emp'+ num).val(data[0]['fechsueldo']);
+                            $('#moneda_emp'+ num).val(data[0]['moneda_rm']);
                             //sumarfechas();
     
     
                             /* LIQUIDACION */
-                            $('#dias_liqui'+ a).val(data[0]['Dias']);
-                            $('#meses_liqui'+ a).val(data[0]['Meses']);
-                            $('#anios_liqui'+ a).val(data[0]['Anios']);
-    
-                            $('#sueldo_liquidacion').val(data[0]['fechsueldo']);
+                            $('#dias_liqui'+ num).val(data[0]['Dias']);
+                            $('#meses_liqui'+ num).val(data[0]['Meses']);
+                            $('#anios_liqui'+ num).val(data[0]['Anios']);
+                            $('#ruc_emp'+ num).val(data[0]['ruc']);
+                            $('#sueldo_liquidacion'+ num).val(data[0]['fechsueldo']);
     
                             SumarAniosEmpresas(a);
-                            MostrarCertificados(data[0]['tipo_emp'], a);
-                            MostrarLiquidacion(fech_final_1, data[0]['tipo_emp']);
+                            MostrarCertificados(data[0]['tipo_emp'], num);
+                            MostrarLiquidacion(fech_final_1, data[0]['tipo_emp'], num);
                             $('#tipo_emp'+a).val(data[0]['tipo_emp']);
     
                             /*OBETNER COMBO FIRMANTE */
@@ -2677,6 +2694,21 @@ function mostrardetalle(a, b, c){
                             tmp = parseInt($('#anios_emp_'+a).val(),"10");
                             tot = tmp * 132;
                             firm = $('#firmante'+a).val();
+
+
+                            //Asignar valores a TabsEmpresa
+                            $('#nom_emp_lab'+ num).html(data[0]['empleador']);
+                            $('#nombre_emp'+num).val(data[0]['empleador']);
+                            $('#cargo_emp'+num).val(cargo);
+                            $('#fech_inicio_emp'+num).val(fechai);
+                            $('#fech_final_emp'+num).val(fechaf)
+                            $('#dpto_emp'+num).val(dpto1);
+                            $('#logo_nombre'+num).val(logos);
+                            $('#firmante_emp'+num).val(firm)
+                            $('#sueldo_emp'+num).val(data[0]['fechsueldo']);
+                            $('#moneda_emp'+num).val(data[0]['moneda_rm']);
+                            $('#tiempo_imp'+ num).html(tmp +" Años");
+                            
                     
                             //$('.emp_imp').html(nom);
                             $('.nombre_imp').html(nombres+" "+apelli);
@@ -2699,20 +2731,21 @@ function mostrardetalle(a, b, c){
                             $('.desde_imp_num').html(convertDateFormat(fech1));
                             $('.hasta_imp_num').html(convertDateFormat(fech_final_1));
                             $('.lugardia_num').html(dpto1 +", "+convertDateFormat(fech_final_1));
-                            $('#sueldo_emp'+ a).val(data[0]['fechsueldo']);
-                            $('#moneda_emp'+ a).val(data[0]['moneda_rm']);
+                            $('#sueldo_emp'+ num).val(data[0]['fechsueldo']);
+                            $('#moneda_emp'+ num).val(data[0]['moneda_rm']);
                             //sumarfechas();
     
     
                             /* LIQUIDACION */
-                            $('#dias_liqui'+ a).val(data[0]['Dias']);
-                            $('#meses_liqui'+ a).val(data[0]['Meses']);
-                            $('#anios_liqui'+ a).val(data[0]['Anios']);
-                            $('#sueldo_liquidacion').val(data[0]['fechsueldo']);
+                            $('#dias_liqui'+ num).val(data[0]['Dias']);
+                            $('#meses_liqui'+ num).val(data[0]['Meses']);
+                            $('#anios_liqui'+ num).val(data[0]['Anios']);
+                            $('#ruc_emp'+ num).val(data[0]['ruc']);
+                            $('#sueldo_liquidacion'+ num).val(data[0]['fechsueldo']);
     
                             SumarAniosEmpresas(a);
-                            MostrarCertificados(data[0]['tipo_emp'], a);
-                            MostrarLiquidacion(fech_final_1, data[0]['tipo_emp'], a);
+                            MostrarCertificados(data[0]['tipo_emp'], num);
+                            MostrarLiquidacion(fech_final_1, data[0]['tipo_emp'], num);
     
                             /*OBETNER COMBO FIRMANTE */
                             /*$.post("../../controller/firmacontrolador.php?op=combo",{numero : data[0]['ruc']}, function(data){
@@ -2912,7 +2945,7 @@ function CargarOrcinea(a){
     let nombres= $('#txtnombre').val();
     let apelli= $('#txtapellido').val();
     let logos = $('#logo_orcinea_'+a).val();
-    $('#logo_nombre').val(logos);
+    $('#logo_nombre'+ a).val(logos);
     let dpto1 = "LIMA";
     var options = { year: 'numeric', month: 'long', day: 'numeric' };
     var cant = $('#txtcant_orcinea').val();
@@ -2970,11 +3003,20 @@ function CargarOrcinea(a){
                 $("#cant_orcinea_"+a).val(mensaje);
                 sumartiempo();
 
-                //Asignar valores al Panel de Empresa
-                $('#nom_emp_lab').html(nombre_emp);
-                $('#fech_inicio_emp').val(fech1);
-                $('#fech_final_emp').val(fech1f);
-                $('#cargo_emp').val(cargo);
+
+                //Asignar valores a TabsEmpresa
+                $('#nom_emp_lab'+ a).html(nombre_emp);
+                $('#nombre_emp'+ a).val(nombre_emp);
+                $('#cargo_emp'+ a).val(cargo);
+                $('#fech_inicio_emp'+ a).val(fechai);
+                $('#fech_final_emp'+ a).val(fechaf)
+                $('#dpto_emp'+ a).val(dpto1);
+                $('#logo_nombre'+ a).val(logos);
+                $('#firmante_emp'+ a).val(firmante);
+                $('#tiempo_imp'+ a).html(anios_orcinea +" Años");
+                //$('#sueldo_emp'+ a).val(data[0]['fechsueldo']);
+                //$('#moneda_emp'+ a).val(data[0]['moneda_rm']);
+
                 
                 $('.emp_imp').html(nombre_emp);
                 $('.nombre_imp').html(nombres+" "+apelli);
@@ -2999,16 +3041,17 @@ function CargarOrcinea(a){
                 $('.lugardia_num').html(dpto1 +", "+convertDateFormat(fech1f));
 
                 /* LIQUIDACION */
-                $('#dias_liqui').val(dias_orcinea);
-                $('#meses_liqui').val(meses_orcinea);
-                $('#anios_liqui').val(anios_orcinea);
+                $('#dias_liqui'+ a).val(dias_orcinea);
+                $('#meses_liqui'+ a).val(meses_orcinea);
+                $('#anios_liqui'+ a).val(anios_orcinea);
+                $('#ruc_emp'+ a).val("orc-"+a);
 
                 $.post("../../controller/pensioncontrolador.php?op=buscar_mes",{fecha : fech1f}, function(data){
                     if(data != ""){
                         data = JSON.parse(data);
-                        $('#sueldo_liquidacion').val(data.sueldo_minimo);
-                        $('#sueldo_emp').val(data.sueldo_minimo);
-                        $('#moneda_emp').val(data.unidad_moneda);
+                        $('#sueldo_liquidacion'+ a).val(data.sueldo_minimo);
+                        $('#sueldo_emp'+ a).val(data.sueldo_minimo);
+                        $('#moneda_emp'+ a).val(data.unidad_moneda);
                         //console.log(data);
                         /*$('#at_ss').val(data.at_ss);
                         $('#at_fonavi').val(data.at_pro_desocup);
@@ -3064,9 +3107,11 @@ function CargarOrcinea(a){
     $('#orcinea-tab').click();
 }
 function CargarHost(a){
+    let e = Number(a + 4);
     //console.log(a);
-    $('#form_liqui')[0].reset();
-    $('#form_bol')[0].reset();
+    $('#form_liqui'+ e)[0].reset();
+    $('#form_bol'+ e)[0].reset();
+    $('#contenedor_emp'+ e).show();
     anios_host = 0;
     meses_host = 0;
     dias_host = 0;
@@ -3082,7 +3127,7 @@ function CargarHost(a){
     let mananaf = moment(fechnc).add(16, 'years').format('YYYY-MM-DD');
     let firmante = $('#firmante_host_'+a).val();
     let logos = $('#logo_host_'+a).val();
-    $('#logo_nombre').val(logos);
+    $('#logo_nombre'+ e).val(logos);
     let dpto1 = "LIMA";
     var cant = $('#txtcant_host').val();
     //Agregar un dia a la siguiente empresa
@@ -3169,16 +3214,29 @@ function CargarHost(a){
                 $('.lugardia_num').html(dpto1 +", "+convertDateFormat(fech1f));
 
                 /* LIQUIDACION */
-                $('#dias_liqui').val(dias_orcinea);
-                $('#meses_liqui').val(meses_orcinea);
-                $('#anios_liqui').val(anios_orcinea);
+                $('#dias_liqui' + e).val(dias_orcinea);
+                $('#meses_liqui' + e).val(meses_orcinea);
+                $('#anios_liqui' + e).val(anios_orcinea);
+
+
+                //Asignar valores a TabsEmpresa
+                $('#nom_emp_lab'+ e).html(nombre_emp);
+                $('#nombre_emp'+ e).val(nombre_emp);
+                $('#cargo_emp'+ e).val(cargo);
+                $('#fech_inicio_emp'+ e).val(fechai);
+                $('#fech_final_emp'+ e).val(fechaf)
+                $('#dpto_emp'+ e).val(dpto1);
+                $('#logo_nombre'+ e).val(logos);
+                $('#firmante_emp'+ e).val(firmante);
+                $('#tiempo_imp'+ e).html(anios_host +" Años");
+                $('#ruc_emp'+ e).val("host-"+a);
 
                 $.post("../../controller/pensioncontrolador.php?op=buscar_mes",{fecha : fech1f}, function(data){
                     if(data != ""){
                         data = JSON.parse(data);
-                        $('#sueldo_liquidacion').val(data.sueldo_minimo);
-                        $('#sueldo_emp').val(data.sueldo_minimo);
-                        $('#moneda_emp').val(data.unidad_moneda);
+                        $('#sueldo_liquidacion'+ e).val(data.sueldo_minimo);
+                        $('#sueldo_emp'+ e).val(data.sueldo_minimo);
+                        $('#moneda_emp'+ e).val(data.unidad_moneda);
                         //console.log(data);
                         /*$('#at_ss').val(data.at_ss);
                         $('#at_fonavi').val(data.at_pro_desocup);
@@ -3198,9 +3256,9 @@ function CargarHost(a){
                 });
 
 
-                MostrarCertificados(tipo_orc);
-                MostrarLiquidacion(fech1f, tipo_orc);
-                $("#contemp1").show();
+                MostrarCertificados(tipo_orc, e);
+                MostrarLiquidacion(fech1f, tipo_orc, e);
+                //$("#contemp1").show();
                 $("#prev1").show();
 
             }else {
@@ -3988,20 +4046,13 @@ function OcultarPrev(){
 function imprimir_word(e){
 
 
-    // swal.fire({
-    //     title: "Cargando...",
-    //     text: "Por favor, espera un momento.",
-    //     allowOutsideClick: false, // Evita que el usuario cierre el modal haciendo clic fuera de él
-    //     onOpen: () => {
-    //         swal.showLoading(); // Muestra el ícono de carga en el modal
-    //     }
-    // });
-    var tipo = $('#tipo_emp').val();
+   
+    var tipo = $('#tipo_emp'+ e).val();
     let tipoprev = $('#select_certificado'+ e).val();MostrarBoleta()
     let nombreruta = 'certificado_'+tipoprev;
     var nombre = $('#txtnombre').val();
     var apellido = $('#txtapellido').val();
-    var nombre_emp = $('#nom_emp_lab').html();
+    var nombre_emp = $('#nom_emp_lab'+ e).html();
     var nombre_com = nombre + ' ' + apellido;
     var num_doc = $('#num_doc').val();
     var nom_carpeta = "REPORTE-PENSIONES-"+ num_doc;
@@ -4013,7 +4064,7 @@ function imprimir_word(e){
     var cargo = $('#cargo_emp'+ e).val();
     var logo = $('#logo_nombre'+ e).val();
     var firmante = $('.firmante_nom').html();
-    
+    var ruc = $('#ruc_emp'+ e).val();
 
     $.ajax({
         type: "POST",
@@ -4032,11 +4083,12 @@ function imprimir_word(e){
             cargo : cargo,
             tipo : tipo,
             logo : logo,
-            firmante : firmante
+            firmante : firmante,
+            ruc: ruc
         },
         success: function(response){
            
-           //console.log(response);
+           console.log(response);
            resp = JSON.parse(response);
            if(resp.estado == 1){
                swal.fire(
@@ -4062,30 +4114,7 @@ function imprimir_word(e){
 
            // Eliminar el elemento <a> del DOM después de la descarga
            document.body.removeChild(link);
-            /*if( response != "" )
-            {
-                let data_return = JSON.parse(response);
-                if( data_return['status'] == 0 )
-                {
-                    //alert(data_return['message'] + ": "  + data_return['data']['file_zip'] + " - Archivos creados en el zip: " + data_return['data']['numFiles'] );
-                    swal.close();    
-                    var enlace = document.createElement('a');
-                    enlace.href = '../../files/' + nom_carpeta+"/"+nom_carpeta+".zip";
-                    enlace.download = nom_carpeta+".zip";
-                    enlace.style.display = 'none';
-                    document.body.appendChild(enlace);
-                    enlace.click();
-                    document.body.removeChild(enlace);
-                }
-                else
-                {
-                    console.log("Sucedio un error en el servidor");
-                }
-            }
-            else
-            {
-                console.log("Sucedio un error en el servidor");
-            }*/
+            
         }
     });
 }
@@ -4093,7 +4122,7 @@ function imprimir_word(e){
 function imprimir_liquidacion_word(e){
 
     var nombreruta;          
-    var cuerpo              = $('#combo_prev_cuerpo').val();
+    var cuerpo              = $('#combo_prev_cuerpo'+ e).val();
     var nombre              = $('#txtnombre').val();
     var apellido            = $('#txtapellido').val();
     var nombre_emp          = $('#nom_emp_lab'+ e).html();
@@ -4118,6 +4147,7 @@ function imprimir_liquidacion_word(e){
     var fecha_final         = $("#fech_final_emp"+ e).val();
     var fecha               = new Date(fecha_final);
     var anio                = fecha.getFullYear();
+    var ruc = $('#ruc_emp').val();
 
     //Elegir el doc de liquidacion por año
     if(anio >= 1960 && anio <= 1970){
@@ -4155,6 +4185,7 @@ function imprimir_liquidacion_word(e){
     formData.append('bonif_dias', bonif_dias);
     formData.append('anio_final', anio);  
     formData.append('cuerpo', cuerpo);  
+    formData.append('ruc', ruc); 
 
     $.ajax({
         type: "POST",
@@ -4191,32 +4222,100 @@ function imprimir_liquidacion_word(e){
 
             // Eliminar el elemento <a> del DOM después de la descarga
             document.body.removeChild(link);
-            // if( response != "" )
-            // {
-            //     let data_return = JSON.parse(response);
-            //     if( data_return['status'] == 0 )
-            //     {
-            //         //alert(data_return['message'] + ": "  + data_return['data']['file_zip'] + " - Archivos creados en el zip: " + data_return['data']['numFiles'] );
-            //         swal.close();    
-            //         var enlace = document.createElement('a');
-            //         enlace.href = '../../files/' + nom_carpeta+"/"+nom_carpeta+".zip";
-            //         enlace.download = nom_carpeta+".zip";
-            //         enlace.style.display = 'none';
-            //         document.body.appendChild(enlace);
-            //         enlace.click();
-            //         document.body.removeChild(enlace);
-            //     }
-            //     else
-            //     {
-            //         alert("Sucedio un error en el servidor");
-            //     }
-            // }
-            // else
-            // {
-            //     alert("Sucedio un error en el servidor");
-            // }
+            
         }
     });
+}
+
+function imprimir_liquidacion_boleta(e){
+
+    var nombreruta          = 'boleta_1.php'; 
+    var boleta              = $('#combo_prev_boleta'+ e).val();
+    var nombre              = $('#txtnombre').val();
+    var apellido            = $('#txtapellido').val();
+    var nombre_emp          = $('#nom_emp_lab'+ e).html();
+    var nombre_com          = nombre + ' ' + apellido;
+    var num_doc             = $('#num_doc').val();
+    var nom_carpeta         = "PENSIONES-"+ num_doc;
+    var fecha_inicio        = $('.desde_imp').html();
+    var fecha_hasta         = $('.hasta_imp').html();
+    var fecha_inicio_num    = $('.desde_imp_num').html();
+    var fecha_hasta_num     = $('.hasta_imp_num').html();
+    var lugar_dia           = $('.lugardia').html();
+    var cargo               = $('#cargo_emp'+ e).val();
+    var sueldo              = $('#sueldo_emp'+ e).val();
+    var moneda              = $('#moneda_emp'+ e).val();
+    var motivo              = $('select[name="combo_prev_liqui'+ e +'"] option:selected').text();
+    //Agregar año para la condicional 
+    var fecha_final         = $("#fech_final_emp"+ e).val();
+    var fecha               = new Date(fecha_final);
+    var anio                = fecha.getFullYear();
+
+    //datos de la boleta
+    var total_boleta = $('.total_boleta').html();
+    var total_neto_1 = $('.total_neto_1').html();
+    var mes_anio = $('.mes_anio_imp').html();
+
+    // Serializa el formulario
+    var formData = new FormData($('#form_bol'+ e)[0]);
+
+    // Agrega los datos adicionales al objeto FormData
+    formData.append('nombre', nombre); 
+    formData.append('apellido', apellido);
+    formData.append('empresa', nombre_emp); 
+    formData.append('afiliado', nombre_com);
+    formData.append('nombre_carpeta', nom_carpeta); 
+    formData.append('fecha_inicio', fecha_inicio); 
+    formData.append('fecha_final', fecha_hasta); 
+    formData.append('fecha_inicio_num', fecha_inicio_num);
+    formData.append('fecha_final_num', fecha_hasta_num); 
+    formData.append('fecha_footer', lugar_dia);   
+    formData.append('cargo', cargo);  
+    formData.append('sueldo', sueldo);   
+    formData.append('moneda', moneda);  
+    formData.append('motivo', motivo); 
+    formData.append('anio_final', anio);  
+    formData.append('total_boleta', total_boleta); 
+    formData.append('total_neto_1', total_neto_1); 
+    formData.append('mes_anio', mes_anio); 
+
+    $.ajax({
+        type: "POST",
+        url: "../../controller/docs/"+nombreruta,
+        data : formData,
+        processData: false, // Evita que jQuery procese los datos (necesario al usar FormData)
+        contentType: false, // No establece el tipo de contenido (necesario al usar FormData)
+        success: function(response){  
+            console.log(response);
+            resp = JSON.parse(response);
+            if(resp.estado == 1){
+                    swal.fire(
+                        'Documento generado exitosamente',
+                        '',
+                        'success'
+                    );
+            }
+            // URL del archivo que deseas descargar
+            var url = '../../files/'+nom_carpeta+'/'+resp.archivo+'.docx';
+
+            // Crear un elemento <a> oculto
+            var link = document.createElement('a');
+            link.href = url;
+            link.download = resp.archivo+'-'+num_doc; // Nombre del archivo para descargar
+            link.style.display = 'none';
+
+            // Añadir el elemento <a> al DOM
+            document.body.appendChild(link);
+
+            // Simular un clic en el enlace para iniciar la descarga
+            link.click();
+
+            // Eliminar el elemento <a> del DOM después de la descarga
+            document.body.removeChild(link);
+           
+        }
+    });
+
 }
 
 function imprimir_certificado(){
@@ -4592,6 +4691,7 @@ $(document).on("click","#orcinea-tab", function(){
     $("#prev2").hide();
     $("#prev3").hide();
 });
+
 function PrevLiquidacion(e){
     OcultarPrev();
     $("#prev1").hide();
@@ -5194,7 +5294,9 @@ function PrevCertificado(e) {
     let dpto1;
     let logos;
     let firm;
+    let tiempo_anio;
     
+    //datos para orcinea
     if(e > 0 && e < 5){
         //DATOS  nombre completo, Finicio, Ffinal, Cargo, firmante
 
@@ -5207,9 +5309,11 @@ function PrevCertificado(e) {
         logos = $('#logo_orcinea_'+e).val();
         $('#logo_nombre'+e).val(logos);
         dpto1 = "LIMA";
+        tiempo_anio = $('#tiempo_imp'+ e).val();
     }
-
-    if(e > 8 && e < 15){
+  
+    //Datos para empresa
+    if(e > 4 && e < 15){
         //DATOS  nombre completo, Finicio, Ffinal, Cargo, firmante
         nom = $('#nombre_emp'+ e).val();
         cargo = $('#cargo_emp'+ e).val();
@@ -5218,25 +5322,59 @@ function PrevCertificado(e) {
         dpto1 = $('#dpto_emp'+ e).val();
         logos = $('#logo_nombre'+ e).val();
         firm = $('#firmante_emp'+ e).val();
+        tiempo_anio = $('#tiempo_imp'+ e).val();
     }
     
     let fecha1 = new Date(fechai);
     let fecha2 = new Date(fechaf);
+    let fecha1num = moment(fecha1).format('DD-MM-YYYY');
+    let fecha2num = moment(fecha2).format('DD-MM-YYYY');
+
+    console.log("Nombre de Empresa:" + nom);
+    console.log("Fecha1: " + fecha1);
+    console.log("Fecha 2 : "+ fecha2);
+    
     //Asignar datos
     $('.emp_imp').html(nom);
     $('.cargo_imp').html(cargo);
 
     $('.desde_imp').html(fecha1.toLocaleDateString("es-ES", options).toUpperCase());
     $('.hasta_imp').html(fecha2.toLocaleDateString("es-ES", options).toUpperCase());
+    $('.desde_imp_num').html(fecha1num);
+    $('.hasta_imp_num').html(fecha2num);
     $('.lugardia').html(dpto1+", "+fecha2.toLocaleDateString("es-ES", options).toUpperCase());
     $('.desde_imp_low').html(fecha1.toLocaleDateString("es-ES", options));
     $('.hasta_imp_low').html(fecha2.toLocaleDateString("es-ES", options));
     $('.lugardia_low').html(dpto1+", "+fecha2.toLocaleDateString("es-ES", options));
-    $('.tiempo_total_imp').html(temp);
+    $('.tiempo_imp').html(tiempo_anio);
+
+    //$('.tiempo_total_imp').html(temp);
     $('.img_logo').attr("src","../../assets/img/"+logos);
     $('.firmante_nom').html(firm);
     $('.departamento_imp').html(dpto1.toUpperCase());
     $('.cargo_imp_low').html(cargo.toLowerCase());
+
+}
+
+function calcularTotalBoletaInfo(){
+    let e = $('#num_emp').val();
+    let sueldo_boleta = $('#sueldo_boleta_info').val();
+    let h_extras_boleta = $('#horaex_boleta_info').val();
+    let boni_boleta = $('#boni_boleta_info').val();
+    let rm_vacacional = $('#rm_vacacional_boleta_info').val();
+    let reintegro_boleta = $('#reintegro_boleta_info').val();
+    let otros_boleta = $('#otros_boleta_info').val();
+    let total ;
+
+    total = Number(sueldo_boleta) + Number(h_extras_boleta) + Number(boni_boleta) + Number(rm_vacacional)+ Number(reintegro_boleta) + Number(otros_boleta);
+    //console.log(total);
+    $('#total_monto_boleta'+ e).val(total);
+    $('#sueldo_boleta'+ e).val(sueldo_boleta);
+    $('#horaex_boleta'+ e).val(h_extras_boleta);
+    $('#boni_boleta'+ e).val(boni_boleta);
+    $('#rm_vacacional_boleta'+ e).val(rm_vacacional);
+    $('#reintegro_boleta'+ e).val(reintegro_boleta);
+    $('#otros_boleta'+ e).val(otros_boleta);
 }
 
 //metodo ya no se usa
@@ -5263,5 +5401,54 @@ $(document).on("click","#btnclosemodal_info", function(){
 
     $("#modalboleta_info").modal('hide');
 });
+
+function DescargarZip(){
+    console.log("Descargar ZIP");
+
+    var num_doc             = $('#num_doc').val();
+    var nom_carpeta         = "REPORTE-PENSIONES-"+ num_doc;
+    var nombre              = $('#txtnombre').val();
+    var apellido            = $('#txtapellido').val();
+    var nombre_com          = nombre + ' ' + apellido;
+
+    // Realizar la solicitud AJAX
+    $.ajax({
+        url: "../../controller/docs/certificadosword.php",
+        method: "POST", // Método HTTP (GET, POST, PUT, DELETE, etc.)
+        data: {
+            nombre_carpeta:  nom_carpeta,
+            afiliado: nombre_com
+        },
+        dataType: "json",
+        success: function (data) {
+            // La función que se ejecutará si la solicitud tiene éxito
+            //console.log("Datos recibidos:", data);
+            if(data.status == 0){
+                //console.log(data.data.file_zip);
+                 // URL del archivo que deseas descargar
+                var url = '../../files/zips/'+data.data.file_zip;
+
+                // Crear un elemento <a> oculto
+                var link = document.createElement('a');
+                link.href = url;
+                link.download = data.data.file_zip; // Nombre del archivo para descargar
+                link.style.display = 'none';
+
+                // Añadir el elemento <a> al DOM
+                document.body.appendChild(link);
+
+                // Simular un clic en el enlace para iniciar la descarga
+                link.click();
+
+                // Eliminar el elemento <a> del DOM después de la descarga
+                document.body.removeChild(link);
+            }
+        },
+        error: function (error) {
+            // La función que se ejecutará si hay un error en la solicitud
+            console.error("Error en la solicitud:", error);
+        }
+    });
+}
 
 init();

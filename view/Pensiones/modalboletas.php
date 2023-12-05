@@ -124,9 +124,9 @@
                                         <tfoot>
                                             <tr>
                                                 <td>Total</td>
-                                                <td><input id="dic_total" class="table_row" type="number" value="" disabled ></td>
-                                                <td><input id="ene_total" class="table_row" type="number" value="" disabled ></td>
-                                                <td><input id="feb_total" class="table_row" type="number" value="" disabled ></td>
+                                                <td><input id="dic_total" class="table_row" type="number" value="" ></td>
+                                                <td><input id="ene_total" class="table_row" type="number" value=""  ></td>
+                                                <td><input id="feb_total" class="table_row" type="number" value=""  ></td>
                                                 <td><input id="mar_total" class="table_row" type="number" value="" disabled ></td>
                                                 <td><input id="abr_total" class="table_row" type="number" value="" disabled ></td>
                                                 <td><input id="may_total" class="table_row" type="number" value="" disabled ></td>
