@@ -192,6 +192,7 @@
                             <!-- AQUI VA TODO LA VISUALIZACION-->
                             <div id="tabs-empresas" class="form-layout form-layout-1">
                                 <ul class="nav nav-tabs" id="tabsNav"></ul>
+                                <input type="hidden" id="num_emp">
                                 <div id="tabsContainer" class="tab-content mt-2"></div>
                             </div>
                             <br>
@@ -12035,6 +12036,717 @@
                                                         <div class="col">
                                                             ___________________________________
                                                             <p>Firma de Representante legal</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="prev-renuncias" id="prev5">
+                                    <div class="container prev_renuncia" style="max-width: 1020px !important;" id="prev_renuncia_1">
+                                        <div class="card" style="margin-top: 60px;">
+                                            <div class="card-header d-flex justify-content-between">
+                                                <h3>PREVISUALIZACIÓN</h3>
+                                                <div>
+                                                    <button class="btn btn-info" onclick="Imprimir_renuncia()">Imprimir</button>
+                                                </div>
+                                            </div>
+                                            <div id="contenido_renuncia_1" class="card-body m-5 p-5">
+                                            
+                                                <div class="d-flex justify-content-between mb-5 divimagen" >
+                                                    <!-- <div  style="text-align: right !important;">
+                                                        <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                    </div> -->
+                                                    <!-- <div class="div_logo_pdf" style="text-align: right !important;">
+                                                        <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                    </div>  -->
+                                                </div>
+                                            
+                                                <div class="text-right">
+                                                    <div style="text-align: right !important;">
+                                                        <p class="emp_imp" style="color: #000;font-weight: 600;font-size: 16px;">NombreEmpresa</p>
+                                                    </div>
+                                                </div>
+                                                <div class="text-right">
+                                                    <div style="text-align: right !important;">
+                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;">.......</p>
+                                                    </div>
+                                                </div>
+                                                <div class="text-right">
+                                                    <div style="text-align: right !important;">
+                                                        <p class="" style="color: #000;font-weight: 600;font-size: 16px;"><span class="cargo_imp"></span>, <span class="nombre_imp"></span></p>
+                                                    </div>
+                                                </div>
+                                                <div class="text-left ">
+                                                    <div style="text-align: left !important;">
+                                                        <p style="color: #000;font-weight: 600;font-size: 18px;">Asunto: RENUNCIA</p>
+                                                    </div>
+                                                </div>
+                                                <div class="text-left ">
+                                                    <div style="text-align: left !important;">
+                                                        <p style="color: #000;font-weight: 600;font-size: 18px;">Estimado Sr(a):</p>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="certificado_imp" >
+                                                    <div class="text-center">
+                                                        <div  style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 20px;">Me dirijo a usted en la oportunindad de hacer de su conocimiento que he decidido dar por terminado de trabajo con esta empresa, suscrito el <span class="desde_imp" style="color: #FF0000;font-weight: 600;font-size: 18px;">.......</span>.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">Llego a esta decisión por causa justa imputable a la empres, toda vez que  <span class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 18px;">.......</span> ha incumplido reiteradamente su obligacion de cancelar opurtanamente los beneficios laborables establecidos en mi contrado.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <div  style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">Tomando en consideración que la situacion expuesta afecta considerablemente mis interes e integridad, considero debidamente justificada mi decisión de dar por terminada la relación laboral.</p>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="text-center">
+                                                        <div style="text-align: center !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">Sin mas que agregar, me despido.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <div style="text-align: center !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">Atentamente</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <div style="text-align: center !important;">
+                                                            <p class="nombre_imp" style="color: #000;font-weight: 600;font-size: 18px;">..</p>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container prev_renuncia" style="max-width: 1020px !important;" id="prev_renuncia_2">
+                                        <div class="card" style="margin-top: 60px;">
+                                            <div class="card-header d-flex justify-content-between">
+                                                <h3>PREVISUALIZACIÓN</h3>
+                                                <div>
+                                                    <button class="btn btn-info" onclick="Imprimir_renuncia()">Imprimir</button>
+                                                </div>
+                                            </div>
+                                            <div id="contenido_renuncia_2" class="card-body m-5 p-5">
+                                            
+                                                <div class="d-flex justify-content-between mb-5 divimagen" >
+                                                    <!-- <div  style="text-align: right !important;">
+                                                        <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                    </div> -->
+                                                    <!-- <div class="div_logo_pdf" style="text-align: right !important;">
+                                                        <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                    </div>  -->
+                                                </div>
+                                            
+                                                <div class="text-center">
+                                                    <div style="text-align: center !important;">
+                                                        <p class="emp_imp" style="color: #000;font-weight: 600;font-size: 18px;"><u>CARTA DE RENUNCIA</u></p>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="text-right">
+                                                    <div style="text-align: right !important;">
+                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;">.......</p>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="text-left ">
+                                                    <div style="text-align: left !important;">
+                                                        <p style="color: #000;font-weight: 600;font-size: 18px;">Señores:</p>
+                                                    </div>
+                                                </div>
+                                                <div class="text-left ">
+                                                    <div style="text-align: left !important;">
+                                                        <p class="emp_imp" style="color: #000;font-weight: 600;font-size: 18px;">Empresa...</p>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="certificado_imp" >
+                                                    <div class="text-center">
+                                                        <div  style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 20px;">        A través de esta carta, quiero manifestarles mi deseo de renunciar al puesto de <span class="cargo_imp">.......</span>, que he ejercido desde el <span class="desde_imp">...</span>, siendo mi ultimo dia laborado el <span class="hasta_imp"></span>.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">        Dicha decisión corresponde por motivos de estudio, a la vez solicito un certificado de trabajo por el tiempo laborado, y todos mis beneficios sociales que me correspondea por Ley.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <div  style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">        Quiero agradecerles la oportunidad que me dieron al confiar en mí para este puesto en el que crecí profesionalmente y personalmente. Igualmente a mi compañeros de trabajo. Deseo siempre lo mejor para esta empresa y me sentiré parte de ella eternamente</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-left">
+                                                        <div style="text-align: left !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">Coordialmente</p>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="row justify-content-end">
+                                                        <div class="col-8"  style="text-align: center !important;">
+                                                            <p class="nombre_imp" style="color: #000;font-weight: 600;font-size: 18px;">........</p>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container prev_renuncia" style="max-width: 1020px !important;" id="prev_renuncia_3">
+                                        <div class="card" style="margin-top: 60px;">
+                                            <div class="card-header d-flex justify-content-between">
+                                                <h3>PREVISUALIZACIÓN</h3>
+                                                <div>
+                                                    <button class="btn btn-info" onclick="Imprimir_renuncia()">Imprimir</button>
+                                                </div>
+                                            </div>
+                                            <div id="contenido_renuncia_3" class="card-body m-5 p-5">
+                                            
+                                                <div class="d-flex justify-content-between mb-5 divimagen" >
+                                                    <!-- <div  style="text-align: right !important;">
+                                                        <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                    </div> -->
+                                                    <!-- <div class="div_logo_pdf" style="text-align: right !important;">
+                                                        <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                    </div>  -->
+                                                </div>
+                                                <div class="text-right">
+                                                    <div style="text-align: right !important;">
+                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;">.......</p>
+                                                    </div>
+                                                </div>
+                                                <div class="text-center">
+                                                    <div style="text-align: center !important;">
+                                                        <p  style="color: #000;font-weight: 600;font-size: 18px;">CARTA DE RENUNCIA</p>
+                                                    </div>
+                                                </div>
+                                                <div class="text-left ">
+                                                    <div style="text-align: left !important;">
+                                                        <p style="color: #000;font-weight: 600;font-size: 18px;">Señor(a):</p>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="certificado_imp" >
+                                                    <div class="text-center">
+                                                        <div  style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 20px;">Por este medio de esta carta, yo <span class="nombre_imp"></span>, deseo comunicarle mi renuncia voluntaria a mi puesto de <span class="cargo_imp"></span>, en la empresa <span class="emp_imp"></span>, cargo que conllevo desde el dia <span class="desde_imp"></span>, asi como esta establecido en mi contrato.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">Ya que la ley establece que debo anunciar con dias de anticipación, le informo que hasta el dia <span class="hasta_imp"></span> .</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <div  style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">Me despido, no sin antes agradecerle la oportunidad de haber trabajado en esta institucion como <span class="cargo_imp"></span>, el cual me permitió impartir mis conocimientos y experiencia laboral a los demás. </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-left">
+                                                        <div style="text-align: left !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">Sin nada mas que añadir, atentamente.</p>
+                                                        </div>
+                                                    </div>
+                                                    <br><br>
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-6"  style="text-align: center !important;">
+                                                            <p  style="color: #000;font-weight: 600;font-size: 18px;">______________</p>
+                                                            <p class="nombre_imp" style="color: #000;font-weight: 600;font-size: 18px;">______________</p>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container prev_renuncia" style="max-width: 1020px !important;" id="prev_renuncia_4">
+                                        <div class="card" style="margin-top: 60px;">
+                                            <div class="card-header d-flex justify-content-between">
+                                                <h3>PREVISUALIZACIÓN</h3>
+                                                <div>
+                                                    <button class="btn btn-info" onclick="Imprimir_renuncia()">Imprimir</button>
+                                                </div>
+                                            </div>
+                                            <div id="contenido_renuncia_4" class="card-body m-5 p-5">
+                                            
+                                                <div class="d-flex justify-content-between mb-5 divimagen" >
+                                                    <!-- <div  style="text-align: right !important;">
+                                                        <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                    </div> -->
+                                                    <!-- <div class="div_logo_pdf" style="text-align: right !important;">
+                                                        <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                    </div>  -->
+                                                </div>
+                                                <div class="text-right">
+                                                    <div style="text-align: right !important;">
+                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 16px;">.......</p>
+                                                    </div>
+                                                </div>
+                                                <div class="text-left">
+                                                    <div style="text-align: left !important;">
+                                                        <p class="emp_imp" style="color: #000;font-weight: 600;font-size: 18px;">Empresa</p>
+                                                    </div>
+                                                </div>
+                                                <div class="text-left ">
+                                                    <div style="text-align: left !important;">
+                                                        <p style="color: #000;font-weight: 600;font-size: 18px;">Asunto: Carta de Renuncia</p>
+                                                    </div>
+                                                </div>
+                                                <div class="text-left ">
+                                                    <div style="text-align: left !important;">
+                                                        <p style="color: #000;font-weight: 600;font-size: 18px;">Estimado(a): </p>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="certificado_imp" >
+                                                    <div class="text-center">
+                                                        <div  style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 20px;">A través del presente escrito, deseo manifestar mi renuncia al puesto de trabajo que hasta ahora ocupo en la empresa. Dicha decisión responde a motivos presonales, por lo que agradezco todos los aprendizajes y experiencias que enriquecieron mi formación, producto del tiempo que aquí laboré.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">Deseo siempre lo mejor para la empresa y para cada uno de mis compañeros de trabajo.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <div  style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">Sin más que agregar, esperando que sean comprendidas las razones antes expuestas.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-left">
+                                                        <div style="text-align: left !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">Atentamente.</p>
+                                                        </div>
+                                                    </div>
+                                                    <br><br>
+                                                    <div class="text-left">
+                                                        <div style="text-align: left !important;">
+                                                            <p class="nombre_imp" style="color: #000;font-weight: 600;font-size: 18px;">....</p>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container prev_renuncia" style="max-width: 1020px !important;" id="prev_renuncia_5">
+                                        <div class="card" style="margin-top: 60px;">
+                                            <div class="card-header d-flex justify-content-between">
+                                                <h3>PREVISUALIZACIÓN</h3>
+                                                <div>
+                                                    <button class="btn btn-info" onclick="Imprimir_renuncia()">Imprimir</button>
+                                                </div>
+                                            </div>
+                                            <div id="contenido_renuncia_5" class="card-body m-5 p-5">
+                                            
+                                                <div class="d-flex justify-content-between mb-5 divimagen" >
+                                                    <!-- <div  style="text-align: right !important;">
+                                                        <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                    </div> -->
+                                                    <!-- <div class="div_logo_pdf" style="text-align: right !important;">
+                                                        <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                    </div>  -->
+                                                </div>
+                                                <div class="text-center">
+                                                    <div style="text-align: center !important;">
+                                                        <p  style="color: #000;font-weight: 600;font-size: 16px;">CARTA DE RENUNCIA INMEDIATA</p>
+                                                    </div>
+                                                </div>
+                                                <div class="text-left">
+                                                    <div style="text-align: left !important;">
+                                                        <p class="emp_imp" style="color: #000;font-weight: 600;font-size: 18px;">Empresa</p>
+                                                    </div>
+                                                </div>
+                                                <div class="text-right ">
+                                                    <div style="text-align: right !important;">
+                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;">fecha</p>
+                                                    </div>
+                                                </div>
+                                                <div class="text-left ">
+                                                    <div style="text-align: left !important;">
+                                                        <p style="color: #000;font-weight: 600;font-size: 18px;">Gerente de Recursos Humanos</p>
+                                                    </div>
+                                                </div>
+                                                <div class="text-left ">
+                                                    <div style="text-align: left !important;">
+                                                        <p style="color: #000;font-weight: 600;font-size: 18px;">Asunto: Carta de Renuncia</p>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="certificado_imp" >
+                                                    <div class="text-center">
+                                                        <div  style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 20px;">Reciba un cordial saludo. A través de la presente, yo <span class="nombre_imp">..</span> con numero de identidad N° <span class="dni_imp"></span>, renuncio de forma inmmediata e irrevocable al puesto de <span class="cargo_imp">..</span> que ocupo en esta empresa.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">El motivo de mi renuncia está relacionado con el ambiente poco ético y agresivo que se desarrolla en el área en la que trabajo. Allí, recibo constantes amenazas y humillaciones de mi jefe inmediato, quien ocupa el puesto de Gerente de Produccion.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <div  style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">Por este motivo, dejaré de prestar servicios en esta compañia a partir del <span class="hasta_imp"></span>.</p>
+                                                        </div>
+                                                    </div>
+                                                
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container prev_renuncia" style="max-width: 1020px !important;" id="prev_renuncia_6">
+                                        <div class="card" style="margin-top: 60px;">
+                                            <div class="card-header d-flex justify-content-between">
+                                                <h3>PREVISUALIZACIÓN</h3>
+                                                <div>
+                                                    <button class="btn btn-info" onclick="Imprimir_renuncia()">Imprimir</button>
+                                                </div>
+                                            </div>
+                                            <div id="contenido_renuncia_6" class="card-body m-5 p-5">
+                                            
+                                                <div class="d-flex justify-content-between mb-5 divimagen" >
+                                                    <!-- <div  style="text-align: right !important;">
+                                                        <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                    </div> -->
+                                                    <!-- <div class="div_logo_pdf" style="text-align: right !important;">
+                                                        <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                    </div>  -->
+                                                </div>
+                                                <div class="text-left">
+                                                    <div style="text-align: left !important;">
+                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;">fecha</p>
+                                                    </div>
+                                                </div>
+                                                <div class="text-left">
+                                                    <div style="text-align: left !important;">
+                                                        <p style="color: #000;font-weight: 600;font-size: 18px;">Gerente</p>
+                                                    </div>
+                                                </div>
+                                                <div class="text-left">
+                                                    <div style="text-align: left !important;">
+                                                        <p class="emp_imp" style="color: #000;font-weight: 600;font-size: 18px;">Empresa</p>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <br>
+                                                <div class="text-left ">
+                                                    <div style="text-align: left !important;">
+                                                        <p style="color: #000;font-weight: 600;font-size: 18px;">Estimado: </p>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="certificado_imp" >
+                                                    <div class="text-center">
+                                                        <div  style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 20px;">Permita aceptar esta carta como notificación de mi renuncia al puesto de <span class="cargo_imp">..</span> en <span class="emp_imp">..</span></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">De acuerdo con los términos de mi contrato de mi trabajo, continuaré trabajando para la compañía durante los proximos días. siendo el ultimo dia de empleo el <span class="hasta_imp"></span>.</p>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <br>
+                                                    <div class="text-right">
+                                                        <div style="text-align: right  !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">Sinceramnte.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-right">
+                                                        <div style="text-align: right  !important;">
+                                                            <p class="nombre_imp" style="color: #000;font-weight: 600;font-size: 18px;">.....</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container prev_renuncia" style="max-width: 1020px !important;" id="prev_renuncia_7">
+                                        <div class="card" style="margin-top: 60px;">
+                                            <div class="card-header d-flex justify-content-between">
+                                                <h3>PREVISUALIZACIÓN</h3>
+                                                <div>
+                                                    <button class="btn btn-info" onclick="Imprimir_renuncia()">Imprimir</button>
+                                                </div>
+                                            </div>
+                                            <div id="contenido_renuncia_7" class="card-body m-5 p-5">
+                                            
+                                                <div class="d-flex justify-content-between mb-5 divimagen" >
+                                                    <!-- <div  style="text-align: right !important;">
+                                                        <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                    </div> -->
+                                                    <!-- <div class="div_logo_pdf" style="text-align: right !important;">
+                                                        <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                    </div>  -->
+                                                </div>
+                                                <div class="text-left">
+                                                    <div style="text-align: left !important;">
+                                                        <p class="emp_imp" style="color: #000;font-weight: 600;font-size: 18px;">Empresa</p>
+                                                    </div>
+                                                </div>
+                                                <div class="text-left">
+                                                    <div style="text-align: left !important;">
+                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;">fecha</p>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="text-center ">
+                                                    <div style="text-align: center !important;">
+                                                        <p style="color: #000;font-weight: 600;font-size: 18px;"><u>CARTA DE RENUNCIA</u></p>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="certificado_imp" >
+                                                    <div class="text-center">
+                                                        <div  style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 20px;">Estimados integrantes de la directiva: </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">Yo <span class="nombre_imp">....</span> por este medio quiero presentar a modo formal mi renuncia, a partir del <span class="hasta_imp">..</span>, al cargo de <span class="cargo_imp">..</span>. Cargo que ejercí durante mi estancia en la empresa. </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <div  style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 20px;">Quiero dejar constancia de mi agradecimiento por la oportunidad que me brindaron de ejercer este cargo en beneficio de nuestra comunidad y por la confianza que depositaron en mí.</p>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="text-right">
+                                                        <div style="text-align: right  !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">Un saludo cordial.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-right">
+                                                        <div style="text-align: right  !important;">
+                                                            <p class="nombre_imp" style="color: #000;font-weight: 600;font-size: 18px;">.....</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container prev_renuncia" style="max-width: 1020px !important;" id="prev_renuncia_8">
+                                        <div class="card" style="margin-top: 60px;">
+                                            <div class="card-header d-flex justify-content-between">
+                                                <h3>PREVISUALIZACIÓN</h3>
+                                                <div>
+                                                    <button class="btn btn-info" onclick="Imprimir_renuncia()">Imprimir</button>
+                                                </div>
+                                            </div>
+                                            <div id="contenido_renuncia_8" class="card-body m-5 p-5">
+                                            
+                                                <div class="d-flex justify-content-between mb-5 divimagen" >
+                                                    <!-- <div  style="text-align: right !important;">
+                                                        <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                    </div> -->
+                                                    <!-- <div class="div_logo_pdf" style="text-align: right !important;">
+                                                        <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                    </div>  -->
+                                                </div>
+                                                <div class="text-left">
+                                                    <div style="text-align: left !important;">
+                                                        <p class="emp_imp" style="color: #000;font-weight: 600;font-size: 18px;">Empresa</p>
+                                                    </div>
+                                                </div>
+                                                <div class="text-left">
+                                                    <div style="text-align: left !important;">
+                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;">fecha</p>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="text-center ">
+                                                    <div style="text-align: center !important;">
+                                                        <p style="color: #000;font-weight: 600;font-size: 18px;"><u>CARTA DE RENUNCIA</u></p>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="certificado_imp" >
+                                                    <div class="text-center">
+                                                        <div  style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 20px;">Yo, <span class="nombre_imp">...</span>, portador del DNI N° <span class="dni_imp">..</span>, mediante la presente notificó mi voluntad de renunciar al cargo de <span class="cargo_imp">..</span> de la empresa <span class="emp_imp"></span>, que he venido desempeñando hasta la presente fecha, en tal sentido dejo a disposicion el mismo para que puedan realizarse nuevas elecciones. </p>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <br>
+                                                    <div class="text-center">
+                                                        <div style="text-align: center !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">Sin otro particular a que hace referencia que se despide.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <div style="text-align: center !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">Atentamente</p>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <p class="nombre_imp" style="color: #000;font-weight: 600;font-size: 18px;">..</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container prev_renuncia" style="max-width: 1020px !important;" id="prev_renuncia_9">
+                                        <div class="card" style="margin-top: 60px;">
+                                            <div class="card-header d-flex justify-content-between">
+                                                <h3>PREVISUALIZACIÓN</h3>
+                                                <div>
+                                                    <button class="btn btn-info" onclick="Imprimir_renuncia()">Imprimir</button>
+                                                </div>
+                                            </div>
+                                            <div id="contenido_renuncia_9" class="card-body m-5 p-5">
+                                            
+                                                <div class="d-flex justify-content-between mb-5 divimagen" >
+                                                    <!-- <div  style="text-align: right !important;">
+                                                        <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                    </div> -->
+                                                    <!-- <div class="div_logo_pdf" style="text-align: right !important;">
+                                                        <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                    </div>  -->
+                                                </div>
+                                                <div class="text-left">
+                                                    <div style="text-align: left !important;">
+                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;">fecha</p>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="text-left">
+                                                    <div style="text-align: left !important;">
+                                                        <p class="emp_imp" style="color: #000;font-weight: 600;font-size: 18px;">Empresa</p>
+                                                    </div>
+                                                </div>
+                                            
+                                                <br>
+                                                <div class="text-left ">
+                                                    <div style="text-align: left !important;">
+                                                        <p style="color: #000;font-weight: 600;font-size: 18px;"><u>PROPOSITO: RENUNCIA</u></p>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="certificado_imp" >
+                                                    <div class="text-center">
+                                                        <div  style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 20px;">Estimado: </p>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <br>
+                                                    <div class="text-center">
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">He estado pensando mucho acerca de mi rol en la compañia y luego de una cuidadosa reflexión he decicido renunciar como <span class="cargo_imp">..</span> a partir de este momento. Las razones principales que influyeron en esta difícil decisión.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">Por supuesto, que si la compañía lo requiere, haré lo necesario para asegurar una transición sin dificultades a la persona que me reemplazará.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-left">
+                                                        <div style="text-align: left !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">Atentamente</p>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <br>
+                                                    <div class="text-left">
+                                                        <div style="text-align: left !important;">
+                                                            <p class="nombre_imp" style="color: #000;font-weight: 600;font-size: 18px;">....</p>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container prev_renuncia" style="max-width: 1020px !important;" id="prev_renuncia_10">
+                                        <div class="card" style="margin-top: 60px;">
+                                            <div class="card-header d-flex justify-content-between">
+                                                <h3>PREVISUALIZACIÓN</h3>
+                                                <div>
+                                                    <button class="btn btn-info" onclick="Imprimir_renuncia()">Imprimir</button>
+                                                </div>
+                                            </div>
+                                            <div id="contenido_renuncia_10" class="card-body m-5 p-5">
+                                            
+                                                <div class="d-flex justify-content-between mb-5 divimagen" >
+                                                    <!-- <div  style="text-align: right !important;">
+                                                        <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                    </div> -->
+                                                    <!-- <div class="div_logo_pdf" style="text-align: right !important;">
+                                                        <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
+                                                    </div>  -->
+                                                </div>
+                                                <div class="text-center">
+                                                    <div style="text-align:center !important;">
+                                                        <p style="color: #000;font-weight: 600;font-size: 18px;"><u>RENUNCIA VOLUNTARIA</u></p>
+                                                    </div>
+                                                </div>
+                                                <div class="text-left">
+                                                    <div style="text-align: left !important;">
+                                                        <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;">fecha</p>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="text-left">
+                                                    <div style="text-align: left !important;">
+                                                        <p  style="color: #000;font-weight: 600;font-size: 18px;">SEÑORES:</p>
+                                                    </div>
+                                                </div>
+                                                <div class="text-left">
+                                                    <div style="text-align: left !important;">
+                                                        <p  style="color: #000;font-weight: 600;font-size: 18px;">EMPRESA: <span class="emp_imp"></span></p>
+                                                    </div>
+                                                </div>
+                                            
+                                                <br>
+                                                <br>
+                                                <div class="certificado_imp" >
+                                                    <div class="text-center">
+                                                        <div  style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 20px;">De mi consideración:</p>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <br>
+                                                    <div class="text-center">
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">          Por intermedio de la presente comunico a ustedes mi renuncia voluntaria, en conformidad al artículo 159 N° 2, del codigo de trabajo y 177, del mismo cuerpo legal, la cual se hará efectiva a contar.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">          Agradeciendo el haberme permitido laborar en vuestra empresa le comunico que los motivos de mi renuncia son de carpacter estrictamente personales.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-rcenter">
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">          Atentamente</p>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <br>
+                                                    <div class="row justify-content-end">
+                                                        <div class="col-8" style="text-align: center !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 18px;">_______________</p>
+                                                            <p class="nombre_imp" style="color: #000;font-weight: 600;font-size: 18px;">....</p>
+                                                            
                                                         </div>
                                                     </div>
                                                 </div>

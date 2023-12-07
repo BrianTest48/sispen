@@ -69,6 +69,7 @@ $(document).ready(function(){
     $("#prev2").hide();
     $("#prev3").hide();
     $("#prev4").hide();
+    $("#prev5").hide();
     $("#contemp1").hide();
     $("#nav-bono").hide();
     //$("#div_logo_orcinea").hide();
@@ -772,6 +773,12 @@ function generar(e){
                 placeholder: "Seleccione",
                 minimumResultsForSearch: Infinity
             });
+
+            $('.select_renuncia').select2({
+                placeholder: "Seleccione",
+                minimumResultsForSearch: Infinity
+            });
+            
         
             $('#combo_prev_bono').select2({
                 placeholder: "Seleccione",
@@ -924,7 +931,7 @@ function crearTabs(valor, orc, host) {
     let emp = Number(valor) + 8;
     // Crear tabs dinámicamente
     for (var i = 1; i <= orc; i++) {
-        var tabContent = '<div class="tab-pane fade" id="content' + i + '"><input type="hidden" id="num_emp"><input type="hidden" id="tiempo_imp'+i+'">';
+        var tabContent = '<div class="tab-pane fade" id="content' + i + '"><input type="hidden" id="tiempo_imp'+i+'">';
         tabContent += '<div class="contenedores_emp" id="contenedor_emp'+ i +'">';
         tabContent += '     <br>';
         tabContent += '     <input  type="hidden" id="nombre_emp'+ i +'" name="nombre_emp">';
@@ -950,6 +957,9 @@ function crearTabs(valor, orc, host) {
         tabContent += '         <li class="nav-item" role="presentation">';
         tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="boleta-tab'+ i +'"  onclick="boleta_tab('+ i +')"  data-bs-toggle="pill" data-bs-target="#boleta'+ i +'"  type="button" role="tab" aria-controls="boleta"   aria-selected="false">Boleta</button>';
         tabContent += '         </li>';
+        tabContent += '         <li class="nav-item" role="presentation">';
+        tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="renuncia-tab'+ i +'"   data-bs-toggle="pill" data-bs-target="#renuncia'+ i +'"  type="button" role="tab" aria-controls="renuncia"   aria-selected="false" >Renuncia</button>';
+        tabContent += '         </li>';
         tabContent += '     </ul>';
         tabContent += '     <div class="tab-content">';
         tabContent += '         <!-- AQUI VA EL CONTENIDO -->';
@@ -971,6 +981,10 @@ function crearTabs(valor, orc, host) {
         tabContent += '                                     <select class="form-control col-lg-6 select2 select_certificado" data-placeholder="Seleccione" id="select_certificado'+ i +'"  style="width: 100%" >';
         tabContent += '                                     </select>';
         tabContent += '                                 </div>';
+        tabContent += '                             </div>';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Fecha de Emision: </label>';
+        tabContent += '                                 <input type="date" class="form-control col-lg-6"  id="fecha_certificado'+ i +'"  style="width: 100%"/>';        
         tabContent += '                             </div>';
         tabContent += '                         </div> ';
         tabContent += '                     </div><!-- row -->';
@@ -1080,6 +1094,13 @@ function crearTabs(valor, orc, host) {
         tabContent += '                                 <label class="form-control-label text-left">Motivo de Retiro</label>';
         tabContent += '                                 <select class="form-control select2 combo_prev_liqui" data-placeholder="Motivo de Retiro" name="combo_prev_liqui'+ i +'" id="combo_prev_liqui'+ i +'" style="width: 100%;">';
         tabContent += '                                 </select>';
+        tabContent += '                             </div>';
+        tabContent += '                         </div>';
+        tabContent += '                         <div class="col-12 col-sm-6"></div>';
+        tabContent += '                         <div class="col-12 col-sm-6">';
+        tabContent += '                             <div class="form-group">';
+        tabContent += '                                 <label class="form-control-label text-left">Fecha de Emision</label>';
+        tabContent += '                                 <input type="date" class="form-control"  id="fecha_liquidacion'+ i +'"  style="width: 100%"/>';
         tabContent += '                             </div>';
         tabContent += '                         </div>';
         tabContent += '                     </div>';
@@ -1246,6 +1267,47 @@ function crearTabs(valor, orc, host) {
         tabContent += '                         </div>';
         tabContent += '                     </div>';
         tabContent += '                     <!--<button type="button" id="btnimprimirbol'+ i +'" name="btnimprimirbol" onclick="imprimir_liquidacion_boleta('+ i +')"   class="btn btn-info">Imprimir Boleta</button>-->';
+        tabContent += '                 </div>';
+        tabContent += '             </form>';
+        tabContent += '         </div>';
+        tabContent += '         <div id="renuncia'+ i +'" class="tab-pane fade">';
+        tabContent += '             <form id="form_renuncia'+ i +'" action="" method="post" autocomplete="off">';
+        tabContent += '                 <div class="form-layout form-layout-1">';
+        tabContent += '                     <div class="row ">';
+        tabContent += '                         <div class="col-lg-12">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Certificado: </label>';
+        tabContent += '                                 <div class="col-lg-6 pd-0">';
+        tabContent += '                                     <select class="form-control col-lg-6 select2 select_renuncia" data-placeholder="Seleccione" id="select_renuncia'+ i +'"  style="width: 100%" >';        
+        tabContent += '                                         <option value="1">Modelo Renuncia 1</option>';
+        tabContent += '                                         <option value="2">Modelo Renuncia 2</option>';
+        tabContent += '                                         <option value="3">Modelo Renuncia 3</option>';
+        tabContent += '                                         <option value="4">Modelo Renuncia 4</option>';
+        tabContent += '                                         <option value="5">Modelo Renuncia 5</option>';
+        tabContent += '                                         <option value="6">Modelo Renuncia 6</option>';
+        tabContent += '                                         <option value="7">Modelo Renuncia 7</option>';
+        tabContent += '                                         <option value="8">Modelo Renuncia 8</option>';
+        tabContent += '                                         <option value="9">Modelo Renuncia 9</option>';
+        tabContent += '                                         <option value="10">Modelo Renuncia 10</option>';
+        tabContent += '                                     </select>';
+        tabContent += '                                 </div>';
+        tabContent += '                             </div>';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Fecha de Emision: </label>';
+        tabContent += '                                 <input type="date" class="form-control col-lg-6"  id="fecha_renuncia'+ i +'"  style="width: 100%"/>';        
+        tabContent += '                             </div>';
+        tabContent += '                         </div> ';
+        tabContent += '                     </div>';
+        tabContent += '                 </div>';
+        tabContent += '                 <div class="form-layout-footer text-right mg-t-20">';
+        tabContent += '                     <div class="row justify-content-end">';
+        tabContent += '                         <div class="col-12 col-sm-4">';
+        tabContent += '                             <button type="button" id="" class="btn btn-info" onclick="imprimir_word_renuncia('+ i +')" style="width: 100%;">Descargar en Word</button>';
+        tabContent += '                         </div>';
+        tabContent += '                         <div class="col-12 col-sm-4">';
+        tabContent += '                             <button type="button" id="btnprevrenu'+ i +'" name="btnprevren" onclick="PrevRenuncia('+ i +')"  class="btn btn-secondary" style="width: 100%;">Previsualizar</button>';
+        tabContent += '                         </div>';
+        tabContent += '                     </div> ';
         tabContent += '                 </div>';
         tabContent += '             </form>';
         tabContent += '         </div>';
@@ -1289,6 +1351,9 @@ function crearTabs(valor, orc, host) {
         tabContent += '         <li class="nav-item" role="presentation">';
         tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="boleta-tab'+ i +'"  onclick="boleta_tab('+ i +')"  data-bs-toggle="pill" data-bs-target="#boleta'+ i +'"  type="button" role="tab" aria-controls="boleta"   aria-selected="false">Boleta</button>';
         tabContent += '         </li>';
+        tabContent += '         <li class="nav-item" role="presentation">';
+        tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="renuncia-tab'+ i +'"   data-bs-toggle="pill" data-bs-target="#renuncia'+ i +'"  type="button" role="tab" aria-controls="renuncia"   aria-selected="false" >Renuncia</button>';
+        tabContent += '         </li>';
         tabContent += '     </ul>';
         tabContent += '     <div class="tab-content">';
         tabContent += '         <!-- AQUI VA EL CONTENIDO -->';
@@ -1310,6 +1375,10 @@ function crearTabs(valor, orc, host) {
         tabContent += '                                     <select class="form-control col-lg-6 select2 select_certificado" data-placeholder="Seleccione" id="select_certificado'+ i +'"  style="width: 100%" >';
         tabContent += '                                     </select>';
         tabContent += '                                 </div>';
+        tabContent += '                             </div>';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Fecha de Emision: </label>';
+        tabContent += '                                 <input type="date" class="form-control col-lg-6"  id="fecha_certificado'+ i +'"  style="width: 100%"/>';        
         tabContent += '                             </div>';
         tabContent += '                         </div> ';
         tabContent += '                     </div><!-- row -->';
@@ -1419,6 +1488,13 @@ function crearTabs(valor, orc, host) {
         tabContent += '                                 <label class="form-control-label text-left">Motivo de Retiro</label>';
         tabContent += '                                 <select class="form-control select2 combo_prev_liqui" data-placeholder="Motivo de Retiro" name="combo_prev_liqui'+ i +'" id="combo_prev_liqui'+ i +'" style="width: 100%;">';
         tabContent += '                                 </select>';
+        tabContent += '                             </div>';
+        tabContent += '                         </div>';
+        tabContent += '                         <div class="col-12 col-sm-6"></div>';
+        tabContent += '                         <div class="col-12 col-sm-6">';
+        tabContent += '                             <div class="form-group">';
+        tabContent += '                                 <label class="form-control-label text-left">Fecha de Emision</label>';
+        tabContent += '                                 <input type="date" class="form-control"  id="fecha_liquidacion'+ i +'"  style="width: 100%"/>';
         tabContent += '                             </div>';
         tabContent += '                         </div>';
         tabContent += '                     </div>';
@@ -1588,6 +1664,47 @@ function crearTabs(valor, orc, host) {
         tabContent += '                 </div>';
         tabContent += '             </form>';
         tabContent += '         </div>';
+        tabContent += '         <div id="renuncia'+ i +'" class="tab-pane fade">';
+        tabContent += '             <form id="form_renuncia'+ i +'" action="" method="post" autocomplete="off">';
+        tabContent += '                 <div class="form-layout form-layout-1">';
+        tabContent += '                     <div class="row ">';
+        tabContent += '                         <div class="col-lg-12">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Certificado: </label>';
+        tabContent += '                                 <div class="col-lg-6 pd-0">';
+        tabContent += '                                     <select class="form-control col-lg-6 select2 select_renuncia" data-placeholder="Seleccione" id="select_renuncia'+ i +'"  style="width: 100%" >';        
+        tabContent += '                                         <option value="1">Modelo Renuncia 1</option>';
+        tabContent += '                                         <option value="2">Modelo Renuncia 2</option>';
+        tabContent += '                                         <option value="3">Modelo Renuncia 3</option>';
+        tabContent += '                                         <option value="4">Modelo Renuncia 4</option>';
+        tabContent += '                                         <option value="5">Modelo Renuncia 5</option>';
+        tabContent += '                                         <option value="6">Modelo Renuncia 6</option>';
+        tabContent += '                                         <option value="7">Modelo Renuncia 7</option>';
+        tabContent += '                                         <option value="8">Modelo Renuncia 8</option>';
+        tabContent += '                                         <option value="9">Modelo Renuncia 9</option>';
+        tabContent += '                                         <option value="10">Modelo Renuncia 10</option>';
+        tabContent += '                                     </select>';
+        tabContent += '                                 </div>';
+        tabContent += '                             </div>';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Fecha de Emision: </label>';
+        tabContent += '                                 <input type="date" class="form-control col-lg-6"  id="fecha_renuncia'+ i +'"  style="width: 100%"/>';        
+        tabContent += '                             </div>';
+        tabContent += '                         </div> ';
+        tabContent += '                     </div>';
+        tabContent += '                 </div>';
+        tabContent += '                 <div class="form-layout-footer text-right mg-t-20">';
+        tabContent += '                     <div class="row justify-content-end">';
+        tabContent += '                         <div class="col-12 col-sm-4">';
+        tabContent += '                             <button type="button" id="" class="btn btn-info" onclick="imprimir_word_renuncia('+ i +')" style="width: 100%;">Descargar en Word</button>';
+        tabContent += '                         </div>';
+        tabContent += '                         <div class="col-12 col-sm-4">';
+        tabContent += '                             <button type="button" id="btnprevrenu'+ i +'" name="btnprevren" onclick="PrevRenuncia('+ i +')"  class="btn btn-secondary" style="width: 100%;">Previsualizar</button>';
+        tabContent += '                         </div>';
+        tabContent += '                     </div> ';
+        tabContent += '                 </div>';
+        tabContent += '             </form>';
+        tabContent += '         </div>';
         tabContent += '     </div> '; 
         tabContent += '     </div>';
         tabContent += '</div>';
@@ -1627,6 +1744,9 @@ function crearTabs(valor, orc, host) {
         tabContent += '         <li class="nav-item" role="presentation">';
         tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="boleta-tab'+ i +'"  onclick="boleta_tab('+ i +')"  data-bs-toggle="pill" data-bs-target="#boleta'+ i +'"  type="button" role="tab" aria-controls="boleta"   aria-selected="false">Boleta</button>';
         tabContent += '         </li>';
+        tabContent += '         <li class="nav-item" role="presentation">';
+        tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="renuncia-tab'+ i +'"   data-bs-toggle="pill" data-bs-target="#renuncia'+ i +'"  type="button" role="tab" aria-controls="renuncia"   aria-selected="false" >Renuncia</button>';
+        tabContent += '         </li>';
         if(i == emp){
             tabContent += '         <li class="nav-item" role="presentation" id="nav-bono">';
             tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="bono-tab"   data-bs-toggle="pill" data-bs-target="#bono"  type="button" role="tab" aria-controls="bono"   aria-selected="false">DJ</button>';
@@ -1653,6 +1773,10 @@ function crearTabs(valor, orc, host) {
         tabContent += '                                     <select class="form-control col-lg-6 select2 select_certificado" data-placeholder="Seleccione" id="select_certificado'+ i +'"  style="width: 100%" >';
         tabContent += '                                     </select>';
         tabContent += '                                 </div>';
+        tabContent += '                             </div>';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Fecha de Emision: </label>';
+        tabContent += '                                 <input type="date" class="form-control col-lg-6"  id="fecha_certificado'+ i +'"  style="width: 100%"/>';        
         tabContent += '                             </div>';
         tabContent += '                         </div> ';
         tabContent += '                     </div><!-- row -->';
@@ -1762,6 +1886,13 @@ function crearTabs(valor, orc, host) {
         tabContent += '                                 <label class="form-control-label text-left">Motivo de Retiro</label>';
         tabContent += '                                 <select class="form-control select2 combo_prev_liqui" data-placeholder="Motivo de Retiro" name="combo_prev_liqui'+ i +'" id="combo_prev_liqui'+ i +'" style="width: 100%;">';
         tabContent += '                                 </select>';
+        tabContent += '                             </div>';
+        tabContent += '                         </div>';
+        tabContent += '                         <div class="col-12 col-sm-6"></div>';
+        tabContent += '                         <div class="col-12 col-sm-6">';
+        tabContent += '                             <div class="form-group">';
+        tabContent += '                                 <label class="form-control-label text-left">Fecha de Emision</label>';
+        tabContent += '                                 <input type="date" class="form-control"  id="fecha_liquidacion'+ i +'"  style="width: 100%"/>';
         tabContent += '                             </div>';
         tabContent += '                         </div>';
         tabContent += '                     </div>';
@@ -1931,6 +2062,47 @@ function crearTabs(valor, orc, host) {
         tabContent += '                 </div>';
         tabContent += '             </form>';
         tabContent += '         </div>';
+        tabContent += '         <div id="renuncia'+ i +'" class="tab-pane fade">';
+        tabContent += '             <form id="form_renuncia'+ i +'" action="" method="post" autocomplete="off">';
+        tabContent += '                 <div class="form-layout form-layout-1">';
+        tabContent += '                     <div class="row ">';
+        tabContent += '                         <div class="col-lg-12">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Certificado: </label>';
+        tabContent += '                                 <div class="col-lg-6 pd-0">';
+        tabContent += '                                     <select class="form-control col-lg-6 select2 select_renuncia" data-placeholder="Seleccione" id="select_renuncia'+ i +'"  style="width: 100%" >';        
+        tabContent += '                                         <option value="1">Modelo Renuncia 1</option>';
+        tabContent += '                                         <option value="2">Modelo Renuncia 2</option>';
+        tabContent += '                                         <option value="3">Modelo Renuncia 3</option>';
+        tabContent += '                                         <option value="4">Modelo Renuncia 4</option>';
+        tabContent += '                                         <option value="5">Modelo Renuncia 5</option>';
+        tabContent += '                                         <option value="6">Modelo Renuncia 6</option>';
+        tabContent += '                                         <option value="7">Modelo Renuncia 7</option>';
+        tabContent += '                                         <option value="8">Modelo Renuncia 8</option>';
+        tabContent += '                                         <option value="9">Modelo Renuncia 9</option>';
+        tabContent += '                                         <option value="10">Modelo Renuncia 10</option>';
+        tabContent += '                                     </select>';
+        tabContent += '                                 </div>';
+        tabContent += '                             </div>';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Fecha de Emision: </label>';
+        tabContent += '                                 <input type="date" class="form-control col-lg-6"  id="fecha_renuncia'+ i +'"  style="width: 100%"/>';        
+        tabContent += '                             </div>';
+        tabContent += '                         </div> ';
+        tabContent += '                     </div>';
+        tabContent += '                 </div>';
+        tabContent += '                 <div class="form-layout-footer text-right mg-t-20">';
+        tabContent += '                     <div class="row justify-content-end">';
+        tabContent += '                         <div class="col-12 col-sm-4">';
+        tabContent += '                             <button type="button" id="" class="btn btn-info" onclick="imprimir_word_renuncia('+ i +')" style="width: 100%;">Descargar en Word</button>';
+        tabContent += '                         </div>';
+        tabContent += '                         <div class="col-12 col-sm-4">';
+        tabContent += '                             <button type="button" id="btnprevrenu'+ i +'" name="btnprevren" onclick="PrevRenuncia('+ i +')"  class="btn btn-secondary" style="width: 100%;">Previsualizar</button>';
+        tabContent += '                         </div>';
+        tabContent += '                     </div> ';
+        tabContent += '                 </div>';
+        tabContent += '             </form>';
+        tabContent += '         </div>';
 
         if( i == emp){
             tabContent += '         <div id="bono" class="tab-pane fade">';
@@ -2097,7 +2269,7 @@ function creardivsorcinea(){
                                             '</div>'+
                                             "<div class ='col-12 col-sm-4'>"+
                                                 "<div class='form-group'  >"+
-                                                    "<label class='form-control-label'>Tipo</label>"+
+                                                    "<label class='form-control-label'>Tamaño de Empresa</label>"+
                                                     "<select class='form-control select2 cbx_tipos' id='cbx_tipo_orc_"+i+"' style='width: 100%'>"+
                                                         "<option value='P'>P</option>"+
                                                         "<option value='M'>M</option>"+
@@ -2186,7 +2358,7 @@ function creardivshost(){
                                             '</div>'+
                                             "<div class ='col-12 col-sm-4'>"+
                                                 "<div class='form-group'  >"+
-                                                    "<label class='form-control-label'>Tipo</label>"+
+                                                    "<label class='form-control-label'>Tamaño de Empresa</label>"+
                                                     "<select class='form-control select2 cbx_tipos' id='cbx_tipo_host_"+i+"' style='width: 100%'>"+
                                                         "<option value='P'>P</option>"+
                                                         "<option value='M'>M</option>"+
@@ -2471,6 +2643,7 @@ function CopiarEmp(a) {
 function mostrardetalle(a, b, c){
     let num = Number(a + 8);
     $('#contenedor_emp'+ num).show();
+    $('#num_emp').val(num);
 
     OcultarPrev();
     suma_anios = 0;
@@ -2708,6 +2881,7 @@ function mostrardetalle(a, b, c){
                             $('#dias_liqui'+ num).val(data[0]['Dias']);
                             $('#meses_liqui'+ num).val(data[0]['Meses']);
                             $('#anios_liqui'+ num).val(data[0]['Anios']);
+                            $('#ruc_emp'+num).val(data[0]['ruc']);
     
                             $('#sueldo_liquidacion'+ num).val(data[0]['fechsueldo']);
 
@@ -2815,6 +2989,7 @@ function mostrardetalle(a, b, c){
                             $('#meses_liqui'+ num).val(data[0]['Meses']);
                             $('#anios_liqui'+ num).val(data[0]['Anios']);
                             $('#sueldo_liquidacion'+ num).val(data[0]['fechsueldo']);
+                            $('#ruc_emp'+num).val(data[0]['ruc']);
     
                             $('#sueldo_liquidacion').val(data[0]['fechsueldo']);
                             SumarAniosEmpresas(a);
@@ -4024,6 +4199,7 @@ function OcultarPrev(){
     $('.prev_boleta').hide();
     $('.prev_bono').hide();
     $('.prev_modelo_liqui').hide();
+    $('.prev_renuncia').hide();
 }
 
 function GuardarLista(){
@@ -5085,271 +5261,311 @@ $(document).on("click","#btnprevcer", function(){
 });
 
 function PrevCertificado(e) {
-    OcultarPrev();
-    let tipoprev = $('#select_certificado'+e).val();
-    $("#prev_certificado_"+tipoprev).show();
 
-    var options = { year: 'numeric', month: 'long', day: 'numeric' };
+    let fecha = $('#fecha_certificado'+ e).val();
+    let fechaloc = new Date(fecha);
+    var fechaimod = fechaloc.toLocaleString('en-US', {
+        timeZone: 'Europe/London'
+    });
+    var fecha_emi = new Date(fechaimod);
+    let fecha_fin = $('#fech_final_emp'+e).val();
+    let fecha_ff = new Date (fecha_fin);
 
-    let nom;
-    let cargo;
-    let fechai;
-    let fechaf;
-    let dpto1;
-    let logos;
-    let firm;
-    let tiempo_anio;
+
+    if(fecha_emi >= fecha_ff && fecha != "" ){
+
+        OcultarPrev();
+        let tipoprev = $('#select_certificado'+e).val();
+        $("#prev_certificado_"+tipoprev).show();
+
+        var options = { year: 'numeric', month: 'long', day: 'numeric' };
+
+        let nom;
+        let cargo;
+        let fechai;
+        let fechaf;
+        let dpto1;
+        let logos;
+        let firm;
+        let tiempo_anio;
+        
+        //datos para orcinea
+        if(e > 0 && e < 5){
+            //DATOS  nombre completo, Finicio, Ffinal, Cargo, firmante
+
+            nom = $('#empresa_orcinea_'+e).val();
+            fechai = $('#orcinea_inicio_'+e).val();
+            fechaf = $('#orcinea_fin_'+e).val();
+            cargo = $('#cargo_orcinea_'+e).val();
+            //let tipo_orc = $('#cbx_tipo_orc_'+a).val();
+            firm = $('#firmante_orcinea_'+e).val();
+            logos = $('#logo_orcinea_'+e).val();
+            $('#logo_nombre'+e).val(logos);
+            dpto1 = "LIMA";
+            tiempo_anio = $('#tiempo_imp'+ e).val();
+        }
     
-    //datos para orcinea
-    if(e > 0 && e < 5){
-        //DATOS  nombre completo, Finicio, Ffinal, Cargo, firmante
+        //Datos para empresa
+        if(e > 4 && e < 15){
+            //DATOS  nombre completo, Finicio, Ffinal, Cargo, firmante
+            nom = $('#nombre_emp'+ e).val();
+            cargo = $('#cargo_emp'+ e).val();
+            fechai = $('#fech_inicio_emp'+ e).val();
+            fechaf = $('#fech_final_emp'+ e).val();
+            dpto1 = $('#dpto_emp'+ e).val();
+            logos = $('#logo_nombre'+ e).val();
+            firm = $('#firmante_emp'+ e).val();
+            tiempo_anio = $('#tiempo_imp'+ e).val();
+        }
+        
+        let fecha1 = new Date(fechai);
+        let fecha2 = new Date(fechaf);
+        let fecha1num = moment(fecha1).format('DD-MM-YYYY');
+        let fecha2num = moment(fecha2).format('DD-MM-YYYY');
 
-        nom = $('#empresa_orcinea_'+e).val();
-        fechai = $('#orcinea_inicio_'+e).val();
-        fechaf = $('#orcinea_fin_'+e).val();
-        cargo = $('#cargo_orcinea_'+e).val();
-        //let tipo_orc = $('#cbx_tipo_orc_'+a).val();
-        firm = $('#firmante_orcinea_'+e).val();
-        logos = $('#logo_orcinea_'+e).val();
-        $('#logo_nombre'+e).val(logos);
-        dpto1 = "LIMA";
-        tiempo_anio = $('#tiempo_imp'+ e).val();
+        //console.log("Nombre de Empresa:" + nom);
+        //console.log("Fecha1: " + fecha1);
+        //console.log("Fecha2 : "+ fecha2);
+        
+        //Asignar datos
+        $('.emp_imp').html(nom);
+        $('.cargo_imp').html(cargo);
+
+        $('.desde_imp').html(fecha1.toLocaleDateString("es-ES", options).toUpperCase());
+        $('.hasta_imp').html(fecha2.toLocaleDateString("es-ES", options).toUpperCase());
+        $('.desde_imp_num').html(fecha1num);
+        $('.hasta_imp_num').html(fecha2num);
+        $('.lugardia').html(dpto1+", "+fecha_emi.toLocaleDateString("es-ES", options).toUpperCase());
+        $('.desde_imp_low').html(fecha1.toLocaleDateString("es-ES", options));
+        $('.hasta_imp_low').html(fecha2.toLocaleDateString("es-ES", options));
+        $('.lugardia_low').html(dpto1+", "+fecha_emi.toLocaleDateString("es-ES", options));
+        $('.tiempo_imp').html(tiempo_anio);
+
+        //$('.tiempo_total_imp').html(temp);
+        $('.img_logo').attr("src","../../assets/img/"+logos);
+        $('.firmante_nom').html(firm);
+        $('.departamento_imp').html(dpto1.toUpperCase());
+        $('.cargo_imp_low').html(cargo.toLowerCase());
+    }else {
+        swal.fire(
+            'Fecha de emision incorrecta',
+            '',
+            'error'
+        );
     }
-  
-    //Datos para empresa
-    if(e > 4 && e < 15){
-        //DATOS  nombre completo, Finicio, Ffinal, Cargo, firmante
-        nom = $('#nombre_emp'+ e).val();
-        cargo = $('#cargo_emp'+ e).val();
-        fechai = $('#fech_inicio_emp'+ e).val();
-        fechaf = $('#fech_final_emp'+ e).val();
-        dpto1 = $('#dpto_emp'+ e).val();
-        logos = $('#logo_nombre'+ e).val();
-        firm = $('#firmante_emp'+ e).val();
-        tiempo_anio = $('#tiempo_imp'+ e).val();
-    }
-    
-    let fecha1 = new Date(fechai);
-    let fecha2 = new Date(fechaf);
-    let fecha1num = moment(fecha1).format('DD-MM-YYYY');
-    let fecha2num = moment(fecha2).format('DD-MM-YYYY');
-
-    //console.log("Nombre de Empresa:" + nom);
-    //console.log("Fecha1: " + fecha1);
-    //console.log("Fecha2 : "+ fecha2);
-    
-    //Asignar datos
-    $('.emp_imp').html(nom);
-    $('.cargo_imp').html(cargo);
-
-    $('.desde_imp').html(fecha1.toLocaleDateString("es-ES", options).toUpperCase());
-    $('.hasta_imp').html(fecha2.toLocaleDateString("es-ES", options).toUpperCase());
-    $('.desde_imp_num').html(fecha1num);
-    $('.hasta_imp_num').html(fecha2num);
-    $('.lugardia').html(dpto1+", "+fecha2.toLocaleDateString("es-ES", options).toUpperCase());
-    $('.desde_imp_low').html(fecha1.toLocaleDateString("es-ES", options));
-    $('.hasta_imp_low').html(fecha2.toLocaleDateString("es-ES", options));
-    $('.lugardia_low').html(dpto1+", "+fecha2.toLocaleDateString("es-ES", options));
-    $('.tiempo_imp').html(tiempo_anio);
-
-    //$('.tiempo_total_imp').html(temp);
-    $('.img_logo').attr("src","../../assets/img/"+logos);
-    $('.firmante_nom').html(firm);
-    $('.departamento_imp').html(dpto1.toUpperCase());
-    $('.cargo_imp_low').html(cargo.toLowerCase());
-
 }
 
 function PrevLiquidacion(e){
-    OcultarPrev();
-    $("#prev1").hide();
-    $("#prev2").show();
-    $("#prev3").hide();
 
-    var options = { year: 'numeric', month: 'long', day: 'numeric' };
-
-    //DATOS  nombre completo, Finicio, Ffinal, Cargo, firmante
-
-    let fechai = $('#fech_inicio_emp'+ e).val();
-    let fechaf = $('#fech_final_emp'+ e).val();
-
-    let fecha1 = new Date(fechai);
-    let fecha2 = new Date(fechaf);
-    
-
-
-    let nom         = $('#nombre_emp'+ e).val();
-    let dias_lq     = $('#dias_liqui'+ e).val();
-    let meses_lq    = $('#meses_liqui'+ e).val();
-    let anios_lq    = $('#anios_liqui'+ e).val();
-    let monto_texto;
-    let motivo      = $('select[name="combo_prev_liqui'+e+'"] option:selected').text();
-    let cuerpo      = $('#combo_prev_cuerpo'+e).val();
-    let fecha_final = $("#fech_final_emp"+e).val();
-    let fecha       = new Date(fecha_final);
-    let anio        = fecha.getFullYear();
-    let cargo       = $('#cargo_emp'+ e).val();
-    let tiempo_anio = $('#tiempo_imp'+ e).val();
-    var tipo3 = 0;
-
-        /*CALCULO DEL CUERPO DE AÑOS POR SUELDO */
-    let moneda_rm = $('#moneda_emp'+e).val();
-    let sueldo_rm = $('#sueldo_emp'+e).val();
-    let monto_sld_anio ;  
-    let monto_sld_mes ;
-    let monto_sld_dia; 
-    let monto_total_lq;
-    let meses_sld_lq; 
-
-    console.log("Dias Liqui: " + dias_lq);
-    console.log("Meses_liqui: " + meses_lq);
-    console.log("Anios Liqui: "+ anios_lq);
-    console.log("Años" + tiempo_anio);
-
-    $('.motivo_retiro').html(motivo.toUpperCase());
-
-    if(anio >= 1960 && anio <= 1970){
-        $("#liquidacion_1").show();
-    }
-    if(anio >= 1971 && anio <= 1985){
-        $("#liquidacion_2").show();
-    }
-    if(anio >= 1986 && anio <= 1991){
-        $("#liquidacion_3").show();
-    }
-    if(anio >= 1992 && anio <= 1999){
-        $("#liquidacion_4").show();
-    }
-
-
-    if(anio >= 1960 && anio <= 1979){
-        if(dias_lq > 0){
-            meses_sld_lq = Number(meses_lq) + 1;
-        }else {
-            meses_sld_lq = meses_lq ;
-        }
-        monto_sld_anio = Number(Number(sueldo_rm) * Number(anios_lq)).toFixed(2);
-        monto_sld_mes = Number((Number(sueldo_rm) / 12) * Number(meses_sld_lq)).toFixed(2);
-        monto_total_lq = Number(Number(monto_sld_anio) + Number(monto_sld_mes)).toFixed(2);
-        monto_texto = monto_total_lq;
-
-        $('.anios_liqui').html(anios_lq + " Años");
-        $('.meses_liqui').html(meses_sld_lq + " Meses");
-        $('.tiempo_lq_total').html(anios_lq + " Años " + meses_sld_lq + " Meses");
-
-        //$('.modelo_60_79').show();
-        switch (cuerpo) {
-            case '1':
-                $('.modelo_60_79_cuerpo_1').show();
-                break;
-            case '2':
-                $('.modelo_60_79_cuerpo_2').show();
-                break;
-            case '3':
-                $('.modelo_60_79_cuerpo_3').show();
-                break;
-        }
-        
-    }
-
-    if(anio >= 1980 && anio <= 1999){
-        meses_sld_lq = meses_lq ;
-        monto_sld_anio = Number(Number(sueldo_rm) * Number(anios_lq)).toFixed(2);
-        monto_sld_mes = Number((Number(sueldo_rm) / 12) * Number(meses_lq)).toFixed(2);
-        monto_sld_dia =Number(Number((Number(sueldo_rm) / 12)/30) * Number(dias_lq)).toFixed(2);
-        monto_total_lq = Number(Number(monto_sld_anio) + Number(monto_sld_mes) + Number(monto_sld_dia)).toFixed(2);
-        monto_texto = monto_total_lq ;
-
-        $('.anios_liqui').html(anios_lq + " Años");
-        $('.meses_liqui').html(meses_sld_lq + " Meses");
-        $('.dias_liqui').html(dias_lq + " Dias");
-        $('.tiempo_lq_total').html(anios_lq + " Años " + meses_sld_lq + " Meses " + dias_lq + " Dias");
-
-        //$('.modelo_80_99').show();
-        switch (cuerpo) {
-            case '1':
-                $('.modelo_80_99_cuerpo_1').show();
-                break;
-            case '2':
-                $('.modelo_80_99_cuerpo_2').show();
-                
-                break;
-            case '3':
-                $('.modelo_80_99_cuerpo_3').show();
-                tipo3 = 1;
-                break;
-        }
-    }
-
-    $('.tipo_moneda').html(moneda_rm);
-    $('.sueldo_rm').html(Number(sueldo_rm).toFixed(2));
-    $('.monto_sldo_anio').html(monto_sld_anio);
-    $('.monto_sldo_mes').html(monto_sld_mes);
-    $('.monto_sldo_dia').html(monto_sld_dia);
-    $('.monto_total_lq').html(monto_total_lq);
-    $('.monto_prueba').html(monto_texto);
-
-
-    let divs = "";
-    var total_neto = Number(monto_total_lq);
-    var total_conceptos = 0.00;
-
-    $(".liqui_bonif"+ e).each(function() {
-
-        if($(this).val() != 0){
-            var nombres = $(this).attr('name');
-            var valor = Number($(this).val()).toFixed(2);
-            total_neto+= Number(valor);
-            total_conceptos+= Number(valor);
-
-            divs+='<div class="row">';
-            divs+='    <div class="col-4 text-left">';
-            divs+='        <h1 style="color: #000;font-weight: 600;font-size: 12px;">'+nombres+'</h1>';
-            divs+='    </div>';
-
-            if(tipo3 == 0){
-                divs+='    <div class="col-4 text-center">';
-                divs+='        <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>';
-                divs+='    </div>';
-            }
-    
-            divs+='    <div class="col-4" style="text-align: right !important;">';
-            divs+='        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span>'+moneda_rm+'</span> <span>'+valor+'</span> </h1>';
-            divs+='    </div>';
-            divs+='</div>';
-        }
-	});
-
-    $.ajax({
-        url: "../../controller/pensioncontrolador.php?op=letras_monto",
-        type: "POST",
-        data: {valor : total_neto},
-        success: function(data){
-            //console.log(data);
-            $('.letras_monto').html(data);
-        },
-        error: function(error){
-            console.log(error);
-        }
+    let fechad = $('#fecha_liquidacion'+ e).val();
+    let fechaloc = new Date(fechad);
+    var fechaimod = fechaloc.toLocaleString('en-US', {
+        timeZone: 'Europe/London'
     });
+    var fecha_emi = new Date(fechaimod);
+    let fecha_fin = $('#fech_final_emp'+e).val();
+    let dpto1 = $('#dpto_emp'+ e).val();
+    let fecha_ff = new Date (fecha_fin);
 
 
-    $('.bonif_liquidacion').html(divs);
-    $('.monto_total_lq_neto').html(Number(total_neto).toFixed(2));
-    $('.monto_conceptos_total').html(Number(total_conceptos).toFixed(2));
-    $('.cargo_imp').html(cargo);
-    $('.emp_imp').html(nom);
-    $('.tiempo_imp').html(tiempo_anio);
-    
+    if(fecha_emi >= fecha_ff && fechad != "" ){
+        OcultarPrev();
+        $("#prev1").hide();
+        $("#prev2").show();
+        $("#prev3").hide();
 
-    //Asignar datos
-    $('.desde_imp').html(fecha1.toLocaleDateString("es-ES", options).toUpperCase());
-    $('.hasta_imp').html(fecha2.toLocaleDateString("es-ES", options).toUpperCase());
-    
-    $('.desde_imp_low').html(fecha1.toLocaleDateString("es-ES", options));
-    $('.hasta_imp_low').html(fecha2.toLocaleDateString("es-ES", options));
-    $('.cargo_imp_low').html(cargo.toLowerCase());
+        var options = { year: 'numeric', month: 'long', day: 'numeric' };
 
+        //DATOS  nombre completo, Finicio, Ffinal, Cargo, firmante
+
+        let fechai = $('#fech_inicio_emp'+ e).val();
+        let fechaf = $('#fech_final_emp'+ e).val();
+
+        let fecha1 = new Date(fechai);
+        let fecha2 = new Date(fechaf);
+        
+
+
+        let nom         = $('#nombre_emp'+ e).val();
+        let dias_lq     = $('#dias_liqui'+ e).val();
+        let meses_lq    = $('#meses_liqui'+ e).val();
+        let anios_lq    = $('#anios_liqui'+ e).val();
+        let monto_texto;
+        let motivo      = $('select[name="combo_prev_liqui'+e+'"] option:selected').text();
+        let cuerpo      = $('#combo_prev_cuerpo'+e).val();
+        let fecha_final = $("#fech_final_emp"+e).val();
+        let fecha       = new Date(fecha_final);
+        let anio        = fecha.getFullYear();
+        let cargo       = $('#cargo_emp'+ e).val();
+        let tiempo_anio = $('#tiempo_imp'+ e).val();
+        var tipo3 = 0;
+
+            /*CALCULO DEL CUERPO DE AÑOS POR SUELDO */
+        let moneda_rm = $('#moneda_emp'+e).val();
+        let sueldo_rm = $('#sueldo_emp'+e).val();
+        let monto_sld_anio ;  
+        let monto_sld_mes ;
+        let monto_sld_dia; 
+        let monto_total_lq;
+        let meses_sld_lq; 
+
+        console.log("Dias Liqui: " + dias_lq);
+        console.log("Meses_liqui: " + meses_lq);
+        console.log("Anios Liqui: "+ anios_lq);
+        console.log("Años" + tiempo_anio);
+
+        $('.motivo_retiro').html(motivo.toUpperCase());
+
+        if(anio >= 1960 && anio <= 1970){
+            $("#liquidacion_1").show();
+        }
+        if(anio >= 1971 && anio <= 1985){
+            $("#liquidacion_2").show();
+        }
+        if(anio >= 1986 && anio <= 1991){
+            $("#liquidacion_3").show();
+        }
+        if(anio >= 1992 && anio <= 1999){
+            $("#liquidacion_4").show();
+        }
+
+
+        if(anio >= 1960 && anio <= 1979){
+            if(dias_lq > 0){
+                meses_sld_lq = Number(meses_lq) + 1;
+            }else {
+                meses_sld_lq = meses_lq ;
+            }
+            monto_sld_anio = Number(Number(sueldo_rm) * Number(anios_lq)).toFixed(2);
+            monto_sld_mes = Number((Number(sueldo_rm) / 12) * Number(meses_sld_lq)).toFixed(2);
+            monto_total_lq = Number(Number(monto_sld_anio) + Number(monto_sld_mes)).toFixed(2);
+            monto_texto = monto_total_lq;
+
+            $('.anios_liqui').html(anios_lq + " Años");
+            $('.meses_liqui').html(meses_sld_lq + " Meses");
+            $('.tiempo_lq_total').html(anios_lq + " Años " + meses_sld_lq + " Meses");
+
+            //$('.modelo_60_79').show();
+            switch (cuerpo) {
+                case '1':
+                    $('.modelo_60_79_cuerpo_1').show();
+                    break;
+                case '2':
+                    $('.modelo_60_79_cuerpo_2').show();
+                    break;
+                case '3':
+                    $('.modelo_60_79_cuerpo_3').show();
+                    break;
+            }
+            
+        }
+
+        if(anio >= 1980 && anio <= 1999){
+            meses_sld_lq = meses_lq ;
+            monto_sld_anio = Number(Number(sueldo_rm) * Number(anios_lq)).toFixed(2);
+            monto_sld_mes = Number((Number(sueldo_rm) / 12) * Number(meses_lq)).toFixed(2);
+            monto_sld_dia =Number(Number((Number(sueldo_rm) / 12)/30) * Number(dias_lq)).toFixed(2);
+            monto_total_lq = Number(Number(monto_sld_anio) + Number(monto_sld_mes) + Number(monto_sld_dia)).toFixed(2);
+            monto_texto = monto_total_lq ;
+
+            $('.anios_liqui').html(anios_lq + " Años");
+            $('.meses_liqui').html(meses_sld_lq + " Meses");
+            $('.dias_liqui').html(dias_lq + " Dias");
+            $('.tiempo_lq_total').html(anios_lq + " Años " + meses_sld_lq + " Meses " + dias_lq + " Dias");
+
+            //$('.modelo_80_99').show();
+            switch (cuerpo) {
+                case '1':
+                    $('.modelo_80_99_cuerpo_1').show();
+                    break;
+                case '2':
+                    $('.modelo_80_99_cuerpo_2').show();
+                    
+                    break;
+                case '3':
+                    $('.modelo_80_99_cuerpo_3').show();
+                    tipo3 = 1;
+                    break;
+            }
+        }
+
+        $('.tipo_moneda').html(moneda_rm);
+        $('.sueldo_rm').html(Number(sueldo_rm).toFixed(2));
+        $('.monto_sldo_anio').html(monto_sld_anio);
+        $('.monto_sldo_mes').html(monto_sld_mes);
+        $('.monto_sldo_dia').html(monto_sld_dia);
+        $('.monto_total_lq').html(monto_total_lq);
+        $('.monto_prueba').html(monto_texto);
+
+
+        let divs = "";
+        var total_neto = Number(monto_total_lq);
+        var total_conceptos = 0.00;
+
+        $(".liqui_bonif"+ e).each(function() {
+
+            if($(this).val() != 0){
+                var nombres = $(this).attr('name');
+                var valor = Number($(this).val()).toFixed(2);
+                total_neto+= Number(valor);
+                total_conceptos+= Number(valor);
+
+                divs+='<div class="row">';
+                divs+='    <div class="col-4 text-left">';
+                divs+='        <h1 style="color: #000;font-weight: 600;font-size: 12px;">'+nombres+'</h1>';
+                divs+='    </div>';
+
+                if(tipo3 == 0){
+                    divs+='    <div class="col-4 text-center">';
+                    divs+='        <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>';
+                    divs+='    </div>';
+                }
+        
+                divs+='    <div class="col-4" style="text-align: right !important;">';
+                divs+='        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span>'+moneda_rm+'</span> <span>'+valor+'</span> </h1>';
+                divs+='    </div>';
+                divs+='</div>';
+            }
+        });
+
+        $.ajax({
+            url: "../../controller/pensioncontrolador.php?op=letras_monto",
+            type: "POST",
+            data: {valor : total_neto},
+            success: function(data){
+                //console.log(data);
+                $('.letras_monto').html(data);
+            },
+            error: function(error){
+                console.log(error);
+            }
+        });
+
+
+        $('.bonif_liquidacion').html(divs);
+        $('.monto_total_lq_neto').html(Number(total_neto).toFixed(2));
+        $('.monto_conceptos_total').html(Number(total_conceptos).toFixed(2));
+        $('.cargo_imp').html(cargo);
+        $('.emp_imp').html(nom);
+        $('.tiempo_imp').html(tiempo_anio);
+        
+
+        //Asignar datos
+        $('.desde_imp').html(fecha1.toLocaleDateString("es-ES", options).toUpperCase());
+        $('.hasta_imp').html(fecha2.toLocaleDateString("es-ES", options).toUpperCase());
+        
+        $('.desde_imp_low').html(fecha1.toLocaleDateString("es-ES", options));
+        $('.hasta_imp_low').html(fecha2.toLocaleDateString("es-ES", options));
+        $('.cargo_imp_low').html(cargo.toLowerCase());
+        $('.lugardia').html(dpto1+", "+fecha_emi.toLocaleDateString("es-ES", options).toUpperCase());
+        $('.lugardia_low').html(dpto1+", "+fecha_emi.toLocaleDateString("es-ES", options));
+    }else {
+        swal.fire(
+            'Fecha de emision incorrecta',
+            '',
+            'error'
+        );
+    }
 }
 
 function boleta_tab(e){
@@ -5707,6 +5923,175 @@ function DescargarZip(){
     });
 }
 
+function PrevRenuncia(e) {
+
+    let fecha = $('#fecha_renuncia'+ e).val();
+    let fechaloc = new Date(fecha);
+    var fechaimod = fechaloc.toLocaleString('en-US', {
+        timeZone: 'Europe/London'
+    });
+    var fecha_emi = new Date(fechaimod);
+    let fecha_fin = $('#fech_final_emp'+e).val();
+    let fecha_ff = new Date (fecha_fin);
+
+
+    if(fecha_emi >= fecha_ff && fecha != "" ){
+        
+        OcultarPrev();
+        $('#prev5').show();
+        let tipoprev = $('#select_renuncia'+e).val();
+        console.log(tipoprev);
+        $("#prev_renuncia_"+tipoprev).show();
+
+        var options = { year: 'numeric', month: 'long', day: 'numeric' };
+
+        //DATOS  nombre completo, Finicio, Ffinal, Cargo, firmante
+        let nom = $('#nombre_emp'+ e).val();
+        let cargo = $('#cargo_emp'+ e).val();
+        let fechai = $('#fech_inicio_emp'+ e).val();
+        let fechaf = $('#fech_final_emp'+ e).val();
+        let dpto1 = $('#dpto_emp'+ e).val();
+        let logos = $('#logo_nombre'+ e).val();
+        let firm = $('#firmante_emp'+ e).val();
+        var num_doc = $('#num_doc').val();
+        let fecha1 = new Date(fechai);
+        let fecha2 = new Date(fechaf);
+        let fecha1num = moment(fecha1).format('DD-MM-YYYY');
+        let fecha2num = moment(fecha2).format('DD-MM-YYYY');
+        
+        //Asignar datos
+        $('.emp_imp').html(nom);
+        $('.cargo_imp').html(cargo);
+        $('.dni_imp').html(num_doc);
+
+        $('.desde_imp').html(fecha1.toLocaleDateString("es-ES", options).toUpperCase());
+        $('.hasta_imp').html(fecha2.toLocaleDateString("es-ES", options).toUpperCase());
+        $('.desde_imp_num').html(fecha1num);
+        $('.hasta_imp_num').html(fecha2num);
+        $('.lugardia').html(dpto1+", "+fecha_emi.toLocaleDateString("es-ES", options).toUpperCase());
+        $('.desde_imp_low').html(fecha1.toLocaleDateString("es-ES", options));
+        $('.hasta_imp_low').html(fecha2.toLocaleDateString("es-ES", options));
+        $('.lugardia_low').html(dpto1+", "+fecha_emi.toLocaleDateString("es-ES", options));
+        //$('.tiempo_total_imp').html(temp);
+        $('.img_logo').attr("src","../../assets/img/"+logos);
+        $('.firmante_nom').html(firm);
+        $('.departamento_imp').html(dpto1.toUpperCase());
+        $('.cargo_imp_low').html(cargo.toLowerCase());
+    }else {
+        swal.fire(
+            'Fecha de emision incorrecta',
+            '',
+            'error'
+        );
+    }
+    
+
+    
+}
+
+function Imprimir_renuncia(){
+    //console.log("Imprimir");
+    let e = $('#num_emp').val();// se asigna al seleccinar la empresa en el tab
+
+    if(e == ""){
+        e = 1;
+    }
+    let dni = $('#num_doc').val();
+    let nombres = $('#txtnombre').val();
+    let apellidos = $('#txtapellido').val();
+    var nombreArchivo ="Renuncia "+ dni + " " + nombres + " " + apellidos;
+    let tipoprev = $('#select_renuncia'+e).val();
+    var ficha = document.getElementById('contenido_renuncia_'+tipoprev);
+    var ventimp1 = window.open('', 'Imprimir');
+    ventimp1.document.write('<html><head><title>'+nombreArchivo+'</title>');
+    ventimp1.document.write('<link rel="stylesheet" href="../../public/css/bracket.css"></link>');
+    ventimp1.document.write('<link rel="stylesheet" href="../../public/lib/bootstrap5/bootstrap.min.css">');
+    ventimp1.document.write('<style> .certificado_imp{ padding-left: 50px; padding-right: 50px;}</style>');
+    ventimp1.document.write('<style> .divimagen{ padding: 30px 150px;}</style>');
+    ventimp1.document.write('</head><body >');
+    ventimp1.document.write(ficha.innerHTML);
+    ventimp1.document.write('</body></html>');
+    ventimp1.document.close();
+    ventimp1.focus();    
+    
+    ventimp1.onload = function() {
+        ventimp1.print();
+        ventimp1.close();
+    };
+}
+
+function imprimir_word_renuncia(e){
+    var tipo = $('#tipo_emp').val();
+    let tipoprev = $('#select_renuncia' + e).val();
+    let nombreruta = 'renuncia_'+tipoprev;
+    var nombre = $('#txtnombre').val();
+    var apellido = $('#txtapellido').val();
+    var nombre_emp = $('#nom_emp_lab' + e).html();
+    var nombre_com = nombre + ' ' + apellido;
+    var num_doc = $('#num_doc').val();
+    var nom_carpeta = "PENSIONES-"+ e +"-"+ num_doc;
+    var fecha_inicio = $('.desde_imp').html();
+    var fecha_hasta = $('.hasta_imp').html();
+    var fecha_inicio_num = $('.desde_imp_num').html();
+    var fecha_hasta_num = $('.hasta_imp_num').html();
+    var lugar_dia = $('.lugardia').html();
+    var cargo = $('#cargo_emp'+ e).val();
+    var logo = $('#logo_nombre'+ e).val();
+    var firmante = $('.firmante_nom').html();
+    var link = '../../controller/docs/renuncia_'+tipoprev+'.php';
+    var ruc = $('#ruc_emp'+ e).val();
+
+    $.ajax({
+        type: "POST",
+        url: link,
+        data : {
+            empresa : nombre_emp,
+            afiliado: nombre_com,
+            nombre_carpeta : nom_carpeta,
+            fecha_inicio : fecha_inicio,
+            fecha_final: fecha_hasta,
+            fecha_inicio_num : fecha_inicio_num,
+            fecha_final_num : fecha_hasta_num,
+            fecha_footer : lugar_dia,
+            cargo : cargo,
+            tipo : tipo,
+            logo : logo,
+            firmante : firmante,
+            ruc: ruc,
+            dni: num_doc
+        },
+        success: function(response){
+
+            console.log(response);
+            resp = JSON.parse(response);
+            if(resp.estado == 1){
+                    swal.fire(
+                        'Documento generado exitosamente',
+                        '',
+                        'success'
+                    );
+            }
+            // URL del archivo que deseas descargar
+            var url = '../../files/'+nom_carpeta+'/'+resp.archivo+'.docx';
+
+            // Crear un elemento <a> oculto
+            var link = document.createElement('a');
+            link.href = url;
+            link.download = resp.archivo+'-'+num_doc; // Nombre del archivo para descargar
+            link.style.display = 'none';
+
+            // Añadir el elemento <a> al DOM
+            document.body.appendChild(link);
+
+            // Simular un clic en el enlace para iniciar la descarga
+            link.click();
+
+            // Eliminar el elemento <a> del DOM después de la descarga
+            document.body.removeChild(link);
+        }
+    });
+
+}
 
 
 init();
