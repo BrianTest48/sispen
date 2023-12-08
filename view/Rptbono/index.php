@@ -12774,6 +12774,7 @@
         <!-- ########## END: MAIN PANEL ########## -->
         <?php 
             require_once("./modalbono.php");
+            require_once("./modalfirmante.php");
             require_once("./modalboletas.php");
             require_once("./modalboletasdsc.php");
             require_once("../Main/mainjs.php"); 

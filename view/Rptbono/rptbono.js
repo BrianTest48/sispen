@@ -143,10 +143,10 @@ function activarcargos(){
             placeholder: "Seleccione",
             minimumResultsForSearch: Infinity  
         });
-        $('#firmante'+i).select2({
-            placeholder: "Seleccione",
-            minimumResultsForSearch: Infinity  
-        });
+        // $('#firmante'+i).select2({
+        //     placeholder: "Seleccione",
+        //     minimumResultsForSearch: Infinity  
+        // });
     }
     for (b = 1 ; b <= a ; b++){
         $('#logo_orcinea_'+b).select2({
@@ -799,6 +799,11 @@ function generar(e){
                 placeholder: "Seleccione",
                 minimumResultsForSearch: Infinity
             });
+
+            $('.select_anio_boletas').select2({
+                placeholder: "Seleccione",
+                minimumResultsForSearch: Infinity
+            });
         
             //Ocultar contenedores
             $('.contenedores_emp').hide();
@@ -1138,6 +1143,13 @@ function crearTabs(valor, orc, host) {
         tabContent += '                             <input type="hidden" id="ap_pension'+ i +'">';
         tabContent += '                             <input type="hidden" id="sueldo_minimo'+ i +'">';
         tabContent += '                             <input type="hidden" id="unidad_moneda'+ i +'">';
+        tabContent += '                             <div class="row mg-b-5" id="anio_bol'+i+'">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Año: </label>';
+        tabContent += '                                 <div class="col-lg-6 pd-0">';
+        tabContent += '                                     <select class="form-control col-lg-6 select2 select_anio_boletas" data-placeholder="Seleccione" id="select_anio_boletas'+ i +'" name="select_anio_boletas'+ i +'" style="width: 100%">';
+        tabContent += '                                     </select>';
+        tabContent += '                                 </div>';
+        tabContent += '                             </div>';
         tabContent += '                             <div class="row mg-b-5">';
         tabContent += '                                 <label class="form-control-label col-lg-6">Mes: </label>';
         tabContent += '                                 <div class="col-lg-6 pd-0">';
@@ -1532,6 +1544,13 @@ function crearTabs(valor, orc, host) {
         tabContent += '                             <input type="hidden" id="ap_pension'+ i +'">';
         tabContent += '                             <input type="hidden" id="sueldo_minimo'+ i +'">';
         tabContent += '                             <input type="hidden" id="unidad_moneda'+ i +'">';
+        tabContent += '                             <div class="row mg-b-5" id="anio_bol'+i+'">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Año: </label>';
+        tabContent += '                                 <div class="col-lg-6 pd-0">';
+        tabContent += '                                     <select class="form-control col-lg-6 select2 select_anio_boletas" data-placeholder="Seleccione" id="select_anio_boletas'+ i +'" name="select_anio_boletas'+ i +'" style="width: 100%">';
+        tabContent += '                                     </select>';
+        tabContent += '                                 </div>';
+        tabContent += '                             </div>';
         tabContent += '                             <div class="row mg-b-5">';
         tabContent += '                                 <label class="form-control-label col-lg-6">Mes: </label>';
         tabContent += '                                 <div class="col-lg-6 pd-0">';
@@ -1930,6 +1949,13 @@ function crearTabs(valor, orc, host) {
         tabContent += '                             <input type="hidden" id="ap_pension'+ i +'">';
         tabContent += '                             <input type="hidden" id="sueldo_minimo'+ i +'">';
         tabContent += '                             <input type="hidden" id="unidad_moneda'+ i +'">';
+        tabContent += '                             <div class="row mg-b-5" id="anio_bol'+i+'">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Año: </label>';
+        tabContent += '                                 <div class="col-lg-6 pd-0">';
+        tabContent += '                                     <select class="form-control col-lg-6 select2 select_anio_boletas" data-placeholder="Seleccione" id="select_anio_boletas'+ i +'" name="select_anio_boletas'+ i +'" style="width: 100%">';
+        tabContent += '                                     </select>';
+        tabContent += '                                 </div>';
+        tabContent += '                             </div>';
         tabContent += '                             <div class="row mg-b-5">';
         tabContent += '                                 <label class="form-control-label col-lg-6">Mes: </label>';
         tabContent += '                                 <div class="col-lg-6 pd-0">';
@@ -2519,10 +2545,14 @@ function creardivsempresa(){
                                "</div><!-- row -->"+
                                "<div class='row mb-3 mt-2 '>"+
                                     "<label for='firmantec"+i+"' class='col-sm-3 col-form-label'>Firmante:</label>"+
-                                    "<div class='col-sm-9'>"+
-                                        "<select required id='firmante"+i+"' name='firmante"+i+"' class='form-control select2' data-placeholder='Seleccione' style='width: 100%' >"+
-                                        "</select>"+
+                                    "<div class='col-sm-8'>"+
+                                        "<!--<select required id='firmante"+i+"' name='firmante"+i+"' class='form-control select2' data-placeholder='Seleccione' style='width: 100%'>"+
+                                            "<option label='Seleccione'></option>"+
+                                            "<option value='SIN'>SIN FIRMANTE</option>"+
+                                        "</select>-->"+
+                                        "<input type='text' class='form-control' id='firmante"+i+"' name='firmante"+i+"' readonly>"+
                                     "</div>"+
+                                    "<div class='col-sm-1' style='padding-left: 0'><button type='button' onclick='MostrarFirmante("+i+")'  id='btn_ver"+i+"' class='btn btn-outline-primary btn-icon' style='width:100%;'><div><i class='fa fa-search'></i></div></button></div>"+
                                 "</div><!-- row -->"+
                                 "<div class='row mb-3 mt-2 '>"+
                                     "<label for='logo"+i+"' class='col-sm-3 col-form-label'>Logo:</label>"+
@@ -3219,8 +3249,10 @@ function CargarOrcinea(a){
         var fechafmod = fechafi.toLocaleString('en-US', {
             timeZone: 'Europe/London'
         });
-        var fechai = new Date(fechaimod)
+        var fechai = new Date(fechaimod);
         var fechaf=  new Date(fechafmod);
+        console.log(fechai);
+        console.log(fechaf);
         if(fechai >= fechan){
             if(fechai < fechafi){
                 var orcinea_inicio = moment($("#orcinea_inicio_"+a).val());
@@ -3284,6 +3316,8 @@ function CargarOrcinea(a){
                 $('.desde_imp_num').html(convertDateFormat(fech1));
                 $('.hasta_imp_num').html(convertDateFormat(fech1f));
                 $('.lugardia_num').html(dpto1 +", "+convertDateFormat(fech1f));
+                console.log(fech1);
+                console.log(fech1f);
 
                 
                 $('#dias_liqui'+ a).val(dias_orcinea);
@@ -4900,11 +4934,11 @@ function ListarFirmante(a){
 
     //ruc_empresa = $("#lst_emp_"+a).val();
     $('#nom_emp_'+a).html(ruc+" - "+estado);
- 
-    $.post("../../controller/firmacontrolador.php?op=combo",{numero : ruc}, function(data){
+    $("#firmante"+a).val("");  
+    /*$.post("../../controller/firmacontrolador.php?op=combo",{numero : ruc}, function(data){
         //console.log(data);
         $("#firmante"+a).html(data);  
-    });
+    });*/
 }
 
 function ListarLogo(a){
@@ -4930,104 +4964,179 @@ function Sumarmonto(mes) {
 }
 
 function MostrarBoleta(e){
-    let mes = $('#select_mes_boleta'+ e).val();
-    let sueldo = Number($('#'+mes+'_1').val());
-    let rm = Number($('#'+mes+'_2').val());
-    let reintegro = Number($('#'+mes+'_3').val());
-    let hextras = Number($('#'+mes+'_4').val());
-    let bonofi = Number($('#'+mes+'_5').val());
-    let otros = Number($('#'+mes+'_6').val());
 
-    let total =  desformatearNumero($('#'+mes+'_total').html());
+    let anio_final = $("#fech_final_emp" + e).val();
+    let anio_boleta_final = new Date(anio_final).getFullYear();
 
-    $('#sueldo_boleta'+ e).val(sueldo);
-    $('#rm_vacacional_boleta'+ e).val(rm);
-    $('#reintegro_boleta'+ e).val(reintegro);
-    $('#horaex_boleta'+ e).val(hextras);
-    $('#boni_boleta'+ e).val(bonofi);
-    $('#otros_boleta'+ e).val(otros);
-    $('#total_monto_boleta'+ e).val(total);
-    SumarMeses();
-
-    let mes_completo = "";
-    let estado_dsc = $("#select_mes_boleta"+ e).val();
-    let estado_anio_dsc ;
-    switch (estado_dsc) {
-        case 'ene':
-            mes_completo = "01";
-            estado_anio_dsc = "1992";
-            break;
-        case 'feb':
-            mes_completo = "02";
-            estado_anio_dsc = "1992";
-            break;
-        case 'mar':
-            mes_completo = "03";
-            estado_anio_dsc = "1992";
-            break; 
-        case 'abr':
-            mes_completo = "04";
-            estado_anio_dsc = "1992";
-            break; 
-        case 'may':
-            mes_completo = "05";
-            estado_anio_dsc = "1992";
-            break; 
-        case 'jun':
-            mes_completo = "06";
-            estado_anio_dsc = "1992";
-            break; 
-        case 'jul':
-            mes_completo = "07";
-            estado_anio_dsc = "1992";
-            break; 
-        case 'ago':
-            mes_completo = "08";
-            estado_anio_dsc = "1992";
-            break; 
-        case 'sep':
-            mes_completo = "09";
-            estado_anio_dsc = "1992";
-            break; 
-        case 'oct':
-            mes_completo = "10";
-            estado_anio_dsc = "1992";
-            break; 
-        case 'nov':
-            mes_completo = "11";
-            estado_anio_dsc = "1992";
-            break; 
-        case 'dic':
-            mes_completo = "12";
-            estado_anio_dsc = "1991";
-            break;
-    }
+    if(anio_boleta_final >= 1991){
+        let mes = $('#select_mes_boleta'+ e).val();
+        let sueldo = Number($('#'+mes+'_1').val());
+        let rm = Number($('#'+mes+'_2').val());
+        let reintegro = Number($('#'+mes+'_3').val());
+        let hextras = Number($('#'+mes+'_4').val());
+        let bonofi = Number($('#'+mes+'_5').val());
+        let otros = Number($('#'+mes+'_6').val());
     
-    //let estado_anio_dsc = $("#select_anio_boletas"+ e).val();
-    let fecha_consulta = estado_anio_dsc+'-'+mes_completo+'-01';
-    //console.log(fecha_consulta);
-    //CONSULTA DE MES 
-    $.post("../../controller/pensioncontrolador.php?op=buscar_mes",{fecha : fecha_consulta}, function(data){
-        //console.log(data);
-        if(data != ""){
-            data = JSON.parse(data);
-            //console.log(data);
-            $('#at_ss'+ e).val(data.at_ss);
-            $('#at_fonavi'+ e).val(data.at_pro_desocup);
-            $('#at_pension'+ e).val(data.at_fondo_juvi);
-            $('#ap_ss'+ e).val(data.ap_ss);
-            $('#ap_fonavi'+ e).val(data.ap_fonavi);
-            $('#ap_pension'+ e).val(data.ap_fondo_juvi);
-            //$('#sueldo_boleta'+ e).val(data.sueldo_minimo);
-            //$('#sueldo_boleta_info').val(data.sueldo_minimo);
-            $('#dsc_at_ss').html(data.at_ss +'%');
-            $('#dsc_at_fonavi').html(data.at_pro_desocup+'%');
-            $('#dsc_at_pension').html(data.at_fondo_juvi+'%');
-            $('#dsc_ap_ss').html(data.ap_ss+'%');
-            $('#dsc_ap_fonavi').html(data.ap_fonavi+'%');
-            $('#dsc_ap_pension').html(data.ap_fondo_juvi+'%');
+        let total =  desformatearNumero($('#'+mes+'_total').html());
+    
+        $('#sueldo_boleta'+ e).val(sueldo);
+        $('#rm_vacacional_boleta'+ e).val(rm);
+        $('#reintegro_boleta'+ e).val(reintegro);
+        $('#horaex_boleta'+ e).val(hextras);
+        $('#boni_boleta'+ e).val(bonofi);
+        $('#otros_boleta'+ e).val(otros);
+        $('#total_monto_boleta'+ e).val(total);
+        SumarMeses();
+    
+        let mes_completo = "";
+        let estado_dsc = $("#select_mes_boleta"+ e).val();
+        let estado_anio_dsc ;
+        switch (estado_dsc) {
+            case 'ene':
+                mes_completo = "01";
+                estado_anio_dsc = "1992";
+                break;
+            case 'feb':
+                mes_completo = "02";
+                estado_anio_dsc = "1992";
+                break;
+            case 'mar':
+                mes_completo = "03";
+                estado_anio_dsc = "1992";
+                break; 
+            case 'abr':
+                mes_completo = "04";
+                estado_anio_dsc = "1992";
+                break; 
+            case 'may':
+                mes_completo = "05";
+                estado_anio_dsc = "1992";
+                break; 
+            case 'jun':
+                mes_completo = "06";
+                estado_anio_dsc = "1992";
+                break; 
+            case 'jul':
+                mes_completo = "07";
+                estado_anio_dsc = "1992";
+                break; 
+            case 'ago':
+                mes_completo = "08";
+                estado_anio_dsc = "1992";
+                break; 
+            case 'sep':
+                mes_completo = "09";
+                estado_anio_dsc = "1992";
+                break; 
+            case 'oct':
+                mes_completo = "10";
+                estado_anio_dsc = "1992";
+                break; 
+            case 'nov':
+                mes_completo = "11";
+                estado_anio_dsc = "1992";
+                break; 
+            case 'dic':
+                mes_completo = "12";
+                estado_anio_dsc = "1991";
+                break;
         }
-    });
+        
+        //let estado_anio_dsc = $("#select_anio_boletas"+ e).val();
+        let fecha_consulta = estado_anio_dsc+'-'+mes_completo+'-01';
+        //console.log(fecha_consulta);
+        //CONSULTA DE MES 
+        $.post("../../controller/pensioncontrolador.php?op=buscar_mes",{fecha : fecha_consulta}, function(data){
+            //console.log(data);
+            if(data != ""){
+                data = JSON.parse(data);
+                //console.log(data);
+                $('#at_ss'+ e).val(data.at_ss);
+                $('#at_fonavi'+ e).val(data.at_pro_desocup);
+                $('#at_pension'+ e).val(data.at_fondo_juvi);
+                $('#ap_ss'+ e).val(data.ap_ss);
+                $('#ap_fonavi'+ e).val(data.ap_fonavi);
+                $('#ap_pension'+ e).val(data.ap_fondo_juvi);
+                //$('#sueldo_boleta'+ e).val(data.sueldo_minimo);
+                //$('#sueldo_boleta_info').val(data.sueldo_minimo);
+                $('#dsc_at_ss').html(data.at_ss +'%');
+                $('#dsc_at_fonavi').html(data.at_pro_desocup+'%');
+                $('#dsc_at_pension').html(data.at_fondo_juvi+'%');
+                $('#dsc_ap_ss').html(data.ap_ss+'%');
+                $('#dsc_ap_fonavi').html(data.ap_fonavi+'%');
+                $('#dsc_ap_pension').html(data.ap_fondo_juvi+'%');
+            }
+        });
+    }else {
+        let estado_dsc = $("#select_mes_boleta"+ e).val();
+        let estado_anio_dsc = $("#select_anio_boletas"+ e).val();
+        let mes_completo = "";
+        switch (estado_dsc) {
+            case 'ene':
+                mes_completo = "01";
+                break;
+            case 'feb':
+                mes_completo = "02";
+                break;
+            case 'mar':
+                mes_completo = "03";
+                break; 
+            case 'abr':
+                mes_completo = "04";
+                break; 
+            case 'may':
+                mes_completo = "05";
+                break; 
+            case 'jun':
+                mes_completo = "06";
+                break; 
+            case 'jul':
+                mes_completo = "07";
+                break; 
+            case 'ago':
+                mes_completo = "08";
+                break; 
+            case 'sep':
+                mes_completo = "09";
+                break; 
+            case 'oct':
+                mes_completo = "10";
+                break; 
+            case 'nov':
+                mes_completo = "11";
+                break; 
+            case 'dic':
+                mes_completo = "12";
+                break;
+        }
+        let fecha_consulta = estado_anio_dsc+'-'+mes_completo+'-01';
+        //console.log(fecha_consulta);
+        //CONSULTA DE MES 
+        $.post("../../controller/pensioncontrolador.php?op=buscar_mes",{fecha : fecha_consulta}, function(data){
+            //console.log(data);
+            if(data != ""){
+                data = JSON.parse(data);
+                //console.log(data);
+                $('#at_ss'+ e).val(data.at_ss);
+                $('#at_fonavi'+ e).val(data.at_pro_desocup);
+                $('#at_pension'+ e).val(data.at_fondo_juvi);
+                $('#ap_ss'+ e).val(data.ap_ss);
+                $('#ap_fonavi'+ e).val(data.ap_fonavi);
+                $('#ap_pension'+ e).val(data.ap_fondo_juvi);
+                $('#sueldo_boleta'+ e).val(data.sueldo_minimo);
+                //$('#sueldo_boleta_info').val(data.sueldo_minimo);
+                $('#dsc_at_ss').html(data.at_ss +'%');
+                $('#dsc_at_fonavi').html(data.at_pro_desocup+'%');
+                $('#dsc_at_pension').html(data.at_fondo_juvi+'%');
+                $('#dsc_ap_ss').html(data.ap_ss+'%');
+                $('#dsc_ap_fonavi').html(data.ap_fonavi+'%');
+                $('#dsc_ap_pension').html(data.ap_fondo_juvi+'%');
+            }
+        });
+    }
+
+
+    
 }
 
 function SumarMeses(){
@@ -5294,8 +5403,8 @@ function PrevCertificado(e) {
             //DATOS  nombre completo, Finicio, Ffinal, Cargo, firmante
 
             nom = $('#empresa_orcinea_'+e).val();
-            fechai = $('#orcinea_inicio_'+e).val();
-            fechaf = $('#orcinea_fin_'+e).val();
+            fechai = $('#fech_inicio_emp'+ e).val();
+            fechaf = $('#fech_final_emp'+ e).val();
             cargo = $('#cargo_orcinea_'+e).val();
             //let tipo_orc = $('#cbx_tipo_orc_'+a).val();
             firm = $('#firmante_orcinea_'+e).val();
@@ -5322,6 +5431,8 @@ function PrevCertificado(e) {
         let fecha2 = new Date(fechaf);
         let fecha1num = moment(fecha1).format('DD-MM-YYYY');
         let fecha2num = moment(fecha2).format('DD-MM-YYYY');
+        console.log(fecha1);
+        console.log(fecha2);
 
         //console.log("Nombre de Empresa:" + nom);
         //console.log("Fecha1: " + fecha1);
@@ -5576,13 +5687,51 @@ function boleta_tab(e){
     let anio_boleta_final = new Date(anio_final).getFullYear();
     let incremento = anio_boleta_inicio;
     
-    /*for( incremento; incremento <= anio_boleta_final ; incremento++){
-        div+= "<option value="+incremento+">"+incremento+"</option>";
-    }
-    $('#select_anio_boletas'+ e).html(div);*/
-    //$('#select_mes_boletas'+ e).select2("val", "0");
+    if(anio_boleta_final >= 1991){
 
-    /**FUNCIONALIDAD PARA CAMBIAR LA VISIBILIDAD DE BONOS*/
+        $('#btnboletas'+ e).attr("disabled", false);
+        $('#anio_bol'+ e).hide();
+        let tabContent;
+        tabContent += '<option label="Seleccione"></option>';
+        tabContent += '<option value="dic">Diciembre  1991</option>';
+        tabContent += '<option value="ene">Enero - 1992</option>';
+        tabContent += '<option value="feb">Febrero - 1992</option>';
+        tabContent += '<option value="mar">Marzo - 1992</option>';
+        tabContent += '<option value="abr">Abril - 1992</option>';
+        tabContent += '<option value="may">Mayo - 1992</option>';
+        tabContent += '<option value="jun">Junio - 1992</option>';
+        tabContent += '<option value="jul">Julio - 1992</option>';
+        tabContent += '<option value="ago">Agosto - 1992</option>';
+        tabContent += '<option value="sep">Septiembre - 1992</option>';
+        tabContent += '<option value="oct">Octubre - 1992</option>';
+        tabContent += '<option value="nov">Noviembre - 1992</option>';
+        $('#select_mes_boleta'+ e).html(tabContent);
+    }else {
+
+        $('#btnboletas'+ e).attr("disabled", true);
+        $('#anio_bol'+ e).show();
+        let div;
+        for( incremento; incremento <= anio_boleta_final ; incremento++){
+            div+= "<option value="+incremento+">"+incremento+"</option>";
+        }
+        $('#select_anio_boletas'+ e).html(div);
+        let tabContent;
+        tabContent += '<option label="Seleccione"></option>';
+        tabContent += '<option value="dic">Diciembre</option>';
+        tabContent += '<option value="ene">Enero </option>';
+        tabContent += '<option value="feb">Febrero </option>';
+        tabContent += '<option value="mar">Marzo </option>';
+        tabContent += '<option value="abr">Abril </option>';
+        tabContent += '<option value="may">Mayo </option>';
+        tabContent += '<option value="jun">Junio </option>';
+        tabContent += '<option value="jul">Julio </option>';
+        tabContent += '<option value="ago">Agosto </option>';
+        tabContent += '<option value="sep">Septiembre </option>';
+        tabContent += '<option value="oct">Octubre </option>';
+        tabContent += '<option value="nov">Noviembre </option>';
+        $('#select_mes_boleta'+ e).html(tabContent);
+    }
+    
 
     let fecha = new Date(anio_final);
 
@@ -5728,8 +5877,15 @@ function PrevBoleta(e){
     OcultarPrev();
 
     let nom = $('#nombre_emp'+ e).val();
-    let estado = $('select[name="select_mes_boleta'+ e +'"] option:selected').text();
-    console.log(estado);
+    let estado = "";
+    let anio_final = $('#fech_final_emp'+ e).val();
+    let anio_boleta_final = new Date(anio_final).getFullYear();
+    if(anio_boleta_final >= 1991){
+        estado = $('select[name="select_mes_boleta'+ e +'"] option:selected').text();
+    }else {
+        let estado_anio2 = $('select[name="select_anio_boletas'+ e +'"] option:selected').text();
+        estado = ($('select[name="select_mes_boleta'+ e +'"] option:selected').text()) + " DE "+ estado_anio2;
+    }
     //let estado_anio = $('select[name="select_anio_boletas'+ e +'"] option:selected').text();
     let estado_anio = "1992";
     let mes = $('#select_mes_boleta'+ e).val();
@@ -6093,5 +6249,41 @@ function imprimir_word_renuncia(e){
 
 }
 
+
+function MostrarFirmante(e){
+    console.log(e);
+    let ruc = $('#lst_emp_'+ e).val();
+    console.log("El ruc de la empresa es : "+ ruc);
+    $('#num_empresa').val(e);
+    $('#modalfirmante').modal('show');
+
+    $.ajax({
+        type: "POST",
+        url: "../../controller/firmacontrolador.php?op=grilla", // Reemplaza con la URL correcta del servidor
+        data: {numero : ruc},
+        success: function(response) {
+            // Manejar la respuesta exitosa del servidor
+            //console.log("Respuesta del servidor:", response);
+            $('#div_firmante').html(response);
+        },
+        error: function(error) {
+            // Manejar errores en la solicitud
+            console.error("Error en la solicitud AJAX:", error);
+        }
+    });
+}
+
+function SeleccionarFirmante(){
+    let firmante = $("input[name='firmante']:checked").val();
+    let num = $('#num_empresa').val();
+
+    $('#firmante'+ num).val(firmante);
+
+    $('#modalfirmante').modal('hide');
+}
+
+function CerrarFirmante() {
+    $('#modalfirmante').modal('hide');
+}
 
 init();

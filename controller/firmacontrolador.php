@@ -104,5 +104,32 @@
                 echo $html;
             }
         break;
+
+        case 'grilla':
+            $datos = $firmante->get_firmante_empresa($_POST["numero"]);
+            if(is_array($datos)==true and count($datos)>0){
+                
+                $html="";
+                foreach($datos as $row) {
+                    $html.= "<tr>";
+                    $html.= "<td style='vertical-align: middle;'><input type='radio' name='firmante' value='".$row["firma_nombre"]."'></td>";
+                    $html.= "<td style='vertical-align: middle;'>".$row["firma_nombre"]."</td>";
+                    $html.= "<td style='vertical-align: middle;'>".$row["fech_inicio"]."</td>";
+                    $html.= "<td style='vertical-align: middle;'>".$row["fech_fin"]."</td>";
+                    $html.= "<td style='vertical-align: middle;'>".$row["estado"]."</td>";
+                    $html.= "</tr>";
+                    //$html.= "<option value='".$row["firma_nombre"]."'>".$row["firma_nombre"]." / ".$row["fech_inicio"]." / ".$row["fech_fin"]." / ".$row["estado"]." / ".$row["fecha_f"]."</option>";
+                    //$html.= "<option value='".$row["id"]."'>".$row["firma_nombre"]."<div>".$row["imagen"]."</div></option>";
+                }
+                echo $html;
+            }else {
+                //$html="<option value='....................'>SIN FIRMANTE</option>";
+                $html= "";
+                $html.= "<tr>";
+                $html.= "<td colspan=5 class='text-center'>SIN RESULTADOS</td>";
+                $html.= "</tr>";
+                echo $html;
+            }
+            break;
     }
 ?>

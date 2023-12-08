@@ -121,10 +121,10 @@ function activarcargos(){
             placeholder: "Seleccione",
             minimumResultsForSearch: Infinity  
         });
-        $('#firmante'+i).select2({
-            placeholder: "Seleccione",
-            minimumResultsForSearch: Infinity  
-        });
+        // $('#firmante'+i).select2({
+        //     placeholder: "Seleccione",
+        //     minimumResultsForSearch: Infinity  
+        // });
     }
 
     $('.cbx_tipos').select2({
@@ -726,6 +726,7 @@ function SeleccionarEmp(e){
     console.log("Empresa selecionada: "+ e);
     $('#num_emp').val(e);// Asignar el numero al hidden
 }
+
 function creardivsempresa(){
     numero = $("#txtcant_emp").val();
     var div = "";
@@ -818,12 +819,14 @@ function creardivsempresa(){
                                 "</div><!-- row -->"+
                                 "<div class='row mb-3 mt-2 '>"+
                                     "<label for='firmantec"+i+"' class='col-sm-3 col-form-label'>Firmante:</label>"+
-                                    "<div class='col-sm-9'>"+
-                                        "<select required id='firmante"+i+"' name='firmante"+i+"' class='form-control select2' data-placeholder='Seleccione' style='width: 100%'>"+
+                                    "<div class='col-sm-8'>"+
+                                        "<!--<select required id='firmante"+i+"' name='firmante"+i+"' class='form-control select2' data-placeholder='Seleccione' style='width: 100%'>"+
                                             "<option label='Seleccione'></option>"+
                                             "<option value='SIN'>SIN FIRMANTE</option>"+
-                                        "</select>"+
+                                        "</select>-->"+
+                                        "<input type='text' class='form-control' id='firmante"+i+"' name='firmante"+i+"' readonly>"+
                                     "</div>"+
+                                    "<div class='col-sm-1' style='padding-left: 0'><button type='button' onclick='MostrarFirmante("+i+")'  id='btn_ver"+i+"' class='btn btn-outline-primary btn-icon' style='width:100%;'><div><i class='fa fa-search'></i></div></button></div>"+
                                 "</div><!-- row -->"+
                                 "<div class='row mb-3 mt-2 '>"+
                                     "<label for='logo"+i+"' class='col-sm-3 col-form-label'>Logo:</label>"+
@@ -1554,11 +1557,12 @@ function ListarFirmante(a){
 
     //ruc_empresa = $("#lst_emp_"+a).val();
     $('#nom_emp_'+a).html(ruc+" - "+estado);
+    $("#firmante"+a).val("");
  
-    $.post("../../controller/firmacontrolador.php?op=combo",{numero : ruc}, function(data){
+    /*$.post("../../controller/firmacontrolador.php?op=combo",{numero : ruc}, function(data){
         //console.log(data);
         $("#firmante"+a).html(data);  
-    });
+    });*/
     
     $.post("../../controller/empresacontrolador.php?op=combovigencia",{numero : ruc}, function(data){
         if(data != ""){
@@ -3777,5 +3781,40 @@ function imprimir_word_renuncia(e){
 
 }
 
+function MostrarFirmante(e){
+    console.log(e);
+    let ruc = $('#lst_emp_'+ e).val();
+    console.log("El ruc de la empresa es : "+ ruc);
+    $('#num_empresa').val(e);
+    $('#modalfirmante').modal('show');
+
+    $.ajax({
+        type: "POST",
+        url: "../../controller/firmacontrolador.php?op=grilla", // Reemplaza con la URL correcta del servidor
+        data: {numero : ruc},
+        success: function(response) {
+            // Manejar la respuesta exitosa del servidor
+            //console.log("Respuesta del servidor:", response);
+            $('#div_firmante').html(response);
+        },
+        error: function(error) {
+            // Manejar errores en la solicitud
+            console.error("Error en la solicitud AJAX:", error);
+        }
+    });
+}
+
+function SeleccionarFirmante(){
+    let firmante = $("input[name='firmante']:checked").val();
+    let num = $('#num_empresa').val();
+
+    $('#firmante'+ num).val(firmante);
+
+    $('#modalfirmante').modal('hide');
+}
+
+function CerrarFirmante() {
+    $('#modalfirmante').modal('hide');
+}
 
 init();
