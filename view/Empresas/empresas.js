@@ -235,10 +235,44 @@ function activarcampos(){
 }
 
 function CargaMasiva(){
-    console.log("Prueba");
+
     $('#mdltitulo_carga').html('Subir Carga Masiva');
     $('#modalcargamasiva').modal('show');
+   
 }
+function CargarCSV(){
+    var formData = new FormData($('#carga_form')[0]);
+
+    // Realiza la petición Ajax
+    $.ajax({
+        url: '../../controller/procesar_csv.php',
+        type: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(response) {
+            // Muestra el resultado en el contenedor
+            console.log(response);
+            Swal.fire({
+                icon: 'success',
+                title: 'Éxito',
+                text: 'Datos insertados correctamente',
+            });
+
+            $("#modalcargamasiva").modal('hide');
+            $('#empresa_data').DataTable().ajax.reload();
+        },
+        error: function(xhr, status, error) {
+            // Muestra un mensaje de error en el contenedor
+            //$('#resultado').html("Error al procesar el archivo CSV. Por favor, intenta nuevamente.");
+            console.error(xhr.responseText);
+        }
+    });
+}
+
+
+
+
 
 $(document).on("click","#btnnuevo", function(){
 

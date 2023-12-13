@@ -123,6 +123,8 @@
                     $sub_array['dni_a'] = $row["dni_a"];
                     $sub_array['f_inic_act'] = $row["f_inic_act"];
                     $sub_array['f_baja_act'] = $row["f_baja_act"];
+                    $sub_array['estado_emp'] = $row["estado_emp"];
+                    $sub_array['habido_emp'] = $row["habido_emp"];
                     /*$sub_array['at_ss_1'] = $row["at_ss_1"];
                     $sub_array['at_fondo_juvi_1'] = $row["at_fondo_juvi_1"];
                     $sub_array['at_pro_desocup_1'] = $row["at_pro_desocup_1"];
@@ -169,6 +171,8 @@
                     $sub_array['dni_a'] = $row["dni_a"];
                     $sub_array['f_inic_act'] = $row["f_inic_act"];
                     $sub_array['f_baja_act'] = $row["f_baja_act"];
+                    $sub_array['estado_emp'] = $row["estado_emp"];
+                    $sub_array['habido_emp'] = $row["habido_emp"];
                     
                     $data[] = $sub_array;
                 }

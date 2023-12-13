@@ -2509,6 +2509,18 @@ function creardivsempresa(){
                                     "</div>"+
                                     "<div class='col-12 col-sm-6'>"+
                                         "<div class='form-group'>"+
+                                            "<label class='form-control-label'>Estado</label>"+
+                                            "<input type='text' class='form-control' id='estado_emp_"+i+"' disabled>"+
+                                        "</div>"+
+                                    "</div>"+
+                                    "<div class='col-12 col-sm-6 '>"+
+                                        "<div class='form-group'>"+
+                                            "<label class='form-control-label'>Condición</label>"+
+                                            "<input type='text' class='form-control' id='condicion_emp_"+i+"' disabled>"+
+                                        "</div>"+
+                                    "</div>"+
+                                    "<div class='col-12 col-sm-6'>"+
+                                        "<div class='form-group'>"+
                                             "<label class='form-control-label'>Tiempo</label>"+
                                             "<input type='text' class='form-control' id='rango_emp_"+i+"' disabled>"+
                                         "</div>"+
@@ -2915,6 +2927,21 @@ function mostrardetalle(a, b, c){
     
                             $('#sueldo_liquidacion'+ num).val(data[0]['fechsueldo']);
 
+                            //estado y condicion
+                            $('#estado_emp_' + a).val(data[0]['estado_emp']);
+                            $('#condicion_emp_' + a).val(data[0]['habido_emp']);
+                            if(data[0]['estado_emp'] == 'ACTIVO'){
+                                $('#estado_emp_' + a).css({'color': '#70e000','font-weight': 'bold'});
+                            }else {
+                                $('#estado_emp_' + a).css({'color': '#ef233c','font-weight': 'bold'});
+                            }
+
+                            if(data[0]['habido_emp'] == 'HABIDO'){
+                                $('#condicion_emp_' + a).css({'color': '#70e000','font-weight': 'bold'});
+                            }else {
+                                $('#condicion_emp_' + a).css({'color': '#ef233c','font-weight': 'bold'});
+                            }
+
                             SumarAniosEmpresas(a);
                             sumarbono(a);
                             MostrarCertificados(data[0]['tipo_emp'], num);
@@ -3022,6 +3049,21 @@ function mostrardetalle(a, b, c){
                             $('#ruc_emp'+num).val(data[0]['ruc']);
     
                             $('#sueldo_liquidacion').val(data[0]['fechsueldo']);
+
+                            //estado y condicion
+                            $('#estado_emp_' + a).val(data[0]['estado_emp']);
+                            $('#condicion_emp_' + a).val(data[0]['habido_emp']);
+                            if(data[0]['estado_emp'] == 'ACTIVO'){
+                                $('#estado_emp_' + a).css({'color': '#70e000','font-weight': 'bold'});
+                            }else {
+                                $('#estado_emp_' + a).css({'color': '#ef233c','font-weight': 'bold'});
+                            }
+
+                            if(data[0]['habido_emp'] == 'HABIDO'){
+                                $('#condicion_emp_' + a).css({'color': '#70e000','font-weight': 'bold'});
+                            }else {
+                                $('#condicion_emp_' + a).css({'color': '#ef233c','font-weight': 'bold'});
+                            }
                             SumarAniosEmpresas(a);
                             sumarbono(a);
                             MostrarCertificados(data[0]['tipo_emp'], num);

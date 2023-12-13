@@ -114,6 +114,11 @@
         case 'eliminar':
             $empresa->delete_empresa($_POST["emp_id"]);
             break;
+
+        case 'cargar_csv' :
+                include 'procesar_csv.php'; // El nombre del script PHP que procesa la carga del CSV
+                echo "se pudo";
+            break;
         
     }
 ?>
