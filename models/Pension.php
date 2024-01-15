@@ -31,14 +31,17 @@
             return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        public function pension_aleatorio_empresa($f_inicio, $f_fin, $tipo){
+        public function pension_aleatorio_empresa($f_inicio, $f_fin, $tipo, $base, $estado, $condicion){
             $conectar = parent::conexion();
             parent::set_names();
-            $sql="CALL obtenerListadoEmpresas(?, ?, ?);";
+            $sql="CALL obtenerListadoEmpresas(?, ?, ?, ?, ?, ?);";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1,$f_inicio);
             $sql->bindValue(2,$f_fin);
             $sql->bindValue(3,$tipo);
+            $sql->bindValue(4,$base);
+            $sql->bindValue(5,$estado);
+            $sql->bindValue(6,$condicion);
             $sql->execute();
             return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
         }

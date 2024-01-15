@@ -1,4 +1,5 @@
 var tabla ;
+var datos_empresa;
 
 function init(){
     $("#empresa_form").on("submit",function(e){
@@ -77,6 +78,22 @@ $(document).ready(function(){
         dropdownParent: $("#modalmantenimientoempresas"),
         minimumResultsForSearch: Infinity  
     });
+
+    $('#emp_estado').select2({
+        placeholder: "Seleccione",
+        dropdownParent: $("#modalmantenimientoempresas"),
+        minimumResultsForSearch: Infinity  
+    });
+
+    $('#emp_condicion').select2({
+        placeholder: "Seleccione",
+        dropdownParent: $("#modalmantenimientoempresas"),
+        minimumResultsForSearch: Infinity  
+    });
+
+    $('.div_empresa').hide();
+    $('.div_empresa_sunat').hide();
+    $('#loader').hide();
 });
 
 function guardaryeditar(e){
@@ -129,6 +146,8 @@ function editar(emp_id){
         $('#emp_seg_rep').val(data.otro_representante);
         $('#emp_dni_seg_rep').val(data.dni_b);
         $('#emp_fech_seg_rep_legal').val(data.f_inicio_b);
+        $('#emp_estado').val(data.estado_emp).trigger('change');
+        $('#emp_condicion').val(data.habido_emp).trigger('change');
         $("#btnagregar").show();
         activarcampos();
         
@@ -161,6 +180,8 @@ function vista(emp_id){
         $('#emp_dni_seg_rep').val(data.dni_b);
         $('#emp_fech_rep_legal').val(data.f_inicio_a);
         $('#emp_fech_seg_rep_legal').val(data.f_inicio_b);
+        $('#emp_estado').val(data.estado_emp).trigger('change');
+        $('#emp_condicion').val(data.habido_emp).trigger('change');
         $("#btnagregar").hide();
         ocultarcampos();
     });
@@ -214,6 +235,9 @@ function ocultarcampos(){
     $('#emp_dni_seg_rep').attr("readonly","readonly");
     $('#emp_fech_rep_legal').attr("readonly","readonly");
     $('#emp_fech_seg_rep_legal').attr("readonly","readonly");
+
+    $('#emp_estado').attr("disabled","disabled");
+    $('#emp_condicion').attr("disabled","disabled");
 }
 
 function activarcampos(){
@@ -232,6 +256,9 @@ function activarcampos(){
     $('#emp_dni_seg_rep').attr("readonly",false);
     $('#emp_fech_rep_legal').attr("readonly",false);
     $('#emp_fech_seg_rep_legal').attr("readonly",false);
+
+    $('#emp_estado').attr("disabled",false);
+    $('#emp_condicion').attr("disabled",false);
 }
 
 function CargaMasiva(){
@@ -270,8 +297,134 @@ function CargarCSV(){
     });
 }
 
+function BuscarRuc(){
+    $('#loader').show();
+    let ruc_emp = $('#int_ruc').val();
+
+    if(ruc_emp != ""){
+        //Ajax para mostrar Datos de Firmantes de la BD Actual
+        $.ajax({
+            url: "../../controller/empresacontrolador.php?op=mostrar_empresa_ruc",
+            type: "POST",
+            data: { ruc : ruc_emp },
+            dataType : 'JSON',
+            success: function(datos){
+                //console.log(datos);
+                //$('#div_firmantes').html(datos);
+                $('#lb_razon').html(datos.empleador);
+                $('#lb_ruc').html(datos.ruc);
+                $('#lb_depa').html(datos.dpto);
+                $('#lb_prov').html(datos.prov);
+                $('#lb_dist').html(datos.dist);
+                $('#lb_direccion').html(datos.direccion);
+                $('#lb_estado').html(datos.estado_emp);
+                $('#lb_condicion').html(datos.habido_emp);
+                $('#lb_fecha_ini').html(moment(datos.f_inic_act).format("DD-MM-YYYY"));
+                $('#lb_fecha_fin').html(moment(datos.f_baja_act).format("DD-MM-YYYY"));
+                $('#lb_fecha_fin_st').html(moment(datos.f_baja_act).format("DD-MM-YYYY"));//Fecha Fin Sunat
+                $('.div_empresa').show();
+            },
+            error : function(error){
+                console.log(error);
+            }
+        });
+
+        //Ajax para mostrar datos del WebService SUNAT.
+        $.ajax({
+            url: "../../controller/pensioncontrolador.php?op=consulta_api_sunat",
+            type: "POST",
+            data: { ruc : ruc_emp },
+            async : false,
+            success: function(datos){
+                //console.log(datos);
+                if (datos != ""){
+                    response = JSON.parse(datos);
+                    if(response.success == true){
+                        //Mostrar Datos de Empresa
+                        let dat_emp = response.result;
+                        $('#lb_razon_st').html(dat_emp.razon_social);
+                        $('#lb_ruc_st').html(dat_emp.ruc)
+                        $('#lb_direccion_st').html(dat_emp.direccion);
+                        $('#lb_depa_st').html(dat_emp.departamento);
+                        $('#lb_prov_st').html(dat_emp.provincia);
+                        $('#lb_dist_st').html(dat_emp.distrito);
+                        $('#lb_estado_st').html(dat_emp.estado);
+                        $('#lb_condicion_st').html(dat_emp.condicion);
+                        $('#lb_fecha_ini_st').html(dat_emp.inicio_actividades);
+
+                         //Almacenar datos en mi json;
+                        datos_empresa = {
+                            razon : dat_emp.razon_social,
+                            ruc_emp : dat_emp.ruc,
+                            direccion: dat_emp.direccion,
+                            departamento: dat_emp.departamento,
+                            provincia : dat_emp.provincia,
+                            distrito : dat_emp.distrito,
+                            estado : dat_emp.estado,
+                            condicion : dat_emp.condicion,
+                            fecha_inicio : dat_emp.inicio_actividades,
+                            fecha_fin : $('#lb_fecha_fin').html()
+                        };
+
+                        $('.div_empresa_sunat').show();
+                        $('#loader').hide();
+                    }else {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Sin resultados',
+                            text: ''
+                        });
+                    }
+                }
+               
+            },
+            error : function(error){
+                console.log(error);
+            }
+        });
+    }else {
+        swal.fire(
+            'Ingrese un numero de ruc válido',
+            '',
+            'warning'
+        );
+    }
+
+    
+}
 
 
+function ActualizarEmpresa(){
+
+    // Convertir el JSON a una cadena de texto
+    var datosJSONEmp = JSON.stringify(datos_empresa);
+    let ruc_emp = $('#int_ruc').val();
+
+
+    // Realizar la solicitud AJAX
+    $.ajax({
+        type: 'POST',
+        url: '../../controller/empresacontrolador.php?op=update_empresa',
+        data: {ruc :  ruc_emp, datos_emp : datosJSONEmp},
+        //dataType: 'json',
+        success: function(response) {
+            console.log('Éxito:', response);
+            Swal.fire({
+                icon: 'success',
+                title: 'Datos Actualizados',
+                text: ''
+            });
+
+            $("#modalconsulta").modal('hide');
+            $('#empresa_data').DataTable().ajax.reload();
+        },
+        error: function(error) {
+            console.log('Error:', error);
+        }
+    });
+
+    
+}
 
 
 $(document).on("click","#btnnuevo", function(){
@@ -291,6 +444,18 @@ $(document).on("click","#btnclosemodal", function(){
 
 $(document).on("click","#btnclosemodal_carga", function(){
     $("#modalcargamasiva").modal('hide');
+});
+
+$(document).on("click","#btnconsulta", function(){
+    $('#int_ruc').val("");
+    $('#modalconsulta').modal('show');
+    $('.div_empresa').hide();
+    $('.div_empresa_sunat').hide();
+});
+
+$(document).on("click","#btnclosemodalconsulta", function(){
+
+    $("#modalconsulta").modal('hide');
 });
 
 

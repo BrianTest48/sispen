@@ -17,18 +17,33 @@ var suma_dias1 = 0;
 var fecha_inicial_1;
 var fecha_fin_1;
 var cbx_tipo_1;
+var cbx_base_1;
+var cbx_estado_1;
+var cbx_condicion_1;
 var fecha_inicial_2;
 var fecha_fin_2;
 var cbx_tipo_2;
+var cbx_base_2;
+var cbx_estado_2;
+var cbx_condicion_2;
 var fecha_inicial_3;
 var fecha_fin_3;
 var cbx_tipo_3;
+var cbx_base_3;
+var cbx_estado_3;
+var cbx_condicion_3;
 var fecha_inicial_4;
 var fecha_fin_4;
 var cbx_tipo_4;
+var cbx_base_4;
+var cbx_estado_4;
+var cbx_condicion_4;
 var fecha_inicial_5;
 var fecha_fin_5;
 var cbx_tipo_5;
+var cbx_base_5;
+var cbx_estado_5;
+var cbx_condicion_5;
 
 
 $(document).ready(function(){
@@ -680,6 +695,7 @@ $(document).on("click","#btnbuscar", function(){
                         $("#txtcant_emp").val(datos.cantidad);
                         $("#txtcant_orcinea").val(datos.cantidad_orcinea);
                         $("#txtcant_host").val(datos.cantidad_host);
+                        $("#txtcant_reflex").val(datos.cantidad_reflex);
                         $("#btnautogenerar").click();
 
                     }
@@ -868,9 +884,12 @@ function generar(e){
                 if(datos != ""){
                     //console.log(datos);
                     datos = JSON.parse(datos);
+                    //console.log(datos);
                     let cant = datos.cantidad;
                     let cant_orc = datos.cantidad_orcinea;
                     let cant_ht = datos.cantidad_host;
+
+
                     //DATOS DE ORCINEA
                     for (let i = 1 ; i <= cant_orc ; i++){
                         $('#empresa_orcinea_'+i).val(datos["ruc_orcinea_"+i]);
@@ -899,6 +918,9 @@ function generar(e){
                         $("#f_inicio_"+i).val(datos["fech"+i]);
                         $("#f_final_"+i).val(datos["fech_final_"+i]);
                         $("#cbx_tipo_"+i).val(datos["tipo_"+i]).trigger('change');
+                        $("#cbx_base_"+ i).val(datos["base_"+i]).trigger('change');
+                        $('#cbx_estado_'+ i).val(datos["estado_"+i]).trigger('change');
+                        $('#cbx_condicion_'+ i).val(datos["condicion_"+i]).trigger('change');
                         //mostrardetalle(i, 0, 0);
                         //BuscarEmp(i);
                         mostrardetalle(i, 0, 0);
@@ -907,11 +929,9 @@ function generar(e){
                             mostrardetalle(i, datos["ruc"+i], 1);
                             $("#cargoc"+i).val(datos["cargo"+i]).trigger('change');
                             $("#logo"+i).val(datos["logo"+i]).trigger('change');
-                            $("#firmante"+i).val(datos["firmante"+i]).trigger('change');
-
                             $("#lst_emp_"+i).val(datos["ruc"+i]).trigger('change');
-                            //console.log(datos["ruc"+i]);
-                        }, 500);
+                            $("#firmante"+i).val(datos["firmante"+i]);
+                        }, 600);
                     }
                     
                     
@@ -1253,7 +1273,7 @@ function crearTabs(valor, orc, host) {
         tabContent += '                 </div>';
         tabContent += '                 <div class="form-layout-footer text-right mg-t-20">';
         tabContent += '                     <div class="row">';
-        tabContent += '                         <div class="col-12 col-sm-8">';
+        tabContent += '                         <div class="col-12 col-sm-6">';
         tabContent += '                             <select class="form-control select2 combo_prev_boleta" name="combo_prev_boleta" id="combo_prev_boleta'+ i +'" style="width: 100%;">';
         tabContent += '                                 <option value="1">Modelo Boleta 1</option>';
         tabContent += '                                 <option value="2">Modelo Boleta 2</option>';
@@ -1274,11 +1294,13 @@ function crearTabs(valor, orc, host) {
         tabContent += '                                 <option value="17">Modelo Boleta 17</option>';
         tabContent += '                             </select>';
         tabContent += '                         </div>';
-        tabContent += '                         <div class="col-12 col-sm-4">';
+        tabContent += '                         <div class="col-12 col-sm-3">';
+        tabContent += '                             <button type="button" id="btnimprimirbol'+ i +'" name="btnimprimirbol" onclick="imprimir_liquidacion_boleta('+ i +')"   class="btn btn-info">Imprimir Boleta</button>';
+        tabContent += '                         </div>';
+        tabContent += '                         <div class="col-12 col-sm-3">';
         tabContent += '                             <button type="button" id="btnprevbol'+ i +'" onclick="PrevBoleta('+ i +')"  name="btnprevbol"  class="btn btn-secondary mg-l-10">Previsualizar</button>';
         tabContent += '                         </div>';
         tabContent += '                     </div>';
-        tabContent += '                     <!--<button type="button" id="btnimprimirbol'+ i +'" name="btnimprimirbol" onclick="imprimir_liquidacion_boleta('+ i +')"   class="btn btn-info">Imprimir Boleta</button>-->';
         tabContent += '                 </div>';
         tabContent += '             </form>';
         tabContent += '         </div>';
@@ -1676,10 +1698,12 @@ function crearTabs(valor, orc, host) {
         tabContent += '                             </select>';
         tabContent += '                         </div>';
         tabContent += '                         <div class="col-12 col-sm-4">';
+        tabContent += '                     <button type="button" id="btnimprimirbol'+ i +'" name="btnimprimirbol" onclick="imprimir_liquidacion_boleta('+ i +')"   class="btn btn-info">Descargar en Word</button>';
+        tabContent += '                         </div>';
+        tabContent += '                         <div class="col-12 col-sm-4">';
         tabContent += '                             <button type="button" id="btnprevbol'+ i +'" onclick="PrevBoleta('+ i +')"  name="btnprevbol"  class="btn btn-secondary mg-l-10">Previsualizar</button>';
         tabContent += '                         </div>';
         tabContent += '                     </div>';
-        tabContent += '                     <!--<button type="button" id="btnimprimirbol'+ i +'" name="btnimprimirbol" onclick="imprimir_liquidacion_boleta('+ i +')"   class="btn btn-info">Imprimir Boleta</button>-->';
         tabContent += '                 </div>';
         tabContent += '             </form>';
         tabContent += '         </div>';
@@ -2059,7 +2083,7 @@ function crearTabs(valor, orc, host) {
         tabContent += '                 </div>';
         tabContent += '                 <div class="form-layout-footer text-right mg-t-20">';
         tabContent += '                     <div class="row">';
-        tabContent += '                         <div class="col-12 col-sm-8">';
+        tabContent += '                         <div class="col-12 col-sm-6">';
         tabContent += '                             <select class="form-control select2 combo_prev_boleta" name="combo_prev_boleta" id="combo_prev_boleta'+ i +'" style="width: 100%;">';
         tabContent += '                                 <option value="1">Modelo Boleta 1</option>';
         tabContent += '                                 <option value="2">Modelo Boleta 2</option>';
@@ -2080,11 +2104,13 @@ function crearTabs(valor, orc, host) {
         tabContent += '                                 <option value="17">Modelo Boleta 17</option>';
         tabContent += '                             </select>';
         tabContent += '                         </div>';
-        tabContent += '                         <div class="col-12 col-sm-4">';
+        tabContent += '                         <div class="col-12 col-sm-3">';
+        tabContent += '                             <button type="button" id="btnimprimirbol'+ i +'" name="btnimprimirbol" onclick="imprimir_liquidacion_boleta('+ i +')"   class="btn btn-info">Descargar en Word</button>';
+        tabContent += '                         </div>';
+        tabContent += '                         <div class="col-12 col-sm-3">';
         tabContent += '                             <button type="button" id="btnprevbol'+ i +'" onclick="PrevBoleta('+ i +')"  name="btnprevbol"  class="btn btn-secondary mg-l-10">Previsualizar</button>';
         tabContent += '                         </div>';
         tabContent += '                     </div>';
-        tabContent += '                     <!--<button type="button" id="btnimprimirbol'+ i +'" name="btnimprimirbol" onclick="imprimir_liquidacion_boleta('+ i +')"   class="btn btn-info">Imprimir Boleta</button>-->';
         tabContent += '                 </div>';
         tabContent += '             </form>';
         tabContent += '         </div>';
@@ -2473,9 +2499,12 @@ function creardivsempresa(){
                     "<div id='collapse_"+i+"' class='accordion-collapse collapse' aria-labelledby='heading"+i+"' data-bs-parent='#accordionExample'>"+
                         "<div class='accordion-body'>"+
                             "<div class='acer'>"+
-                                "<div class='row mb-1' >"+
-                                    "<div class='col-3'>"+
+                                "<div class='row justify-content-between mb-1' >"+
+                                    "<div class='col-2'>"+
                                         "<button class='btn btn-outline-info btn-icon' onclick='CopiarEmp("+i+")'><div><i class='fa fa-copy'></i></div></button>"+
+                                    "</div>"+
+                                    "<div class='col-2' style='text-align: right'>"+
+                                        "<button class='btn btn-outline-danger btn-icon' onclick='ActualizarEmp("+i+")'><div><i class='fa fa-edit'></i></div></button>"+
                                     "</div>"+
                                 "</div>"+
                                 "<div class='row' id='fechas' >"+
@@ -2498,7 +2527,52 @@ function creardivsempresa(){
                                                 "<option value='P'>P</option>"+
                                                 "<option value='M'>M</option>"+
                                                 "<option value='G'>G</option>"+
+                                                "<option value='V'>V</option>"+
                                             "</select>"+
+                                        "</div>"+
+                                    "</div>"+
+                                    "<div class ='col-12 col-sm-4'>"+
+                                        "<div class='form-group'  >"+
+                                            "<label class='form-control-label'>Base  </label>"+
+                                            "<select class='form-control select2 cbx_tipos' id='cbx_base_"+i+"' style='width: 100%'>"+
+                                                "<option value='1'>BASE 1</option>"+
+                                                "<option value='2'>BASE 2</option>"+
+                                                "<option value='0'>AMBAS BASES</option>"+
+                                            "</select>"+
+                                        "</div>"+
+                                    "</div>"+
+                                    "<div class ='col-12 col-sm-4'>"+
+                                        "<div class='form-group'  >"+
+                                            "<label class='form-control-label'>Estado </label>"+
+                                            "<select class='form-control select2 cbx_tipos' id='cbx_estado_"+i+"' style='width: 100%'>"+
+                                                "<option value='V'>TODOS</option>"+
+                                                "<option value='ACTIVO'>ACTIVO</option>"+
+                                                "<option value='BAJA DE OFICIO'>BAJA DE OFICIO</option>"+
+                                                "<option value='BAJA DEFINITIVA'>BAJA DEFINITIVA</option>"+
+                                                "<option value='BAJA PROVISIONAL'>BAJA PROVISIONAL</option>"+
+                                            "</select>"+
+                                        "</div>"+
+                                    "</div>"+
+                                    "<div class ='col-12 col-sm-4'>"+
+                                        "<div class='form-group'  >"+
+                                            "<label class='form-control-label'>Condicion </label>"+
+                                            "<select class='form-control select2 cbx_tipos' id='cbx_condicion_"+i+"' style='width: 100%'>"+
+                                                "<option value='V'>TODOS</option>"+
+                                                "<option value='HABIDO'>HABIDO</option>"+
+                                                "<option value='NO HABIDO'>NO HABIDO</option>"+
+                                            "</select>"+
+                                        "</div>"+
+                                    "</div>"+
+                                    "<div class='col-12 col-sm-12'>"+
+                                        "<div class='mb-1'>"+
+                                            "<div class='row d-flex justify-content-center'>"+
+                                                "<div class='col-lg-4 text-center'>"+
+                                                    "<button  type='button' id='' name='' class='btn btn-secondary btn-block mg-b-10' onclick='LimpiarCamposEmpresas("+i+")' >Limpiar</button>"+
+                                                "</div>"+
+                                                "<div class='col-lg-4 text-center'>"+
+                                                    "<button  type='button' name='btnmostrarempr_"+i+"' name='btnmostrarempr_"+i+"' onclick='mostrardetalle("+i+", 0, 0)' class='btn btn-info btn-block mg-b-10' >Registrar</button>"+
+                                                "</div>"+
+                                            "</div>"+
                                         "</div>"+
                                     "</div>"+
                                     "<div class='col-12 col-sm-12'>"+
@@ -2513,7 +2587,7 @@ function creardivsempresa(){
                                             "<input type='text' class='form-control' id='estado_emp_"+i+"' disabled>"+
                                         "</div>"+
                                     "</div>"+
-                                    "<div class='col-12 col-sm-6 '>"+
+                                    "<div class='col-12 col-sm-6'>"+
                                         "<div class='form-group'>"+
                                             "<label class='form-control-label'>Condición</label>"+
                                             "<input type='text' class='form-control' id='condicion_emp_"+i+"' disabled>"+
@@ -2547,7 +2621,13 @@ function creardivsempresa(){
                                 "<input type='hidden'  id='rep_legal_"+i+"'>"+
                                 "<input type='hidden'  id='dni_a_"+i+"'>"+
                                 "<input type='hidden' value='' id='cant_sueldo_"+i+"'>"+
-                                //"<div class='pd-b-10 text-center fw-lighter fst-italic pb-2 border-bottom border-top border-info ' style='font-size: 13px;' >Tiempo de servicio: <label id='tiempo_"+i+"' ></label></div>"+
+                                "<div class='row mb-3 mt-2 '>"+
+                                    "<label for='direc"+i+"' class='col-sm-3 col-form-label'>Dirección:</label>"+
+                                    "<div class='col-sm-8'>"+
+                                        "<input type='text' class='form-control' id='direccion"+i+"' name='direccion"+i+"' readonly>"+
+                                    "</div>"+
+                                    "<div class='col-sm-1' style='padding-left: 0'><button type='button'  id='btn_ver_direccion"+i+"' class='btn btn-outline-primary btn-icon' style='width:100%;'><div><i class='fa fa-search'></i></div></button></div>"+
+                                "</div><!-- row -->"+
                                 "<div class='row mb-3 mt-2 '>"+
                                     "<label for='cargoc"+i+"' class='col-sm-3 col-form-label'>Cargo:</label>"+
                                     "<div class='col-sm-9'>"+
@@ -2576,14 +2656,7 @@ function creardivsempresa(){
                                         "<img id='logo_img_"+i+"' src='../../assets/img/no-fotos.png' alt='' width='100px' height='60px'>"+
                                     "</div>"+
                                 "</div><!-- row -->"+
-                               "<div class='row d-flex justify-content-center'>"+
-                                    "<div class='col-lg-4 text-center'>"+
-                                        "<button  type='button' id='' name='' class='btn btn-secondary btn-block mg-b-10' onclick='LimpiarCamposEmpresas("+i+")' >Limpiar</button>"+
-                                    "</div>"+
-                                    "<div class='col-lg-4 text-center'>"+
-                                        "<button  type='button' name='btnmostrarempr_"+i+"' name='btnmostrarempr_"+i+"' onclick='mostrardetalle("+i+", 0, 0)' class='btn btn-info btn-block mg-b-10' >Registrar</button>"+
-                                    "</div>"+
-                               "</div>"+
+                              
                             "</div><!-- form-layout -->"+
                         "</div>"+
                     "</div>"+
@@ -2705,6 +2778,9 @@ function mostrardetalle(a, b, c){
     var cargo = $('#cargoc'+a).val();
     let logos = $('#logo'+a).val();
     let cbx_tipo = $('#cbx_tipo_'+a).val();
+    let cbx_base = $('#cbx_base_'+ a).val();
+    let cbx_estado = $('#cbx_estado_'+ a).val();
+    let cbx_condicion = $('#cbx_condicion_'+ a).val();
     var nom;
     var razsocialruc;
     var depas;
@@ -2724,52 +2800,67 @@ function mostrardetalle(a, b, c){
 
     switch (a) {
         case 1:
-            if(fecha_inicial_1 == fech1 && fecha_fin_1 == fech_final_1 && cbx_tipo_1 == cbx_tipo) {
+            if(fecha_inicial_1 == fech1 && fecha_fin_1 == fech_final_1 && cbx_tipo_1 == cbx_tipo && cbx_base_1 == cbx_base && cbx_estado_1 == cbx_estado && cbx_condicion_1 == cbx_condicion) {
                 valor_busqueda = 1;
             }else {
                 fecha_inicial_1 = fech1;
                 fecha_fin_1 = fech_final_1;
                 cbx_tipo_1 = cbx_tipo;
+                cbx_base_1 = cbx_base;
+                cbx_estado_1 = cbx_estado;
+                cbx_condicion_1 = cbx_condicion;
                 valor_busqueda = 0;
             }
             break;
         case 2:
-            if(fecha_inicial_2 == fech1 && fecha_fin_2 == fech_final_1 && cbx_tipo_2 == cbx_tipo) {
+            if(fecha_inicial_2 == fech1 && fecha_fin_2 == fech_final_1 && cbx_tipo_2 == cbx_tipo && cbx_base_2 == cbx_base && cbx_estado_2 == cbx_estado && cbx_condicion_2 == cbx_condicion) {
                 valor_busqueda = 1;
             }else {
                 fecha_inicial_2 = fech1;
                 fecha_fin_2 = fech_final_1;
                 cbx_tipo_2 = cbx_tipo;
+                cbx_base_2 = cbx_base;
+                cbx_estado_2 = cbx_estado;
+                cbx_condicion_2 = cbx_condicion;
                 valor_busqueda = 0;
             }
             break;
         case 3:
-            if(fecha_inicial_3 == fech1 && fecha_fin_3 == fech_final_1 && cbx_tipo_3 == cbx_tipo) {
+            if(fecha_inicial_3 == fech1 && fecha_fin_3 == fech_final_1 && cbx_tipo_3 == cbx_tipo && cbx_base_3 == cbx_base && cbx_estado_3 == cbx_estado && cbx_condicion_3 == cbx_condicion) {
                 valor_busqueda = 1;
             }else {
                 fecha_inicial_3 = fech1;
                 fecha_fin_3 = fech_final_1;
                 cbx_tipo_3 = cbx_tipo;
+                cbx_base_3 = cbx_base;
+                cbx_estado_3 = cbx_estado;
+                cbx_condicion_3 = cbx_condicion;
                 valor_busqueda = 0;
             }
             break;
         case 4:
-            if(fecha_inicial_4 == fech1 && fecha_fin_4 == fech_final_1 && cbx_tipo_4 == cbx_tipo) {
+            if(fecha_inicial_4 == fech1 && fecha_fin_4 == fech_final_1 && cbx_tipo_4 == cbx_tipo && cbx_base_4 == cbx_base && cbx_estado_4 == cbx_estado && cbx_condicion_4 == cbx_condicion) {
                 valor_busqueda = 1;
             }else {
                 fecha_inicial_4 = fech1;
                 fecha_fin_4 = fech_final_1;
                 cbx_tipo_4 = cbx_tipo;
+                cbx_base_4 = cbx_base;
+                cbx_estado_4 = cbx_estado;
+                cbx_condicion_4 = cbx_condicion;
                 valor_busqueda = 0;
             }
             break;
         case 5:
-            if(fecha_inicial_5 == fech1 && fecha_fin_5 == fech_final_1 && cbx_tipo_5 == cbx_tipo) {
+            if(fecha_inicial_5 == fech1 && fecha_fin_5 == fech_final_1 && cbx_tipo_5 == cbx_tipo && cbx_base_5 == cbx_base && cbx_estado_5 == cbx_estado && cbx_condicion_5 == cbx_condicion) {
                 valor_busqueda = 1;
             }else {
                 fecha_inicial_5 = fech1;
                 fecha_fin_5 = fech_final_1;
                 cbx_tipo_5 = cbx_tipo;
+                cbx_base_5 = cbx_base;
+                cbx_estado_5 = cbx_estado;
+                cbx_condicion_5 = cbx_condicion;
                 valor_busqueda = 0;
             }
             break;
@@ -2823,7 +2914,7 @@ function mostrardetalle(a, b, c){
             if( fechai < fechaf){
                 if(valor_busqueda == 0){
                      //AJAX para mostrar la lista de empresas
-                     $.post("../../controller/pensioncontrolador.php?op=combo",{txtdateinicio: fech1 , txtdatefin: fech_final_1, tipo : cbx_tipo}, function(data){
+                     $.post("../../controller/pensioncontrolador.php?op=combo",{txtdateinicio: fech1 , txtdatefin: fech_final_1, tipo : cbx_tipo, base : cbx_base, estado : cbx_estado, condicion : cbx_condicion}, function(data){
                         if(data == ""){
                             console.log("NO EXISTE DATA");
                         }else {
@@ -2832,7 +2923,7 @@ function mostrardetalle(a, b, c){
                     });
 
                     //AJAX muestra la primera empresa de la lista
-                    $.post("../../controller/pensioncontrolador.php?op=pensionaleatorioempresa",{txtdateinicio: fech1 , txtdatefin: fech_final_1, tipo : cbx_tipo},function(data){
+                    $.post("../../controller/pensioncontrolador.php?op=pensionaleatorioempresa",{txtdateinicio: fech1 , txtdatefin: fech_final_1, tipo : cbx_tipo, base : cbx_base, estado : cbx_estado, condicion : cbx_condicion},function(data){
                     
                         if(data == ""){
                             Swal.fire({
@@ -4288,7 +4379,9 @@ function GuardarLista(){
     let cantidad = $("#txtcant_emp").val();
     let cantidad_orc = $("#txtcant_orcinea").val();
     let cantidad_ht = $("#txtcant_host").val();
+    let cantidad_rx = $('#txtcant_reflex').val();
     let fecha_nac = $("#txtdate").val()
+
     let fech_orc1 = $('#orcinea_inicio_1').val();
     let fech_final_orc1 = $('#orcinea_fin_1').val();
     let tipo_orc_1 = $('#cbx_tipo_orc_1').val();
@@ -4296,6 +4389,7 @@ function GuardarLista(){
     let cargo_orc1 = $('#cargo_orcinea_1').val();
     let firmante_orc1 = $('#firmante_orcinea_1').val();
     let logo_orc1 = $('#logo_orcinea_1').val();
+
     let fech_orc2 = $('#orcinea_inicio_2').val();
     let fech_final_orc2 = $('#orcinea_fin_2').val();
     let tipo_orc_2 = $('#cbx_tipo_orc_2').val();
@@ -4303,6 +4397,7 @@ function GuardarLista(){
     let cargo_orc2 = $('#cargo_orcinea_2').val();
     let firmante_orc2 = $('#firmante_orcinea_2').val();
     let logo_orc2 = $('#logo_orcinea_2').val();
+
     let fech_orc3 = $('#orcinea_inicio_3').val();
     let fech_final_orc3 = $('#orcinea_fin_3').val();
     let tipo_orc_3 = $('#cbx_tipo_orc_3').val();
@@ -4310,6 +4405,7 @@ function GuardarLista(){
     let cargo_orc3 = $('#cargo_orcinea_3').val();
     let firmante_orc3 = $('#firmante_orcinea_3').val();
     let logo_orc3 = $('#logo_orcinea_3').val();
+
     let fech_orc4 = $('#orcinea_inicio_4').val();
     let fech_final_orc4 = $('#orcinea_fin_4').val();
     let tipo_orc_4 = $('#cbx_tipo_orc_4').val();
@@ -4317,6 +4413,7 @@ function GuardarLista(){
     let cargo_orc4 = $('#cargo_orcinea_4').val();
     let firmante_orc4 = $('#firmante_orcinea_4').val();
     let logo_orc4 = $('#logo_orcinea_4').val();
+
     let fech_ht1 = $('#host_inicio_1').val();
     let fech_final_ht1 = $('#host_fin_1').val();
     let tipo_host_1 = $('#cbx_tipo_host_1').val();
@@ -4324,6 +4421,7 @@ function GuardarLista(){
     let cargo_ht1 = $('#cargo_host_1').val();
     let firmante_ht1 = $('#firmante_host_1').val();
     let logo_ht1 = $('#logo_host_1').val();
+
     let fech_ht2 = $('#host_inicio_2').val();
     let fech_final_ht2 = $('#host_fin_2').val();
     let tipo_host_2 = $('#cbx_tipo_host_2').val();
@@ -4331,6 +4429,7 @@ function GuardarLista(){
     let cargo_ht2 = $('#cargo_host_2').val();
     let firmante_ht2 = $('#firmante_host_2').val();
     let logo_ht2 = $('#logo_host_2').val();
+
     let fech_ht3 = $('#host_inicio_3').val();
     let fech_final_ht3 = $('#host_fin_3').val();
     let tipo_host_3 = $('#cbx_tipo_host_3').val();
@@ -4338,6 +4437,7 @@ function GuardarLista(){
     let cargo_ht3 = $('#cargo_host_3').val();
     let firmante_ht3 = $('#firmante_host_3').val();
     let logo_ht3 = $('#logo_host_3').val();
+
     let fech_ht4 = $('#host_inicio_4').val();
     let fech_final_ht4 = $('#host_fin_4').val();
     let tipo_host_4 = $('#cbx_tipo_host_4').val();
@@ -4346,37 +4446,57 @@ function GuardarLista(){
     let firmante_ht4 = $('#firmante_host_4').val();
     let logo_ht4 = $('#logo_host_4').val();
     let mes_rfx = "";
+
     let fech_inicio1 = $("#f_inicio_1").val();
     let fech_final1 = $("#f_final_1").val();
     let tipo1 = $('#cbx_tipo_1').val();
+    let base1 = $('#cbx_base_1').val();
+    let estado1 = $('#cbx_estado_1').val();
+    let condicion1 = $('#cbx_condicion_1').val();
     let cargo1 = $("#cargoc1").val();
     let logo1 = $("#logo1").val();
     let ruc1 = $("#lst_emp_1").val();
     let firmante1 = $("#firmante1").val();
+
     let fech_inicio2 = $("#f_inicio_2").val();
     let fech_final2 = $("#f_final_2").val();
     let tipo2 = $('#cbx_tipo_2').val();
+    let base2 = $('#cbx_base_2').val();
+    let estado2 = $('#cbx_estado_2').val();
+    let condicion2 = $('#cbx_condicion_2').val();
     let cargo2 = $("#cargoc2").val();
     let logo2 = $("#logo2").val();
     let ruc2 = $("#lst_emp_2").val();
     let firmante2 = $("#firmante2").val();
+
     let fech_inicio3 = $("#f_inicio_3").val();
     let fech_final3 = $("#f_final_3").val();
     let tipo3 = $('#cbx_tipo_3').val();
+    let base3 = $('#cbx_base_3').val();
+    let estado3 = $('#cbx_estado_3').val();
+    let condicion3 = $('#cbx_condicion_3').val();
     let cargo3 = $("#cargoc3").val();
     let logo3 = $("#logo3").val();
     let ruc3 = $("#lst_emp_3").val();
     let firmante3 = $("#firmante3").val();
+
     let fech_inicio4 = $("#f_inicio_4").val();
     let fech_final4 = $("#f_final_4").val();
     let tipo4 = $('#cbx_tipo_4').val();
+    let base4 = $('#cbx_base_4').val();
+    let estado4 = $('#cbx_estado_4').val();
+    let condicion4 = $('#cbx_condicion_4').val();
     let cargo4 = $("#cargoc4").val();
     let logo4 = $("#logo4").val();
     let ruc4 = $("#lst_emp_4").val();
     let firmante4 = $("#firmante4").val();
+
     let fech_inicio5 = $("#f_inicio_5").val();
     let fech_final5 = $("#f_final_5").val();
     let tipo5 = $('#cbx_tipo_5').val();
+    let base5 = $('#cbx_base_5').val();
+    let estado5 = $('#cbx_estado_5').val();
+    let condicion5 = $('#cbx_condicion_5').val();
     let cargo5 = $("#cargoc5").val();
     let logo5 = $("#logo5").val();
     let ruc5 = $("#lst_emp_5").val();
@@ -4389,6 +4509,7 @@ function GuardarLista(){
             txtcant_emp : cantidad,
             txtcant_orcinea : cantidad_orc,
             txtcant_host : cantidad_ht,
+            txtcant_rfx : cantidad_rx,
             txtdate : fecha_nac,
             f_inicio_orc_1 : fech_orc1,
             f_final_orc_1 : fech_final_orc1,
@@ -4450,6 +4571,9 @@ function GuardarLista(){
             f_inicio_1 : fech_inicio1,
             f_final_1 : fech_final1,
             tipo_1 : tipo1,
+            base_1 : base1,
+            estado_1 : estado1,
+            condicion_1 : condicion1,
             ruc_emp1 : ruc1,
             cargoc1 : cargo1,
             firmante1 : firmante1,
@@ -4457,6 +4581,9 @@ function GuardarLista(){
             f_inicio_2 : fech_inicio2,
             f_final_2 : fech_final2,
             tipo_2 : tipo2,
+            base_2 : base2,
+            estado_2 : estado2,
+            condicion_2 : condicion2,
             ruc_emp2 : ruc2,
             cargoc2 : cargo2,
             firmante2 : firmante2,
@@ -4464,6 +4591,9 @@ function GuardarLista(){
             f_inicio_3 : fech_inicio3,
             f_final_3 : fech_final3,
             tipo_3 : tipo3,
+            base_3 : base3,
+            estado_3 : estado3,
+            condicion_3 : condicion3,
             ruc_emp3 : ruc3,
             cargoc3 : cargo3,
             firmante3 : firmante3,
@@ -4471,6 +4601,9 @@ function GuardarLista(){
             f_inicio_4 : fech_inicio4,
             f_final_4 : fech_final4,
             tipo_4 : tipo4,
+            base_4 : base4,
+            estado_4 : estado4,
+            condicion_4 : condicion4,
             ruc_emp4 : ruc4,
             cargoc4 : cargo4,
             firmante4 : firmante4,
@@ -4478,6 +4611,9 @@ function GuardarLista(){
             f_inicio_5 : fech_inicio5,
             f_final_5 : fech_final5,
             tipo_5 : tipo5,
+            base_5 : base5,
+            estado_5 : estado5,
+            condicion_5 : condicion5,
             ruc_emp5 : ruc5,
             cargoc5 : cargo5,
             firmante5 : firmante5,
@@ -4488,6 +4624,8 @@ function GuardarLista(){
             //console.log("GUARDO");
             //console.log(data);
             if(data != ""){
+                //Se agrega el Id a input hidden.
+                $('#lista_id').val(data);
                 swal.fire(
                     'Registro!',
                     'Se registro correctamente.',
@@ -5114,6 +5252,9 @@ function MostrarBoleta(e){
         let estado_anio_dsc = $("#select_anio_boletas"+ e).val();
         let mes_completo = "";
         switch (estado_dsc) {
+            case 'all':
+                mes_completo = "01";
+                break;
             case 'ene':
                 mes_completo = "01";
                 break;
@@ -5428,7 +5569,10 @@ function PrevCertificado(e) {
         OcultarPrev();
         let tipoprev = $('#select_certificado'+e).val();
         $("#prev_certificado_"+tipoprev).show();
-
+        $("#prev1").show();
+        $("#prev2").hide();
+        $("#prev3").hide();
+        $("#prev5").hide();
         var options = { year: 'numeric', month: 'long', day: 'numeric' };
 
         let nom;
@@ -5759,6 +5903,7 @@ function boleta_tab(e){
         $('#select_anio_boletas'+ e).html(div);
         let tabContent;
         tabContent += '<option label="Seleccione"></option>';
+        tabContent += '<option value="all">Año</option>';
         tabContent += '<option value="dic">Diciembre</option>';
         tabContent += '<option value="ene">Enero </option>';
         tabContent += '<option value="feb">Febrero </option>';
@@ -6291,6 +6436,160 @@ function imprimir_word_renuncia(e){
 
 }
 
+function imprimir_liquidacion_boleta(e){
+
+
+    var mes_boletas         = $('#select_mes_boleta'+ e).val();
+    var anios               = $('#select_anio_boletas'+ e).val();
+    var boleta              = $('#combo_prev_boleta'+ e).val();
+    var nombreruta          = 'boleta_'+ boleta +'.php';
+
+    //var nombreruta          = 'boleta_1.php'; 
+    var nombre              = $('#txtnombre').val();
+    var apellido            = $('#txtapellido').val();
+    var nombre_emp          = $('#nom_emp_lab'+ e).html();
+    var nombre_com          = nombre + ' ' + apellido;
+    var num_doc             = $('#num_doc').val();
+    var nom_carpeta         = "REPORTE-BONOS-"+ num_doc;
+    var fecha_inicio        = $('.desde_imp').html();
+    var fecha_hasta         = $('.hasta_imp').html();
+    var fecha_inicio_num    = $('.desde_imp_num').html();
+    var fecha_hasta_num     = $('.hasta_imp_num').html();
+    var lugar_dia           = $('.lugardia').html();
+    var cargo               = $('#cargo_emp'+ e).val();
+    var sueldo              = $('#sueldo_emp'+ e).val();
+    var moneda              = $('#moneda_emp'+ e).val();
+    var motivo              = $('select[name="combo_prev_liqui'+ e +'"] option:selected').text();
+    //Agregar año para la condicional 
+    var fecha_final         = $("#fech_final_emp"+ e).val();
+    var fecha               = new Date(fecha_final);
+    var anio                = fecha.getFullYear();
+    var ruc                 = $('#ruc_emp'+e).val();
+
+    //montos descontados
+    var dsc_at_pen          = $('.dsc_at_pension_monto').html();
+    var dsc_ap_pen          = $('.dsc_ap_pension_monto').html();
+    var dsc_at_ss           = $('.dsc_at_ss_monto').html();
+    var dsc_ap_ss           = $('.dsc_ap_ss_monto').html();
+    var dsc_at_fon          = $('.dsc_at_fonavi_monto').html();
+    var dsc_ap_fon          = $('.dsc_ap_fonavi_monto').html();
+    var tot_desc_at         = $('.total_dsc_trabajador_boleta').html();
+    var tot_desc_ap         = $('.total_dsc_empleador_boleta').html();
+
+
+    //datos de la boleta
+    var total_boleta = $('.total_boleta').html();
+    var total_neto_1 = $('.total_neto_1').html();
+    var mes_anio = $('.mes_anio_imp').html();
+    var total_neto_boleta = $('.total_neto_pagar_boleta').html();
+
+    // Serializa el formulario
+    var formData = new FormData($('#form_bol'+ e)[0]);
+
+    // Agrega los datos adicionales al objeto FormData
+    formData.append('nombre', nombre); 
+    formData.append('apellido', apellido);
+    formData.append('empresa', nombre_emp); 
+    formData.append('afiliado', nombre_com);
+    formData.append('nombre_carpeta', nom_carpeta); 
+    formData.append('fecha_inicio', fecha_inicio); 
+    formData.append('fecha_final', fecha_hasta); 
+    formData.append('fecha_inicio_num', fecha_inicio_num);
+    formData.append('fecha_final_num', fecha_hasta_num); 
+    formData.append('fecha_footer', lugar_dia);   
+    formData.append('cargo', cargo);  
+    formData.append('sueldo', sueldo);   
+    formData.append('moneda', moneda);  
+    formData.append('motivo', motivo); 
+    formData.append('anio_final', anio);  
+    formData.append('total_boleta', total_boleta); 
+    formData.append('total_neto_1', total_neto_1); 
+    formData.append('total_neto_boleta', total_neto_boleta); 
+    formData.append('dsc_at_pen', dsc_at_pen); 
+    formData.append('dsc_ap_pen', dsc_ap_pen); 
+    formData.append('dsc_at_ss', dsc_at_ss); 
+    formData.append('dsc_ap_ss', dsc_ap_ss); 
+    formData.append('dsc_at_fon', dsc_at_fon); 
+    formData.append('dsc_ap_fon', dsc_ap_fon); 
+    formData.append('tot_desc_at', tot_desc_at); 
+    formData.append('tot_desc_ap', tot_desc_ap); 
+    formData.append('ruc', ruc);
+    if(mes_boletas == 'all'){
+        // Crear un array de los meses del año
+        const mesesDelAnio = [
+            'ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO',
+            'JULIO', 'AGOSTO', 'SEPTIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE'
+        ];
+
+        // Recorrer el array e imprimir cada mes
+        mesesDelAnio.forEach(function(mes, indice) {
+            //console.log(`Mes ${indice + 1}: ${mes}`);
+            formData.append('mes_anio', mes+ '-'+anios);
+            //console.log(mes+ '-'+anios);
+            $.ajax({
+                type: "POST",
+                url: "../../controller/docs/"+nombreruta,
+                data : formData,
+                processData: false, // Evita que jQuery procese los datos (necesario al usar FormData)
+                contentType: false, // No establece el tipo de contenido (necesario al usar FormData)
+                success: function(response){  
+                    console.log(response);
+                    //resp = JSON.parse(response);
+                }
+            });
+           
+        });
+
+        swal.fire(
+            'Documento generado exitosamente',
+            '',
+            'success'
+        );
+            
+    }else {
+        formData.append('mes_anio', mes_anio);
+        $.ajax({
+            type: "POST",
+            url: "../../controller/docs/"+nombreruta,
+            data : formData,
+            processData: false, // Evita que jQuery procese los datos (necesario al usar FormData)
+            contentType: false, // No establece el tipo de contenido (necesario al usar FormData)
+            success: function(response){  
+                console.log(response);
+                resp = JSON.parse(response);
+                if(resp.estado == 1){
+                        swal.fire(
+                            'Documento generado exitosamente',
+                            '',
+                            'success'
+                        );
+                }
+                // URL del archivo que deseas descargar
+                var url = '../../files/'+nom_carpeta+'/'+resp.archivo+'.docx';
+    
+                // Crear un elemento <a> oculto
+                var link = document.createElement('a');
+                link.href = url;
+                link.download = resp.archivo+'-'+num_doc; // Nombre del archivo para descargar
+                link.style.display = 'none';
+    
+                // Añadir el elemento <a> al DOM
+                document.body.appendChild(link);
+    
+                // Simular un clic en el enlace para iniciar la descarga
+                link.click();
+    
+                // Eliminar el elemento <a> del DOM después de la descarga
+                document.body.removeChild(link);
+               
+            }
+        });
+    
+    }  
+
+}
+
+
 
 function MostrarFirmante(e){
     console.log(e);
@@ -6326,6 +6625,170 @@ function SeleccionarFirmante(){
 
 function CerrarFirmante() {
     $('#modalfirmante').modal('hide');
+}
+
+function CerrarFirmanteActualizar() {
+    $('#modalactualizar').modal('hide');
+}
+
+function ActualizarEmp(e){
+
+    var ruc_emp = $('#lst_emp_'+ e).val();
+    $('#num_tab').val(e);
+    console.log(ruc_emp);
+
+    if( ruc_emp !== null  && ruc_emp !== '' ){
+        // Realizar la solicitud AJAX
+        $.ajax({
+            type: "POST",  // Método de la solicitud
+            url: "../../controller/pensioncontrolador.php?op=consulta_api_sunat",  // Ruta de tu archivo PHP en el servidor
+            data: { ruc : ruc_emp},  // Datos que se enviarán al servidor
+            dataType: 'json',  // Tipo de datos esperados en la respuesta
+            async : false,
+            success: function(response) {
+                // Manejar la respuesta exitosa del servidor
+                //console.log(response);
+                if(response.success == true){
+                    
+                    //Mostrar Datos de Empresa
+                    let dat_emp = response.result;
+                    $('#lb_razon').html(dat_emp.razon_social);
+                    $('#lb_ruc').html(dat_emp.ruc)
+                    $('#lb_direccion').html(dat_emp.direccion);
+                    $('#lb_depa').html(dat_emp.departamento);
+                    $('#lb_prov').html(dat_emp.provincia);
+                    $('#lb_dist').html(dat_emp.distrito);
+                    $('#lb_estado').html(dat_emp.estado);
+                    $('#lb_condicion').html(dat_emp.condicion);
+                    $('#lb_fecha_ini').html(dat_emp.inicio_actividades);
+
+                    //Obtener Fecha Fin
+                    let fechaFinEmp = generarFechaAleatoria();
+                    $('#lb_fecha_fin').html(fechaFinEmp);
+
+                    //Almacenar datos en mi json;
+                    datos_empresa = {
+                        razon : dat_emp.razon_social,
+                        ruc_emp : dat_emp.ruc,
+                        direccion: dat_emp.direccion,
+                        departamento: dat_emp.departamento,
+                        provincia : dat_emp.provincia,
+                        distrito : dat_emp.distrito,
+                        estado : dat_emp.estado,
+                        condicion : dat_emp.condicion,
+                        fecha_inicio : dat_emp.inicio_actividades,
+                        fecha_fin : fechaFinEmp
+                    };
+
+                    //Mostrar Los Representantes Legales
+                    let rep_le = response.result.representantes_legales;
+                    datos_firmantes = response.result.representantes_legales;
+                    let orden = 1;
+                    let divs = "";
+
+                    if(rep_le != false){
+                        rep_le.forEach(function(rep){
+                            divs+= `<tr>
+                                        <td style='vertical-align: middle;'>${orden++}</td>
+                                        <td style='vertical-align: middle;'>${rep.tipodoc}</td>
+                                        <td style='vertical-align: middle;'>${rep.numdoc}</td>
+                                        <td style='vertical-align: middle;'>${rep.nombre}</td>
+                                        <td style='vertical-align: middle;'>${rep.cargo}</td>
+                                        <td style='vertical-align: middle;'>${rep.desde}</td>
+                                    </tr>`;
+                        });
+                        
+                    }else {
+                        divs = `<tr><td colspan="6">SIN RESULTADOS</td></tr>`;
+                    }
+
+                    $('#div_firmante_actualizar').html(divs);
+                    $('#modalactualizar').modal('show');
+                    $('#ruc_empresa_firmante').val(ruc_emp);
+                }else {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Sin resultados',
+                        text: ''
+                    });
+                }
+            },
+            error: function(error) {
+            // Manejar errores en la solicitud
+                console.error('Error en la solicitud AJAX:', error);
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Sin Resultados',
+                    text: ''
+                });
+            }
+        });
+    }else {
+        Swal.fire({
+            title: 'No se ha seleccionado ninguna empresa',
+            text: '',
+            icon: 'warning',
+            showConfirmButton: false, // Sin botón de confirmación
+            timer: 1500, // Tiempo en milisegundos (1 segundo)
+          });
+    }
+}
+
+
+function ActualizarFirmante(){
+    //console.log(datos_firmantes);
+
+    // Convertir el JSON a una cadena de texto
+    var datosJSONEmp = JSON.stringify(datos_empresa);
+    var datosJSON = JSON.stringify(datos_firmantes);
+    var ruc_empresa = $('#ruc_empresa_firmante').val();
+    var num = $('#num_tab').val();
+
+   
+    // Realizar la solicitud AJAX
+    $.ajax({
+        type: 'POST',
+        url: '../../controller/firmacontrolador.php?op=update_firmante',
+        data: { datos: datosJSON, ruc :  ruc_empresa, datos_emp : datosJSONEmp},
+        //dataType: 'json',
+        success: function(response) {
+            console.log('Éxito:', response);
+            Swal.fire({
+                icon: 'success',
+                title: 'Datos Actualizados',
+                text: ''
+            });
+            $('#modalactualizar').modal('hide');
+            mostrardetalle(num, ruc_empresa, 1);
+            
+        },
+        error: function(error) {
+            console.log('Error:', error);
+        }
+    });
+
+    
+}
+
+function generarFechaAleatoria() {
+    // Establecer la fecha de inicio y fin
+    const fechaInicio = moment('1999-01-01', 'YYYY-MM-DD');
+    const fechaFin = moment('1999-12-30', 'YYYY-MM-DD');
+
+    // Calcular la diferencia en días entre las dos fechas
+    const diferenciaDias = fechaFin.diff(fechaInicio, 'days');
+
+    // Generar un número aleatorio de días entre 0 y la diferencia
+    const diasAleatorios = Math.floor(Math.random() * (diferenciaDias + 1));
+
+    // Agregar esos días a la fecha de inicio
+    const fechaAleatoria = fechaInicio.add(diasAleatorios, 'days');
+
+    // Formatear la fecha como "DD-MM-YYYY"
+    const fechaFormateada = fechaAleatoria.format('DD-MM-YYYY');
+
+    // Devolver la fecha formateada
+    return fechaFormateada;
 }
 
 init();

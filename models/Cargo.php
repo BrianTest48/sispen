@@ -19,6 +19,16 @@
             return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
         }
 
+        public function get_cargo_x_nombre($cargo){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT * FROM cargos WHERE nombre= ? LIMIT 1;";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $cargo);
+            $sql->execute();
+            return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+        }
+
         public function get_cargo_x_id($cargo_id){
             $conectar= parent::conexion();
             parent::set_names();

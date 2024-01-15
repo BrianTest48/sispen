@@ -1,10 +1,12 @@
 <?php 
     require_once("../config/conexion.php");
     require_once("../models/Pension.php");
+
     require_once("../util/cantidad_en_letras.php");
 
     $pension = new Pension();
     $letras = new EnLetras();
+
 
     switch($_GET["op"]){
        
@@ -48,7 +50,7 @@
             break;
 
         case 'consulta_dni_nac' :  
-            $token = '4e3080aa-3abb-4d69-b448-b556701a41c3';
+            $token = '44fe0c88-cedf-43d5-8639-d4955d2477d6';
             //$dni    =   $_POST['dni'];
             $dni    =   $_POST['dni'];
             // Iniciar llamada a API
@@ -71,6 +73,130 @@
             // Datos listos para usar
             $persona = json_decode($response);
             echo json_encode($persona);
+            break;
+        case 'consulta_api_sunat1':
+            //$token_api = '81c7c6aa552ef9ddb3c35c72bbbfd3';
+            $token_api = '6e054319b9e1017ca0f7c950470b2a';
+            $ruc  =   $_POST['ruc'];
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => 'https://utildatos.com/api/sunat',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => false,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_POSTFIELDS => array('ruc' => $ruc),
+                CURLOPT_HTTPHEADER => array(
+                    'Authorization: Bearer '.$token_api
+                ),
+            ));
+
+            $response = curl_exec($curl);
+
+            curl_close($curl);
+            echo $response;
+            break;
+
+        case 'consulta_api_sunat':
+            $ruc  =   $_POST['ruc'];
+            $arrayDeTokens = ['e5c6eb06cfbd9a847b629a6f73c7d0','558e4b82557bdfe02a003b093e4f05', 'd5c29544dd9cbbd64ca310b1694d7d','c0caa831bfff8c97dd6ea9a44af8c3',
+                            '1b265d874614637cc032824e934734','aa6380f3c414240d4940baaca57763','e4c40b08e249560150327f1c50f0e0']; // Agrega todos tus tokens
+
+            foreach ($arrayDeTokens as $token) {
+                $curl = curl_init();
+                
+                curl_setopt_array($curl, array(
+                    CURLOPT_URL => 'https://utildatos.com/api/sunat',
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => '',
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => false,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => 'POST',
+                    CURLOPT_POSTFIELDS => array('ruc' => $ruc),
+                    CURLOPT_HTTPHEADER => array(
+                        'Authorization: Bearer '.$token
+                    ),
+                ));
+
+                $response = curl_exec($curl);
+
+                // Verifica si la respuesta es exitosa
+                $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+                curl_close($curl);
+
+                if ($httpCode == 200) {
+                    // La solicitud fue exitosa, decodifica el JSON
+                    $responseData = json_decode($response, true);
+
+                    // Verifica si el campo "message" es "false"
+                    if (isset($responseData['message'])) {
+                        //echo json_encode ( "Respuesta con token $token contiene 'message: false'.<br>");
+                    } else {
+                        // La respuesta es exitosa, imprime el JSON y sale del bucle
+                        echo $response;
+                        break;
+                    }
+                } else {
+                    // La solicitud no fue exitosa, intenta con el siguiente token
+                    //echo json_encode ("Intento fallido" . $token);
+                }
+            }
+
+            break;
+        case 'consultar_firmantes':
+            $parametro = $_POST['ruc'];
+            // Construye la URL de la API con el parámetro
+            $url = "https://sparrow-fair-infinitely.ngrok-free.app/representatives?ruc=" . urlencode($parametro);
+
+            // Realiza la solicitud a la API utilizando file_get_contents
+            $response = file_get_contents($url);
+
+            // Decodifica la respuesta JSON
+            $data = json_decode($response, true); // Utiliza true para obtener un array asociativo
+            // Decodifica la respuesta JSON
+            $data1 = json_decode($data, true); // Utiliza true para obtener un array asociativo
+
+            if ($data1 !== null) {
+                $html="";
+                $order = 1;
+                foreach($data1 as $row) {
+                    $html.= "<tr>";
+                    $html.= "<td style='vertical-align: middle;'>".$order++."</td>";
+                    $html.= "<td style='vertical-align: middle;'>".$row['Tipo de Documento']."</td>";
+                    $html.= "<td style='vertical-align: middle;'>".$row['Nro. Documento']."</td>";
+                    $html.= "<td style='vertical-align: middle;'>".$row['Nombre']."</td>";
+                    $html.= "<td style='vertical-align: middle;'>".$row['Cargo']."</td>";
+                    $html.= "<td style='vertical-align: middle;'>".$row['Fecha Desde']."</td>";
+                    $html.= "</tr>";
+                    //$html.= "<option value='".$row["firma_nombre"]."'>".$row["firma_nombre"]." / ".$row["fech_inicio"]." / ".$row["fech_fin"]." / ".$row["estado"]." / ".$row["fecha_f"]."</option>";
+                    //$html.= "<option value='".$row["id"]."'>".$row["firma_nombre"]."<div>".$row["imagen"]."</div></option>";
+                }
+                //echo $html;
+
+                $responseData = array(
+                    "res_json" => $data1,
+                    "table" => $html
+                );
+                
+                // Convertir el array asociativo a JSON
+                echo json_encode($responseData);
+            } else {
+                echo "0";
+            }
+
+            // Verifica si la decodificación fue exitosa
+           
+
+            
+            // Puedes hacer algo con los datos decodificados, por ejemplo, enviarlos de vuelta a JavaScript
+            //echo json_encode($data1);
+            //echo ($data);
             break;
         case 'buscar':
             $datos = $pension->get_afiliado_x_tipo($_POST["tipo_doc"], $_POST["num_doc"]);
@@ -104,7 +230,7 @@
         
         case 'pensionaleatorioempresa':
 
-            $datos = $pension->pension_aleatorio_empresa($_POST["txtdateinicio"], $_POST["txtdatefin"], $_POST["tipo"]);
+            $datos = $pension->pension_aleatorio_empresa($_POST["txtdateinicio"], $_POST["txtdatefin"], $_POST["tipo"], $_POST["base"], $_POST["estado"], $_POST["condicion"]);
             $data = Array();
             if(is_array($datos)==true and count($datos)>0){
                 foreach($datos as $row){
@@ -138,7 +264,7 @@
 
             break;
         case 'combo':
-            $datos = $pension->pension_aleatorio_empresa($_POST["txtdateinicio"], $_POST["txtdatefin"], $_POST["tipo"]);
+            $datos = $pension->pension_aleatorio_empresa($_POST["txtdateinicio"], $_POST["txtdatefin"], $_POST["tipo"], $_POST["base"], $_POST["estado"], $_POST["condicion"]);
             if(is_array($datos)==true and count($datos)>0){
                 //$html ="<option value='0' label='Seleccione' ></option>";
                 $html="";

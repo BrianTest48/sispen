@@ -100,6 +100,20 @@
             <li class="nav-item"><a href="../../view/MotivoCese/" class="nav-link menus">Motivo de Cese</a></li>
             <!--<li class="nav-item"><a href="../../view/Liquidacion/" class="nav-link">Liquidacion</a></li>-->
         </ul>
+        <br>
+        <a href="#" class="br-menu-link">
+            <div class="br-menu-item">
+                <i class="menu-item-icon icon ion-grid"></i>
+                <span class="menu-item-label">Creación de Documentos</span>
+                <i class="menu-item-arrow fa fa-angle-down"></i>
+            </div><!-- menu-item -->
+        </a><!-- br-menu-link -->
+        <ul class="br-menu-sub nav flex-column">
+            <li class="nav-item"><a href="../../view/DocCertificado/" class="nav-link menus">Certificado</a></li>
+            <li class="nav-item"><a href="../../view/DocLiquidacion/" class="nav-link menus">Liquidación</a></li>
+            <li class="nav-item"><a href="../../view/DocBoleta/" class="nav-link menus">Boleta</a></li>
+            <li class="nav-item"><a href="../../view/DocRenuncia/" class="nav-link menus">Renuncia</a></li>
+        </ul>
     </div>
     <br>
     <div class="d-flex justify-content-center mt-5 mt-xxl-0">

@@ -1,7 +1,5 @@
 var tabla ;
-
-
-
+var datos_firmantes;
 
 function init(){
     $("#firma_form").on("submit",function(e){
@@ -85,7 +83,8 @@ $(document).ready(function(){
 		}
 	}).DataTable();
 
-
+    $('#div_response').hide();
+    $('#div_response_sunat').hide();
 });
 
 function guardaryeditar(e){
@@ -194,7 +193,6 @@ function eliminar(firma_id){
     })
 }
 
-
 function ocultarcampos(){
     
     $('#firma_nom').attr("readonly","readonly");
@@ -231,6 +229,18 @@ $(document).on("click","#btnnuevo", function(){
     
     activarcampos();
 
+});
+
+$(document).on("click","#btnconsulta", function(){
+    $('#int_ruc').val("");
+    $('#modalconsulta').modal('show');
+    $('#div_response').hide();
+    $('#div_response_sunat').hide();
+});
+
+$(document).on("click","#btnclosemodalconsulta", function(){
+
+    $("#modalconsulta").modal('hide');
 });
 
 $(document).on("click","#btnclosemodal", function(){
@@ -274,6 +284,112 @@ function CargarCSV(){
             // Muestra un mensaje de error en el contenedor
             //$('#resultado').html("Error al procesar el archivo CSV. Por favor, intenta nuevamente.");
             console.error(xhr.responseText);
+        }
+    });
+}
+
+function BuscarRuc(){
+    let ruc_emp = $('#int_ruc').val();
+
+    if(ruc_emp != ""){
+        //Ajax para mostrar Datos de Firmantes de la BD Actual
+        $.ajax({
+            url: "../../controller/firmacontrolador.php?op=tabla_firmante_ruc",
+            type: "POST",
+            data: { numero : ruc_emp },
+            success: function(datos){
+                //console.log(datos);
+                $('#div_firmantes').html(datos);
+                $('#div_response').show();
+            },
+            error : function(error){
+                console.log(error);
+            }
+        });
+
+        //Ajax para mostrar datos del WebService SUNAT.
+        $.ajax({
+            url: "../../controller/pensioncontrolador.php?op=consulta_api_sunat",
+            type: "POST",
+            data: { ruc : ruc_emp },
+            async : false,
+            success: function(datos){
+                //console.log(datos);
+                if (datos != ""){
+                    response = JSON.parse(datos);
+                    if(response.success == true){
+                        //Mostrar Los Representantes Legales
+                        let rep_le = response.result.representantes_legales;
+                        datos_firmantes = response.result.representantes_legales;
+                        let orden = 1;
+                        let divs = "";
+        
+                        if(rep_le != false){
+                            rep_le.forEach(function(rep){
+                                divs+= `<tr>
+                                            <td style='vertical-align: middle;'>${orden++}</td>
+                                            <td style='vertical-align: middle;'>${rep.tipodoc}</td>
+                                            <td style='vertical-align: middle;'>${rep.numdoc}</td>
+                                            <td style='vertical-align: middle;'>${rep.nombre}</td>
+                                            <td style='vertical-align: middle;'>${rep.cargo}</td>
+                                            <td style='vertical-align: middle;'>${rep.desde}</td>
+                                        </tr>`;
+                            });
+                            
+                        }else {
+                            divs = `<tr><td colspan="6">SIN RESULTADOS</td></tr>`;
+                        }
+        
+                        $('#div_firmante_sunat').html(divs);
+                        $('#div_response_sunat').show();
+
+                    }else {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Sin resultados',
+                            text: ''
+                        });
+                    }
+                }
+               
+            },
+            error : function(error){
+                console.log(error);
+            }
+        });
+    }else {
+        swal.fire(
+            'Ingrese un numero de ruc válido',
+            '',
+            'warning'
+        );
+    }
+
+    
+}
+
+function ActualizarFirmante(){
+    var datosJSON = JSON.stringify(datos_firmantes);
+    var ruc_empresa = $('#int_ruc').val();
+    // Realizar la solicitud AJAX
+    $.ajax({
+        type: 'POST',
+        url: '../../controller/firmacontrolador.php?op=update_firmante_sunat',
+        data: { datos: datosJSON, ruc :  ruc_empresa},
+        //dataType: 'json',
+        success: function(response) {
+            console.log('Éxito:', response);
+            Swal.fire({
+                icon: 'success',
+                title: 'Datos Actualizados',
+                text: ''
+            });
+            $("#modalconsulta").modal('hide');
+            $('#firma_data').DataTable().ajax.reload();
+            
+        },
+        error: function(error) {
+            console.log('Error:', error);
         }
     });
 }

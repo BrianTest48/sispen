@@ -68,36 +68,56 @@
                                 </div>
                             </div><!-- col-6 -->
                             <div class="col-lg-6">
+                                <div class="form-group ">
+                                    <label class="form-control-label">Estado: <span class="tx-danger">*</span></label>
+                                    <select class="form-control select2" name="emp_estado" id="emp_estado" data-placeholder="Seleccione" style="width: 100%" required>
+                                        <option value="ACTIVO">ACTIVO</option>
+                                        <option value="BAJA DE OFICIO">BAJA DE OFICIO</option>
+                                        <option value="BAJA DEFINITIVA">BAJA DEFINITIVA</option>
+                                        <option value="BAJA PROVISIONAL">BAJA PROVISIONAL</option>
+                                    </select>
+                                </div>
+                            </div><!-- col-6 -->
+                            <div class="col-lg-6">
+                                <div class="form-group ">
+                                    <label class="form-control-label">Condicion: <span class="tx-danger">*</span></label>
+                                    <select class="form-control select2" name="emp_condicion" id="emp_condicion" data-placeholder="Seleccione" style="width: 100%" required>
+                                        <option value="HABIDO">HABIDO</option>
+                                        <option value="NO HABIDO">NO HABIDO</option>
+                                    </select>
+                                </div>
+                            </div><!-- col-6 -->
+                            <div class="col-lg-6 d-none">
                                 <div class="form-group">
                                     <label class="form-control-label">Representant Legal: <span class="tx-danger">*</span></label>
                                     <input class="form-control" type="text" name="emp_rep_legal" id="emp_rep_legal" placeholder="Ingrese Representante Legal" >
                                 </div>
-                            </div><!-- col-4 -->
-                            <div class="col-lg-3">
+                            </div>
+                            <div class="col-lg-3 d-none">
                                 <div class="form-group ">
                                     <label class="form-control-label">D.N.I Rep. Legal: <span class="tx-danger">*</span></label>
                                     <input class="form-control" type="number" name="emp_dni" id="emp_dni" placeholder="Ingrese D.N.I" >
                                 </div>
-                            </div><!-- col-8 -->
-                            <div class="col-lg-3">
+                            </div>
+                            <div class="col-lg-3 d-none">
                                 <div class="form-group ">
                                     <label class="form-control-label">Fecha de Inicio R. Legal</label>
                                     <input class="form-control" type="date" name="emp_fech_rep_legal" id="emp_fech_rep_legal" placeholder="" >
                                 </div>
-                            </div><!-- col-8 -->
-                            <div class="col-lg-6">
+                            </div>
+                            <div class="col-lg-6 d-none">
                                 <div class="form-group">
                                     <label class="form-control-label">Segundo Representante</label>
                                     <input class="form-control" type="text" name="emp_seg_rep" id="emp_seg_rep" placeholder="Ingrese Otro Represetante">
                                 </div>
-                            </div><!-- col-4 -->
-                            <div class="col-lg-3">
+                            </div>
+                            <div class="col-lg-3 d-none">
                                 <div class="form-group ">
                                     <label class="form-control-label">D.N.I Representante</label>
                                     <input class="form-control" type="number" name="emp_dni_seg_rep" id="emp_dni_seg_rep" placeholder="Ingrese D.N.I ">
                                 </div>
-                            </div><!-- col-3 -->
-                            <div class="col-lg-3">
+                            </div>
+                            <div class="col-lg-3 d-none">
                                 <div class="form-group ">
                                     <label class="form-control-label">Fecha de Inicio R. Legal</label>
                                     <input class="form-control" type="date" name="emp_fech_seg_rep_legal" id="emp_fech_seg_rep_legal" placeholder="">

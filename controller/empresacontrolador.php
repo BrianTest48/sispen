@@ -4,6 +4,34 @@
 
     $empresa = new Empresa();
 
+    function convertirFecha($fechaOriginal) {
+        // Crear un objeto DateTime con el formato original
+        $fechaObjeto = DateTime::createFromFormat('d/m/Y', $fechaOriginal);
+    
+        // Verificar si la conversión fue exitosa
+        if ($fechaObjeto !== false) {
+            // Obtener la fecha en el nuevo formato
+            return $fechaObjeto->format('Y-m-d');
+        } else {
+            // En caso de error, devolver un mensaje o valor por defecto
+            return "Error al convertir la fecha";
+        }
+    }
+
+    function cambiarFormatoFecha($fecha) {
+        // Crear un objeto DateTime con la fecha proporcionada y el formato esperado
+        $fechaObjeto = DateTime::createFromFormat('d-m-Y', $fecha);
+    
+        // Verificar si la conversión fue exitosa
+        if ($fechaObjeto) {
+            // Formatear la fecha en el nuevo formato "Y-m-d"
+            return $fechaObjeto->format('Y-m-d');
+        } else {
+            // Si la conversión falla, puedes manejar el error según tus necesidades
+            return "";
+        }
+    }
+
     switch($_GET["op"]){
         case 'listar' :
             $datos = $empresa->get_empresa();
@@ -51,19 +79,29 @@
             if(empty($_POST["emp_id"])){
                 if(is_array($datos)==true and count($datos)==0){
                     if($_POST["emp_seg_rep"] == ""  and $_POST["emp_dni_seg_rep"] == "" ){
-                        $empresa->insert_empresa($_POST["emp_tipo"], $_POST["emp_ruc"],$_POST["emp_razonsocial"],$_POST["emp_direccion"],$_POST["emp_dpto"],$_POST["emp_prov"],$_POST["emp_dist"],$_POST["emp_ini_act"],$_POST["emp_fin_act"],$_POST["emp_rep_legal"],$_POST["emp_dni"], $_POST["emp_fech_rep_legal"],'NO REGISTR','NO REGISTR', $_POST["emp_fech_seg_rep_legal"]);
+                        $empresa->insert_empresa($_POST["emp_tipo"], $_POST["emp_ruc"],$_POST["emp_razonsocial"],$_POST["emp_direccion"],$_POST["emp_dpto"],$_POST["emp_prov"],$_POST["emp_dist"],$_POST["emp_ini_act"],$_POST["emp_fin_act"],'-','NULL', 'NULL','NO REGISTR','NO REGISTR', $_POST["emp_fech_seg_rep_legal"], $_POST["emp_estado"], $_POST["emp_condicion"]);
                         echo("SE GUARDO");
                     }else {
-                        $empresa->insert_empresa($_POST["emp_tipo"], $_POST["emp_ruc"],$_POST["emp_razonsocial"],$_POST["emp_direccion"],$_POST["emp_dpto"],$_POST["emp_prov"],$_POST["emp_dist"],$_POST["emp_ini_act"],$_POST["emp_fin_act"],$_POST["emp_rep_legal"],$_POST["emp_dni"], $_POST["emp_fech_rep_legal"],$_POST["emp_seg_rep"],$_POST["emp_dni_seg_rep"], $_POST["emp_fech_seg_rep_legal"]);
+                        $empresa->insert_empresa($_POST["emp_tipo"], $_POST["emp_ruc"],$_POST["emp_razonsocial"],$_POST["emp_direccion"],$_POST["emp_dpto"],$_POST["emp_prov"],$_POST["emp_dist"],$_POST["emp_ini_act"],$_POST["emp_fin_act"],$_POST["emp_rep_legal"],$_POST["emp_dni"], $_POST["emp_fech_rep_legal"],$_POST["emp_seg_rep"],$_POST["emp_dni_seg_rep"], $_POST["emp_fech_seg_rep_legal"], $_POST["emp_estado"], $_POST["emp_condicion"]);
                     } 
                 }
             }else{
-                $empresa->update_empresa($_POST["emp_id"],$_POST["emp_tipo"],$_POST["emp_ruc"],$_POST["emp_razonsocial"],$_POST["emp_direccion"],$_POST["emp_dpto"],$_POST["emp_prov"],$_POST["emp_dist"],$_POST["emp_ini_act"],$_POST["emp_fin_act"],$_POST["emp_rep_legal"],$_POST["emp_dni"], $_POST["emp_fech_rep_legal"],$_POST["emp_seg_rep"],$_POST["emp_dni_seg_rep"], $_POST["emp_fech_seg_rep_legal"]);
+                $empresa->update_empresa($_POST["emp_id"],$_POST["emp_tipo"],$_POST["emp_ruc"],$_POST["emp_razonsocial"],$_POST["emp_direccion"],$_POST["emp_dpto"],$_POST["emp_prov"],$_POST["emp_dist"],$_POST["emp_ini_act"],$_POST["emp_fin_act"],$_POST["emp_rep_legal"],$_POST["emp_dni"], $_POST["emp_fech_rep_legal"],$_POST["emp_seg_rep"],$_POST["emp_dni_seg_rep"], $_POST["emp_fech_seg_rep_legal"], $_POST["emp_estado"], $_POST["emp_condicion"]);
                 echo json_encode($empresa);
             }
             
             break;
-        
+        case 'update_empresa':
+            $ruc_emp = $_POST["ruc"];
+            $datosJSON_emp = $_POST['datos_emp'];
+            // Decodificar el JSON a un array de PHP
+            $dataEmp = json_decode($datosJSON_emp, true);
+            //insertar a mi BD
+
+            $data = $empresa->update_empresa_api($dataEmp["ruc_emp"], $dataEmp["razon"], $dataEmp["direccion"], $dataEmp["departamento"], $dataEmp["provincia"], $dataEmp["distrito"], cambiarFormatoFecha($dataEmp["fecha_inicio"]), cambiarFormatoFecha($dataEmp["fecha_fin"]), $dataEmp["estado"], $dataEmp["condicion"]);
+
+            echo $ruc_emp;
+            break;
         case 'mostrar':
             $datos=$empresa->get_empresa_x_id($_POST["emp_id"]);
             if(is_array($datos)==true and count($datos)>0){
@@ -84,6 +122,8 @@
                     $output["otro_representante"] = $row["otro_representante"];
                     $output["dni_b"] = $row["dni_b"];
                     $output["f_inicio_b"] = $row["f_inicio_b"];
+                    $output["estado_emp"] = $row["estado_emp"];
+                    $output["habido_emp"] = $row["habido_emp"];
                 }
                 echo json_encode($output);
             }
@@ -98,7 +138,32 @@
                 echo json_encode($output);
             }
             break;
-
+        case 'mostrar_empresa_ruc':
+            $datos=$empresa->get_empresa_ruc($_POST["ruc"]);
+            if(is_array($datos)==true and count($datos)>0){
+                foreach($datos as $row){
+                    $output["id"] = $row["id"];
+                    $output["tipo_emp"] = $row["tipo_emp"];
+                    $output["ruc"] = $row["ruc"];
+                    $output["empleador"] = $row["empleador"];
+                    $output["direccion"] = $row["direccion"];
+                    $output["dpto"] = $row["dpto"];
+                    $output["prov"] = $row["prov"];
+                    $output["dist"] = $row["dist"];
+                    $output["f_inic_act"] = $row["f_inic_act"];
+                    $output["f_baja_act"] = $row["f_baja_act"];
+                    $output["rep_legal"] = $row["rep_legal"];
+                    $output["dni_a"] = $row["dni_a"];
+                    $output["f_inicio_a"] = $row["f_inicio_a"];
+                    $output["otro_representante"] = $row["otro_representante"];
+                    $output["dni_b"] = $row["dni_b"];
+                    $output["f_inicio_b"] = $row["f_inicio_b"];
+                    $output["estado_emp"] = $row["estado_emp"];
+                    $output["habido_emp"] = $row["habido_emp"];
+                }
+                echo json_encode($output);
+            }
+            break;
         case 'combovigencia':
             $datos=$empresa->get_empresa_x_ruc($_POST["numero"]);
             if(is_array($datos)==true and count($datos)>0){

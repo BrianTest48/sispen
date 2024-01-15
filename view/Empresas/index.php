@@ -26,12 +26,23 @@
                 <div class="br-section-wrapper">
                     
                     <h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-b-10">Empresas</h6>
-                    <div class="row justify-content-between">
-                        <div class="col-12 col-sm-3">
-                            <button id="btncarga" onclick="CargaMasiva()" class="btn btn-outline-primary btn-block mg-b-10">Carga Masiva</button>
+                    <div class="row">
+                        <div class="col-12 col-sm-6">
+                            <div class="row">
+                                <div class="col-12 col-sm-4">
+                                    <button id="btncarga" onclick="CargaMasiva()" class="btn btn-outline-primary btn-block mg-b-10">Carga Masiva</button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-12 col-sm-3">
-                            <button id="btnnuevo" class="btn btn-primary btn-block mg-b-10">Nuevo Registro de Empresa</button>
+                        <div class="col-12 col-sm-6">
+                            <div class="row justify-content-end">
+                                <div class="col-12 col-sm-4">
+                                    <button id="btnconsulta" class="btn btn-primary btn-block mg-b-10" style="width: 100%">Consulta Ruc</button>
+                                </div>
+                                <div class="col-12 col-sm-5">
+                                    <button id="btnnuevo" class="btn btn-outline-primary btn-block mg-b-10">Nuevo Registro de Empresa</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
@@ -76,6 +87,7 @@
         </div><!-- br-mainpanel -->
         <!-- ########## END: MAIN PANEL ########## -->
         <?php 
+            require_once("./modalconsulta.php");
             require_once("./modalcarga.php");
             require_once("./modalmantenimientoempresas.php");
             require_once("../Main/mainjs.php"); 

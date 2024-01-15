@@ -1744,11 +1744,21 @@
                                                         </div>
                                                     </div>
                                                     <br>
+                                                    <div class="text-center">
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">Que, el Sr <span class="nombre_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> estuvo laborando a favor nuestro en el periodo comprendido desde el <span class="desde_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> hasta el <span class="hasta_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> retirándose mediante carta notarial. </p>
+                                                        </div>
+                                                        <br><br>
+                                                        <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">Nuestro trabajador tuvo un desempeño satisfactorio en el Cargo de <span class="cargo_imp" style="color: #FF0000;font-weight: 600;font-size: 16px;">XXXXXXX</span> siendo felicitado en reiteradas oportunidades por lo que se le extiende este certificado para los usos que estime conveniente. </p>
+                                                        </div>
+                                                    </div>
                                                     <div class="text-right">
                                                         <div style="text-align: right !important;">
                                                             <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;"></p>
                                                         </div>
                                                     </div>
+                                                   
                                                     <br><br><br><br>
                                                     <div class="text-center">
                                                         <div style="text-align: center !important;">
@@ -12775,6 +12785,7 @@
         <?php 
             require_once("./modalbono.php");
             require_once("./modalfirmante.php");
+            require_once("./modalactualizar.php");
             require_once("./modalboletas.php");
             require_once("./modalboletasdsc.php");
             require_once("../Main/mainjs.php"); 
