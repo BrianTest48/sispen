@@ -41,6 +41,7 @@ var cbx_base_5;
 var cbx_estado_5;
 var cbx_condicion_5;
 
+var alerta_uso;
 
 $(document).ready(function(){ 
 
@@ -87,44 +88,16 @@ $(document).ready(function(){
     $('#btnguardarlistareporte').hide();
     $('#btnzipear').hide();
 
-    //Agregar Select2 A comboBox
-
-    // $('#select_mes_boleta_1').select2({
-    //     placeholder: "Seleccione",
-    //     minimumResultsForSearch: Infinity
-    // });
-    
-    // $('#select_mes_boleta_certificado').select2({
-    //     placeholder: "Seleccione",
-    //     minimumResultsForSearch: Infinity
-    // });
-
-    // $('#combo_prev_boleta').select2({
-    //     placeholder: "Seleccione",
-    //     minimumResultsForSearch: Infinity
-    // });
-
-    // $('#select_certificado').select2({
-    //     placeholder: "Seleccione",
-    //     minimumResultsForSearch: Infinity
-    // });
-
-    // $('#combo_prev_liqui').select2({
-    //     placeholder: "Seleccione",
-    //     minimumResultsForSearch: Infinity
-    // });
-    // //Recuperar datos del combo MOTIVO CESE
-    // $.post("../../controller/motivocontrolador.php?op=combo",{},function(data){
-    //     $('#combo_prev_liqui').html(data);
-    // }); 
-
-
+   
     //Cuando se edita la Lista
     var listaId = getParameterByName('lista');
 
     if(listaId == ""){
         //console.log("VACIO");
+        alerta_uso = 0;
     }else {
+
+        alerta_uso = 1;
         //Metodo Mostrar Lista ID
         $.post("../../controller/listareportecontrolador.php?op=mostrar_id",{ lista_id : listaId},function(datos){
             if(datos != ""){
@@ -620,11 +593,6 @@ $(document).on("click","#btnbuscar", function(){
     let docnum = $("#num_doc").val().length;
     let t_lista  = $("#tipo_lista").val();
 
-
-    
-    
-    //$('#btnautogenerar').attr('disabled', false);
-
     if(doc =="" ||  tipo == ""){
         Swal.fire({
             position: 'center',
@@ -654,7 +622,7 @@ $(document).on("click","#btnbuscar", function(){
                             if(data != ""){
                                 data = JSON.parse(data);
                                 $('#txtnombre').val(data.data.nombres);
-                                $('#txtapellido').val(data.data.apellidoMaterno + ' '+data.data.apellidoPaterno);
+                                $('#txtapellido').val(data.data.apellidoPaterno + ' '+data.data.apellidoMaterno);
                                 $('#txtdate').val(convertDateFormatDate(data.data.fechaNacimiento));
                             }
                         });
@@ -676,6 +644,7 @@ $(document).on("click","#btnbuscar", function(){
 
                 $.post("../../controller/listareportecontrolador.php?op=mostrar",{num_doc: doc, lista : t_lista},function(datos){
                     if(datos != ""){
+                        alerta_uso = 1;
                         //console.log(datos);
                         datos = JSON.parse(datos);
                         $("#lista_id").val(datos.id);
@@ -762,6 +731,9 @@ function generar(e){
             $("#divresultado").show();
             $('#divresultado').removeClass().addClass('form-layout form-layout-4');  
 
+
+            //Ocultar por default el mensaje alerta
+            $('.error-label').hide();
 
              //Iniciar select2 en todos los certificados
              $('.select_certificado').select2({
@@ -917,20 +889,54 @@ function generar(e){
                             $("#lst_emp_"+i).val(datos["ruc"+i]).trigger('change');
                             $("#firmante"+i).val(datos["firmante"+i]);     
                             //console.log(datos["ruc"+i]);
-                        }, 600); 
-
-                        //$("#cargoc"+i).val(datos["cargo"+i]).trigger('change');
-                        //$("#logo"+i).val(datos["logo"+i]).trigger('change');
-                        //mostrardetalle(i, 0, 0);
-                        //BuscarEmp(i);
-                        //mostrardetalle(i, datos["ruc"+i], 1);
-                        //$("#firmante"+i).val(datos["firmante"+i]).trigger('change');
-                        //ListarFirmante(i);     
+                        }, 600);   
                     }
-                    
-                    /*mostrardetalle(1, datos["ruc1"], 1);
-                    $("#logo1").val(datos["logo1"]).trigger('change');
-                    $(".firmante_nom").html(datos["firmante1"]);*/
+
+                    var datos_tabs = JSON.parse(datos.datos_derecha)
+
+                    for( let i = 1 ; i<=13 ; i++){
+                        let datos_emp = datos_tabs;
+                        let dato_empresa = datos_emp.empresas["empresa" + i];
+                        //Certificado
+                        $('#select_certificado'+ i).val(dato_empresa.Certificado.tipo_certificado).trigger('change');
+                        $('#fecha_certificado'+ i).val(dato_empresa.Certificado.fecha_emision);
+                        //Liquidacion
+                        $('#sueldo_liquidacion'+ i).val(dato_empresa.Liquidacion.sueldo);
+                        $('#adelanto'+ i).val(dato_empresa.Liquidacion.adelanto);
+                        $('#vacaciones'+ i).val(dato_empresa.Liquidacion.vacaciones);
+                        $('#gratificaciones'+ i).val(dato_empresa.Liquidacion.gratificaciones);
+                        $('#reintegro'+ i).val(dato_empresa.Liquidacion.reintegro);
+                        $('#incentivo'+ i).val(dato_empresa.Liquidacion.incentivo);
+                        $('#bonif'+ i).val(dato_empresa.Liquidacion.bonificacion);
+                        $('#bonif_extra'+ i).val(dato_empresa.Liquidacion.bonif_extra);
+                        $('#bonif_gra'+ i).val(dato_empresa.Liquidacion.bonif_grac);
+                        $('#bonif_meta'+ i).val(dato_empresa.Liquidacion.bonif_meta);
+                        $('#bonif_dias'+ i).val(dato_empresa.Liquidacion.bonif_festivo);
+                        $('#combo_prev_cuerpo'+ i).val(dato_empresa.Liquidacion.tipo).trigger('change');
+                        $('#combo_prev_liqui'+ i).val(dato_empresa.Liquidacion.motivo).trigger('change');
+                        $('#fecha_liquidacion'+ i).val(dato_empresa.Liquidacion.fecha_emision);
+                        //Boleta
+                        $('#select_anio_boletas'+ i).val(dato_empresa.Boleta.anio_boleta).trigger('change');
+                        $('#select_mes_boletas'+ i).val(dato_empresa.Boleta.mes_boleta).trigger('change');
+                        $('#sueldo_boleta'+ i).val(dato_empresa.Boleta.sueldo);
+                        $('#rm_vacacional_boleta'+ i).val(dato_empresa.Boleta.rem_vaca);
+                        $('#reintegro_boleta'+ i).val(dato_empresa.Boleta.reintegro);
+                        $('#horaex_boleta'+ i).val(dato_empresa.Boleta.h_extras);
+                        $('#boni_boleta'+ i).val(dato_empresa.Boleta.bonif);
+                        $('#bonificacion_alimentos_boleta'+ i).val(dato_empresa.Boleta.bonif_alimentos);
+                        $('#bonificacion_metas_boleta'+ i).val(dato_empresa.Boleta.bonif_metas);
+                        $('#bonificacion_logros_boleta'+ i).val(dato_empresa.Boleta.bonif_logros);
+                        $('#bonificacion_festivos_boleta'+ i).val(dato_empresa.Boleta.bonif_dias);
+                        $('#bonificacion_pasajes_boleta'+ i).val(dato_empresa.Boleta.pasajes);
+                        $('#bonificacion_uniforme_boleta'+ i).val(dato_empresa.Boleta.uniforme);
+                        $('#bonificacion_gratificacion_boleta'+ i).val(dato_empresa.Boleta.gratificacion);
+                        $('#otros_boleta'+ i).val(dato_empresa.Boleta.otros);
+                        $('#combo_prev_boleta'+ i).val(dato_empresa.Boleta.modelo_boleta).trigger('change');
+                        //Renuncia
+                        $('#select_renuncia'+ i).val(dato_empresa.Renuncia.tipo_renuncia).trigger('change');
+                        $('#fecha_renuncia'+ i).val(dato_empresa.Renuncia.fecha_emision);
+                    }
+                   
                     $('#prev1').hide();
                    
                 }else {
@@ -1010,8 +1016,9 @@ function crearTabs(valor, orc, host) {
         tabContent += '                             </div>';
         tabContent += '                             <div class="row mg-b-5">';
         tabContent += '                                 <label class="form-control-label col-lg-6">Fecha de Emision: </label>';
-        tabContent += '                                 <div class="col-lg-6 pd-0">';
-        tabContent += '                                     <input type="date" class="form-control col-lg-6"  id="fecha_certificado'+ i +'"  />';        
+        tabContent += '                                 <div class="form-group col-lg-6" style="padding: 0; margin-bottom: 0;">';
+        tabContent += '                                     <input type="date" oninput="ValidarFecha(this)" class="form-control"  id="fecha_certificado'+ i +'"  />';
+        tabContent += '                                     <div class="error-msg"></div>';
         tabContent += '                                 </div>';
         tabContent += '                             </div>';
         tabContent += '                         </div> ';
@@ -1128,7 +1135,8 @@ function crearTabs(valor, orc, host) {
         tabContent += '                         <div class="col-12 col-sm-6">';
         tabContent += '                             <div class="form-group">';
         tabContent += '                                 <label class="form-control-label text-left">Fecha de Emision</label>';
-        tabContent += '                                 <input type="date" class="form-control"  id="fecha_liquidacion'+ i +'"  style="width: 100%"/>';
+        tabContent += '                                 <input type="date" oninput="ValidarFecha(this)" class="form-control"  id="fecha_liquidacion'+ i +'"  style="width: 100%"/>';
+        tabContent += '                                 <div class="error-msg text-left"></div>';
         tabContent += '                             </div>';
         tabContent += '                         </div>';
         tabContent += '                     </div>';
@@ -1340,7 +1348,10 @@ function crearTabs(valor, orc, host) {
         tabContent += '                             </div>';
         tabContent += '                             <div class="row mg-b-5">';
         tabContent += '                                 <label class="form-control-label col-lg-6">Fecha de Emision: </label>';
-        tabContent += '                                 <input type="date" class="form-control col-lg-6"  id="fecha_renuncia'+ i +'"  style="width: 100%"/>';        
+        tabContent += '                                 <div class="form-group col-lg-6" style="padding: 0; margin-bottom: 0;">';
+        tabContent += '                                     <input type="date" oninput="ValidarFecha(this)" class="form-control"  id="fecha_renuncia'+ i +'"  style="width: 100%"/>';        
+        tabContent += '                                     <div class="error-msg"></div>';
+        tabContent += '                                 </div>';
         tabContent += '                             </div>';
         tabContent += '                         </div> ';
         tabContent += '                     </div>';
@@ -1422,7 +1433,10 @@ function crearTabs(valor, orc, host) {
         tabContent += '                             </div>';
         tabContent += '                             <div class="row mg-b-5">';
         tabContent += '                                 <label class="form-control-label col-lg-6">Fecha de Emision: </label>';
-        tabContent += '                                 <input type="date" class="form-control col-lg-6"  id="fecha_certificado'+ i +'"  style="width: 100%"/>';        
+        tabContent += '                                 <div class="form-group col-lg-6" style="padding: 0; margin-bottom: 0;">';
+        tabContent += '                                     <input type="date" oninput="ValidarFecha(this)" class="form-control"  id="fecha_certificado'+ i +'"  style="width: 100%"/>';        
+        tabContent += '                                     <div class="error-msg"></div>';
+        tabContent += '                                 </div>';
         tabContent += '                             </div>';
         tabContent += '                         </div> ';
         tabContent += '                     </div>';
@@ -1538,7 +1552,8 @@ function crearTabs(valor, orc, host) {
         tabContent += '                         <div class="col-12 col-sm-6">';
         tabContent += '                             <div class="form-group">';
         tabContent += '                                 <label class="form-control-label text-left">Fecha de Emision</label>';
-        tabContent += '                                 <input type="date" class="form-control"  id="fecha_liquidacion'+ i +'"  style="width: 100%"/>';
+        tabContent += '                                 <input type="date" oninput="ValidarFecha(this)" class="form-control"  id="fecha_liquidacion'+ i +'"  style="width: 100%"/>';
+        tabContent += '                                 <div class="error-msg text-left"></div>';
         tabContent += '                             </div>';
         tabContent += '                         </div>';
         tabContent += '                     </div>';
@@ -1750,7 +1765,10 @@ function crearTabs(valor, orc, host) {
         tabContent += '                             </div>';
         tabContent += '                             <div class="row mg-b-5">';
         tabContent += '                                 <label class="form-control-label col-lg-6">Fecha de Emision: </label>';
-        tabContent += '                                 <input type="date" class="form-control col-lg-6"  id="fecha_renuncia'+ i +'"  style="width: 100%"/>';        
+        tabContent += '                                 <div class="form-group col-lg-6" style="padding: 0; margin-bottom: 0;">';
+        tabContent += '                                     <input type="date" oninput="ValidarFecha(this)" class="form-control"  id="fecha_renuncia'+ i +'"  style="width: 100%"/>';                
+        tabContent += '                                     <div class="error-msg"></div>';
+        tabContent += '                                 </div>';
         tabContent += '                             </div>';
         tabContent += '                         </div> ';
         tabContent += '                     </div>';
@@ -1832,7 +1850,10 @@ function crearTabs(valor, orc, host) {
         tabContent += '                             </div>';
         tabContent += '                             <div class="row mg-b-5">';
         tabContent += '                                 <label class="form-control-label col-lg-6">Fecha de Emision: </label>';
-        tabContent += '                                 <input type="date" class="form-control col-lg-6"  id="fecha_certificado'+ i +'"  style="width: 100%"/>';        
+        tabContent += '                                 <div class="form-group col-lg-6" style="padding: 0; margin-bottom: 0;">';
+        tabContent += '                                     <input type="date" oninput="ValidarFecha(this)" class="form-control"  id="fecha_certificado'+ i +'"  style="width: 100%"/>';        
+        tabContent += '                                     <div class="error-msg"></div>';
+        tabContent += '                                 </div>';
         tabContent += '                             </div>';
         tabContent += '                         </div> ';
         tabContent += '                     </div>';
@@ -1948,7 +1969,8 @@ function crearTabs(valor, orc, host) {
         tabContent += '                         <div class="col-12 col-sm-6">';
         tabContent += '                             <div class="form-group">';
         tabContent += '                                 <label class="form-control-label text-left">Fecha de Emision</label>';
-        tabContent += '                                 <input type="date" class="form-control"  id="fecha_liquidacion'+ i +'"  style="width: 100%"/>';
+        tabContent += '                                 <input type="date" oninput="ValidarFecha(this)" class="form-control"  id="fecha_liquidacion'+ i +'"  style="width: 100%"/>';
+        tabContent += '                                 <div class="error-msg text-left"></div>';
         tabContent += '                             </div>';
         tabContent += '                         </div>';
         tabContent += '                     </div>';
@@ -2160,7 +2182,10 @@ function crearTabs(valor, orc, host) {
         tabContent += '                             </div>';
         tabContent += '                             <div class="row mg-b-5">';
         tabContent += '                                 <label class="form-control-label col-lg-6">Fecha de Emision: </label>';
-        tabContent += '                                 <input type="date" class="form-control col-lg-6"  id="fecha_renuncia'+ i +'"  style="width: 100%"/>';        
+        tabContent += '                                 <div class="form-group col-lg-6" style="padding: 0; margin-bottom: 0;">';
+        tabContent += '                                     <input type="date" oninput="ValidarFecha(this)" class="form-control"  id="fecha_renuncia'+ i +'"  style="width: 100%"/>';        
+        tabContent += '                                     <div class="error-msg"></div>';
+        tabContent += '                                 </div>';
         tabContent += '                             </div>';
         tabContent += '                         </div> ';
         tabContent += '                     </div>';
@@ -2233,13 +2258,15 @@ function creardivsorcinea(){
                                             '<div class="col-lg-6">'+
                                                 '<div class="form-group">'+
                                                     '<label class="form-control-label">Inicio: <span class="tx-danger">*</span></label>'+
-                                                    '<input class="form-control fecha_inicio_orcinea" type="date" max="2999-12-31" name="orcinea_inicio_'+i+'" id="orcinea_inicio_'+i+'"  placeholder="" required>'+
+                                                    '<input class="form-control fecha_inicio_orcinea" oninput="ValidarFecha(this)" type="date" max="2999-12-31" name="orcinea_inicio_'+i+'" id="orcinea_inicio_'+i+'"  placeholder="" required>'+
+                                                    '<div class="error-msg"></div>'+
                                                 '</div>'+
                                             '</div>'+
                                             '<div class="col-lg-6">'+
                                                 '<div class="form-group">'+
                                                     '<label class="form-control-label">Fin: <span class="tx-danger">*</span></label>'+
-                                                    '<input class="form-control" type="date" max="2999-12-31" name="orcinea_fin_'+i+'" id="orcinea_fin_'+i+'"  placeholder="" required>'+
+                                                    '<input class="form-control" oninput="ValidarFecha(this)" type="date" max="2999-12-31" name="orcinea_fin_'+i+'" id="orcinea_fin_'+i+'"  placeholder="" required>'+
+                                                    '<div class="error-msg"></div>'+
                                                 '</div>'+
                                             '</div>'+
                                         '</div>'+
@@ -2322,13 +2349,15 @@ function creardivshost(){
                                             '<div class="col-lg-6">'+
                                                 '<div class="form-group">'+
                                                     '<label class="form-control-label">Inicio: <span class="tx-danger">*</span></label>'+
-                                                    '<input class="form-control fecha_inicio_host" type="date" max="2999-12-31" id="host_inicio_'+i+'" placeholder="" required>'+
+                                                    '<input class="form-control fecha_inicio_host" oninput="ValidarFecha(this)"  type="date" max="2999-12-31" id="host_inicio_'+i+'" placeholder="" required>'+
+                                                    '<div class="error-msg"></div>'+
                                                 '</div>'+
                                             '</div>'+
                                             '<div class="col-lg-6">'+
                                                 '<div class="form-group">'+
                                                     '<label class="form-control-label">Fin: <span class="tx-danger">*</span></label>'+
-                                                    '<input class="form-control" type="date" max="2999-12-31"  id="host_fin_'+i+'" placeholder="" required>'+
+                                                    '<input class="form-control" oninput="ValidarFecha(this)" type="date" max="2999-12-31"  id="host_fin_'+i+'" placeholder="" required>'+
+                                                    '<div class="error-msg"></div>'+
                                                 '</div>'+
                                             '</div>'+
                                         '</div>'+
@@ -2411,13 +2440,15 @@ function creardivsempresa(){
                                     "<div class='col-12 col-sm-4'>"+
                                         "<div class='form-group' >"+
                                             "<label class='form-control-label'>Desde</label>"+
-                                            "<input class='form-control fecha_inicio' type='date' max='2999-12-31' id='f_inicio_"+i+"'>"+
+                                            "<input class='form-control fecha_inicio' oninput='ValidarFecha(this)' type='date' max='2999-12-31' id='f_inicio_"+i+"'>"+
+                                            "<div class='error-msg'></div>"+
                                         "</div>"+
                                     "</div>"+
                                     "<div class ='col-12 col-sm-4'>"+
                                         "<div class='form-group'  >"+
                                             "<label class='form-control-label'>Hasta</label>"+
-                                            "<input class='form-control'  type='date' max='2999-12-31' id='f_final_"+i+"' >"+
+                                            "<input class='form-control' oninput='ValidarFecha(this)'  type='date' max='2999-12-31' id='f_final_"+i+"' >"+
+                                            "<div class='error-msg'></div>"+
                                         "</div>"+
                                     "</div>"+
                                     "<div class ='col-12 col-sm-4'>"+
@@ -2431,17 +2462,17 @@ function creardivsempresa(){
                                             "</select>"+
                                         "</div>"+
                                     "</div>"+
-                                    "<div class ='col-12 col-sm-4'>"+
+                                    "<div class ='d-none'>"+
                                         "<div class='form-group'  >"+
                                             "<label class='form-control-label'>Base  </label>"+
                                             "<select class='form-control select2 cbx_tipos' id='cbx_base_"+i+"' style='width: 100%'>"+
                                                 "<option value='1'>BASE 1</option>"+
                                                 "<option value='2'>BASE 2</option>"+
-                                                "<option value='0'>AMBAS BASES</option>"+
+                                                "<option value='0' selected>AMBAS BASES</option>"+
                                             "</select>"+
                                         "</div>"+
                                     "</div>"+
-                                    "<div class ='col-12 col-sm-4'>"+
+                                    "<div class ='col-12 col-sm-6'>"+
                                         "<div class='form-group'  >"+
                                             "<label class='form-control-label'>Estado </label>"+
                                             "<select class='form-control select2 cbx_tipos' id='cbx_estado_"+i+"' style='width: 100%'>"+
@@ -2453,7 +2484,7 @@ function creardivsempresa(){
                                             "</select>"+
                                         "</div>"+
                                     "</div>"+
-                                    "<div class ='col-12 col-sm-4'>"+
+                                    "<div class ='col-12 col-sm-6'>"+
                                         "<div class='form-group'  >"+
                                             "<label class='form-control-label'>Condicion </label>"+
                                             "<select class='form-control select2 cbx_tipos' id='cbx_condicion_"+i+"' style='width: 100%'>"+
@@ -2479,6 +2510,7 @@ function creardivsempresa(){
                                         "<div class='form-group'>"+
                                             "<label class='form-control-label' for='lst_emp_"+i+"'>Empresa</label>"+
                                             "<select class='form-control select2' name='lst_emp_"+i+"' id='lst_emp_"+i+"' data-placeholder='Seleccione' style='width: 100%' required onchange='ListarFirmante("+i+")'></select>"+
+                                            "<label id='errorLabel_"+i+"' class='error-label' style='color: red;'>Texto predeterminado</label>"+ // Label con texto predeterminado
                                         "</div>"+
                                     "</div>"+
                                     "<div class='col-12 col-sm-6'>"+
@@ -3962,10 +3994,34 @@ function ListarFirmante(a){
 
     $("#firmante"+a).val("");  
  
-    // $.post("../../controller/firmacontrolador.php?op=combo",{numero : ruc}, function(data){
-    //     //console.log(data);
-    //     $("#firmante"+a).html(data);  
-    // });
+    if(alerta_uso == 0 ){
+        // Realizar la solicitud AJAX POST
+       $.ajax({
+           type: 'POST',
+           url: '../../controller/empresacontrolador.php?op=mostrar_empresa_ruc',
+           data: { ruc : ruc},
+           dataType : 'JSON',
+           success: function(response){
+               // Manejar la respuesta del servidor
+               //console.log(response);
+               if(response.busqueda == 1) {
+                   var fechaMoment = moment(response.fecha_busqueda);
+                   var fechaNueva = fechaMoment.add(response.cant_mes, 'months');
+                   var fechaActualServidor = moment();
+                   var diferenciaEnDias = fechaNueva.diff(fechaActualServidor, 'days');
+
+                   $('#errorLabel_' + a).html('La empresa ya ha sido utilizada - Faltan ' + diferenciaEnDias + ' días');
+                   $('#errorLabel_' + a).show();
+               }else {
+                   $('#errorLabel_' + a).hide();
+               }
+           },
+           error: function(xhr, status, error){
+               // Manejar errores de la solicitud
+               console.error('Error en la solicitud:', error);
+           }
+       });
+   }
 }
 
 function ListarLogo(a){
@@ -4111,8 +4167,60 @@ function GuardarLista(){
     let logo5 = $("#logo5").val();
     let ruc5 = $("#lst_emp_5").val();
     let firmante5 = $("#firmante5").val();
-    //console.log(ruc1 + " "+ firmante1);
-    //console.log(ruc_empresa);
+
+
+    var empresas_data = {
+        "empresas": {}
+    };
+
+    for (let i = 1; i <= 13; i++) {
+        empresas_data.empresas[`empresa${i}`] = {
+            "Certificado": {
+                "tipo_certificado": $(`#select_certificado${i}`).val() || null,
+                "fecha_emision": $(`#fecha_certificado${i}`).val() || null
+            },
+            "Liquidacion": {
+                "sueldo" :          $(`#sueldo_liquidacion${i}`).val() || null,
+                "adelanto" :        $(`#adelanto${i}`).val() || null,
+                "vacaciones" :      $(`#vacaciones${i}`).val() || null,
+                "gratificaciones" : $(`#gratificaciones${i}`).val() || null,
+                "reintegro" :       $(`#reintegro${i}`).val() || null,
+                "incentivo" :       $(`#incentivo${i}`).val() || null,
+                "bonificacion" :    $(`#bonif${i}`).val() || null,
+                "bonif_extra" :     $(`#bonif_extra${i}`).val() || null,
+                "bonif_grac" :      $(`#bonif_gra${i}`).val() || null,
+                "bonif_meta" :      $(`#bonif_meta${i}`).val() || null,
+                "bonif_festivo" :   $(`#bonif_dias${i}`).val() || null,
+                "tipo" :            $(`#combo_prev_cuerpo${i}`).val() || null,
+                "motivo" :          $(`#combo_prev_liqui${i}`).val() || null,
+                "fecha_emision" :   $(`#fecha_liquidacion${i}`).val() || null
+            },
+            "Boleta": {
+                "anio_boleta" :     $(`#select_anio_boletas${i}`).val() || null,
+                "mes_boleta" :      $(`#select_mes_boletas${i}`).val() || null,
+                "sueldo" :          $(`#sueldo_boleta${i}`).val() || null,
+                "rem_vaca":         $(`#rm_vacacional_boleta${i}`).val() || null,
+                "reintegro":        $(`#reintegro_boleta${i}`).val() || null,
+                "h_extras":         $(`#horaex_boleta${i}`).val() || null,
+                "bonif":            $(`#boni_boleta${i}`).val() || null,
+                "bonif_alimentos":  $(`#bonificacion_alimentos_boleta${i}`).val() || null,
+                "bonif_metas" :     $(`#bonificacion_metas_boleta${i}`).val() || null,
+                "bonif_logros":     $(`#bonificacion_logros_boleta${i}`).val() || null,
+                "bonif_dias" :      $(`#bonificacion_festivos_boleta${i}`).val() || null,
+                "pasajes" :         $(`#bonificacion_pasajes_boleta${i}`).val() || null,
+                "uniforme" :        $(`#bonificacion_uniforme_boleta${i}`).val() || null,
+                "gratificacion" :   $(`#bonificacion_gratificacion_boleta${i}`).val() || null,
+                "otros":            $(`#otros_boleta${i}`).val() || null,
+                "modelo_boleta":    $(`#combo_prev_boleta${i}`).val() || null
+            },
+            "Renuncia": {
+                "tipo_renuncia":    $(`#select_renuncia${i}`).val() || null,
+                "fecha_emision" :   $(`#fecha_renuncia${i}`).val() || null
+            }
+        };
+    }
+
+
     $.post("../../controller/listareportecontrolador.php?op=guardaryeditar",{
             af_id : af_id,
             documento : num_doc,
@@ -4229,10 +4337,11 @@ function GuardarLista(){
             firmante5 : firmante5,
             logo5 : logo5,
             lista : id_lista,
-            tipo : tipo_lista
+            tipo : tipo_lista,
+            datos_der : JSON.stringify(empresas_data)  
         }, function(data){
             //console.log("GUARDO");
-            //console.log(data);
+            console.log(data);
             if(data != ""){
                 //Se agrega el Id a input hidden.
                 $('#lista_id').val(data);
@@ -5740,6 +5849,8 @@ function PrevCertificado(e) {
         let logos;
         let firm;
         let tiempo_anio;
+
+        let ruc;
         
         //datos para orcinea
         if(e > 0 && e < 5){
@@ -5768,6 +5879,7 @@ function PrevCertificado(e) {
             logos = $('#logo_nombre'+ e).val();
             firm = $('#firmante_emp'+ e).val();
             tiempo_anio = $('#tiempo_imp'+ e).val();
+            ruc =  $('#ruc_emp'+ e).val();
         }
         
         let fecha1 = new Date(fechai);
@@ -5782,7 +5894,7 @@ function PrevCertificado(e) {
         //Asignar datos
         $('.emp_imp').html(nom);
         $('.cargo_imp').html(cargo);
-
+        $('.ruc_imp').html(ruc);
         $('.desde_imp').html(fecha1.toLocaleDateString("es-ES", options).toUpperCase());
         $('.hasta_imp').html(fecha2.toLocaleDateString("es-ES", options).toUpperCase());
         $('.desde_imp_num').html(fecha1num);
@@ -5914,7 +6026,7 @@ function PrevRenuncia(e) {
     let fecha_ff = new Date (fecha_fin);
 
 
-    if(fecha_emi >= fecha_ff && fecha != "" ){
+    if(fecha_emi <= fecha_ff && fecha != "" ){
 
         OcultarPrev();
         $('#prev5').show();
@@ -6268,6 +6380,22 @@ function generarFechaAleatoria() {
 
     // Devolver la fecha formateada
     return fechaFormateada;
+}
+
+function ValidarFecha(input){
+    var valorInput = $(input).val();
+    var fechaSeleccionada = new Date(valorInput);
+    var diaSemana = fechaSeleccionada.getDay();
+
+    // Eliminar los estilos y el mensaje de error antes de hacer la nueva validación
+    $(input).removeClass('input-error');
+    $(input).next('.error-msg').text('');
+
+    if (diaSemana === 5 || diaSemana === 6) {
+        // Agregar clase de estilo y mensaje de error
+        $(input).addClass('input-error');
+        $(input).next('.error-msg').text('Fecha Invalida');
+    }
 }
 
 init();

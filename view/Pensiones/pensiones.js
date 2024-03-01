@@ -37,6 +37,8 @@ var cbx_condicion_5;
 var datos_firmantes;
 var datos_empresa;
 
+var alerta_uso;
+
 
 $(document).ready(function(){
     $('.menus').on('click', function(e) {
@@ -81,7 +83,6 @@ $(document).ready(function(){
         placeholder: "Seleccione",
         minimumResultsForSearch: Infinity
     });
-
     
     $('#btnguardarpension').hide();
     $('#btnzipear').hide();
@@ -92,7 +93,9 @@ $(document).ready(function(){
 
     if(listaId == ""){
         //console.log("VACIO");
+        alerta_uso = 0;
     }else {
+        alerta_uso = 1;
         //Metodo Mostrar Lista ID
         $.post("../../controller/listacontrolador.php?op=mostrar_id",{lista_id : listaId},function(datos){
             if(datos != ""){
@@ -126,7 +129,6 @@ function init(){
 function activarcargos(){
 
     let n = parseInt($('#txtcant_emp').val());
-    console.log(n);
     for (i = 1 ; i <= n ; i++){
         $('#cargoc'+i).select2({
             placeholder: "Seleccione",
@@ -198,6 +200,9 @@ function generar(e){
             $('#btnzipear').show();
             activarcargos();
             crearTabs(cnt);
+
+            //Ocultar por default el mensaje alerta
+            $('.error-label').hide();
 
             //Iniciar select2 en todos los certificados
             $('.select_certificado').select2({
@@ -294,23 +299,54 @@ function generar(e){
                             $("#firmante"+i).val(datos["firmante"+i]);
                             console.log(datos["ruc"+i]);
                         }, 600); 
-
-                        
-                        //BuscarEmp(i);
-                        //mostrardetalle(i, datos["ruc"+i], 1);
-                        
-                        //ListarFirmante(i);
-                        
-                        //console.log("EMPRESA_"+i);
                     }
+                    var datos_tabs = JSON.parse(datos.datos_derecha)
+                    for( let i = 1 ; i<=5 ; i++){
+                        let datos_emp = datos_tabs;
+                        let dato_empresa = datos_emp.empresas["empresa" + i];
+                        //Certificado
+                        $('#select_certificado'+ i).val(dato_empresa.Certificado.tipo_certificado).trigger('change');
+                        $('#fecha_certificado'+ i).val(dato_empresa.Certificado.fecha_emision);
+                        //Liquidacion
+                        $('#sueldo_liquidacion'+ i).val(dato_empresa.Liquidacion.sueldo);
+                        $('#adelanto'+ i).val(dato_empresa.Liquidacion.adelanto);
+                        $('#vacaciones'+ i).val(dato_empresa.Liquidacion.vacaciones);
+                        $('#gratificaciones'+ i).val(dato_empresa.Liquidacion.gratificaciones);
+                        $('#reintegro'+ i).val(dato_empresa.Liquidacion.reintegro);
+                        $('#incentivo'+ i).val(dato_empresa.Liquidacion.incentivo);
+                        $('#bonif'+ i).val(dato_empresa.Liquidacion.bonificacion);
+                        $('#bonif_extra'+ i).val(dato_empresa.Liquidacion.bonif_extra);
+                        $('#bonif_gra'+ i).val(dato_empresa.Liquidacion.bonif_grac);
+                        $('#bonif_meta'+ i).val(dato_empresa.Liquidacion.bonif_meta);
+                        $('#bonif_dias'+ i).val(dato_empresa.Liquidacion.bonif_festivo);
+                        $('#combo_prev_cuerpo'+ i).val(dato_empresa.Liquidacion.tipo).trigger('change');
+                        $('#combo_prev_liqui'+ i).val(dato_empresa.Liquidacion.motivo).trigger('change');
+                        $('#fecha_liquidacion'+ i).val(dato_empresa.Liquidacion.fecha_emision);
+                        //Boleta
+                        $('#select_anio_boletas'+ i).val(dato_empresa.Boleta.anio_boleta).trigger('change');
+                        $('#select_mes_boletas'+ i).val(dato_empresa.Boleta.mes_boleta).trigger('change');
+                        $('#sueldo_boleta'+ i).val(dato_empresa.Boleta.sueldo);
+                        $('#rm_vacacional_boleta'+ i).val(dato_empresa.Boleta.rem_vaca);
+                        $('#reintegro_boleta'+ i).val(dato_empresa.Boleta.reintegro);
+                        $('#horaex_boleta'+ i).val(dato_empresa.Boleta.h_extras);
+                        $('#boni_boleta'+ i).val(dato_empresa.Boleta.bonif);
+                        $('#bonificacion_alimentos_boleta'+ i).val(dato_empresa.Boleta.bonif_alimentos);
+                        $('#bonificacion_metas_boleta'+ i).val(dato_empresa.Boleta.bonif_metas);
+                        $('#bonificacion_logros_boleta'+ i).val(dato_empresa.Boleta.bonif_logros);
+                        $('#bonificacion_festivos_boleta'+ i).val(dato_empresa.Boleta.bonif_dias);
+                        $('#bonificacion_pasajes_boleta'+ i).val(dato_empresa.Boleta.pasajes);
+                        $('#bonificacion_uniforme_boleta'+ i).val(dato_empresa.Boleta.uniforme);
+                        $('#bonificacion_gratificacion_boleta'+ i).val(dato_empresa.Boleta.gratificacion);
+                        $('#otros_boleta'+ i).val(dato_empresa.Boleta.otros);
+                        $('#combo_prev_boleta'+ i).val(dato_empresa.Boleta.modelo_boleta).trigger('change');
+                        //Renuncia
+                        $('#select_renuncia'+ i).val(dato_empresa.Renuncia.tipo_renuncia).trigger('change');
+                        $('#fecha_renuncia'+ i).val(dato_empresa.Renuncia.fecha_emision);
+                    }
+
+                    
                 
                     $('#prev1').hide();
-                    //mostrardetalle(1, datos["ruc1"], 1);
-                    //$("#logo1").val(datos["logo1"]).trigger('change');
-                    //$(".firmante_nom").html(datos["firmante1"]);
-                    //console.log(datos["firmante1"]);
-                    //$('#btnmostrarempr_1').click();   
-                    //sumarfechas();   
                 }else {
 
                 }    
@@ -384,7 +420,10 @@ function crearTabs(valor) {
         tabContent += '                             </div>';
         tabContent += '                             <div class="row mg-b-5">';
         tabContent += '                                 <label class="form-control-label col-lg-6">Fecha de Emision: </label>';
-        tabContent += '                                 <input type="date" class="form-control col-lg-6"  id="fecha_certificado'+ i +'"  style="width: 100%"/>';        
+        tabContent += '                                 <div class="form-group col-lg-6" style="padding: 0; margin-bottom: 0;">';
+        tabContent += '                                     <input type="date" oninput="ValidarFecha(this)" class="form-control"  id="fecha_certificado'+ i +'"  style="width: 100%"/>';        
+        tabContent += '                                     <div class="error-msg"></div>';
+        tabContent += '                                 </div>';
         tabContent += '                             </div>';
         tabContent += '                         </div> ';
         tabContent += '                     </div>';
@@ -500,7 +539,8 @@ function crearTabs(valor) {
         tabContent += '                         <div class="col-12 col-sm-6">';
         tabContent += '                             <div class="form-group">';
         tabContent += '                                 <label class="form-control-label text-left">Fecha de Emision</label>';
-        tabContent += '                                 <input type="date" class="form-control"  id="fecha_liquidacion'+ i +'"  style="width: 100%"/>';
+        tabContent += '                                 <input type="date" oninput="ValidarFecha(this)" class="form-control"  id="fecha_liquidacion'+ i +'"  style="width: 100%"/>';
+        tabContent += '                                 <div class="error-msg text-left"></div>';
         tabContent += '                             </div>';
         tabContent += '                         </div>';
         tabContent += '                     </div>';
@@ -712,7 +752,10 @@ function crearTabs(valor) {
         tabContent += '                             </div>';
         tabContent += '                             <div class="row mg-b-5">';
         tabContent += '                                 <label class="form-control-label col-lg-6">Fecha de Emision: </label>';
-        tabContent += '                                 <input type="date" class="form-control col-lg-6"  id="fecha_renuncia'+ i +'"  style="width: 100%"/>';        
+        tabContent += '                                 <div class="form-group col-lg-6" style="padding: 0; margin-bottom: 0;">';
+        tabContent += '                                     <input type="date" oninput="ValidarFecha(this)" class="form-control"  id="fecha_renuncia'+ i +'"  style="width: 100%"/>';        
+        tabContent += '                                     <div class="error-msg"></div>';
+        tabContent += '                                 </div>';
         tabContent += '                             </div>';
         tabContent += '                         </div> ';
         tabContent += '                     </div>';
@@ -783,13 +826,15 @@ function creardivsempresa(){
                                     "<div class='col-12 col-sm-4'>"+
                                         "<div class='form-group' >"+
                                             "<label class='form-control-label'>Desde</label>"+
-                                            "<input class='form-control'   type='date' max='2099-12-31' min='1900-12-31' id='f_inicio_"+i+"'>"+
+                                            "<input class='form-control fecha-input' oninput='ValidarFecha(this)'   type='date' max='2099-12-31' min='1900-12-31' id='f_inicio_"+i+"'>"+
+                                            "<div class='error-msg'></div>"+
                                         "</div>"+
                                     "</div>"+
                                     "<div class ='col-12 col-sm-4'>"+
                                         "<div class='form-group'  >"+
                                             "<label class='form-control-label'>Hasta</label>"+
-                                            "<input class='form-control'  type='date' max='2999-12-31' min='1900-12-31' id='f_final_"+i+"' >"+
+                                            "<input class='form-control fecha-input' oninput='ValidarFecha(this)'  type='date' max='2999-12-31' min='1900-12-31' id='f_final_"+i+"' >"+
+                                            "<div class='error-msg'></div>"+
                                         "</div>"+
                                     "</div>"+
                                     "<div class ='col-12 col-sm-4'>"+
@@ -803,17 +848,17 @@ function creardivsempresa(){
                                             "</select>"+
                                         "</div>"+
                                     "</div>"+
-                                    "<div class ='col-12 col-sm-4'>"+
+                                    "<div class ='d-none'>"+
                                         "<div class='form-group'  >"+
                                             "<label class='form-control-label'>Base  </label>"+
                                             "<select class='form-control select2 cbx_tipos' id='cbx_base_"+i+"' style='width: 100%'>"+
                                                 "<option value='1'>BASE 1</option>"+
                                                 "<option value='2'>BASE 2</option>"+
-                                                "<option value='0'>AMBAS BASES</option>"+
+                                                "<option value='0' selected>AMBAS BASES</option>"+
                                             "</select>"+
                                         "</div>"+
                                     "</div>"+
-                                    "<div class ='col-12 col-sm-4'>"+
+                                    "<div class ='col-12 col-sm-6'>"+
                                         "<div class='form-group'>"+
                                             "<label class='form-control-label'>Estado </label>"+
                                             "<select class='form-control select2 cbx_tipos' id='cbx_estado_"+i+"' style='width: 100%'>"+
@@ -825,7 +870,7 @@ function creardivsempresa(){
                                             "</select>"+
                                         "</div>"+
                                     "</div>"+
-                                    "<div class ='col-12 col-sm-4'>"+
+                                    "<div class ='col-12 col-sm-6'>"+
                                         "<div class='form-group'  >"+
                                             "<label class='form-control-label'>Condicion </label>"+
                                             "<select class='form-control select2 cbx_tipos' id='cbx_condicion_"+i+"' style='width: 100%'>"+
@@ -844,6 +889,7 @@ function creardivsempresa(){
                                         "<div class='form-group'>"+
                                             "<label class='form-control-label' for='lst_emp_"+i+"'>Empresa</label>"+
                                             "<select class='form-control select2' name='lst_emp_"+i+"' id='lst_emp_"+i+"' data-placeholder='Seleccione' style='width: 100%' required onchange='ListarFirmante("+i+")'></select>"+
+                                            "<label id='errorLabel_"+i+"' class='error-label' style='color: red;'>Texto predeterminado</label>"+ // Label con texto predeterminado
                                         "</div>"+
                                     "</div>"+
                                     "<div class='col-12 col-sm-6'>"+
@@ -889,7 +935,7 @@ function creardivsempresa(){
                                     "<div class='col-sm-8'>"+
                                         "<input type='text' class='form-control' id='direccion"+i+"' name='direccion"+i+"' readonly>"+
                                     "</div>"+
-                                    "<div class='col-sm-1' style='padding-left: 0'><button type='button'  id='btn_ver_direccion"+i+"' class='btn btn-outline-primary btn-icon' style='width:100%;'><div><i class='fa fa-search'></i></div></button></div>"+
+                                    "<div class='col-sm-1' style='padding-left: 0'><button type='button' onclick='MostrarDireccion("+i+")'  id='btn_ver_direccion"+i+"' class='btn btn-outline-primary btn-icon' style='width:100%;'><div><i class='fa fa-search'></i></div></button></div>"+
                                 "</div><!-- row -->"+
                                 "<div class='row mb-3 mt-2 '>"+
                                     "<label for='cargoc"+i+"' class='col-sm-3 col-form-label'>Cargo:</label>"+
@@ -992,20 +1038,13 @@ $(document).on("click","#btnbuscar", function(){
                     if (result.isConfirmed) {
                         $("#form_datos").show();
                         $('#form_datos').removeClass().addClass('form-layout form-layout-1 ');
-                        /*$.post("../../controller/pensioncontrolador.php?op=consulta_dni",{dni: doc},function(data){
-                            if(data != ""){
-                                data = JSON.parse(data);
-                                $('#txtnombre').val(data.nombres);
-                                $('#txtapellido').val(data.apellidoPaterno + ' '+data.apellidoMaterno);
-                            }
-                        }); */
 
                         $.post("../../controller/pensioncontrolador.php?op=consulta_dni_nac",{dni: doc},function(data){
                             //console.log(data);
                             if(data != ""){
                                 data = JSON.parse(data);
                                 $('#txtnombre').val(data.data.nombres);
-                                $('#txtapellido').val(data.data.apellidoMaterno + ' '+data.data.apellidoPaterno);
+                                $('#txtapellido').val(data.data.apellidoPaterno + ' '+data.data.apellidoMaterno);
                                 $('#txtdate').val(convertDateFormatDate(data.data.fechaNacimiento));
                             }
                         });
@@ -1014,6 +1053,7 @@ $(document).on("click","#btnbuscar", function(){
                     }
                     })
             }else {
+                //Si encuentra un afiliado registrado
                 data = JSON.parse(data);
                 $('#af_id').val(data.id);
                 $('#tipo_doc').val(data.tipo_doc);
@@ -1026,6 +1066,8 @@ $(document).on("click","#btnbuscar", function(){
 
                 $.post("../../controller/listacontrolador.php?op=mostrar",{num_doc: doc,  lista : t_lista },function(datos){
                     if(datos != ""){
+
+                        alerta_uso = 1;
                         //console.log(datos);
                         datos = JSON.parse(datos);
                         $("#lista_id").val(datos.id);
@@ -1408,12 +1450,6 @@ function mostrardetalle(a, b, c){
                                 $('#dpto_emp_'+a).val(data[0]['dpto']);
                                 $('#rango_emp_'+a).val(data[0]['f_inic_act'] +" / "+ data[0]["f_baja_act"]);  
     
-                                //console.log($('#firmante'+a).val());
-                                /*OBETNER COMBO FIRMANTE */
-                                /*$.post("../../controller/firmacontrolador.php?op=combo",{numero : data[0]['ruc']}, function(data){
-                                    //console.log(data);
-                                    $("#firmante"+a).html(data);  
-                                });*/
                                 
                                 
                                 /****DATOS DE DIAS */
@@ -1507,10 +1543,8 @@ function mostrardetalle(a, b, c){
                                 MostrarCertificados(data[0]['tipo_emp'], a);
                                 MostrarLiquidacion(fech_final_1, data[0]['tipo_emp'], a);
 
-                                $('#tipo_emp'+a).val(data[0]['tipo_emp']);
-                                                                
-                            }
-                            
+                                $('#tipo_emp'+a).val(data[0]['tipo_emp']);                  
+                            }         
                         });
                     }
                     
@@ -1686,12 +1720,7 @@ function ListarFirmante(a){
     //ruc_empresa = $("#lst_emp_"+a).val();
     $('#nom_emp_'+a).html(ruc+" - "+estado);
     $("#firmante"+a).val("");
- 
-    /*$.post("../../controller/firmacontrolador.php?op=combo",{numero : ruc}, function(data){
-        //console.log(data);
-        $("#firmante"+a).html(data);  
-    });*/
-    
+
     $.post("../../controller/empresacontrolador.php?op=combovigencia",{numero : ruc}, function(data){
         if(data != ""){
             data = JSON.parse(data);
@@ -1699,6 +1728,36 @@ function ListarFirmante(a){
             $('#rango_emp_'+a).val(data.f_inic_act +" / "+ data.f_baja_act);   
         }
     }); 
+
+
+    if(alerta_uso == 0 ){
+         // Realizar la solicitud AJAX POST
+        $.ajax({
+            type: 'POST',
+            url: '../../controller/empresacontrolador.php?op=mostrar_empresa_ruc',
+            data: { ruc : ruc},
+            dataType : 'JSON',
+            success: function(response){
+                // Manejar la respuesta del servidor
+                //console.log(response);
+                if(response.busqueda == 1) {
+                    var fechaMoment = moment(response.fecha_busqueda);
+                    var fechaNueva = fechaMoment.add(response.cant_mes, 'months');
+                    var fechaActualServidor = moment();
+                    var diferenciaEnDias = fechaNueva.diff(fechaActualServidor, 'days');
+
+                    $('#errorLabel_' + a).html('La empresa ya ha sido utilizada - Faltan ' + diferenciaEnDias + 'días');
+                    $('#errorLabel_' + a).show();
+                }else {
+                    $('#errorLabel_' + a).hide();
+                }
+            },
+            error: function(xhr, status, error){
+                // Manejar errores de la solicitud
+                console.error('Error en la solicitud:', error);
+            }
+        });
+    }
 }
 
 function ListarLogo(a){
@@ -1724,7 +1783,7 @@ function GuardarLista(){
     let cantidad = $("#txtcant_emp").val();
     let fecha_nac = $("#txtdate").val()
 
-    let fech_inicio1 = $("#f_inicio_1").val();
+    let fech_inicio1 = $("#f_inicio_1").val();0
     let fech_final1 = $("#f_final_1").val();
     let tipo1 = $('#cbx_tipo_1').val();
     let base1 = $('#cbx_base_1').val();
@@ -1778,6 +1837,258 @@ function GuardarLista(){
     let logo5 = $("#logo5").val();
     let ruc5 = $("#lst_emp_5").val();
     let firmante5 = $("#firmante5").val();
+
+    /*JSON datos Empresa  */
+    var empresas_data = {
+        "empresas": 
+          {
+            "empresa1": 
+            {
+                "Certificado": 
+                {
+                    "tipo_certificado": $('#select_certificado1').val() || null,
+                    "fecha_emision" :   $('#fecha_certificado1').val() || null
+                },
+                "Liquidacion": 
+                {
+                    "sueldo" :          $('#sueldo_liquidacion1').val() || null,
+                    "adelanto" :        $('#adelanto1').val() || null,
+                    "vacaciones" :      $('#vacaciones1').val() || null,
+                    "gratificaciones" : $('#gratificaciones1').val() || null,
+                    "reintegro" :       $('#reintegro1').val() || null,
+                    "incentivo" :       $('#incentivo1').val() || null,
+                    "bonificacion" :    $('#bonif1').val() || null,
+                    "bonif_extra" :     $('#bonif_extra1').val() || null,
+                    "bonif_grac" :      $('#bonif_gra1').val() || null,
+                    "bonif_meta" :      $('#bonif_meta1').val() || null,
+                    "bonif_festivo" :   $('#bonif_dias1').val() || null,
+                    "tipo" :            $('#combo_prev_cuerpo1').val() || null,
+                    "motivo" :          $('#combo_prev_liqui1').val() || null,
+                    "fecha_emision" :   $('#fecha_liquidacion1').val() || null
+                },
+                "Boleta" :
+                {
+                    "anio_boleta" :     $('#select_anio_boletas1').val() || null,
+                    "mes_boleta" :      $('#select_mes_boletas1').val() || null,
+                    "sueldo" :          $('#sueldo_boleta1').val() || null,
+                    "rem_vaca":         $('#rm_vacacional_boleta1').val() || null,
+                    "reintegro":        $('#reintegro_boleta1').val() || null,
+                    "h_extras":         $('#horaex_boleta1').val() || null,
+                    "bonif":            $('#boni_boleta1').val() || null,
+                    "bonif_alimentos":  $('#bonificacion_alimentos_boleta1').val() || null,
+                    "bonif_metas" :     $('#bonificacion_metas_boleta1').val() || null,
+                    "bonif_logros":     $('#bonificacion_logros_boleta1').val() || null,
+                    "bonif_dias" :      $('#bonificacion_festivos_boleta1').val() || null,
+                    "pasajes" :         $('#bonificacion_pasajes_boleta1').val() || null,
+                    "uniforme" :        $('#bonificacion_uniforme_boleta1').val() || null,
+                    "gratificacion" :   $('#bonificacion_gratificacion_boleta1').val() || null,
+                    "otros":            $('#otros_boleta1').val() || null,
+                    "modelo_boleta":    $('#combo_prev_boleta1').val() || null
+                },
+                "Renuncia" :
+                {
+                    "tipo_renuncia":    $('#select_renuncia1').val() || null,
+                    "fecha_emision" :   $('#fecha_renuncia1').val() || null
+                }
+            },
+            "empresa2": 
+            {
+                "Certificado": 
+                {
+                    "tipo_certificado": $('#select_certificado2').val() || null,
+                    "fecha_emision" :   $('#fecha_certificado2').val() || null
+                },
+                "Liquidacion": 
+                {
+                    "sueldo" :          $('#sueldo_liquidacion2').val() || null,
+                    "adelanto" :        $('#adelanto2').val() || null,
+                    "vacaciones" :      $('#vacaciones2').val() || null,
+                    "gratificaciones" : $('#gratificaciones2').val() || null,
+                    "reintegro" :       $('#reintegro2').val() || null,
+                    "incentivo" :       $('#incentivo2').val() || null,
+                    "bonificacion" :    $('#bonif2').val() || null,
+                    "bonif_extra" :     $('#bonif_extra2').val() || null,
+                    "bonif_grac" :      $('#bonif_gra2').val() || null,
+                    "bonif_meta" :      $('#bonif_meta2').val() || null,
+                    "bonif_festivo" :   $('#bonif_dias2').val() || null,
+                    "tipo" :            $('#combo_prev_cuerpo2').val() || null,
+                    "motivo" :          $('#combo_prev_liqui2').val() || null,
+                    "fecha_emision" :   $('#fecha_liquidacion2').val() || null
+                },
+                "Boleta" :
+                {
+                    "anio_boleta" :     $('#select_anio_boletas2').val() || null,
+                    "mes_boleta" :      $('#select_mes_boletas2').val() || null,
+                    "sueldo" :          $('#sueldo_boleta2').val() || null,
+                    "rem_vaca":         $('#rm_vacacional_boleta2').val() || null,
+                    "reintegro":        $('#reintegro_boleta2').val() || null,
+                    "h_extras":         $('#horaex_boleta2').val() || null,
+                    "bonif":            $('#boni_boleta2').val() || null,
+                    "bonif_alimentos":  $('#bonificacion_alimentos_boleta2').val() || null,
+                    "bonif_metas" :     $('#bonificacion_metas_boleta2').val() || null,
+                    "bonif_logros":     $('#bonificacion_logros_boleta2').val() || null,
+                    "bonif_dias" :      $('#bonificacion_festivos_boleta2').val() || null,
+                    "pasajes" :         $('#bonificacion_pasajes_boleta2').val() || null,
+                    "uniforme" :        $('#bonificacion_uniforme_boleta2').val() || null,
+                    "gratificacion" :   $('#bonificacion_gratificacion_boleta2').val() || null,
+                    "otros":            $('#otros_boleta2').val() || null,
+                    "modelo_boleta":    $('#combo_prev_boleta2').val() || null
+                },
+                "Renuncia" :
+                {
+                    "tipo_renuncia":    $('#select_renuncia2').val() || null,
+                    "fecha_emision" :   $('#fecha_renuncia2').val() || null
+                }
+            },
+            "empresa3": 
+            {
+                "Certificado": 
+                {
+                    "tipo_certificado": $('#select_certificado3').val() || null,
+                    "fecha_emision" :   $('#fecha_certificado3').val() || null
+                },
+                "Liquidacion": 
+                {
+                    "sueldo" :          $('#sueldo_liquidacion3').val() || null,
+                    "adelanto" :        $('#adelanto3').val() || null,
+                    "vacaciones" :      $('#vacaciones3').val() || null,
+                    "gratificaciones" : $('#gratificaciones3').val() || null,
+                    "reintegro" :       $('#reintegro3').val() || null ,
+                    "incentivo" :       $('#incentivo3').val() || null,
+                    "bonificacion" :    $('#bonif3').val() || null,
+                    "bonif_extra" :     $('#bonif_extra3').val() || null,
+                    "bonif_grac" :      $('#bonif_gra3').val() || null,
+                    "bonif_meta" :      $('#bonif_meta3').val() || null,
+                    "bonif_festivo" :   $('#bonif_dias3').val() || null,
+                    "tipo" :            $('#combo_prev_cuerpo3').val() || null,
+                    "motivo" :          $('#combo_prev_liqui3').val() || null,
+                    "fecha_emision" :   $('#fecha_liquidacion3').val() || null
+                },
+                "Boleta" :
+                {
+                    "anio_boleta" :     $('#select_anio_boletas3').val() || null,
+                    "mes_boleta" :      $('#select_mes_boletas3').val() || null,
+                    "sueldo" :          $('#sueldo_boleta3').val() || null,
+                    "rem_vaca":         $('#rm_vacacional_boleta3').val() || null,
+                    "reintegro":        $('#reintegro_boleta3').val() || null,
+                    "h_extras":         $('#horaex_boleta3').val() || null,
+                    "bonif":            $('#boni_boleta3').val() || null,
+                    "bonif_alimentos":  $('#bonificacion_alimentos_boleta3').val() || null,
+                    "bonif_metas" :     $('#bonificacion_metas_boleta3').val() || null,
+                    "bonif_logros":     $('#bonificacion_logros_boleta3').val() || null,
+                    "bonif_dias" :      $('#bonificacion_festivos_boleta3').val() || null,
+                    "pasajes" :         $('#bonificacion_pasajes_boleta3').val() || null,
+                    "uniforme" :        $('#bonificacion_uniforme_boleta3').val() || null,
+                    "gratificacion" :   $('#bonificacion_gratificacion_boleta3').val() || null,
+                    "otros":            $('#otros_boleta3').val() || null,
+                    "modelo_boleta":    $('#combo_prev_boleta3').val() || null
+                },
+                "Renuncia" :
+                {
+                    "tipo_renuncia":    $('#select_renuncia3').val() || null,
+                    "fecha_emision" :   $('#fecha_renuncia3').val() || null
+                }
+            },
+            "empresa4": 
+            {
+                "Certificado": 
+                {
+                    "tipo_certificado": $('#select_certificado4').val() || null,
+                    "fecha_emision" :   $('#fecha_certificado4').val() || null
+                },
+                "Liquidacion": 
+                {
+                    "sueldo" :          $('#sueldo_liquidacion4').val() || null,
+                    "adelanto" :        $('#adelanto4').val() || null,
+                    "vacaciones" :      $('#vacaciones4').val() || null,
+                    "gratificaciones" : $('#gratificaciones4').val() || null,
+                    "reintegro" :       $('#reintegro4').val() || null,
+                    "incentivo" :       $('#incentivo4').val() || null,
+                    "bonificacion" :    $('#bonif4').val() || null,
+                    "bonif_extra" :     $('#bonif_extra4').val() || null,
+                    "bonif_grac" :      $('#bonif_gra4').val() || null,
+                    "bonif_meta" :      $('#bonif_meta4').val() || null,
+                    "bonif_festivo" :   $('#bonif_dias4').val() || null,
+                    "tipo" :            $('#combo_prev_cuerpo4').val() || null,
+                    "motivo" :          $('#combo_prev_liqui4').val() || null,
+                    "fecha_emision" :   $('#fecha_liquidacion4').val() || null
+                },
+                "Boleta" :
+                {
+                    "anio_boleta" :     $('#select_anio_boletas4').val() || null,
+                    "mes_boleta" :      $('#select_mes_boletas4').val() || null,
+                    "sueldo" :          $('#sueldo_boleta4').val() || null,
+                    "rem_vaca":         $('#rm_vacacional_boleta4').val() || null,
+                    "reintegro":        $('#reintegro_boleta4').val() || null,
+                    "h_extras":         $('#horaex_boleta4').val() || null,
+                    "bonif":            $('#boni_boleta4').val() || null,
+                    "bonif_alimentos":  $('#bonificacion_alimentos_boleta4').val() || null,
+                    "bonif_metas" :     $('#bonificacion_metas_boleta4').val() || null,
+                    "bonif_logros":     $('#bonificacion_logros_boleta4').val() || null,
+                    "bonif_dias" :      $('#bonificacion_festivos_boleta4').val() || null,
+                    "pasajes" :         $('#bonificacion_pasajes_boleta4').val() || null,
+                    "uniforme" :        $('#bonificacion_uniforme_boleta4').val() || null,
+                    "gratificacion" :   $('#bonificacion_gratificacion_boleta4').val() || null,
+                    "otros":            $('#otros_boleta4').val() || null,
+                    "modelo_boleta":    $('#combo_prev_boleta4').val() || null
+                },
+                "Renuncia" :
+                {
+                    "tipo_renuncia":    $('#select_renuncia4').val() || null,
+                    "fecha_emision" :   $('#fecha_renuncia4').val() || null
+                }
+            },
+            "empresa5": 
+            {
+                "Certificado": 
+                {
+                    "tipo_certificado": $('#select_certificado5').val() || null,
+                    "fecha_emision" :   $('#fecha_certificado5').val() || null
+                },
+                "Liquidacion": 
+                {
+                    "sueldo" :          $('#sueldo_liquidacion5').val() || null,
+                    "adelanto" :        $('#adelanto5').val() || null,
+                    "vacaciones" :      $('#vacaciones5').val() || null,
+                    "gratificaciones" : $('#gratificaciones5').val() || null,
+                    "reintegro" :       $('#reintegro5').val() || null,
+                    "incentivo" :       $('#incentivo5').val() || null,
+                    "bonificacion" :    $('#bonif5').val() || null,
+                    "bonif_extra" :     $('#bonif_extra5').val() || null,
+                    "bonif_grac" :      $('#bonif_gra5').val() || null,
+                    "bonif_meta" :      $('#bonif_meta5').val() || null,
+                    "bonif_festivo" :   $('#bonif_dias5').val() || null,
+                    "tipo" :            $('#combo_prev_cuerpo5').val() || null,
+                    "motivo" :          $('#combo_prev_liqui5').val() || null,
+                    "fecha_emision" :   $('#fecha_liquidacion5').val() || null
+                },
+                "Boleta" :
+                {
+                    "anio_boleta" :     $('#select_anio_boletas5').val() || null,
+                    "mes_boleta" :      $('#select_mes_boletas5').val() || null,
+                    "sueldo" :          $('#sueldo_boleta5').val() || null,
+                    "rem_vaca":         $('#rm_vacacional_boleta5').val() || null,
+                    "reintegro":        $('#reintegro_boleta5').val() || null,
+                    "h_extras":         $('#horaex_boleta5').val() || null,
+                    "bonif":            $('#boni_boleta5').val() || null,
+                    "bonif_alimentos":  $('#bonificacion_alimentos_boleta5').val() || null,
+                    "bonif_metas" :     $('#bonificacion_metas_boleta5').val() || null,
+                    "bonif_logros":     $('#bonificacion_logros_boleta5').val() || null,
+                    "bonif_dias" :      $('#bonificacion_festivos_boleta5').val() || null,
+                    "pasajes" :         $('#bonificacion_pasajes_boleta5').val() || null,
+                    "uniforme" :        $('#bonificacion_uniforme_boleta5').val() || null,
+                    "gratificacion" :   $('#bonificacion_gratificacion_boleta5').val() || null,
+                    "otros":            $('#otros_boleta5').val() || null,
+                    "modelo_boleta":    $('#combo_prev_boleta5').val() || null
+                },
+                "Renuncia" :
+                {
+                    "tipo_renuncia":    $('#select_renuncia5').val() || null,
+                    "fecha_emision" :   $('#fecha_renuncia5').val() || null
+                }
+            }
+          }
+      };
 
     $.post("../../controller/listacontrolador.php?op=guardaryeditar",{
             af_id : af_id,
@@ -1835,7 +2146,8 @@ function GuardarLista(){
             firmante5 : firmante5,
             logo5 : logo5,
             lista : id_lista,
-            tipo : tipo_lista
+            tipo : tipo_lista,
+            datos_der : JSON.stringify(empresas_data)  
         }, function(data){
             //console.log("GUARDO");
             if(data != ""){
@@ -3713,6 +4025,7 @@ function PrevCertificado(e) {
         let dpto1 = $('#dpto_emp'+ e).val();
         let logos = $('#logo_nombre'+ e).val();
         let firm = $('#firmante_emp'+ e).val();
+        let ruc = $('#ruc_emp'+ e).val();
         let fecha1 = new Date(fechai);
         let fecha2 = new Date(fechaf);
         let fecha1num = moment(fecha1).format('DD-MM-YYYY');
@@ -3721,7 +4034,7 @@ function PrevCertificado(e) {
         //Asignar datos
         $('.emp_imp').html(nom);
         $('.cargo_imp').html(cargo);
-
+        $('.ruc_imp').html(ruc);
         $('.desde_imp').html(fecha1.toLocaleDateString("es-ES", options).toUpperCase());
         $('.hasta_imp').html(fecha2.toLocaleDateString("es-ES", options).toUpperCase());
         $('.desde_imp_num').html(fecha1num);
@@ -3861,7 +4174,7 @@ function PrevRenuncia(e) {
     let fecha_ff = new Date (fecha_fin);
 
 
-    if(fecha_emi >= fecha_ff && fecha != "" ){
+    if(fecha_emi <= fecha_ff && fecha != "" ){
 
         OcultarPrev();
         $('#prev5').show();
@@ -4039,17 +4352,49 @@ function MostrarFirmante(e){
     });
 }
 
+function MostrarDireccion(e){
+    console.log(e);
+    let ruc = $('#lst_emp_'+ e).val();
+    console.log("El ruc de la empresa es : "+ ruc);
+    $('#num_empresa').val(e);
+    $('#modaldireccion').modal('show');
+
+    $.ajax({
+        type: "POST",
+        url: "../../controller/direccioncontrolador.php?op=grilla", // Reemplaza con la URL correcta del servidor
+        data: {ruc : ruc},
+        success: function(response) {
+            // Manejar la respuesta exitosa del servidor
+            //console.log("Respuesta del servidor:", response);
+            $('#div_direccion').html(response);
+        },
+        error: function(error) {
+            // Manejar errores en la solicitud
+            console.error("Error en la solicitud AJAX:", error);
+        }
+    });
+}
+
 function SeleccionarFirmante(){
     let firmante = $("input[name='firmante']:checked").val();
     let num = $('#num_empresa').val();
-
     $('#firmante'+ num).val(firmante);
-
     $('#modalfirmante').modal('hide');
+}
+
+function SeleccionarDireccion(){
+    let direccion = $("input[name='direccion_emp']:checked").val();
+    let num = $('#num_empresa').val();
+    $('#direccion'+ num).val(direccion);
+    $('#modaldireccion').modal('hide');
 }
 
 function CerrarFirmante() {
     $('#modalfirmante').modal('hide');
+}
+
+function CerrarDireccion() {
+    $('#modaldireccion').modal('hide');
 }
 
 function CerrarFirmanteActualizar() {
@@ -4191,8 +4536,6 @@ function ActualizarFirmante(){
             console.log('Error:', error);
         }
     });
-
-    
 }
 
 function generarFechaAleatoria() {
@@ -4214,6 +4557,42 @@ function generarFechaAleatoria() {
 
     // Devolver la fecha formateada
     return fechaFormateada;
+}
+
+function ValidarFecha(input){
+    var valorInput = $(input).val();
+    var fechaSeleccionada = new Date(valorInput);
+    var diaSemana = fechaSeleccionada.getDay();
+
+    // Eliminar los estilos y el mensaje de error antes de hacer la nueva validación
+    $(input).removeClass('input-error');
+    $(input).next('.error-msg').text('');
+
+    if (diaSemana === 5 || diaSemana === 6) {
+        // Agregar clase de estilo y mensaje de error
+        $(input).addClass('input-error');
+        $(input).next('.error-msg').text('Fecha Invalida');
+    }
+}
+
+function RegistrarEmpresaUsada(ruc){
+    // Realizar la solicitud AJAX
+    $.ajax({
+        type: 'POST',
+        url: '../../controller/empresacontrolador.php?op=update_busqueda_empresa',
+        data: { ruc :  ruc},
+        success: function(response) {
+            console.log('Éxito:', response);
+            /*Swal.fire({
+                icon: 'success',
+                title: 'Datos Actualizados',
+                text: ''
+            });*/
+        },
+        error: function(error) {
+            console.log('Error:', error);
+        }
+    });
 }
 
 

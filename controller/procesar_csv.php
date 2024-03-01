@@ -20,6 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Iterar sobre los datos y realizar la inserción o actualización en la base de datos
         foreach ($datos_csv as $fila) {
+
+
             $ruc = $fila[2]; // Ahora el RUC está en la posición 2 (fila 3), ajusta según tu estructura
 
             // Verificar si el RUC ya existe en la tabla empresas
@@ -79,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ) VALUES (
                     NULL,
                     'R',
-                    '{$fila[0]}',
+                    '{$fila[0]}', 
                     '{$fila[1]}',
                     '{$fila[2]}',
                     '{$fila[3]}',

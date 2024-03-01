@@ -84,7 +84,16 @@
         background-size: 100% auto;
         opacity: 0.95;
     }
+
+    .input-error {
+        border: 2px solid red;
+    }
+
+    .error-msg {
+        color: red;
+        font-size: 80%;
+        margin-top: 5px;
+        font-size: small; /* Aquí ajustamos el tamaño de la fuente del mensaje de error */
+    }
 </style>
-
-
 

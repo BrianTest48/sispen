@@ -41,6 +41,7 @@ var cbx_base_5;
 var cbx_estado_5;
 var cbx_condicion_5;
 
+var alerta_uso;
 
 
 
@@ -102,7 +103,9 @@ $(document).ready(function(){
 
     if(listaId == ""){
         //console.log("VACIO");
+        alerta_uso = 0;
     }else {
+        alerta_uso = 1;
         //Metodo Mostrar Lista ID
         $.post("../../controller/listacontrolador.php?op=mostrar_id",{ lista_id : listaId},function(datos){
             if(datos != ""){
@@ -209,6 +212,9 @@ function generar(e){
             $('#btnzipear').show();
             $('#tabs-empresas').show();
 
+            //Ocultar por default el mensaje alerta
+            $('.error-label').hide();
+
             $('.select_mes_boleta').select2({
                 placeholder: "Seleccione",
                 minimumResultsForSearch: Infinity
@@ -224,7 +230,7 @@ function generar(e){
                 minimumResultsForSearch: Infinity
             });
         
-            $('#combo_prev_bono').select2({
+            $('.combo_prev_bono').select2({
                 placeholder: "Seleccione",
                 minimumResultsForSearch: Infinity
             });
@@ -303,10 +309,66 @@ function generar(e){
                             //Prueba
 
                         }, 600); 
-                        
-                        //BuscarEmp(i);
-                        //ListarFirmante(i);
-                        //console.log("EMPRESA_"+i);
+                    }
+
+                    var datos_tabs = JSON.parse(datos.datos_derecha)
+
+                    for( let i = 1 ; i<=5 ; i++){
+                        let datos_emp = datos_tabs;
+                        let dato_empresa = datos_emp.empresas["empresa" + i];
+                        //Certificado
+                        $('#select_certificado'+ i).val(dato_empresa.Certificado.tipo_certificado).trigger('change');
+                        $('#fecha_certificado'+ i).val(dato_empresa.Certificado.fecha_emision);
+                        //Liquidacion
+                        $('#sueldo_liquidacion'+ i).val(dato_empresa.Liquidacion.sueldo);
+                        $('#adelanto'+ i).val(dato_empresa.Liquidacion.adelanto);
+                        $('#vacaciones'+ i).val(dato_empresa.Liquidacion.vacaciones);
+                        $('#gratificaciones'+ i).val(dato_empresa.Liquidacion.gratificaciones);
+                        $('#reintegro'+ i).val(dato_empresa.Liquidacion.reintegro);
+                        $('#incentivo'+ i).val(dato_empresa.Liquidacion.incentivo);
+                        $('#bonif'+ i).val(dato_empresa.Liquidacion.bonificacion);
+                        $('#bonif_extra'+ i).val(dato_empresa.Liquidacion.bonif_extra);
+                        $('#bonif_gra'+ i).val(dato_empresa.Liquidacion.bonif_grac);
+                        $('#bonif_meta'+ i).val(dato_empresa.Liquidacion.bonif_meta);
+                        $('#bonif_dias'+ i).val(dato_empresa.Liquidacion.bonif_festivo);
+                        $('#combo_prev_cuerpo'+ i).val(dato_empresa.Liquidacion.tipo).trigger('change');
+                        $('#combo_prev_liqui'+ i).val(dato_empresa.Liquidacion.motivo).trigger('change');
+                        $('#fecha_liquidacion'+ i).val(dato_empresa.Liquidacion.fecha_emision);
+                        //Boleta
+                        $('#select_anio_boletas'+ i).val(dato_empresa.Boleta.anio_boleta).trigger('change');
+                        $('#select_mes_boletas'+ i).val(dato_empresa.Boleta.mes_boleta).trigger('change');
+                        $('#sueldo_boleta'+ i).val(dato_empresa.Boleta.sueldo);
+                        $('#rm_vacacional_boleta'+ i).val(dato_empresa.Boleta.rem_vaca);
+                        $('#reintegro_boleta'+ i).val(dato_empresa.Boleta.reintegro);
+                        $('#horaex_boleta'+ i).val(dato_empresa.Boleta.h_extras);
+                        $('#boni_boleta'+ i).val(dato_empresa.Boleta.bonif);
+                        $('#bonificacion_alimentos_boleta'+ i).val(dato_empresa.Boleta.bonif_alimentos);
+                        $('#bonificacion_metas_boleta'+ i).val(dato_empresa.Boleta.bonif_metas);
+                        $('#bonificacion_logros_boleta'+ i).val(dato_empresa.Boleta.bonif_logros);
+                        $('#bonificacion_festivos_boleta'+ i).val(dato_empresa.Boleta.bonif_dias);
+                        $('#bonificacion_pasajes_boleta'+ i).val(dato_empresa.Boleta.pasajes);
+                        $('#bonificacion_uniforme_boleta'+ i).val(dato_empresa.Boleta.uniforme);
+                        $('#bonificacion_gratificacion_boleta'+ i).val(dato_empresa.Boleta.gratificacion);
+                        $('#otros_boleta'+ i).val(dato_empresa.Boleta.otros);
+                        $('#combo_prev_boleta'+ i).val(dato_empresa.Boleta.modelo_boleta).trigger('change');
+                        //Renuncia
+                        $('#select_renuncia'+ i).val(dato_empresa.Renuncia.tipo_renuncia).trigger('change');
+                        $('#fecha_renuncia'+ i).val(dato_empresa.Renuncia.fecha_emision);
+                        //DJ
+                        $('#num_auto'+ i).val(dato_empresa.Dj.num_aleatorio);
+                        $('#dic_91'+ i).val(dato_empresa.Dj.dic_91);
+                        $('#ene_92'+ i).val(dato_empresa.Dj.ene_92);
+                        $('#feb_92'+ i).val(dato_empresa.Dj.feb_92);
+                        $('#mar_92'+ i).val(dato_empresa.Dj.mar_92);
+                        $('#abr_92'+ i).val(dato_empresa.Dj.abr_92);
+                        $('#may_92'+ i).val(dato_empresa.Dj.may_92);
+                        $('#jun_92'+ i).val(dato_empresa.Dj.jun_92);
+                        $('#jul_92'+ i).val(dato_empresa.Dj.jul_92);
+                        $('#ago_92'+ i).val(dato_empresa.Dj.ago_92);
+                        $('#sep_92'+ i).val(dato_empresa.Dj.sep_92);
+                        $('#oct_92'+ i).val(dato_empresa.Dj.oct_92);
+                        $('#nov_92'+ i).val(dato_empresa.Dj.nov_92);
+                        $('#combo_prev_bono'+ i).val(dato_empresa.Dj.modelo).trigger('change');                        
                     }
                 
                     $('#prev1').hide();
@@ -361,11 +423,11 @@ function crearTabs(valor) {
         tabContent += '         <li class="nav-item" role="presentation">';
         tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="renuncia-tab'+ i +'"   data-bs-toggle="pill" data-bs-target="#renuncia'+ i +'"  type="button" role="tab" aria-controls="renuncia"   aria-selected="false" >Renuncia</button>';
         tabContent += '         </li>';
-        if(i == valor){
-            tabContent += '         <li class="nav-item" role="presentation" id="nav-bono">';
-            tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="bono-tab"   data-bs-toggle="pill" data-bs-target="#bono"  type="button" role="tab" aria-controls="bono"   aria-selected="false">DJ</button>';
-            tabContent += '         </li>';
-        }
+        //Li nav item nav bono
+        tabContent += '         <li class="nav-item" role="presentation" id="nav-bono'+ i +'">';
+        tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="bono-tab'+ i +'"  onclick="bono_tab('+ i +')"  data-bs-toggle="pill" data-bs-target="#bono'+ i +'"  type="button" role="tab" aria-controls="bono"   aria-selected="false">DJ</button>';
+        tabContent += '         </li>';
+        //fin nav li
         tabContent += '     </ul>';
         tabContent += '     <div class="tab-content">';
         tabContent += '         <!-- AQUI VA EL CONTENIDO -->';
@@ -390,7 +452,10 @@ function crearTabs(valor) {
         tabContent += '                             </div>';
         tabContent += '                             <div class="row mg-b-5">';
         tabContent += '                                 <label class="form-control-label col-lg-6">Fecha de Emision: </label>';
-        tabContent += '                                 <input type="date" class="form-control col-lg-6"  id="fecha_certificado'+ i +'"  style="width: 100%"/>';        
+        tabContent += '                                 <div class="form-group col-lg-6" style="padding: 0; margin-bottom: 0;">';
+        tabContent += '                                     <input type="date" oninput="ValidarFecha(this)" class="form-control "  id="fecha_certificado'+ i +'"  style="width: 100%"/>';        
+        tabContent += '                                     <div class="error-msg"></div>';
+        tabContent += '                                 </div>';
         tabContent += '                             </div>';
         tabContent += '                         </div> ';
         tabContent += '                     </div><!-- row -->';
@@ -506,7 +571,8 @@ function crearTabs(valor) {
         tabContent += '                         <div class="col-12 col-sm-6">';
         tabContent += '                             <div class="form-group">';
         tabContent += '                                 <label class="form-control-label text-left">Fecha de Emision</label>';
-        tabContent += '                                 <input type="date" class="form-control"  id="fecha_liquidacion'+ i +'"  style="width: 100%"/>';
+        tabContent += '                                 <input type="date" oninput="ValidarFecha(this)" class="form-control"  id="fecha_liquidacion'+ i +'"  style="width: 100%"/>';
+        tabContent += '                                 <div class="error-msg text-left"></div>';
         tabContent += '                             </div>';
         tabContent += '                         </div>';
         tabContent += '                     </div>';
@@ -709,7 +775,10 @@ function crearTabs(valor) {
         tabContent += '                             </div>';
         tabContent += '                             <div class="row mg-b-5">';
         tabContent += '                                 <label class="form-control-label col-lg-6">Fecha de Emision: </label>';
-        tabContent += '                                 <input type="date" class="form-control col-lg-6"  id="fecha_renuncia'+ i +'"  style="width: 100%"/>';        
+        tabContent += '                                 <div class="form-group col-lg-6" style="padding: 0; margin-bottom: 0;">';
+        tabContent += '                                     <input type="date" oninput="ValidarFecha(this)" class="form-control"  id="fecha_renuncia'+ i +'"  style="width: 100%"/>';        
+        tabContent += '                                     <div class="error-msg"></div>';
+        tabContent += '                                 </div>';
         tabContent += '                             </div>';
         tabContent += '                         </div> ';
         tabContent += '                     </div>';
@@ -727,127 +796,127 @@ function crearTabs(valor) {
         tabContent += '             </form>';
         tabContent += '         </div>';
 
-        if( i == valor){
-            tabContent += '         <div id="bono" class="tab-pane fade">';
-            tabContent += '             <form id="form_bono" action="" method="post" autocomplete="off">';
-            tabContent += '                 <div class="form-layout form-layout-4">';
-            tabContent += '                     <div class="row">';
-            tabContent += '                         <div class="col-lg-12">';
-            tabContent += '                             <div class="row mg-b-5">';
-            tabContent += '                                 <label class="form-control-label col-sm-6 ">Numero Autogenerado: <span class="tx-danger">*</span></label>';
-            tabContent += '                                 <input class="form-control col-sm-6" type="text" id="num_auto" name="num_auto"  placeholder="Numero Aleatorio" >';
-            tabContent += '                             </div>';
-            tabContent += '                         </div><!-- col-4 -->';
-            tabContent += '                     </div>';
-            tabContent += '                     <div class="row pd-t-5">';
-            tabContent += '                         <div class="col-lg-6">';
-            tabContent += '                             <div class="row mg-b-5">';
-            tabContent += '                                 <label class="form-control-label col-sm-6">Diciembre 91:</label>';
-            tabContent += '                                 <input class="form-control col-sm-6" type="number" id="dic_91" name="dic_91" oninput="calcularBono()" placeholder="" >';
-            tabContent += '                             </div>';
-            tabContent += '                         </div><!-- col-4 -->';
-            tabContent += '                         <div class="col-lg-6">';
-            tabContent += '                             <div class="row mg-b-5">';
-            tabContent += '                                 <label class="form-control-label col-lg-6">Junio 92: </label>';
-            tabContent += '                                 <input class="form-control col-lg-6" type="number" id="jun_92" name="jun_92" oninput="calcularBono()"  placeholder="" >';
-            tabContent += '                             </div>';
-            tabContent += '                         </div><!-- col-4 -->';
-            tabContent += '                         <div class="col-lg-6">';
-            tabContent += '                             <div class="row mg-b-5">';
-            tabContent += '                                 <label class="form-control-label col-lg-6">Enero 92: </label>';
-            tabContent += '                                 <input class="form-control col-lg-6" type="number" id="ene_92" name="ene_92" oninput="calcularBono()" placeholder="" >';
-            tabContent += '                             </div>';
-            tabContent += '                         </div><!-- col-4 -->';
-            tabContent += '                         <div class="col-lg-6">';
-            tabContent += '                             <div class="row mg-b-5">';
-            tabContent += '                                 <label class="form-control-label col-lg-6">Julio 92:</label>';
-            tabContent += '                                 <input class="form-control col-lg-6" type="number" id="jul_92" name="jul_92" oninput="calcularBono()"   placeholder="" >';
-            tabContent += '                             </div>';
-            tabContent += '                         </div><!-- col-4 -->';
-            tabContent += '                         <div class="col-lg-6">';
-            tabContent += '                             <div class="row mg-b-5">';
-            tabContent += '                                 <label class="form-control-label col-lg-6">Febrero 92: </label>';
-            tabContent += '                                 <input class="form-control col-lg-6" type="number" id="feb_92" name="feb_92" oninput="calcularBono()" placeholder="" >';
-            tabContent += '                             </div>';
-            tabContent += '                         </div><!-- col-4 -->';
-            tabContent += '                         <div class="col-lg-6">';
-            tabContent += '                             <div class="row mg-b-5">';
-            tabContent += '                                 <label class="form-control-label col-lg-6">Agosto 92:</label>';
-            tabContent += '                                 <input class="form-control col-lg-6" type="number" id="ago_92" name="ago_92"  oninput="calcularBono()"  placeholder="" >';
-            tabContent += '                             </div>';
-            tabContent += '                         </div><!-- col-4 -->';
-            tabContent += '                         <div class="col-lg-6">';
-            tabContent += '                             <div class="row mg-b-5">';
-            tabContent += '                                 <label class="form-control-label col-lg-6">Marzo 92: </label>';
-            tabContent += '                                 <input class="form-control col-lg-6" type="number" id="mar_92" name="mar_92" oninput="calcularBono()" placeholder="" >';
-            tabContent += '                             </div>';
-            tabContent += '                         </div><!-- col-4 -->';
-            tabContent += '                         <div class="col-lg-6">';
-            tabContent += '                             <div class="row mg-b-5">';
-            tabContent += '                                 <label class="form-control-label col-lg-6">Septiembre 92:</label>';
-            tabContent += '                                 <input class="form-control col-lg-6" type="number" id="sep_92" name="sep_92" oninput="calcularBono()"   placeholder="" >';
-            tabContent += '                             </div>';
-            tabContent += '                         </div><!-- col-4 -->';
-            tabContent += '                         <div class="col-lg-6">';
-            tabContent += '                             <div class="row mg-b-5">';
-            tabContent += '                                 <label class="form-control-label col-lg-6">Abril 92:</label>';
-            tabContent += '                                 <input class="form-control col-lg-6" type="number" id="abr_92" name="abr_92" oninput="calcularBono()" placeholder="" >';
-            tabContent += '                             </div>';
-            tabContent += '                         </div><!-- col-4 -->';
-            tabContent += '                         <div class="col-lg-6">';
-            tabContent += '                             <div class="row mg-b-5">';
-            tabContent += '                                 <label class="form-control-label col-lg-6">Octubre 92:</label>';
-            tabContent += '                                 <input class="form-control col-lg-6" type="number" id="oct_92" name="oct_92"  oninput="calcularBono()"  placeholder="" >';
-            tabContent += '                             </div>';
-            tabContent += '                         </div><!-- col-4 -->';
-            tabContent += '                         <div class="col-lg-6">';
-            tabContent += '                             <div class="row mg-b-5">';
-            tabContent += '                                 <label class="form-control-label col-lg-6">Mayo 92: </label>';
-            tabContent += '                                 <input class="form-control col-lg-6" type="number" id="may_92" name="may_92" oninput="calcularBono()"  placeholder="" >';
-            tabContent += '                             </div>';
-            tabContent += '                         </div><!-- col-4 -->';
-            tabContent += '                         <div class="col-lg-6">';
-            tabContent += '                             <div class="row mg-b-5">';
-            tabContent += '                                 <label class="form-control-label col-lg-6">Noviembre 92:</label>';
-            tabContent += '                                 <input class="form-control col-lg-6" type="number" id="nov_92" name="nov_92"  oninput="calcularBono()"  placeholder="" >';
-            tabContent += '                             </div>';
-            tabContent += '                         </div><!-- col-4 -->';
-            tabContent += '                     </div><!-- row -->';
-            tabContent += '                     <div class="d-none">';
-            tabContent += '                         <div class="col-12 col-sm-8">';
-            tabContent += '                             <div class="row mg-b-15">';
-            tabContent += '                                 <label class="form-control-label col-lg-6 text-center">Calculo Bono:</label>';
-            tabContent += '                                 <input class="form-control col-lg-6" type="number" id="cal_bono" name="cal_bono"    placeholder="Calculo Bono" >';
-            tabContent += '                             </div>';
-            tabContent += '                         </div><!-- col-4 -->';
-            tabContent += '                         <div class="col-4 col-sm-4">';
-            tabContent += '                             <div class="row justify-content-center mg-l-10">';
-            tabContent += '                                 <button type="button" id="btncalculobono" name="btncalculobono"  class="btn btn-info">Ver Calculo</button>';
-            tabContent += '                             </div>';
-            tabContent += '                         </div>';
-            tabContent += '                     </div>';
-            tabContent += '                 </div>';
-            tabContent += '                 <div class="form-layout-footer text-right mg-t-20">';
-            tabContent += '                     <div class="row">';
-            tabContent += '                         <div class="col-12 col-sm-8">';
-            tabContent += '                             <select class="form-control select2" name="combo_prev_bono" id="combo_prev_bono" style="width: 100%;">';
-            tabContent += '                                 <option value="1">Fecha de 1992</option>';
-            tabContent += '                                 <option value="2">Fecha de 1992 - 1996</option>';
-            tabContent += '                                 <option value="4">Fecha de 1992 - 1996</option>';
-            tabContent += '                                 <option value="3">Fecha de 1992 - 1996 - 2001</option>';
-            tabContent += '                             </select>';
-            tabContent += '                         </div>';
-            tabContent += '                         <!--<div class="col-12 col-sm-4">';
-            tabContent += '                             <button type="button" id="btnimprimirbono" name="btnimprimirbono" onclick="imprimir_dj('+ i +')"  class="btn btn-info">Imprimir Bono</button>';
-            tabContent += '                         </div>-->';
-            tabContent += '                         <div class="col-12 col-sm-4">';
-            tabContent += '                             <button type="button" id="btnprevbono" name="btnprevbono"  class="btn btn-secondary">Previsualizar</button>';
-            tabContent += '                         </div>';
-            tabContent += '                     </div>';
-            tabContent += '                 </div>';
-            tabContent += '             </form> ';
-            tabContent += '         </div>';
-        }
+       //Tab bono 
+        tabContent += '         <div id="bono'+ i +'" class="tab-pane fade">';
+        tabContent += '             <form id="form_bono'+ i +'" action="" method="post" autocomplete="off">';
+        tabContent += '                 <div class="form-layout form-layout-4">';
+        tabContent += '                     <div class="row">';
+        tabContent += '                         <div class="col-lg-12">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-sm-6 ">Numero Autogenerado: <span class="tx-danger">*</span></label>';
+        tabContent += '                                 <input class="form-control col-sm-6" type="text" id="num_auto'+ i +'" name="num_auto"  placeholder="Numero Aleatorio" >';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                     </div>';
+        tabContent += '                     <div class="row pd-t-5">';
+        tabContent += '                         <div class="col-lg-6">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-sm-6">Diciembre 91:</label>';
+        tabContent += '                                 <input class="form-control col-sm-6" type="number" id="dic_91'+ i +'" name="dic_91" oninput="calcularBono()" placeholder="" >';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                         <div class="col-lg-6">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Junio 92: </label>';
+        tabContent += '                                 <input class="form-control col-lg-6" type="number" id="jun_92'+ i +'" name="jun_92" oninput="calcularBono()"  placeholder="" >';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                         <div class="col-lg-6">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Enero 92: </label>';
+        tabContent += '                                 <input class="form-control col-lg-6" type="number" id="ene_92'+ i +'" name="ene_92" oninput="calcularBono()" placeholder="" >';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                         <div class="col-lg-6">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Julio 92:</label>';
+        tabContent += '                                 <input class="form-control col-lg-6" type="number" id="jul_92'+ i +'" name="jul_92" oninput="calcularBono()"   placeholder="" >';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                         <div class="col-lg-6">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Febrero 92: </label>';
+        tabContent += '                                 <input class="form-control col-lg-6" type="number" id="feb_92'+ i +'" name="feb_92" oninput="calcularBono()" placeholder="" >';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                         <div class="col-lg-6">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Agosto 92:</label>';
+        tabContent += '                                 <input class="form-control col-lg-6" type="number" id="ago_92'+ i +'" name="ago_92"  oninput="calcularBono()"  placeholder="" >';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                         <div class="col-lg-6">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Marzo 92: </label>';
+        tabContent += '                                 <input class="form-control col-lg-6" type="number" id="mar_92'+ i +'" name="mar_92" oninput="calcularBono()" placeholder="" >';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                         <div class="col-lg-6">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Septiembre 92:</label>';
+        tabContent += '                                 <input class="form-control col-lg-6" type="number" id="sep_92'+ i +'" name="sep_92" oninput="calcularBono()"   placeholder="" >';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                         <div class="col-lg-6">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Abril 92:</label>';
+        tabContent += '                                 <input class="form-control col-lg-6" type="number" id="abr_92'+ i +'" name="abr_92" oninput="calcularBono()" placeholder="" >';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                         <div class="col-lg-6">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Octubre 92:</label>';
+        tabContent += '                                 <input class="form-control col-lg-6" type="number" id="oct_92'+ i +'" name="oct_92"  oninput="calcularBono()"  placeholder="" >';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                         <div class="col-lg-6">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Mayo 92: </label>';
+        tabContent += '                                 <input class="form-control col-lg-6" type="number" id="may_92'+ i +'" name="may_92" oninput="calcularBono()"  placeholder="" >';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                         <div class="col-lg-6">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Noviembre 92:</label>';
+        tabContent += '                                 <input class="form-control col-lg-6" type="number" id="nov_92'+ i +'" name="nov_92"  oninput="calcularBono()"  placeholder="" >';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                     </div><!-- row -->';
+        tabContent += '                     <div class="d-none">';
+        tabContent += '                         <div class="col-12 col-sm-8">';
+        tabContent += '                             <div class="row mg-b-15">';
+        tabContent += '                                 <label class="form-control-label col-lg-6 text-center">Calculo Bono:</label>';
+        tabContent += '                                 <input class="form-control col-lg-6" type="number" id="cal_bono'+ i +'" name="cal_bono"    placeholder="Calculo Bono" >';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                         <div class="col-4 col-sm-4">';
+        tabContent += '                             <div class="row justify-content-center mg-l-10">';
+        tabContent += '                                 <button type="button" id="btncalculobono'+ i +'" name="btncalculobono"  class="btn btn-info">Ver Calculo</button>';
+        tabContent += '                             </div>';
+        tabContent += '                         </div>';
+        tabContent += '                     </div>';
+        tabContent += '                 </div>';
+        tabContent += '                 <div class="form-layout-footer text-right mg-t-20">';
+        tabContent += '                     <div class="row">';
+        tabContent += '                         <div class="col-12 col-sm-8">';
+        tabContent += '                             <select class="form-control select2 combo_prev_bono" name="combo_prev_bono" id="combo_prev_bono'+ i +'" style="width: 100%;">';
+        tabContent += '                                 <option value="1">Fecha de 1992</option>';
+        tabContent += '                                 <option value="2">Fecha de 1992 - 1996</option>';
+        tabContent += '                                 <option value="4">Fecha de 1992 - 1996</option>';
+        tabContent += '                                 <option value="3">Fecha de 1992 - 1996 - 2001</option>';
+        tabContent += '                             </select>';
+        tabContent += '                         </div>';
+        tabContent += '                         <!--<div class="col-12 col-sm-4">';
+        tabContent += '                             <button type="button" id="btnimprimirbono'+ i +'" name="btnimprimirbono" onclick="imprimir_dj('+ i +')"  class="btn btn-info">Imprimir Bono</button>';
+        tabContent += '                         </div>-->';
+        tabContent += '                         <div class="col-12 col-sm-4">';
+        tabContent += '                             <button type="button" id="btnprevbono'+ i +'" name="btnprevbono" onclick="PrevDJ('+ i +')"  class="btn btn-secondary">Previsualizar</button>';
+        tabContent += '                         </div>';
+        tabContent += '                     </div>';
+        tabContent += '                 </div>';
+        tabContent += '             </form> ';
+        tabContent += '         </div>';
+       //Fin Tab Bono
        
         tabContent += '     </div> '; 
         tabContent += '     </div>';
@@ -905,13 +974,15 @@ function creardivsempresa(){
                                     "<div class='col-12 col-sm-4'>"+
                                         "<div class='form-group' >"+
                                             "<label class='form-control-label'>Desde</label>"+
-                                            "<input class='form-control'   type='date' max='2099-12-31' min='1900-12-31' id='f_inicio_"+i+"'>"+
+                                            "<input class='form-control' oninput='ValidarFecha(this)'  type='date' max='2099-12-31' min='1900-12-31' id='f_inicio_"+i+"'>"+
+                                            "<div class='error-msg'></div>"+
                                         "</div>"+
                                     "</div>"+
                                     "<div class ='col-12 col-sm-4'>"+
                                         "<div class='form-group'  >"+
                                             "<label class='form-control-label'>Hasta</label>"+
-                                            "<input class='form-control'  type='date' max='2999-12-31' min='1900-12-31' id='f_final_"+i+"' >"+
+                                            "<input class='form-control' oninput='ValidarFecha(this)' type='date' max='2999-12-31' min='1900-12-31' id='f_final_"+i+"' >"+
+                                            "<div class='error-msg'></div>"+
                                         "</div>"+
                                     "</div>"+
                                      "<div class ='col-12 col-sm-4'>"+
@@ -925,17 +996,17 @@ function creardivsempresa(){
                                             "</select>"+
                                         "</div>"+
                                     "</div>"+
-                                    "<div class ='col-12 col-sm-4'>"+
+                                    "<div class ='col-12 col-sm-4 d-none'>"+
                                         "<div class='form-group'  >"+
                                             "<label class='form-control-label'>Base  </label>"+
                                             "<select class='form-control select2 cbx_tipos' id='cbx_base_"+i+"' style='width: 100%'>"+
+                                                "<option value='0' selected>AMBAS BASES</option>"+
                                                 "<option value='1'>BASE 1</option>"+
                                                 "<option value='2'>BASE 2</option>"+
-                                                "<option value='0'>AMBAS BASES</option>"+
                                             "</select>"+
                                         "</div>"+
                                     "</div>"+
-                                    "<div class ='col-12 col-sm-4'>"+
+                                    "<div class ='col-12 col-sm-6'>"+
                                         "<div class='form-group'  >"+
                                             "<label class='form-control-label'>Estado </label>"+
                                             "<select class='form-control select2 cbx_tipos' id='cbx_estado_"+i+"' style='width: 100%'>"+
@@ -947,8 +1018,8 @@ function creardivsempresa(){
                                             "</select>"+
                                         "</div>"+
                                     "</div>"+
-                                    "<div class ='col-12 col-sm-4'>"+
-                                        "<div class='form-group'  >"+
+                                    "<div class ='col-12 col-sm-6'>"+
+                                        "<div class='form-group'>"+
                                             "<label class='form-control-label'>Condicion </label>"+
                                             "<select class='form-control select2 cbx_tipos' id='cbx_condicion_"+i+"' style='width: 100%'>"+
                                                 "<option value='V'>TODOS</option>"+
@@ -966,6 +1037,7 @@ function creardivsempresa(){
                                         "<div class='form-group'>"+
                                             "<label class='form-control-label' for='lst_emp_"+i+"'>Empresa</label>"+
                                             "<select class='form-control select2' name='lst_emp_"+i+"' id='lst_emp_"+i+"' data-placeholder='Seleccione' style='width: 100%' required onchange='ListarFirmante("+i+")'></select>"+
+                                            "<label id='errorLabel_"+i+"' class='error-label' style='color: red;'>Texto predeterminado</label>"+ // Label con texto predeterminado
                                         "</div>"+
                                     "</div>"+
                                     "<div class='col-12 col-sm-6'>"+
@@ -1126,7 +1198,7 @@ $(document).on("click","#btnbuscar", function(){
                                 data = JSON.parse(data);
                                 //console.log(data);
                                 $('#txtnombre').val(data.data.nombres);
-                                $('#txtapellido').val(data.data.apellidoMaterno + ' '+data.data.apellidoPaterno);
+                                $('#txtapellido').val(data.data.apellidoPaterno + ' '+data.data.apellidoMaterno);
                                 $('#txtdate').val(convertDateFormatDate(data.data.fechaNacimiento));           
                             }
                         });
@@ -1148,6 +1220,7 @@ $(document).on("click","#btnbuscar", function(){
                 $.post("../../controller/listacontrolador.php?op=mostrar",{num_doc: doc, lista: t_lista},function(datos){
                     if(datos != ""){
                         //console.log(datos);
+                        alerta_uso = 1;
                         datos = JSON.parse(datos);
                         $("#lista_id").val(datos.id);
                         $("#txtcant_emp").val(datos.cantidad);
@@ -1237,6 +1310,17 @@ function mostrardetalle(a,b,c){
     }
 
     $('#logo_nombre').val(logos);
+
+    /*Condicional para visibilidad de DJ */
+    var fechaSelect= new Date(fech_final_1);
+    var fechaLim = new Date('1992-12-31');
+    if (fechaSelect > fechaLim) {
+        //console.log('La fecha seleccionada es posterior al 31 de diciembre de 1992.');
+        $('#nav-bono'+ a).show();
+    } else {
+        //console.log('La fecha seleccionada no es posterior al 31 de diciembre de 1992.');
+        $('#nav-bono'+ a).hide();
+    }
 
     switch (a) {
         case 1:
@@ -1828,8 +1912,344 @@ function GuardarLista(){
     let logo5 = $("#logo5").val();
     let ruc5 = $("#lst_emp_5").val();
     let firmante5 = $("#firmante5").val();
-    //console.log(ruc1 + " "+ firmante1);
-    //console.log(ruc_empresa);
+
+    /*JSON datos Empresa  */
+    var empresas_data = {
+        "empresas": 
+            {
+            "empresa1": 
+            {
+                "Certificado": 
+                {
+                    "tipo_certificado": $('#select_certificado1').val() || null,
+                    "fecha_emision" :   $('#fecha_certificado1').val() || null
+                },
+                "Liquidacion": 
+                {
+                    "sueldo" :          $('#sueldo_liquidacion1').val() || null,
+                    "adelanto" :        $('#adelanto1').val() || null,
+                    "vacaciones" :      $('#vacaciones1').val() || null,
+                    "gratificaciones" : $('#gratificaciones1').val() || null,
+                    "reintegro" :       $('#reintegro1').val() || null,
+                    "incentivo" :       $('#incentivo1').val() || null,
+                    "bonificacion" :    $('#bonif1').val() || null,
+                    "bonif_extra" :     $('#bonif_extra1').val() || null,
+                    "bonif_grac" :      $('#bonif_gra1').val() || null,
+                    "bonif_meta" :      $('#bonif_meta1').val() || null,
+                    "bonif_festivo" :   $('#bonif_dias1').val() || null,
+                    "tipo" :            $('#combo_prev_cuerpo1').val() || null,
+                    "motivo" :          $('#combo_prev_liqui1').val() || null,
+                    "fecha_emision" :   $('#fecha_liquidacion1').val() || null
+                },
+                "Boleta" :
+                {
+                    "anio_boleta" :     $('#select_anio_boletas1').val() || null,
+                    "mes_boleta" :      $('#select_mes_boletas1').val() || null,
+                    "sueldo" :          $('#sueldo_boleta1').val() || null,
+                    "rem_vaca":         $('#rm_vacacional_boleta1').val() || null,
+                    "reintegro":        $('#reintegro_boleta1').val() || null,
+                    "h_extras":         $('#horaex_boleta1').val() || null,
+                    "bonif":            $('#boni_boleta1').val() || null,
+                    "bonif_alimentos":  $('#bonificacion_alimentos_boleta1').val() || null,
+                    "bonif_metas" :     $('#bonificacion_metas_boleta1').val() || null,
+                    "bonif_logros":     $('#bonificacion_logros_boleta1').val() || null,
+                    "bonif_dias" :      $('#bonificacion_festivos_boleta1').val() || null,
+                    "pasajes" :         $('#bonificacion_pasajes_boleta1').val() || null,
+                    "uniforme" :        $('#bonificacion_uniforme_boleta1').val() || null,
+                    "gratificacion" :   $('#bonificacion_gratificacion_boleta1').val() || null,
+                    "otros":            $('#otros_boleta1').val() || null,
+                    "modelo_boleta":    $('#combo_prev_boleta1').val() || null
+                },
+                "Renuncia" :
+                {
+                    "tipo_renuncia":    $('#select_renuncia1').val() || null,
+                    "fecha_emision" :   $('#fecha_renuncia1').val() || null
+                },
+                "Dj":
+                {
+                    "num_aleatorio":    $('#num_auto1').val() || null,
+                    "dic_91" :        $('#dic_911').val() || null,
+                    "ene_92" :        $('#ene_921').val() || null,
+                    "feb_92" :        $('#feb_921').val() || null,
+                    "mar_92" :        $('#mar_921').val() || null,
+                    "abr_92" :        $('#abr_921').val() || null,
+                    "may_92" :        $('#may_921').val() || null,
+                    "jun_92" :        $('#jun_921').val() || null,
+                    "jul_92" :        $('#jul_921').val() || null,
+                    "ago_92" :        $('#ago_921').val() || null,
+                    "sep_92" :        $('#sep_921').val() || null,
+                    "oct_92" :        $('#oct_921').val() || null,
+                    "nov_92" :        $('#nov_921').val() || null,
+                    "modelo" :        $('#combo_prev_bono1').val() || null
+                }
+            },
+            "empresa2": 
+            {
+                "Certificado": 
+                {
+                    "tipo_certificado": $('#select_certificado2').val() || null,
+                    "fecha_emision" :   $('#fecha_certificado2').val() || null
+                },
+                "Liquidacion": 
+                {
+                    "sueldo" :          $('#sueldo_liquidacion2').val() || null,
+                    "adelanto" :        $('#adelanto2').val() || null,
+                    "vacaciones" :      $('#vacaciones2').val() || null,
+                    "gratificaciones" : $('#gratificaciones2').val() || null,
+                    "reintegro" :       $('#reintegro2').val() || null,
+                    "incentivo" :       $('#incentivo2').val() || null,
+                    "bonificacion" :    $('#bonif2').val() || null,
+                    "bonif_extra" :     $('#bonif_extra2').val() || null,
+                    "bonif_grac" :      $('#bonif_gra2').val() || null,
+                    "bonif_meta" :      $('#bonif_meta2').val() || null,
+                    "bonif_festivo" :   $('#bonif_dias2').val() || null,
+                    "tipo" :            $('#combo_prev_cuerpo2').val() || null,
+                    "motivo" :          $('#combo_prev_liqui2').val() || null,
+                    "fecha_emision" :   $('#fecha_liquidacion2').val() || null
+                },
+                "Boleta" :
+                {
+                    "anio_boleta" :     $('#select_anio_boletas2').val() || null,
+                    "mes_boleta" :      $('#select_mes_boletas2').val() || null,
+                    "sueldo" :          $('#sueldo_boleta2').val() || null,
+                    "rem_vaca":         $('#rm_vacacional_boleta2').val() || null,
+                    "reintegro":        $('#reintegro_boleta2').val() || null,
+                    "h_extras":         $('#horaex_boleta2').val() || null,
+                    "bonif":            $('#boni_boleta2').val() || null,
+                    "bonif_alimentos":  $('#bonificacion_alimentos_boleta2').val() || null,
+                    "bonif_metas" :     $('#bonificacion_metas_boleta2').val() || null,
+                    "bonif_logros":     $('#bonificacion_logros_boleta2').val() || null,
+                    "bonif_dias" :      $('#bonificacion_festivos_boleta2').val() || null,
+                    "pasajes" :         $('#bonificacion_pasajes_boleta2').val() || null,
+                    "uniforme" :        $('#bonificacion_uniforme_boleta2').val() || null,
+                    "gratificacion" :   $('#bonificacion_gratificacion_boleta2').val() || null,
+                    "otros":            $('#otros_boleta2').val() || null,
+                    "modelo_boleta":    $('#combo_prev_boleta2').val() || null
+                },
+                "Renuncia" :
+                {
+                    "tipo_renuncia":    $('#select_renuncia2').val() || null,
+                    "fecha_emision" :   $('#fecha_renuncia2').val() || null
+                },
+                "Dj":
+                {
+                    "num_aleatorio":    $('#num_auto2').val() || null,
+                    "dic_91" :        $('#dic_912').val() || null,
+                    "ene_92" :        $('#ene_922').val() || null,
+                    "feb_92" :        $('#feb_922').val() || null,
+                    "mar_92" :        $('#mar_922').val() || null,
+                    "abr_92" :        $('#abr_922').val() || null,
+                    "may_92" :        $('#may_922').val() || null,
+                    "jun_92" :        $('#jun_922').val() || null,
+                    "jul_92" :        $('#jul_922').val() || null,
+                    "ago_92" :        $('#ago_922').val() || null,
+                    "sep_92" :        $('#sep_922').val() || null,
+                    "oct_92" :        $('#oct_922').val() || null,
+                    "nov_92" :        $('#nov_922').val() || null,
+                    "modelo" :        $('#combo_prev_bono2').val() || null
+                }
+            },
+            "empresa3": 
+            {
+                "Certificado": 
+                {
+                    "tipo_certificado": $('#select_certificado3').val() || null,
+                    "fecha_emision" :   $('#fecha_certificado3').val() || null
+                },
+                "Liquidacion": 
+                {
+                    "sueldo" :          $('#sueldo_liquidacion3').val() || null,
+                    "adelanto" :        $('#adelanto3').val() || null,
+                    "vacaciones" :      $('#vacaciones3').val() || null,
+                    "gratificaciones" : $('#gratificaciones3').val() || null,
+                    "reintegro" :       $('#reintegro3').val() || null ,
+                    "incentivo" :       $('#incentivo3').val() || null,
+                    "bonificacion" :    $('#bonif3').val() || null,
+                    "bonif_extra" :     $('#bonif_extra3').val() || null,
+                    "bonif_grac" :      $('#bonif_gra3').val() || null,
+                    "bonif_meta" :      $('#bonif_meta3').val() || null,
+                    "bonif_festivo" :   $('#bonif_dias3').val() || null,
+                    "tipo" :            $('#combo_prev_cuerpo3').val() || null,
+                    "motivo" :          $('#combo_prev_liqui3').val() || null,
+                    "fecha_emision" :   $('#fecha_liquidacion3').val() || null
+                },
+                "Boleta" :
+                {
+                    "anio_boleta" :     $('#select_anio_boletas3').val() || null,
+                    "mes_boleta" :      $('#select_mes_boletas3').val() || null,
+                    "sueldo" :          $('#sueldo_boleta3').val() || null,
+                    "rem_vaca":         $('#rm_vacacional_boleta3').val() || null,
+                    "reintegro":        $('#reintegro_boleta3').val() || null,
+                    "h_extras":         $('#horaex_boleta3').val() || null,
+                    "bonif":            $('#boni_boleta3').val() || null,
+                    "bonif_alimentos":  $('#bonificacion_alimentos_boleta3').val() || null,
+                    "bonif_metas" :     $('#bonificacion_metas_boleta3').val() || null,
+                    "bonif_logros":     $('#bonificacion_logros_boleta3').val() || null,
+                    "bonif_dias" :      $('#bonificacion_festivos_boleta3').val() || null,
+                    "pasajes" :         $('#bonificacion_pasajes_boleta3').val() || null,
+                    "uniforme" :        $('#bonificacion_uniforme_boleta3').val() || null,
+                    "gratificacion" :   $('#bonificacion_gratificacion_boleta3').val() || null,
+                    "otros":            $('#otros_boleta3').val() || null,
+                    "modelo_boleta":    $('#combo_prev_boleta3').val() || null
+                },
+                "Renuncia" :
+                {
+                    "tipo_renuncia":    $('#select_renuncia3').val() || null,
+                    "fecha_emision" :   $('#fecha_renuncia3').val() || null
+                },
+                "Dj":
+                {
+                    "num_aleatorio":    $('#num_auto3').val() || null,
+                    "dic_91" :        $('#dic_913').val() || null,
+                    "ene_92" :        $('#ene_923').val() || null,
+                    "feb_92" :        $('#feb_923').val() || null,
+                    "mar_92" :        $('#mar_923').val() || null,
+                    "abr_92" :        $('#abr_923').val() || null,
+                    "may_92" :        $('#may_923').val() || null,
+                    "jun_92" :        $('#jun_923').val() || null,
+                    "jul_92" :        $('#jul_923').val() || null,
+                    "ago_92" :        $('#ago_923').val() || null,
+                    "sep_92" :        $('#sep_923').val() || null,
+                    "oct_92" :        $('#oct_923').val() || null,
+                    "nov_92" :        $('#nov_923').val() || null,
+                    "modelo" :        $('#combo_prev_bono3').val() || null
+                }
+            },
+            "empresa4": 
+            {
+                "Certificado": 
+                {
+                    "tipo_certificado": $('#select_certificado4').val() || null,
+                    "fecha_emision" :   $('#fecha_certificado4').val() || null
+                },
+                "Liquidacion": 
+                {
+                    "sueldo" :          $('#sueldo_liquidacion4').val() || null,
+                    "adelanto" :        $('#adelanto4').val() || null,
+                    "vacaciones" :      $('#vacaciones4').val() || null,
+                    "gratificaciones" : $('#gratificaciones4').val() || null,
+                    "reintegro" :       $('#reintegro4').val() || null,
+                    "incentivo" :       $('#incentivo4').val() || null,
+                    "bonificacion" :    $('#bonif4').val() || null,
+                    "bonif_extra" :     $('#bonif_extra4').val() || null,
+                    "bonif_grac" :      $('#bonif_gra4').val() || null,
+                    "bonif_meta" :      $('#bonif_meta4').val() || null,
+                    "bonif_festivo" :   $('#bonif_dias4').val() || null,
+                    "tipo" :            $('#combo_prev_cuerpo4').val() || null,
+                    "motivo" :          $('#combo_prev_liqui4').val() || null,
+                    "fecha_emision" :   $('#fecha_liquidacion4').val() || null
+                },
+                "Boleta" :
+                {
+                    "anio_boleta" :     $('#select_anio_boletas4').val() || null,
+                    "mes_boleta" :      $('#select_mes_boletas4').val() || null,
+                    "sueldo" :          $('#sueldo_boleta4').val() || null,
+                    "rem_vaca":         $('#rm_vacacional_boleta4').val() || null,
+                    "reintegro":        $('#reintegro_boleta4').val() || null,
+                    "h_extras":         $('#horaex_boleta4').val() || null,
+                    "bonif":            $('#boni_boleta4').val() || null,
+                    "bonif_alimentos":  $('#bonificacion_alimentos_boleta4').val() || null,
+                    "bonif_metas" :     $('#bonificacion_metas_boleta4').val() || null,
+                    "bonif_logros":     $('#bonificacion_logros_boleta4').val() || null,
+                    "bonif_dias" :      $('#bonificacion_festivos_boleta4').val() || null,
+                    "pasajes" :         $('#bonificacion_pasajes_boleta4').val() || null,
+                    "uniforme" :        $('#bonificacion_uniforme_boleta4').val() || null,
+                    "gratificacion" :   $('#bonificacion_gratificacion_boleta4').val() || null,
+                    "otros":            $('#otros_boleta4').val() || null,
+                    "modelo_boleta":    $('#combo_prev_boleta4').val() || null
+                },
+                "Renuncia" :
+                {
+                    "tipo_renuncia":    $('#select_renuncia4').val() || null,
+                    "fecha_emision" :   $('#fecha_renuncia4').val() || null
+                },
+                "Dj":
+                {
+                    "num_aleatorio":    $('#num_auto4').val() || null,
+                    "dic_91" :        $('#dic_914').val() || null,
+                    "ene_92" :        $('#ene_924').val() || null,
+                    "feb_92" :        $('#feb_924').val() || null,
+                    "mar_92" :        $('#mar_924').val() || null,
+                    "abr_92" :        $('#abr_924').val() || null,
+                    "may_92" :        $('#may_924').val() || null,
+                    "jun_92" :        $('#jun_924').val() || null,
+                    "jul_92" :        $('#jul_924').val() || null,
+                    "ago_92" :        $('#ago_924').val() || null,
+                    "sep_92" :        $('#sep_924').val() || null,
+                    "oct_92" :        $('#oct_924').val() || null,
+                    "nov_92" :        $('#nov_924').val() || null,
+                    "modelo" :        $('#combo_prev_bono4').val() || null
+                }
+            },
+            "empresa5": 
+            {
+                "Certificado": 
+                {
+                    "tipo_certificado": $('#select_certificado5').val() || null,
+                    "fecha_emision" :   $('#fecha_certificado5').val() || null
+                },
+                "Liquidacion": 
+                {
+                    "sueldo" :          $('#sueldo_liquidacion5').val() || null,
+                    "adelanto" :        $('#adelanto5').val() || null,
+                    "vacaciones" :      $('#vacaciones5').val() || null,
+                    "gratificaciones" : $('#gratificaciones5').val() || null,
+                    "reintegro" :       $('#reintegro5').val() || null,
+                    "incentivo" :       $('#incentivo5').val() || null,
+                    "bonificacion" :    $('#bonif5').val() || null,
+                    "bonif_extra" :     $('#bonif_extra5').val() || null,
+                    "bonif_grac" :      $('#bonif_gra5').val() || null,
+                    "bonif_meta" :      $('#bonif_meta5').val() || null,
+                    "bonif_festivo" :   $('#bonif_dias5').val() || null,
+                    "tipo" :            $('#combo_prev_cuerpo5').val() || null,
+                    "motivo" :          $('#combo_prev_liqui5').val() || null,
+                    "fecha_emision" :   $('#fecha_liquidacion5').val() || null
+                },
+                "Boleta" :
+                {
+                    "anio_boleta" :     $('#select_anio_boletas5').val() || null,
+                    "mes_boleta" :      $('#select_mes_boletas5').val() || null,
+                    "sueldo" :          $('#sueldo_boleta5').val() || null,
+                    "rem_vaca":         $('#rm_vacacional_boleta5').val() || null,
+                    "reintegro":        $('#reintegro_boleta5').val() || null,
+                    "h_extras":         $('#horaex_boleta5').val() || null,
+                    "bonif":            $('#boni_boleta5').val() || null,
+                    "bonif_alimentos":  $('#bonificacion_alimentos_boleta5').val() || null,
+                    "bonif_metas" :     $('#bonificacion_metas_boleta5').val() || null,
+                    "bonif_logros":     $('#bonificacion_logros_boleta5').val() || null,
+                    "bonif_dias" :      $('#bonificacion_festivos_boleta5').val() || null,
+                    "pasajes" :         $('#bonificacion_pasajes_boleta5').val() || null,
+                    "uniforme" :        $('#bonificacion_uniforme_boleta5').val() || null,
+                    "gratificacion" :   $('#bonificacion_gratificacion_boleta5').val() || null,
+                    "otros":            $('#otros_boleta5').val() || null,
+                    "modelo_boleta":    $('#combo_prev_boleta5').val() || null
+                },
+                "Renuncia" :
+                {
+                    "tipo_renuncia":    $('#select_renuncia5').val() || null,
+                    "fecha_emision" :   $('#fecha_renuncia5').val() || null
+                },
+                "Dj":
+                {
+                    "num_aleatorio":    $('#num_auto5').val() || null,
+                    "dic_91" :        $('#dic_915').val() || null,
+                    "ene_92" :        $('#ene_925').val() || null,
+                    "feb_92" :        $('#feb_925').val() || null,
+                    "mar_92" :        $('#mar_925').val() || null,
+                    "abr_92" :        $('#abr_925').val() || null,
+                    "may_92" :        $('#may_925').val() || null,
+                    "jun_92" :        $('#jun_925').val() || null,
+                    "jul_92" :        $('#jul_925').val() || null,
+                    "ago_92" :        $('#ago_925').val() || null,
+                    "sep_92" :        $('#sep_925').val() || null,
+                    "oct_92" :        $('#oct_925').val() || null,
+                    "nov_92" :        $('#nov_925').val() || null,
+                    "modelo" :        $('#combo_prev_bono5').val() || null
+                }
+            }
+        }
+    };
+
     $.post("../../controller/listacontrolador.php?op=guardaryeditar",{
             af_id : af_id,
             documento : num_doc,
@@ -1886,10 +2306,11 @@ function GuardarLista(){
             firmante5 : firmante5,
             logo5 : logo5,
             lista : id_lista,
-            tipo : tipo_lista
+            tipo : tipo_lista,
+            datos_der : JSON.stringify(empresas_data)  
         }, function(data){
             console.log("GUARDO");
-            //console.log(data);
+            console.log(data);
             if(data != ""){
 
                 //Se agrega el Id a input hidden.
@@ -2083,11 +2504,7 @@ function ListarFirmante(a){
     $('#nom_emp_'+a).html(ruc+" - "+estado);
 
     $("#firmante"+a).val("");
- 
-    /*$.post("../../controller/firmacontrolador.php?op=combo",{numero : ruc}, function(data){
-        //console.log(data);
-        $("#firmante"+a).html(data);  
-    });*/
+
     
     $.post("../../controller/empresacontrolador.php?op=combovigencia",{numero : ruc}, function(data){
         if(data != ""){
@@ -2097,6 +2514,34 @@ function ListarFirmante(a){
         }
        
     });
+
+    if(alerta_uso == 0 ){
+        // Realizar la solicitud AJAX POST
+       $.ajax({
+           type: 'POST',
+           url: '../../controller/empresacontrolador.php?op=mostrar_empresa_ruc',
+           data: { ruc : ruc},
+           dataType : 'JSON',
+           success: function(response){
+               // Manejar la respuesta del servidor
+               if(response.busqueda == 1) {
+                   var fechaMoment = moment(response.fecha_busqueda);
+                   var fechaNueva = fechaMoment.add(response.cant_mes, 'months');
+                   var fechaActualServidor = moment();
+                   var diferenciaEnDias = fechaNueva.diff(fechaActualServidor, 'days');
+
+                   $('#errorLabel_' + a).html('La empresa ya ha sido utilizada - Faltan ' + diferenciaEnDias + 'días');
+                   $('#errorLabel_' + a).show();
+               }else {
+                   $('#errorLabel_' + a).hide();
+               }
+           },
+           error: function(xhr, status, error){
+               // Manejar errores de la solicitud
+               console.error('Error en la solicitud:', error);
+           }
+       });
+   }
 }
 
 function ListarLogo(a){
@@ -3030,6 +3475,50 @@ $(document).on("click","#orcinea-tab", function(){
     $("#prev4").hide();
 });
 
+function bono_tab(e){
+    SumarMeses();
+    let sum_mes = suma_anios1 * 12 + suma_meses1;
+    const constante = 0.1831;
+    console.log(sum_mes);
+
+    /*MOSTRAR MONTOS DE CADA MES EN PANEL BONO */
+    let total_dic = $('#dic_total').html();
+    let total_ene = $('#ene_total').html();
+    let total_feb = $('#feb_total').html();
+    let total_mar = $('#mar_total').html();
+    let total_abr = $('#abr_total').html();
+    let total_may = $('#may_total').html();
+    let total_jun = $('#jun_total').html();
+    let total_jul = $('#jul_total').html();
+    let total_ago = $('#ago_total').html();
+    let total_sep = $('#sep_total').html();
+    let total_oct = $('#oct_total').html();
+    let total_nov = $('#nov_total').html();
+    
+    $('#dic_91' + e).val(desformatearNumero(total_dic));
+    $('#ene_92' + e).val(desformatearNumero(total_ene));
+    $('#feb_92' + e).val(desformatearNumero(total_feb));
+    $('#mar_92' + e).val(desformatearNumero(total_mar));
+    $('#abr_92' + e).val(desformatearNumero(total_abr));
+    $('#may_92' + e).val(desformatearNumero(total_may));
+    $('#jun_92' + e).val(desformatearNumero(total_jun));
+    $('#jul_92' + e).val(desformatearNumero(total_jul));
+    $('#ago_92' + e).val(desformatearNumero(total_ago));
+    $('#sep_92' + e).val(desformatearNumero(total_sep));
+    $('#oct_92' + e).val(desformatearNumero(total_oct));
+    $('#nov_92' + e).val(desformatearNumero(total_nov));
+
+
+    let prom_meses = (Number(total_dic) + Number(total_ene) + Number(total_feb) + Number(total_mar) + Number(total_abr) + Number(total_may) + Number(total_jun) + Number(total_jul) + Number(total_ago) + Number(total_sep) + Number(total_oct) + Number(total_nov)) / 12;
+    let prom_total = (Number(prom_meses) * Number(sum_mes) * constante ).toFixed(2);
+
+    $('#prom_meses').html(prom_meses.toFixed(2));
+    $('.cant_meses').html(sum_mes);
+    $('#prom_total').html(prom_total);
+    $('#cal_bono').val(prom_total);
+
+    //$('.cant_meses').html(dife1);
+}
 $(document).on("click","#bono-tab", function(){
 
     SumarMeses();
@@ -3279,6 +3768,78 @@ $(document).on("click","#btnprevli", function(){
 
 });
 
+function PrevDJ(e){
+    OcultarPrev();
+    let tipoprev = $('#combo_prev_bono'+ e).val();
+    let dni = $('#num_doc').val();
+    let numero = $('#txtcant_emp').val();
+    
+    let f_inicio = moment($('#f_inicio_'+ e).val());
+    let f_fin = moment($('#f_final_'+ e).val());
+    
+
+    let dife1 = f_fin.diff(f_inicio, 'months');
+
+    let mon_ini= moment(f_inicio).format('M');
+    let mon_fin= moment(f_fin).format('M');
+    let year_ini= moment(f_inicio).format('YYYY'); 
+    let year_fin= moment(f_fin).format('YYYY'); 
+
+
+    let mes12 = parseFloat($('#dic_91'+ e).val()) | 0 
+    let mes01 = parseFloat($('#ene_92'+ e).val()) | 0 
+    let mes02 = parseFloat($('#feb_92'+ e).val()) | 0 
+    let mes03 = parseFloat($('#mar_92'+ e).val()) | 0 
+    let mes04 = parseFloat($('#abr_92'+ e).val()) | 0 
+    let mes05 = parseFloat($('#may_92'+ e).val()) | 0 
+    let mes06 = parseFloat($('#jun_92'+ e).val()) | 0 
+    let mes07 = parseFloat($('#jul_92'+ e).val()) | 0 
+    let mes08 = parseFloat($('#ago_92'+ e).val()) | 0 
+    let mes09 = parseFloat($('#sep_92'+ e).val()) | 0 
+    let mes10 = parseFloat($('#oct_92'+ e).val()) | 0 
+    let mes11 = parseFloat($('#nov_92'+ e).val()) | 0
+
+    $('.dni_imp').html(dni);
+    $('.dic_91_imp').html(formatearNumero(mes12));
+    $('.ene_92_imp').html(formatearNumero(mes01));
+    $('.feb_92_imp').html(formatearNumero(mes02));
+    $('.mar_92_imp').html(formatearNumero(mes03));
+    $('.abr_92_imp').html(formatearNumero(mes04));
+    $('.may_92_imp').html(formatearNumero(mes05));
+    $('.jun_92_imp').html(formatearNumero(mes06));
+    $('.jul_92_imp').html(formatearNumero(mes07));
+    $('.ago_92_imp').html(formatearNumero(mes08));
+    $('.sep_92_imp').html(formatearNumero(mes09));
+    $('.oct_92_imp').html(formatearNumero(mes10));
+    $('.nov_92_imp').html(formatearNumero(mes11));
+
+    $('.dic_91_imp_rst').html(formatearNumero((mes12*0.03).toFixed(2)));
+    $('.ene_92_imp_rst').html(formatearNumero((mes01*0.03).toFixed(2)));
+    $('.feb_92_imp_rst').html(formatearNumero((mes02*0.03).toFixed(2)));
+    $('.mar_92_imp_rst').html(formatearNumero((mes03*0.03).toFixed(2)));
+    $('.abr_92_imp_rst').html(formatearNumero((mes04*0.03).toFixed(2)));
+    $('.may_92_imp_rst').html(formatearNumero((mes05*0.03).toFixed(2)));
+    $('.jun_92_imp_rst').html(formatearNumero((mes06*0.03).toFixed(2)));
+    $('.jul_92_imp_rst').html(formatearNumero((mes07*0.03).toFixed(2)));
+    $('.ago_92_imp_rst').html(formatearNumero((mes08*0.03).toFixed(2)));
+    $('.sep_92_imp_rst').html(formatearNumero((mes09*0.03).toFixed(2)));
+    $('.oct_92_imp_rst').html(formatearNumero((mes10*0.03).toFixed(2)));
+    $('.nov_92_imp_rst').html(formatearNumero((mes11*0.03).toFixed(2)));
+
+    //$('.cant_meses').html(dife1);
+    $('.year_ini').html(year_ini);
+    $('.year_fin').html(year_fin);
+    $('.mon_ini').html(mon_ini);
+    $('.mon_fin').html(mon_fin);
+
+    $("#prev1").hide();
+    $("#prev2").hide();
+    $("#prev3").hide();
+    $("#prev4").show();
+    $("#prev_bono_"+tipoprev).show();
+
+}
+
 $(document).on("click","#btnprevbono", function(){
     OcultarPrev();
     let tipoprev = $('#combo_prev_bono').val();
@@ -3349,7 +3910,6 @@ $(document).on("click","#btnprevbono", function(){
     $("#prev4").show();
     $("#prev_bono_"+tipoprev).show();
 
-    //console.log(tipoprev);
 });
 
 
@@ -3533,6 +4093,7 @@ function PrevCertificado(e) {
         let dpto1 = $('#dpto_emp'+ e).val();
         let logos = $('#logo_nombre'+ e).val();
         let firm = $('#firmante_emp'+ e).val();
+        let ruc = $('#ruc_emp'+ e).val();
         let fecha1 = new Date(fechai);
         let fecha2 = new Date(fechaf);
         let fecha1num = moment(fecha1).format('DD-MM-YYYY');
@@ -3547,6 +4108,7 @@ function PrevCertificado(e) {
         $('.hasta_imp').html(fecha_emi.toLocaleDateString("es-ES", options).toUpperCase());
         $('.desde_imp_num').html(fecha1num);
         $('.hasta_imp_num').html(fecha2num);
+        $('.ruc_imp').html(ruc);
         $('.lugardia').html(dpto1+", "+fecha_emi.toLocaleDateString("es-ES", options).toUpperCase());
         $('.desde_imp_low').html(fecha1.toLocaleDateString("es-ES", options));
         $('.hasta_imp_low').html(fecha2.toLocaleDateString("es-ES", options));
@@ -4091,7 +4653,7 @@ function PrevRenuncia(e) {
     let fecha_ff = new Date (fecha_fin);
 
 
-    if(fecha_emi >= fecha_ff && fecha != "" ){
+    if(fecha_emi <= fecha_ff && fecha != "" ){
         OcultarPrev();
         $('#prev5').show();
         let tipoprev = $('#select_renuncia'+e).val();
@@ -4595,6 +5157,23 @@ function generarFechaAleatoria() {
 
     // Devolver la fecha formateada
     return fechaFormateada;
+}
+
+
+function ValidarFecha(input){
+    var valorInput = $(input).val();
+    var fechaSeleccionada = new Date(valorInput);
+    var diaSemana = fechaSeleccionada.getDay();
+
+    // Eliminar los estilos y el mensaje de error antes de hacer la nueva validación
+    $(input).removeClass('input-error');
+    $(input).next('.error-msg').text('');
+
+    if (diaSemana === 5 || diaSemana === 6) {
+        // Agregar clase de estilo y mensaje de error
+        $(input).addClass('input-error');
+        $(input).next('.error-msg').text('Fecha Invalida');
+    }
 }
 
 init();

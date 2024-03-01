@@ -50,7 +50,7 @@
             break;
 
         case 'consulta_dni_nac' :  
-            $token = '44fe0c88-cedf-43d5-8639-d4955d2477d6';
+            $token = 'dc81ccc3-4328-4ca1-990d-eab045df8bd3';
             //$dni    =   $_POST['dni'];
             $dni    =   $_POST['dni'];
             // Iniciar llamada a API
@@ -102,9 +102,7 @@
 
         case 'consulta_api_sunat':
             $ruc  =   $_POST['ruc'];
-            $arrayDeTokens = ['e5c6eb06cfbd9a847b629a6f73c7d0','558e4b82557bdfe02a003b093e4f05', 'd5c29544dd9cbbd64ca310b1694d7d','c0caa831bfff8c97dd6ea9a44af8c3',
-                            '1b265d874614637cc032824e934734','aa6380f3c414240d4940baaca57763','e4c40b08e249560150327f1c50f0e0']; // Agrega todos tus tokens
-
+            $arrayDeTokens = ['398e790a91523c8c9c53b02832f3a3', '968d336a642abdaf2e83f455daa4f8' ,'e89e2fa3bf350d6073f7eeb3c41095', '021d33b92bd8bc8fbe6370e88c6f26', '6517c9f91114f647c5583e9ee23d09']; // Agrega todos tus tokens
             foreach ($arrayDeTokens as $token) {
                 $curl = curl_init();
                 
@@ -251,6 +249,9 @@
                     $sub_array['f_baja_act'] = $row["f_baja_act"];
                     $sub_array['estado_emp'] = $row["estado_emp"];
                     $sub_array['habido_emp'] = $row["habido_emp"];
+                    $sub_array['busqueda'] = $row["busqueda"];
+                    $sub_array['fecha_busqueda'] = $row["fecha_busqueda"];
+                    $sub_array['cant_mes'] = $row["cant_mes"];
                     /*$sub_array['at_ss_1'] = $row["at_ss_1"];
                     $sub_array['at_fondo_juvi_1'] = $row["at_fondo_juvi_1"];
                     $sub_array['at_pro_desocup_1'] = $row["at_pro_desocup_1"];
@@ -299,6 +300,9 @@
                     $sub_array['f_baja_act'] = $row["f_baja_act"];
                     $sub_array['estado_emp'] = $row["estado_emp"];
                     $sub_array['habido_emp'] = $row["habido_emp"];
+                    $sub_array['busqueda'] = $row["busqueda"];
+                    $sub_array['fecha_busqueda'] = $row["fecha_busqueda"];
+                    $sub_array['cant_mes'] = $row["cant_mes"];
                     
                     $data[] = $sub_array;
                 }

@@ -639,7 +639,6 @@
                                             <button type="button" id="btnimprimir" name="btnimprimir"  class="btn btn-info">Imprimir Certificado</button>
                                         </div> form-layout-footer -->
                                 </div>
-
                                 <div class="prevs_certificado" id="prev1">
                                     <div class="container prev_certificado" style="max-width: 1020px !important;" id="prev_certificado_p1">
                                         <div class="card" style="margin-top: 60px;">
@@ -654,6 +653,7 @@
                                                 <div class="d-flex justify-content-between mb-5 divimagen" >
                                                     <div  style="text-align: right !important;">
                                                         <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                        <p class="ruc_imp" style="color: #FF0000;font-weight: 600;font-size: 16px; text-align:left; !important">XXXXXX</p>
                                                     </div>
                                                     <div class="div_logo_pdf" style="text-align: right !important;">
                                                         <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
@@ -725,6 +725,7 @@
                                                 <div class="d-flex justify-content-between mb-5 divimagen" >
                                                     <div  style="text-align: right !important;">
                                                         <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                        <p class="ruc_imp" style="color: #FF0000;font-weight: 600;font-size: 16px; text-align:left; !important">XXXXXX</p>
                                                     </div>
                                                     <div class="div_logo_pdf" style="text-align: right !important;">
                                                         <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
@@ -791,6 +792,7 @@
                                                 <div class="d-flex justify-content-between mb-5 divimagen" >
                                                     <div  style="text-align: right !important;">
                                                         <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                        <p class="ruc_imp" style="color: #FF0000;font-weight: 600;font-size: 16px; text-align:left; !important">XXXXXX</p>
                                                     </div>
                                                     <div class="div_logo_pdf" style="text-align: right !important;">
                                                         <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
@@ -857,6 +859,7 @@
                                                 <div class="d-flex justify-content-between mb-5 divimagen" >
                                                     <div  style="text-align: right !important;">
                                                         <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                        <p class="ruc_imp" style="color: #FF0000;font-weight: 600;font-size: 16px; text-align:left; !important">XXXXXX</p>
                                                     </div>
                                                     <div class="div_logo_pdf" style="text-align: right !important;">
                                                         <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
@@ -924,6 +927,7 @@
                                                 <div class="d-flex justify-content-between mb-5 divimagen" >
                                                     <div  style="text-align: right !important;">
                                                         <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                        <p class="ruc_imp" style="color: #FF0000;font-weight: 600;font-size: 16px; text-align:left; !important">XXXXXX</p>
                                                     </div>
                                                     <div class="div_logo_pdf" style="text-align: right !important;">
                                                         <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
@@ -989,6 +993,7 @@
                                                 <div class="d-flex justify-content-between mb-5 divimagen" >
                                                     <div  style="text-align: right !important;">
                                                         <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                        <p class="ruc_imp" style="color: #FF0000;font-weight: 600;font-size: 16px; text-align:left; !important">XXXXXX</p>
                                                     </div>
                                                     <div class="div_logo_pdf" style="text-align: right !important;">
                                                         <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
@@ -1068,6 +1073,7 @@
                                                 <div class="d-flex justify-content-between mb-5 divimagen" >
                                                     <div  style="text-align: right !important;">
                                                         <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                        <p class="ruc_imp" style="color: #FF0000;font-weight: 600;font-size: 16px; text-align:left; !important">XXXXXX</p>
                                                     </div>
                                                     <div class="div_logo_pdf" style="text-align: right !important;">
                                                         <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
@@ -1134,6 +1140,7 @@
                                                 <div class="d-flex justify-content-between mb-5 divimagen" >
                                                     <div  style="text-align: right !important;">
                                                         <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                        <p class="ruc_imp" style="color: #FF0000;font-weight: 600;font-size: 16px; text-align:left; !important">XXXXXX</p>
                                                     </div>
                                                     <div class="div_logo_pdf" style="text-align: right !important;">
                                                         <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
@@ -1195,6 +1202,7 @@
                                                 <div class="d-flex justify-content-between mb-5 divimagen" >
                                                     <div  style="text-align: right !important;">
                                                         <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                        <p class="ruc_imp" style="color: #FF0000;font-weight: 600;font-size: 16px; text-align:left; !important">XXXXXX</p>
                                                     </div>
                                                     <div class="div_logo_pdf" style="text-align: right !important;">
                                                         <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
@@ -1255,6 +1263,7 @@
                                                 <div class="d-flex justify-content-between mb-5 divimagen" >
                                                     <div  style="text-align: right !important;">
                                                         <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                        <p class="ruc_imp" style="color: #FF0000;font-weight: 600;font-size: 16px; text-align:left; !important">XXXXXX</p>
                                                     </div>
                                                     <div class="div_logo_pdf" style="text-align: right !important;">
                                                         <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
@@ -1320,6 +1329,7 @@
                                                 <div class="d-flex justify-content-between mb-5 divimagen" >
                                                     <div  style="text-align: right !important;">
                                                         <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                        <p class="ruc_imp" style="color: #FF0000;font-weight: 600;font-size: 16px; text-align:left; !important">XXXXXX</p>
                                                     </div>
                                                     <div class="div_logo_pdf" style="text-align: right !important;">
                                                         <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
@@ -1384,6 +1394,7 @@
                                                 <div class="d-flex justify-content-between mb-5 divimagen" >
                                                     <div  style="text-align: right !important;">
                                                         <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                        <p class="ruc_imp" style="color: #FF0000;font-weight: 600;font-size: 16px; text-align:left; !important">XXXXXX</p>
                                                     </div>
                                                     <div class="div_logo_pdf" style="text-align: right !important;">
                                                         <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
@@ -1444,6 +1455,7 @@
                                                 <div class="d-flex justify-content-between mb-5 divimagen" >
                                                     <div  style="text-align: right !important;">
                                                         <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                        <p class="ruc_imp" style="color: #FF0000;font-weight: 600;font-size: 16px; text-align:left; !important">XXXXXX</p>
                                                     </div>
                                                     <div class="div_logo_pdf" style="text-align: right !important;">
                                                         <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
@@ -1516,6 +1528,7 @@
                                                 <div class="d-flex justify-content-between mb-5 divimagen" >
                                                     <div  style="text-align: right !important;">
                                                         <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                        <p class="ruc_imp" style="color: #FF0000;font-weight: 600;font-size: 16px; text-align:left; !important">XXXXXX</p>
                                                     </div>
                                                     <div class="div_logo_pdf" style="text-align: right !important;">
                                                         <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
@@ -1561,6 +1574,8 @@
                                                     <br>
                                                     <div class="text-center">
                                                         <div style="text-align: justify !important;">
+                                                            <p style="color: #000;font-weight: 600;font-size: 16px;">A SOLICITUD DEL INTERESADO, SE EXTIENDE LA CONSTANCIA PARA EL USO QUE EL, LE PUEDA DAR.</p>
+                                                            <br>
                                                             <p style="color: #000;font-weight: 600;font-size: 16px;">Se le extiende este documento para los fines que le convenga.</p>
                                                         </div>
                                                     </div>
@@ -1596,6 +1611,7 @@
                                                 <div class="d-flex justify-content-between mb-5 divimagen" >
                                                     <div  style="text-align: right !important;">
                                                         <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                        <p class="ruc_imp" style="color: #FF0000;font-weight: 600;font-size: 16px; text-align:left; !important">XXXXXX</p>
                                                     </div>
                                                     <div class="div_logo_pdf" style="text-align: right !important;">
                                                         <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
@@ -1656,6 +1672,7 @@
                                                 <div class="d-flex justify-content-between mb-5 divimagen" >
                                                     <div  style="text-align: right !important;">
                                                         <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                        <p class="ruc_imp" style="color: #FF0000;font-weight: 600;font-size: 16px; text-align:left; !important">XXXXXX</p>
                                                     </div>
                                                     <div class="div_logo_pdf" style="text-align: right !important;">
                                                         <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
@@ -1721,6 +1738,7 @@
                                                 <div class="d-flex justify-content-between mb-5 divimagen" >
                                                     <div  style="text-align: right !important;">
                                                         <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                        <p class="ruc_imp" style="color: #FF0000;font-weight: 600;font-size: 16px; text-align:left; !important">XXXXXX</p>
                                                     </div>
                                                     <div class="div_logo_pdf" style="text-align: right !important;">
                                                         <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
@@ -1758,7 +1776,6 @@
                                                             <p class="lugardia" style="color: #000;font-weight: 600;font-size: 18px;"></p>
                                                         </div>
                                                     </div>
-                                                   
                                                     <br><br><br><br>
                                                     <div class="text-center">
                                                         <div style="text-align: center !important;">
@@ -1785,6 +1802,7 @@
                                                 <div class="d-flex justify-content-between mb-5 divimagen" >
                                                     <div  style="text-align: right !important;">
                                                         <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                        <p class="ruc_imp" style="color: #FF0000;font-weight: 600;font-size: 16px; text-align:left; !important">XXXXXX</p>
                                                     </div>
                                                     <div class="div_logo_pdf" style="text-align: right !important;">
                                                         <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
@@ -1855,6 +1873,7 @@
                                                 <div class="d-flex justify-content-between mb-5 divimagen" >
                                                     <div  style="text-align: right !important;">
                                                         <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                        <p class="ruc_imp" style="color: #FF0000;font-weight: 600;font-size: 16px; text-align:left; !important">XXXXXX</p>
                                                     </div>
                                                     <div class="div_logo_pdf" style="text-align: right !important;">
                                                         <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
@@ -1916,6 +1935,7 @@
                                                 <div class="d-flex justify-content-between mb-5 divimagen" >
                                                     <div  style="text-align: right !important;">
                                                         <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                        <p class="ruc_imp" style="color: #FF0000;font-weight: 600;font-size: 16px; text-align:left; !important">XXXXXX</p>
                                                     </div>
                                                     <div class="div_logo_pdf" style="text-align: right !important;">
                                                         <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
@@ -1975,6 +1995,7 @@
                                                 <div class="d-flex justify-content-between mb-5 divimagen" >
                                                     <div  style="text-align: right !important;">
                                                         <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                        <p class="ruc_imp" style="color: #FF0000;font-weight: 600;font-size: 16px; text-align:left; !important">XXXXXX</p>
                                                     </div>
                                                     <div class="div_logo_pdf" style="text-align: right !important;">
                                                         <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
@@ -2034,6 +2055,7 @@
                                                 <div class="d-flex justify-content-between mb-5 divimagen" >
                                                     <div  style="text-align: right !important;">
                                                         <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                        <p class="ruc_imp" style="color: #FF0000;font-weight: 600;font-size: 16px; text-align:left; !important">XXXXXX</p>
                                                     </div>
                                                     <div class="div_logo_pdf" style="text-align: right !important;">
                                                         <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
@@ -2093,6 +2115,7 @@
                                                 <div class="d-flex justify-content-between mb-5 divimagen" >
                                                     <div  style="text-align: right !important;">
                                                         <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                        <p class="ruc_imp" style="color: #FF0000;font-weight: 600;font-size: 16px; text-align:left; !important">XXXXXX</p>
                                                     </div>
                                                     <div class="div_logo_pdf" style="text-align: right !important;">
                                                         <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
@@ -2152,6 +2175,7 @@
                                                 <div class="d-flex justify-content-between mb-5 divimagen" >
                                                     <div  style="text-align: right !important;">
                                                         <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                        <p class="ruc_imp" style="color: #FF0000;font-weight: 600;font-size: 16px; text-align:left; !important">XXXXXX</p>
                                                     </div>
                                                     <div class="div_logo_pdf" style="text-align: right !important;">
                                                         <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">
@@ -2213,6 +2237,7 @@
                                                 <div class="d-flex justify-content-between mb-5 divimagen" >
                                                     <div  style="text-align: right !important;">
                                                         <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
+                                                        <p class="ruc_imp" style="color: #FF0000;font-weight: 600;font-size: 16px; text-align:left; !important">XXXXXX</p>
                                                     </div>
                                                     <div class="div_logo_pdf" style="text-align: right !important;">
                                                         <img class="img_logo" src="" alt="LOGO" id="" width="80px" height="48px">

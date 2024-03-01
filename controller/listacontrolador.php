@@ -1,8 +1,10 @@
 <?php 
     require_once("../config/conexion.php");
     require_once("../models/Lista.php");
+    require_once("../models/Empresa.php");
 
     $lista = new Lista();
+    $empresa = new Empresa();
 
     switch($_GET["op"]){
 
@@ -130,6 +132,18 @@
 
             $lista_id = isset($_POST["lista"]) ? $_POST["lista"] : '';
 
+            $datos_derecha = $_POST["datos_der"];
+
+            //Array para insertar empresa ya utilizada
+            for ($i = 1; $i <= 5; $i++) {
+                $ruc_emp = isset($_POST["ruc_emp$i"]) ? $_POST["ruc_emp$i"] : '';
+                if (!empty($ruc_emp)) {
+                    //$ruc_emp_array[] = $ruc_emp;
+                    $empresa->update_empresa_usada($ruc_emp);
+                }
+            }
+
+
 
             if(empty($_POST["lista"])){
                 if(is_array($datos)==true and count($datos)==0){
@@ -139,7 +153,7 @@
                         $f_inicio_2, $f_final_2, $tipo_2, $base_2, $estado_2, $condicion_2, $ruc_emp2, $cargoc2, $firmante2, $logo2,
                         $f_inicio_3, $f_final_3, $tipo_3, $base_3, $estado_3, $condicion_3, $ruc_emp3, $cargoc3, $firmante3, $logo3,
                         $f_inicio_4, $f_final_4, $tipo_4, $base_4, $estado_4, $condicion_4, $ruc_emp4, $cargoc4, $firmante4, $logo4,
-                        $f_inicio_5, $f_final_5, $tipo_5, $base_5, $estado_5, $condicion_5, $ruc_emp5, $cargoc5, $firmante5, $logo5,
+                        $f_inicio_5, $f_final_5, $tipo_5, $base_5, $estado_5, $condicion_5, $ruc_emp5, $cargoc5, $firmante5, $logo5, $datos_derecha
                     );
                     //echo(1);
                     $result = $datos_lt[0]["id"];
@@ -151,7 +165,7 @@
                         $f_inicio_2, $f_final_2, $tipo_2, $base_2, $estado_2, $condicion_2, $ruc_emp2, $cargoc2, $firmante2, $logo2,
                         $f_inicio_3, $f_final_3, $tipo_3, $base_3, $estado_3, $condicion_3, $ruc_emp3, $cargoc3, $firmante3, $logo3,
                         $f_inicio_4, $f_final_4, $tipo_4, $base_4, $estado_4, $condicion_4, $ruc_emp4, $cargoc4, $firmante4, $logo4,
-                        $f_inicio_5, $f_final_5, $tipo_5, $base_5, $estado_5, $condicion_5, $ruc_emp5, $cargoc5, $firmante5, $logo5, $lista_id
+                        $f_inicio_5, $f_final_5, $tipo_5, $base_5, $estado_5, $condicion_5, $ruc_emp5, $cargoc5, $firmante5, $logo5,  $datos_derecha, $lista_id
                     );
                
                 echo $lista_id;
@@ -164,6 +178,7 @@
             if(is_array($datos)==true and count($datos)>0){
                 foreach($datos as $row){
                     $output["id"] = $row["id"];
+                    $output["datos_derecha"] = $row["datos_derecha"];
                     $output["id_afiliado"] = $row["id_afiliado"];
                     $output["num_doc"] = $row["num_doc"];
                     $output["cantidad"] = $row["cantidad"];
@@ -229,6 +244,7 @@
             if(is_array($datos)==true and count($datos)>0){
                 foreach($datos as $row){
                     $output["id"] = $row["id"];
+                    $output["datos_derecha"] = $row["datos_derecha"];
                     $output["id_afiliado"] = $row["id_afiliado"];
                     $output["tipo_doc"] = $row["tipo_doc"];
                     $output["nombres"] = $row["nombres"];

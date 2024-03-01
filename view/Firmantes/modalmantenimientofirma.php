@@ -43,7 +43,7 @@
                         <div class="row mg-t-20">
                             <label class="col-sm-4 form-control-label">Fecha Fin: <span class="tx-danger">*</span></label>
                             <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-                                <input type="date" class="form-control" id="firma_f_fin" name="firma_f_fin" placeholder="" required>
+                                <input type="date" class="form-control" id="firma_f_fin" name="firma_f_fin" placeholder="" >
                             </div>
                         </div>
                         <div class="row mg-t-20">

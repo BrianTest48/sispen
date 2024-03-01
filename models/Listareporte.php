@@ -27,7 +27,7 @@
                 $fech2, $fech_final_2, $tipo_2, $base_2, $estado_2, $condicion_2, $ruc2, $cargo2, $firmante2, $logo2,
                 $fech3, $fech_final_3, $tipo_3, $base_3, $estado_3, $condicion_3, $ruc3, $cargo3, $firmante3, $logo3,
                 $fech4, $fech_final_4, $tipo_4, $base_4, $estado_4, $condicion_4, $ruc4, $cargo4, $firmante4, $logo4,
-                $fech5, $fech_final_5, $tipo_5, $base_5, $estado_5, $condicion_5, $ruc5, $cargo5, $firmante5, $logo5)
+                $fech5, $fech_final_5, $tipo_5, $base_5, $estado_5, $condicion_5, $ruc5, $cargo5, $firmante5, $logo5, $datosderecha)
             {
 
             $conectar= parent::conexion();
@@ -45,10 +45,10 @@
                 fech2, fech_final_2, tipo_2, base_2, estado_2, condicion_2, ruc2, cargo2, firmante2, logo2, 
                 fech3, fech_final_3, tipo_3, base_3, estado_3, condicion_3, ruc3, cargo3, firmante3, logo3, 
                 fech4, fech_final_4, tipo_4, base_4, estado_4, condicion_4, ruc4, cargo4, firmante4, logo4, 
-                fech5, fech_final_5, tipo_5, base_5, estado_5, condicion_5, ruc5, cargo5, firmante5, logo5, fech_crea, fech_modi, fech_elim, estado) VALUES (
+                fech5, fech_final_5, tipo_5, base_5, estado_5, condicion_5, ruc5, cargo5, firmante5, logo5, datos_derecha, fech_crea, fech_modi, fech_elim, estado) VALUES (
                   NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, ?, 
                   ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 
-                  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, now(), NULL, NULL, 1);";
+                  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, now(), NULL, NULL, 1);";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1,$id_afiliado);
             $sql->bindValue(2,$num_doc);
@@ -165,6 +165,7 @@
             $sql->bindValue(113,$cargo5);
             $sql->bindValue(114,$firmante5);
             $sql->bindValue(115,$logo5);
+            $sql->bindValue(116,$datosderecha);
             $sql->execute();
 
             $sql1 = "SELECT last_insert_id() AS 'id'; ";
@@ -186,7 +187,7 @@
                 $fech2, $fech_final_2, $tipo_2, $base_2, $estado_2, $condicion_2, $ruc2, $cargo2, $firmante2, $logo2,
                 $fech3, $fech_final_3, $tipo_3, $base_3, $estado_3, $condicion_3, $ruc3, $cargo3, $firmante3, $logo3,
                 $fech4, $fech_final_4, $tipo_4, $base_4, $estado_4, $condicion_4, $ruc4, $cargo4, $firmante4, $logo4,
-                $fech5, $fech_final_5, $tipo_5, $base_5, $estado_5, $condicion_5, $ruc5, $cargo5, $firmante5, $logo5, $idpension)
+                $fech5, $fech_final_5, $tipo_5, $base_5, $estado_5, $condicion_5, $ruc5, $cargo5, $firmante5, $logo5, $datosderecha, $idpension)
             {
 
             $conectar= parent::conexion();
@@ -279,9 +280,9 @@
                     fech3 = ?,
                     fech_final_3 = ?,
                     tipo_3 = ?,
-                    base_4 = ?,
-                    estado_4 = ?,
-                    condicion_4 = ?,
+                    base_3 = ?,
+                    estado_3 = ?,
+                    condicion_3 = ?,
                     ruc3 = ?,
                     cargo3 = ?,
                     firmante3 = ?,
@@ -289,6 +290,9 @@
                     fech4 = ?,
                     fech_final_4 = ?,
                     tipo_4 = ?,
+                    base_4 = ?,
+                    estado_4 = ?,
+                    condicion_4 = ?,
                     ruc4 = ?,
                     cargo4 = ?,
                     firmante4 = ?,
@@ -304,7 +308,8 @@
                     firmante5 = ?,
                     logo5 = ?,
                     fech_modi = now(),
-                    cantidad_rflx = ?
+                    cantidad_rflx = ?,
+                    datos_derecha = ?
                 WHERE 
                     id = ? AND tipo = ? ;";
             $sql=$conectar->prepare($sql);
@@ -422,8 +427,9 @@
             $sql->bindValue(112,$firmante5);
             $sql->bindValue(113,$logo5);
             $sql->bindValue(114,$cantidad_rflx);
-            $sql->bindValue(115,$idpension);
-            $sql->bindValue(116,$tipo);
+            $sql->bindValue(115,$datosderecha);
+            $sql->bindValue(116,$idpension);
+            $sql->bindValue(117,$tipo);
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }

@@ -20,40 +20,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Iterar sobre los datos y realizar la inserción o actualización en la base de datos
         foreach ($datos_csv as $fila) {
-            $dni = $fila[2]; // Ahora el RUC está en la posición 2 (fila 3), ajusta según tu estructura
-            $ruc = $fila[0];
+            $ruc = $fila[0]; // Ahora el RUC está en la posición 2 (fila 3), ajusta según tu estructura
+            $direc = $fila[1];
 
             // Verificar si el RUC ya existe en la tabla empresas
-            $existe_ruc = $conexion->query("SELECT COUNT(*) as total FROM firmantes WHERE dni = '$dni' AND ruc = '$ruc'");
+            $existe_ruc = $conexion->query("SELECT COUNT(*) as total FROM direccion WHERE ruc = '$ruc' AND direccion = '$direc'");
             $fila_existe = $existe_ruc->fetch_assoc();
 
             if ($fila_existe['total'] > 0) {
                 // Si el RUC ya existe, realizar una actualización
-                $sql = "UPDATE firmantes SET
+                $sql = "UPDATE direccion SET
                     ruc = '{$fila[0]}',
-                    firma_nombre = '{$fila[1]}',
-                    id_cargo = '{$fila[3]}',
-                    fech_inicio = '{$fila[4]}',
-                    fech_fin = '{$fila[5]}',
-                    estado = '{$fila[6]}',
-                    fecha_f = '{$fila[7]}'
-                    WHERE dni = '$dni'";
+                    departamento = '{$fila[2]}',
+                    provincia = '{$fila[3]}',
+                    distrito = '{$fila[4]}'
+                    WHERE direccion = '$direc'";
             } else {
                 // Si el RUC no existe, realizar una inserción
-                $sql = "INSERT INTO firmantes (
-                    id, 
+                $sql = "INSERT INTO direccion (
+                    id_dir, 
                     ruc, 
-                    firma_nombre, 
-                    dni, 
-                    id_cargo, 
-                    fech_inicio, 
-                    fech_fin, 
-                    estado, 
-                    fecha_f, 
-                    fech_crea, 
-                    fech_modi, 
-                    fech_elim, 
-                    est
+                    direccion, 
+                    departamento, 
+                    provincia, 
+                    distrito
                     
                 ) VALUES (
                     NULL,
@@ -61,14 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     '{$fila[1]}',
                     '{$fila[2]}',
                     '{$fila[3]}',
-                    '{$fila[4]}',
-                    '{$fila[5]}',
-                    '{$fila[6]}',
-                    '{$fila[7]}',
-                    now(),
-                    NULL,
-                    NULL,
-                    '1'
+                    '{$fila[4]}'
                 )";
             }
 

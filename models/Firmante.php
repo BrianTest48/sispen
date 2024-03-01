@@ -130,7 +130,8 @@
             $sql = "SELECT tf.id, tf.ruc, tf.dni,tf.firma_nombre, tc.nombre, DATE_FORMAT(tf.fech_inicio, '%e-%c-%Y') as fech_inicio, DATE_FORMAT( tf.fech_fin, '%e-%c-%Y') as fech_fin,  YEAR(tf.fech_inicio) as anio_inicio,  YEAR(tf.fech_fin) as anio_fin, tf.estado, DATE_FORMAT(tf.fecha_f, '%e-%c-%Y') AS fecha_f FROM firmantes as tf 
                     LEFT JOIN cargos as tc 
                     ON tf.id_cargo=tc.id 
-                    WHERE tf.est = 1 AND tf.ruc = ? ;";
+                    WHERE tf.est = 1 AND tf.ruc = ? 
+                    GROUP BY tf.firma_nombre;";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1,$ruc);
             $sql->execute();

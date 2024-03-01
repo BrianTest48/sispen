@@ -9,6 +9,15 @@
             return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
         }
 
+        public function get_empresa_utilizadas(){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT * FROM empresas WHERE est = 1 AND busqueda = 1;";
+            $sql=$conectar->prepare($sql);
+            $sql->execute();
+            return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+        }
+
         public function get_empresa_x_id($id){
             $conectar= parent::conexion();
             parent::set_names();
@@ -142,6 +151,50 @@
             $sql->bindValue(9,$condicion);
             $sql->bindValue(10,$emp_ruc);
 
+            $sql->execute();
+            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function update_empresa_usada($emp_ruc){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="UPDATE empresas
+                SET
+                    busqueda = 1,
+                    fecha_busqueda = now(),
+                    fech_modi=now()
+                WHERE
+                    ruc = ?;";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1,$emp_ruc);
+            $sql->execute();
+            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function update_empresa_restart($emp_ruc){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="UPDATE empresas
+                SET
+                    busqueda = 0,
+                    fecha_busqueda = NULL,
+                    fech_modi=now()
+                WHERE
+                    ruc = ?;";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1,$emp_ruc);
+            $sql->execute();
+            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function update_empresa_meses($cant){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="UPDATE empresas
+                SET
+                    cant_mes = ? ;";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1,$cant);
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
