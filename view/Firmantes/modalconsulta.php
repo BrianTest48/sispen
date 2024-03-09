@@ -22,7 +22,7 @@
                     </div>
                     <br><br>
                     <div class="row" id="div_response">
-                        <h4>Representantes Legales </h4>
+                        <h4>Representantes Legales - Local </h4>
                         <div class="col-12">
                             <table class="table table-sm">
                                 <thead>

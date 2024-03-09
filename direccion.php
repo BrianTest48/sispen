@@ -19,7 +19,8 @@ $(document).ready(function(){
         var formData = new FormData($("#formulario")[0]);
         
         $.ajax({
-            url: "./controller/procesar_csv_direccion.php", // Reemplaza "tu_controlador.php" con la URL de tu controlador
+            //url: "./controller/procesar_csv_direccion.php",
+            url: "./controller/procesar_csv_direccion_excel.php",
             type: "POST",
             data: formData,
             processData: false,

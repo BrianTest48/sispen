@@ -97,6 +97,7 @@ $phpWord->addParagraphStyle('text-just', array('alignment' => Jc::BOTH));
 
 
 $section->addText($nombre_emp,'font-lg','text-left');
+$section->addText($ruc,'font-sm','text-left');
 $section->addTextBreak(4);
 $section->addText('CERTIFICADO LABORAL','font-lg-negrita','text-center');
 $section->addTextBreak(1);

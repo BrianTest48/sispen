@@ -299,7 +299,9 @@ function CargarCSV(){
 
 function BuscarRuc(){
     $('#loader').show();
-    let ruc_emp = $('#int_ruc').val();
+    let texto = $('#int_ruc').val();
+
+    let ruc_emp = texto.trim();
 
     if(ruc_emp != ""){
         //Ajax para mostrar Datos de Firmantes de la BD Actual

@@ -84,6 +84,7 @@ $phpWord->addParagraphStyle('indtStyle-right', array('align'=>'right','indentati
 //$section->addText('B.S.013-72-','font-sm','text-right');
 //$section->addText('RAZON SOCIAL: DE OSMA ELIAS FELIPE','font-u-lg','text-center');
 $section->addText($nombre_emp,'font-lg','text-left');
+$section->addText($ruc,'font-sm','text-left');
 
 $section->addTextBreak(4);
 $section->addText('C E R T I F I C A D O     D E     T R A B A J O','font-lg-negrita','text-center');

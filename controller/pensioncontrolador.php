@@ -102,7 +102,7 @@
 
         case 'consulta_api_sunat':
             $ruc  =   $_POST['ruc'];
-            $arrayDeTokens = ['398e790a91523c8c9c53b02832f3a3', '968d336a642abdaf2e83f455daa4f8' ,'e89e2fa3bf350d6073f7eeb3c41095', '021d33b92bd8bc8fbe6370e88c6f26', '6517c9f91114f647c5583e9ee23d09']; // Agrega todos tus tokens
+            $arrayDeTokens = ['db65dd03fe090358a06cc424779bfb', '968d336a642abdaf2e83f455daa4f8' ,'e89e2fa3bf350d6073f7eeb3c41095', '021d33b92bd8bc8fbe6370e88c6f26', '6517c9f91114f647c5583e9ee23d09']; // Agrega todos tus tokens
             foreach ($arrayDeTokens as $token) {
                 $curl = curl_init();
                 
