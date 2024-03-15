@@ -962,13 +962,10 @@ function creardivsempresa(){
                     "<div id='collapse_"+i+"' class='accordion-collapse collapse' aria-labelledby='heading"+i+"' data-bs-parent='#accordionExample'>"+
                         "<div class='accordion-body'>"+
                             "<div class='acer'>"+
-                                "<div class='row justify-content-between mb-1' >"+
+                                "<div class='row justify-content-start mb-1' >"+
                                     "<div class='col-2'>"+
                                         "<button class='btn btn-outline-info btn-icon' onclick='CopiarEmp("+i+")'><div><i class='fa fa-copy'></i></div></button>"+
-                                    "</div>"+
-                                    "<div class='col-2' style='text-align: right'>"+
-                                        "<button class='btn btn-outline-danger btn-icon' onclick='ActualizarEmp("+i+")'><div><i class='fa fa-edit'></i></div></button>"+
-                                    "</div>"+
+                                    "</div>"+  
                                 "</div>"+
                                 "<div class='row' id='fechas' >"+
                                     "<div class='col-12 col-sm-4'>"+
@@ -1006,7 +1003,7 @@ function creardivsempresa(){
                                             "</select>"+
                                         "</div>"+
                                     "</div>"+
-                                    "<div class ='col-12 col-sm-6'>"+
+                                    "<div class ='d-none'>"+
                                         "<div class='form-group'  >"+
                                             "<label class='form-control-label'>Estado </label>"+
                                             "<select class='form-control select2 cbx_tipos' id='cbx_estado_"+i+"' style='width: 100%'>"+
@@ -1018,7 +1015,7 @@ function creardivsempresa(){
                                             "</select>"+
                                         "</div>"+
                                     "</div>"+
-                                    "<div class ='col-12 col-sm-6'>"+
+                                    "<div class ='d-none'>"+
                                         "<div class='form-group'>"+
                                             "<label class='form-control-label'>Condicion </label>"+
                                             "<select class='form-control select2 cbx_tipos' id='cbx_condicion_"+i+"' style='width: 100%'>"+
@@ -1029,8 +1026,13 @@ function creardivsempresa(){
                                         "</div>"+
                                     "</div>"+
                                     "<div class='col-12 col-sm-12'>"+
-                                        "<div class='mb-1 text-center'>"+
-                                            "<button type='button' id='btnmostrarempr_"+i+"' name='btnmostrarempr_"+i+"' onclick='mostrardetalle("+i+", 0, 0)' class='btn btn-info' >Mostrar Documentos</button>"+
+                                        "<div class='row justify-content-center'>"+
+                                            "<div class='col-4'></div><div class='col-4 mb-1 text-center'>"+
+                                                "<button type='button' id='btnmostrarempr_"+i+"' name='btnmostrarempr_"+i+"' onclick='mostrardetalle("+i+", 0, 0)' class='btn btn-info' >Mostrar Documentos</button>"+
+                                            "</div>"+
+                                            "<div class='col-4' style='text-align: right'>"+
+                                                "<button class='btn btn-outline-danger btn-icon' onclick='ActualizarEmp("+i+")'><div><i class='fa fa-edit'></i></div></button>"+
+                                            "</div>"+
                                         "</div>"+
                                     "</div>"+
                                     "<div class='col-12 col-sm-12'>"+
@@ -1748,6 +1750,20 @@ function MostrarCertificados(valor, emp){
             }
             break;
         case 'G':
+            for ( let i = 1; i <= 12; i++){
+                //console.log(i);
+                div_tipo+=  '<option value="g'+i+'">Certificado - G'+i+'</option>';
+            }
+            break;
+        case 'V':
+            for ( let i = 1; i <= 8; i++){
+                //console.log(i);
+                div_tipo+=  '<option value="p'+i+'">Certificado - P'+i+'</option>';
+            }
+            for ( let i = 1; i <= 5; i++){
+                //console.log(i);
+                div_tipo+=  '<option value="m'+i+'">Certificado - M'+i+'</option>';
+            }
             for ( let i = 1; i <= 12; i++){
                 //console.log(i);
                 div_tipo+=  '<option value="g'+i+'">Certificado - G'+i+'</option>';
