@@ -22,7 +22,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             die("Error de conexión a la base de datos: " . $conexion->connect_error);
         }
 
-        // Iterar sobre cada fila del CSV e insertar en la base de datos
         foreach ($datos_csv as $fila) {
 
             // Verificar si el RUC ya existe en la tabla
@@ -31,20 +30,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $result = $conexion->query($sql_check);
             $row = $result->fetch_assoc();
             $count = $row['count'];
-
+        
             if ($count == 0) {
                 // Preparar la consulta de inserción
-                $sql_insert = "INSERT INTO empresas (ind, origen, tipo_emp, ruc, empleador, f_inic_act, f_baja_act, estado_emp, habido_emp est) 
-                               VALUES ('$fila[0]', '1', 'V', '$fila[1]', '$fila[2]', '$fila[3]', '$fila[4]','$fila[5]' ,'$fila[6]', '1')";
-
+                $sql_insert = "INSERT INTO empresas (ind, origen, tipo_emp, ruc, empleador, direccion, dpto, prov, dist, estado_emp, habido_emp, f_inic_act, f_baja_act, est) 
+                               VALUES ('$fila[0]', '1', 'V', '$fila[1]', '$fila[2]', '$fila[3]', '$fila[4]','$fila[5]' ,'$fila[6]','$fila[7]','$fila[8]','$fila[9]','$fila[10]', '1')";
+        
                 // Ejecutar la consulta de inserción
                 if ($conexion->query($sql_insert) !== TRUE) {
                     echo "Error al insertar datos: " . $conexion->error;
                 }
             } else {
-                echo "-"."$ruc";
+                // Preparar la consulta de actualización
+                $sql_update = "UPDATE empresas SET ind = '$fila[0]', origen = '1', tipo_emp = 'V', empleador = '$fila[2]', direccion = '$fila[3]', dpto = '$fila[4]', prov = '$fila[5]', dist = '$fila[6]', estado_emp = '$fila[7]', habido_emp = '$fila[8]', f_inic_act = '$fila[9]', f_baja_act = '$fila[10]', est = '1' WHERE ruc = '$ruc'";
+        
+                // Ejecutar la consulta de actualización
+                if ($conexion->query($sql_update) !== TRUE) {
+                    echo "Error al actualizar datos: " . $conexion->error;
+                }
             }
         }
+        
 
         // Cerrar la conexión
         $conexion->close();

@@ -6237,6 +6237,30 @@ function CerrarFirmanteActualizar() {
     $('#modalactualizar').modal('hide');
 }
 
+function convertirFecha(stringFecha) {
+    // Buscar la primera aparición de la fecha en el string usando una expresión regular
+    var regex = /(\d{2}\/\d{2}\/\d{4})/;
+    var match = stringFecha.match(regex);
+
+    // Verificar si se encontró una fecha
+    if (match) {
+        // Obtener la fecha coincidente
+        var fecha = match[0];
+
+        // Dividir la fecha por el delimitador "/" para obtener día, mes y año
+        var partesFecha = fecha.split('/');
+
+        // Construir la fecha en el formato deseado (DD-MM-YYYY)
+        var fechaFormateada = partesFecha[0] + '-' + partesFecha[1] + '-' + partesFecha[2];
+
+        // Devolver la fecha formateada
+        return fechaFormateada;
+    } else {
+        return "";
+    }
+}
+
+
 function ActualizarEmp(e){
 
     var ruc_emp = $('#lst_emp_'+ e).val();
@@ -6268,10 +6292,7 @@ function ActualizarEmp(e){
                     $('#lb_condicion').html(dat_emp.condicion);
                     $('#lb_fecha_ini').html(dat_emp.inicio_actividades);
 
-                    //Obtener Fecha Fin
-                    let fechaFinEmp = generarFechaAleatoria();
-                    $('#lb_fecha_fin').html(fechaFinEmp);
-
+            
                     //Almacenar datos en mi json;
                     datos_empresa = {
                         razon : dat_emp.razon_social,
@@ -6283,7 +6304,6 @@ function ActualizarEmp(e){
                         estado : dat_emp.estado,
                         condicion : dat_emp.condicion,
                         fecha_inicio : dat_emp.inicio_actividades,
-                        fecha_fin : fechaFinEmp
                     };
 
                     //Mostrar Los Representantes Legales
@@ -6327,6 +6347,45 @@ function ActualizarEmp(e){
                     title: 'Sin Resultados',
                     text: ''
                 });
+            }
+        });
+
+        //Segundo AJAX
+        $.ajax({
+            type: "POST",  // Método de la solicitud
+            url: "../../controller/pensioncontrolador.php?op=consulta_api_sunat_fecha_fin",  // Ruta de tu archivo PHP en el servidor
+            data: { ruc : ruc_emp},  // Datos que se enviarán al servidor
+            dataType: 'json',  // Tipo de datos esperados en la respuesta
+            async : false,
+            success: function(response) {
+                // Manejar la respuesta exitosa del servidor
+                
+                if(response.success == true){
+                    
+                    //console.log(response.data);
+                    //console.log(response.data.estado_contribuyente);
+                    let fecha_cese = convertirFecha(response.data.estado_contribuyente);
+                    //console.log(fecha_cese);
+                    if(fecha_cese != 'ACTIVO'){
+                        $('#lb_fecha_fin').html(fecha_cese);
+                        datos_empresa.fecha_fin = fecha_cese;
+                        
+                    }else {
+                        $('#lb_fecha_fin').html('-');
+                        datos_empresa.fecha_fin = '';
+                    }
+
+                    // $('#div_firmante_actualizar').html(divs);
+                    // $('#modalactualizar').modal('show');
+                    // $('#ruc_empresa_firmante').val(ruc_emp);
+                }else {
+                    // 
+                    console.log("Error al Segundo AJAX");
+                }
+            },
+            error: function(error) {
+            // Manejar errores en la solicitud
+                console.error('Error en la solicitud AJAX:', error);
             }
         });
     }else {

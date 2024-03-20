@@ -20,7 +20,7 @@ $(document).ready(function(){
         
         $.ajax({
             //url: "./controller/procesar_csv_direccion.php",
-            url: "./controller/procesar_csv_direccion_excel.php",
+            url: "./controller/procesar_csv_empresa_excel.php",
             type: "POST",
             data: formData,
             processData: false,

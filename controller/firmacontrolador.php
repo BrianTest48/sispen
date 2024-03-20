@@ -169,7 +169,7 @@
 
             $data = $empresa->update_empresa_api($dataEmp["ruc_emp"], $dataEmp["razon"], $dataEmp["direccion"], $dataEmp["departamento"], $dataEmp["provincia"], $dataEmp["distrito"], cambiarFormatoFecha($dataEmp["fecha_inicio"]), cambiarFormatoFecha($dataEmp["fecha_fin"]), $dataEmp["estado"], $dataEmp["condicion"]);
 
-            echo $ruc_emp;
+            echo $ruc_emp;    
             break;
         case 'update_firmante_sunat':
             $ruc_emp = $_POST["ruc"];
