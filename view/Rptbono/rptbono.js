@@ -4012,9 +4012,9 @@ function CargarHost(a){
                 $('.lugardia_num').html(dpto1 +", "+convertDateFormat(fech1f));
 
                  /* LIQUIDACION */
-                 $('#dias_liqui' + e).val(dias_orcinea);
-                 $('#meses_liqui' + e).val(meses_orcinea);
-                 $('#anios_liqui' + e).val(anios_orcinea);
+                 $('#dias_liqui' + e).val(dias_host);
+                 $('#meses_liqui' + e).val(meses_host);
+                 $('#anios_liqui' + e).val(anios_host);
 
                 $.post("../../controller/pensioncontrolador.php?op=buscar_mes",{fecha : fech1f}, function(data){
                     if(data != ""){

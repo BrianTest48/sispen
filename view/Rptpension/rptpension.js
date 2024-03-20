@@ -3547,10 +3547,13 @@ function CargarHost(a){
                 $('.lugardia_num').html(dpto1 +", "+convertDateFormat(fech1f));
 
                 /* LIQUIDACION */
-                $('#dias_liqui' + e).val(dias_orcinea);
-                $('#meses_liqui' + e).val(meses_orcinea);
-                $('#anios_liqui' + e).val(anios_orcinea);
+                $('#dias_liqui' + e).val(dias_host);
+                $('#meses_liqui' + e).val(meses_host);
+                $('#anios_liqui' + e).val(anios_host);
 
+                // console.log("Dias HOST: "+ dias_host);
+                // console.log("Meses HOST: "+ meses_host);
+                // console.log("ANIOS HOST: "+ anios_host);
 
                 //Asignar valores a TabsEmpresa
                 $('#nom_emp_lab'+ e).html(nombre_emp);
@@ -5265,7 +5268,7 @@ function PrevLiquidacion(e){
         let cargo       = $('#cargo_emp'+ e).val();
         var tipo3 = 0;
 
-            /*CALCULO DEL CUERPO DE AÑOS POR SUELDO */
+        /*CALCULO DEL CUERPO DE AÑOS POR SUELDO */
         let moneda_rm = $('#moneda_emp'+e).val();
         let sueldo_rm = $('#sueldo_emp'+e).val();
         let monto_sld_anio ;  

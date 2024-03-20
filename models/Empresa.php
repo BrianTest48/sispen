@@ -116,9 +116,9 @@
             $sql->bindValue(13,$emp_rep_legal_2);
             $sql->bindValue(14,$emp_dni_b);
             $sql->bindValue(15,$emp_f_inic_rep_leg_2);
-            $sql->bindValue(15,$emp_estado);
-            $sql->bindValue(16,$emp_condicion);
-            $sql->bindValue(17,$emp_id);
+            $sql->bindValue(16,$emp_estado);
+            $sql->bindValue(17,$emp_condicion);
+            $sql->bindValue(18,$emp_id);
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
