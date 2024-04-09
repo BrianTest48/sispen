@@ -880,15 +880,15 @@ function generar(e){
                         $("#cbx_base_"+ i).val(datos["base_"+i]).trigger('change');
                         $('#cbx_estado_'+ i).val(datos["estado_"+i]).trigger('change');
                         $('#cbx_condicion_'+ i).val(datos["condicion_"+i]).trigger('change');
-                        mostrardetalle(i, 0, 0);
+                        //mostrardetalle(i, 0, 0);
+                        BuscarEmp(i);
                         setTimeout(function() {
                             //console.log("Despues de 1 segundo");
-                            mostrardetalle(i, datos["ruc"+i], 1);
                             $("#cargoc"+i).val(datos["cargo"+i]).trigger('change');
                             $("#logo"+i).val(datos["logo"+i]).trigger('change');
                             $("#lst_emp_"+i).val(datos["ruc"+i]).trigger('change');
                             $("#firmante"+i).val(datos["firmante"+i]);     
-                            //console.log(datos["ruc"+i]);
+                            mostrardetalle(i, datos["ruc"+i], 1);
                         }, 600);   
                     }
 
@@ -2428,11 +2428,6 @@ function creardivsempresa(){
                     "<div id='collapse_"+i+"' class='accordion-collapse collapse' aria-labelledby='heading"+i+"' data-bs-parent='#accordionExample'>"+
                         "<div class='accordion-body'>"+
                             "<div class='acer'>"+
-                                "<div class='row justify-content-start mb-1' >"+
-                                    "<div class='col-2'>"+
-                                        "<button class='btn btn-outline-info btn-icon' onclick='CopiarEmp("+i+")'><div><i class='fa fa-copy'></i></div></button>"+
-                                    "</div>"+
-                                "</div>"+
                                 "<div class='row' id='fechas' >"+
                                     "<div class='col-12 col-sm-4'>"+
                                         "<div class='form-group' >"+
@@ -2492,18 +2487,31 @@ function creardivsempresa(){
                                         "</div>"+
                                     "</div>"+
                                     "<div class='col-12 col-sm-12'>"+
-                                        "<div class='mb-1'>"+
-                                            "<div class='row d-flex justify-content-center'>"+
-                                                "<div class='col-lg-2'></div><div class='col-lg-4 text-center'>"+
-                                                    "<button  type='button' id='' name='' class='btn btn-secondary btn-block mg-b-10' onclick='LimpiarCamposEmpresas("+i+")' >Limpiar</button>"+
-                                                "</div>"+
-                                                "<div class='col-lg-4 text-center'>"+
-                                                    "<button  type='button' name='btnmostrarempr_"+i+"' name='btnmostrarempr_"+i+"' onclick='mostrardetalle("+i+", 0, 0)' class='btn btn-info btn-block mg-b-10' >Registrar</button>"+
-                                                "</div>"+
-                                                "<div class='col-2' style='text-align: right'>"+
-                                                    "<button class='btn btn-outline-danger btn-icon' onclick='ActualizarEmp("+i+")'><div><i class='fa fa-edit'></i></div></button>"+
-                                                "</div>"+
+                                        "<div class='row mb-3'>"+
+                                            "<div class='col-lg-3 col-sm-6'>"+
+                                                "<button class='btn btn-outline-info' onclick='CopiarEmp("+i+")' style='width:100%'>"+
+                                                    "<div class='d-flex align-items-center justify-content-center'><i class='fa fa-copy mr-1'></i> Copiar RUC</div>"+
+                                                "</button>"+
                                             "</div>"+
+                                            "<div class='col-lg-3 col-sm-6'>"+
+                                                "<button class='btn btn-outline-info' onclick='CopiarRazSocial("+i+")' style='width:100%'>"+
+                                                    "<div class='d-flex align-items-center justify-content-center'><i class='fa fa-copy mr-1'></i> Copiar Nombre</div>"+
+                                                "</button>"+
+                                            "</div>"+
+                                            "<div class='col-lg-3 col-sm-6'>"+
+                                                "<button class='btn btn-outline-secondary' onclick='BuscarEmp("+i+")' style='width:100%'>"+
+                                                    "<div class='d-flex align-items-center justify-content-center'>"+
+                                                        "<i class='fa fa-search mr-1'></i> Buscar"+
+                                                    "</div>"+
+                                                "</button>"+
+                                            "</div>"+
+                                            "<div class='col-lg-3 col-sm-6'>"+
+                                                "<button class='btn btn-outline-danger' onclick='ActualizarEmp("+i+")' style='width:100%'>"+
+                                                    '<div class="d-flex align-items-center justify-content-center">'+
+                                                    '<i class="fa fa-edit mr-1"></i> Actualizar'+
+                                                    '</div>'+
+                                                '</button>'+
+                                            "</div>"+ 
                                         "</div>"+
                                     "</div>"+
                                     "<div class='col-12 col-sm-12'>"+
@@ -2552,13 +2560,6 @@ function creardivsempresa(){
                                 "<input type='hidden' value='0' id='dias_emp_"+i+"'>"+
                                 "<input type='hidden' value='' id='cant_sueldo_"+i+"'>"+
                                 "<div class='row mb-3 mt-2 '>"+
-                                    "<label for='direc"+i+"' class='col-sm-3 col-form-label'>Dirección:</label>"+
-                                    "<div class='col-sm-8'>"+
-                                        "<input type='text' class='form-control' id='direccion"+i+"' name='direccion"+i+"' readonly>"+
-                                    "</div>"+
-                                    "<div class='col-sm-1' style='padding-left: 0'><button type='button'  id='btn_ver_direccion"+i+"' class='btn btn-outline-primary btn-icon' style='width:100%;'><div><i class='fa fa-search'></i></div></button></div>"+
-                                "</div><!-- row -->"+
-                                "<div class='row mb-3 mt-2 '>"+
                                     "<label for='cargoc"+i+"' class='col-sm-3 col-form-label'>Cargo:</label>"+
                                     "<div class='col-sm-9'>"+
                                         "<select required id='cargoc"+i+"' name='cargoc"+i+"' class='form-control select2' data-placeholder='Seleccione' style='width: 100%' >"+
@@ -2577,6 +2578,13 @@ function creardivsempresa(){
                                     "<div class='col-sm-1' style='padding-left: 0'><button type='button' onclick='MostrarFirmante("+i+")'  id='btn_ver"+i+"' class='btn btn-outline-primary btn-icon' style='width:100%;'><div><i class='fa fa-search'></i></div></button></div>"+
                                 "</div><!-- row -->"+
                                 "<div class='row mb-3 mt-2 '>"+
+                                    "<label for='direc"+i+"' class='col-sm-3 col-form-label'>Dirección:</label>"+
+                                    "<div class='col-sm-8'>"+
+                                        "<input type='text' class='form-control' id='direccion"+i+"' name='direccion"+i+"' readonly>"+
+                                    "</div>"+
+                                    "<div class='col-sm-1' style='padding-left: 0'><button type='button'  id='btn_ver_direccion"+i+"' class='btn btn-outline-primary btn-icon' style='width:100%;'><div><i class='fa fa-search'></i></div></button></div>"+
+                                "</div><!-- row -->"+
+                                "<div class='row mb-3 mt-2 '>"+
                                     "<label for='logo"+i+"' class='col-sm-3 col-form-label'>Logo:</label>"+
                                     "<div class='col-sm-9'>"+
                                         "<select required id='logo"+i+"' name='logo"+i+"' class='form-control select2' data-placeholder='Seleccione' style='width: 100%' onchange='ListarLogo("+i+")' >"+  
@@ -2586,6 +2594,18 @@ function creardivsempresa(){
                                         "<img id='logo_img_"+i+"' src='../../assets/img/no-fotos.png' alt='' width='100px' height='60px'>"+
                                     "</div>"+
                                 "</div><!-- row -->"+
+                                "<div class='col-12 col-sm-12'>"+
+                                    "<div class='mb-1'>"+
+                                        "<div class='row d-flex justify-content-center'>"+
+                                            "<div class='col-lg-4 text-center'>"+
+                                                "<button  type='button' id='' name='' class='btn btn-secondary btn-block mg-b-10' onclick='LimpiarCamposEmpresas("+i+")' >Limpiar</button>"+
+                                            "</div>"+
+                                            "<div class='col-lg-4 text-center'>"+
+                                                "<button  type='button' name='btnmostrarempr_"+i+"' name='btnmostrarempr_"+i+"' onclick='mostrardetalle("+i+", 0, 0)' class='btn btn-info btn-block mg-b-10' >Registrar</button>"+
+                                            "</div>"+
+                                        "</div>"+
+                                    "</div>"+
+                                "</div>"+
                             "</div><!-- form-layout -->"+
                         "</div>"+
                     "</div>"+
@@ -2618,11 +2638,40 @@ function CopiarEmp(a) {
         timer: 1500
     });
 }
+
+function CopiarRazSocial(a) {
+    // Obtén el contenido del elemento usando jQuery
+    let texto = $('select[name="lst_emp_'+a+'"] option:selected').text();
+    // Crea un elemento de textarea temporal
+    var textarea = document.createElement('textarea');
+    textarea.value = texto;
+    // Agrega el textarea al documento
+    document.body.appendChild(textarea);
+    // Selecciona el contenido del textarea
+    textarea.select();
+    // Copia el contenido al portapapeles
+    document.execCommand('copy');
+    // Elimina el textarea temporal
+    document.body.removeChild(textarea);
+    // Muestra una alerta de SweetAlert indicando que el texto se ha copiado
+    Swal.fire({
+        icon: 'success',
+        title: 'Texto copiado al portapapeles',
+        text: texto,
+        showConfirmButton: false, // Oculta el botón de confirmación
+        timer: 1500
+    });
+}
+
 function BuscarEmp(a){
 
     let fech1 = $('#f_inicio_'+a).val();
     let fech_final_1 =$('#f_final_'+a).val();
     var fnac = $('#txtdate').val();
+    let cbx_tipo = $('#cbx_tipo_'+ a).val();
+    let cbx_base = $('#cbx_base_'+ a).val();
+    let cbx_estado = $('#cbx_estado_'+ a).val();
+    let cbx_condicion = $('#cbx_condicion_'+ a).val();
     let manana = moment(fnac).add(16, 'years').format('YYYY-MM-DD');
 
     
@@ -2642,10 +2691,11 @@ function BuscarEmp(a){
         if(fechai >= fechanac){
             if(fechai < fechaf){
 
-                $.post("../../controller/pensioncontrolador.php?op=combo",{txtdateinicio: fech1 , txtdatefin: fech_final_1}, function(data){
+                $.post("../../controller/pensioncontrolador.php?op=combo",{txtdateinicio: fech1 , txtdatefin: fech_final_1, tipo : cbx_tipo, base : cbx_base, estado : cbx_estado, condicion : cbx_condicion}, function(data){
                     if(data == ""){
                         console.log("NO EXISTE DATA");
                     }else {
+                        //console.log(data);
                         $("#lst_emp_"+a).html(data);
                     }
                 });
@@ -2654,9 +2704,9 @@ function BuscarEmp(a){
                 Swal.fire({
                     position: 'center',
                     icon: 'info',
-                    title: 'La fecha debe ser mayor o igual a la fecha inicio',
+                    title: 'Introduzca las fechas correctas',
                     showConfirmButton: false,
-                    timer:2500
+                    timer:1500
                 });
             }
         }else {
@@ -2665,7 +2715,7 @@ function BuscarEmp(a){
                 icon: 'info',
                 title: 'La fecha de nacimiento debe ser mayor a la fecha de inicio ',
                 showConfirmButton: false,
-                timer:2500
+                timer:1500
             });
         }
     }else {
@@ -2674,7 +2724,7 @@ function BuscarEmp(a){
             icon: 'info',
             title: 'Introduzca fechas de inicio y fin ',
             showConfirmButton: false,
-            timer:2500
+            timer:1500
         });
     }
 
@@ -2709,6 +2759,8 @@ function mostrardetalle(a, b, c){
     let valor_busqueda;
     var cantidad = $('#txtcant_emp').val();
     let manana = moment(fnac).add(16, 'years').format('YYYY-MM-DD');
+    var cbx_cargo = $('#cargoc'+ a).val();
+
     //Agregar un dia a la siguiente empresa
     if(cantidad > a){
         var n_emp = a + 1 ;
@@ -2831,254 +2883,254 @@ function mostrardetalle(a, b, c){
         
         if(fechai >= fechanac){
             if( fechai < fechaf){
-                if(valor_busqueda == 0){
-                    //AJAX para mostrar la lista de empresas
-                    $.post("../../controller/pensioncontrolador.php?op=combo",{txtdateinicio: fech1 , txtdatefin: fech_final_1, tipo : cbx_tipo, base : cbx_base, estado : cbx_estado, condicion : cbx_condicion}, function(data){
-                        if(data == ""){
-                            console.log("NO EXISTE DATA");
-                        }else {
-                            $("#lst_emp_"+a).html(data);
-                        }
-                    });
-
-                    //AJAX muestra la primera empresa de la lista
-                    $.post("../../controller/pensioncontrolador.php?op=pensionaleatorioempresa",{txtdateinicio: fech1 , txtdatefin: fech_final_1, tipo : cbx_tipo, base : cbx_base, estado : cbx_estado, condicion : cbx_condicion},function(data){
-                        console.log("PRIMERA BUSQUEDA");
-                        if(data == ""){
-                            Swal.fire({
-                                position: 'center',
-                                icon: 'info',
-                                title: 'No existe informacion',
-                                showConfirmButton: false,
-                                timer:1500
-                            });
-                        }else {
-                            data = JSON.parse(data);
-                            //$("#lst_emp_"+a).val(data[0]['ruc']).trigger('change');
-                            $('#nom_emp_'+a).html(data[0]['ruc']+" - "+data[0]['empleador']);
-                            $('#fech_sueldo_'+a).val(data[0]['moneda_sueldo']);
-                            $('#cant_sueldo_'+a).val(data[0]['fechsueldo']);
-                            $('#nom_emp_lab').html(data[0]['empleador']);
-                            $('#nom_emp_lab').val(data[0]['empleador']);
-                            //$('#tiempo_'+a).html(data[0]['Anios']+' Años '+ data[0]['Meses']+' Meses '+data[0]['Dias']+' Dias');
-                            $('#tiempo_header_'+a).html(data[0]['Anios']+' Años '+ data[0]['Meses']+' Meses '+data[0]['Dias']+' Dias');
-                            $('#anios_emp_'+a).val(data[0]['Anios']);
-                            $('#meses_emp_'+a).val(data[0]['Meses']);
-                            $('#dias_emp_'+a).val(data[0]['Dias']);
-                            $('#ruc_emp_'+a).val(data[0]['ruc']);
-                            $('#tipo_emp_'+a).val(data[0]['tipo_emp']);
-                            $('#fech_inicio_emp').val(fech1);
-                            $('#fech_final_emp').val(fech_final_1);
-                            $('#cargo_emp').val(cargo);
-                            $('#dpto_emp_'+a).val(data[0]['dpto']);
-                            $('#rango_emp_'+a).val(data[0]['f_inic_act'] +" / "+ data[0]["f_baja_act"]);  
-            
-            
-            
-                            nom = $('#nom_emp_lab'+num).val();
-                            var dpto1= $('#dpto_emp_'+a).val();
-                            nombres= $('#txtnombre').val();
-                            apelli= $('#txtapellido').val();
-                            tmp = parseInt($('#anios_emp_'+a).val(),"10");
-                            tot = tmp * 132;
-                            firm = $('#firmante'+a).val();
-
-                             //Asignar valores a TabsEmpresa
-                             $('#nom_emp_lab'+ num).html(data[0]['empleador']);
-                             $('#nombre_emp'+num).val(data[0]['empleador']);
-                             $('#cargo_emp'+num).val(cargo);
-                             $('#fech_inicio_emp'+num).val(fechai);
-                             $('#fech_final_emp'+num).val(fechaf)
-                             $('#dpto_emp'+num).val(dpto1);
-                             $('#logo_nombre'+num).val(logos);
-                             $('#firmante_emp'+num).val(firm)
-                             $('#sueldo_emp'+num).val(data[0]['fechsueldo']);
-                             $('#moneda_emp'+num).val(data[0]['moneda_rm']);
-                             $('#tiempo_imp'+ num).html(tmp +" Años");
-                             
-
-                    
-                            //$('.emp_imp').html(nom);
-                            $('.nombre_imp').html(nombres+" "+apelli);
-                            //$('.cargo_imp').html(cargo);
-                            $('.desde_imp').html(fechain.toLocaleDateString("es-ES", options).toUpperCase());
-                            $('.hasta_imp').html(fechaf.toLocaleDateString("es-ES", options).toUpperCase());
-                            $('.lugardia').html(dpto1+", "+fechaf.toLocaleDateString("es-ES", options).toUpperCase());
-                            $('.desde_imp_low').html(fechai.toLocaleDateString("es-ES", options));
-                            $('.hasta_imp_low').html(fechaf.toLocaleDateString("es-ES", options));
-                            $('.lugardia_low').html(dpto1+", "+fechaf.toLocaleDateString("es-ES", options));
-                            $('.tiempo_imp').html(tmp +" Años");
-                            $('.tiempo_liqui_imp').html(data[0]['Anios']+' Años '+ data[0]['Meses']+' Meses ');
-                            $('.anios_temp').html(data[0]['Anios']);
-                            $('.tot_imp').html(tot);
-                            $('.img_logo').attr("src","../../assets/img/"+logos);
-                            $('.firmante_nom').html(firm);
-                            $('.departamento_imp').html(dpto1.toUpperCase());
-                            $('.cargo_imp_low').html(cargo.toLowerCase());
-                            $('.desde_imp_num').html(convertDateFormat(fech1));
-                            $('.hasta_imp_num').html(convertDateFormat(fech_final_1));
-                            $('.lugardia_num').html(dpto1 +", "+convertDateFormat(fech_final_1));
-                            $('#sueldo_emp'+ num).val(data[0]['fechsueldo']);
-                            $('#moneda_emp'+ num).val(data[0]['moneda_rm']);
-                            //sumarfechas();
-    
-    
-                            /* LIQUIDACION */
-                            $('#dias_liqui'+ num).val(data[0]['Dias']);
-                            $('#meses_liqui'+ num).val(data[0]['Meses']);
-                            $('#anios_liqui'+ num).val(data[0]['Anios']);
-                            $('#ruc_emp'+ num).val(data[0]['ruc']);
-                            $('#sueldo_liquidacion'+ num).val(data[0]['fechsueldo']);
-
-                            //estado y condicion
-                            $('#estado_emp_' + a).val(data[0]['estado_emp']);
-                            $('#condicion_emp_' + a).val(data[0]['habido_emp']);
-                            if(data[0]['estado_emp'] == 'ACTIVO'){
-                                $('#estado_emp_' + a).css({'color': '#70e000','font-weight': 'bold'});
+                if(cbx_cargo !== ''){
+                    if(valor_busqueda == 0){
+                        //AJAX para mostrar la lista de empresas
+                        /*$.post("../../controller/pensioncontrolador.php?op=combo",{txtdateinicio: fech1 , txtdatefin: fech_final_1, tipo : cbx_tipo, base : cbx_base, estado : cbx_estado, condicion : cbx_condicion}, function(data){
+                            if(data == ""){
+                                console.log("NO EXISTE DATA");
                             }else {
-                                $('#estado_emp_' + a).css({'color': '#ef233c','font-weight': 'bold'});
+                                $("#lst_emp_"+a).html(data);
                             }
-
-                            if(data[0]['habido_emp'] == 'HABIDO'){
-                                $('#condicion_emp_' + a).css({'color': '#70e000','font-weight': 'bold'});
+                        });*/
+    
+                        //AJAX muestra la primera empresa de la lista
+                        $.post("../../controller/pensioncontrolador.php?op=pensionaleatorioempresa",{txtdateinicio: fech1 , txtdatefin: fech_final_1, tipo : cbx_tipo, base : cbx_base, estado : cbx_estado, condicion : cbx_condicion},function(data){
+                            console.log("PRIMERA BUSQUEDA");
+                            if(data == ""){
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'info',
+                                    title: 'No existe informacion',
+                                    showConfirmButton: false,
+                                    timer:1500
+                                });
                             }else {
-                                $('#condicion_emp_' + a).css({'color': '#ef233c','font-weight': 'bold'});
-                            }
+                                data = JSON.parse(data);
+                                //$("#lst_emp_"+a).val(data[0]['ruc']).trigger('change');
+                                $('#nom_emp_'+a).html(data[0]['ruc']+" - "+data[0]['empleador']);
+                                $('#fech_sueldo_'+a).val(data[0]['moneda_sueldo']);
+                                $('#cant_sueldo_'+a).val(data[0]['fechsueldo']);
+                                $('#nom_emp_lab').html(data[0]['empleador']);
+                                $('#nom_emp_lab').val(data[0]['empleador']);
+                                //$('#tiempo_'+a).html(data[0]['Anios']+' Años '+ data[0]['Meses']+' Meses '+data[0]['Dias']+' Dias');
+                                $('#tiempo_header_'+a).html(data[0]['Anios']+' Años '+ data[0]['Meses']+' Meses '+data[0]['Dias']+' Dias');
+                                $('#anios_emp_'+a).val(data[0]['Anios']);
+                                $('#meses_emp_'+a).val(data[0]['Meses']);
+                                $('#dias_emp_'+a).val(data[0]['Dias']);
+                                $('#ruc_emp_'+a).val(data[0]['ruc']);
+                                $('#tipo_emp_'+a).val(data[0]['tipo_emp']);
+                                $('#fech_inicio_emp').val(fech1);
+                                $('#fech_final_emp').val(fech_final_1);
+                                $('#cargo_emp').val(cargo);
+                                $('#dpto_emp_'+a).val(data[0]['dpto']);
+                                $('#rango_emp_'+a).val(data[0]['f_inic_act'] +" / "+ data[0]["f_baja_act"]);  
+                
+                
+                
+                                nom = $('#nom_emp_lab'+num).val();
+                                var dpto1= $('#dpto_emp_'+a).val();
+                                nombres= $('#txtnombre').val();
+                                apelli= $('#txtapellido').val();
+                                tmp = parseInt($('#anios_emp_'+a).val(),"10");
+                                tot = tmp * 132;
+                                firm = $('#firmante'+a).val();
     
-                            SumarAniosEmpresas(a);
-                            MostrarCertificados(data[0]['tipo_emp'], num);
-                            MostrarLiquidacion(fech_final_1, data[0]['tipo_emp'], num);
-                            $('#tipo_emp'+a).val(data[0]['tipo_emp']);
+                                 //Asignar valores a TabsEmpresa
+                                 $('#nom_emp_lab'+ num).html(data[0]['empleador']);
+                                 $('#nombre_emp'+num).val(data[0]['empleador']);
+                                 $('#cargo_emp'+num).val(cargo);
+                                 $('#fech_inicio_emp'+num).val(fechai);
+                                 $('#fech_final_emp'+num).val(fechaf)
+                                 $('#dpto_emp'+num).val(dpto1);
+                                 $('#logo_nombre'+num).val(logos);
+                                 $('#firmante_emp'+num).val(firm)
+                                 $('#sueldo_emp'+num).val(data[0]['fechsueldo']);
+                                 $('#moneda_emp'+num).val(data[0]['moneda_rm']);
+                                 $('#tiempo_imp'+ num).html(tmp +" Años");
+                                 
     
-                            /*OBETNER COMBO FIRMANTE */
-                            /*$.post("../../controller/firmacontrolador.php?op=combo",{numero : data[0]['ruc']}, function(data){
-                                //console.log(data);
-                                $("#firmante"+a).html(data);  
-                            });*/
-                        }                      
-                    });
+                        
+                                //$('.emp_imp').html(nom);
+                                $('.nombre_imp').html(nombres+" "+apelli);
+                                //$('.cargo_imp').html(cargo);
+                                $('.desde_imp').html(fechain.toLocaleDateString("es-ES", options).toUpperCase());
+                                $('.hasta_imp').html(fechaf.toLocaleDateString("es-ES", options).toUpperCase());
+                                $('.lugardia').html(dpto1+", "+fechaf.toLocaleDateString("es-ES", options).toUpperCase());
+                                $('.desde_imp_low').html(fechai.toLocaleDateString("es-ES", options));
+                                $('.hasta_imp_low').html(fechaf.toLocaleDateString("es-ES", options));
+                                $('.lugardia_low').html(dpto1+", "+fechaf.toLocaleDateString("es-ES", options));
+                                $('.tiempo_imp').html(tmp +" Años");
+                                $('.tiempo_liqui_imp').html(data[0]['Anios']+' Años '+ data[0]['Meses']+' Meses ');
+                                $('.anios_temp').html(data[0]['Anios']);
+                                $('.tot_imp').html(tot);
+                                $('.img_logo').attr("src","../../assets/img/"+logos);
+                                $('.firmante_nom').html(firm);
+                                $('.departamento_imp').html(dpto1.toUpperCase());
+                                $('.cargo_imp_low').html(cargo.toLowerCase());
+                                $('.desde_imp_num').html(convertDateFormat(fech1));
+                                $('.hasta_imp_num').html(convertDateFormat(fech_final_1));
+                                $('.lugardia_num').html(dpto1 +", "+convertDateFormat(fech_final_1));
+                                $('#sueldo_emp'+ num).val(data[0]['fechsueldo']);
+                                $('#moneda_emp'+ num).val(data[0]['moneda_rm']);
+                                //sumarfechas();
+        
+        
+                                /* LIQUIDACION */
+                                $('#dias_liqui'+ num).val(data[0]['Dias']);
+                                $('#meses_liqui'+ num).val(data[0]['Meses']);
+                                $('#anios_liqui'+ num).val(data[0]['Anios']);
+                                $('#ruc_emp'+ num).val(data[0]['ruc']);
+                                $('#sueldo_liquidacion'+ num).val(data[0]['fechsueldo']);
+    
+                                //estado y condicion
+                                $('#estado_emp_' + a).val(data[0]['estado_emp']);
+                                $('#condicion_emp_' + a).val(data[0]['habido_emp']);
+                                if(data[0]['estado_emp'] == 'ACTIVO'){
+                                    $('#estado_emp_' + a).css({'color': '#70e000','font-weight': 'bold'});
+                                }else {
+                                    $('#estado_emp_' + a).css({'color': '#ef233c','font-weight': 'bold'});
+                                }
+    
+                                if(data[0]['habido_emp'] == 'HABIDO'){
+                                    $('#condicion_emp_' + a).css({'color': '#70e000','font-weight': 'bold'});
+                                }else {
+                                    $('#condicion_emp_' + a).css({'color': '#ef233c','font-weight': 'bold'});
+                                }
+        
+                                SumarAniosEmpresas(a);
+                                MostrarCertificados(data[0]['tipo_emp'], num);
+                                MostrarLiquidacion(fech_final_1, data[0]['tipo_emp'], num);
+                                $('#tipo_emp'+a).val(data[0]['tipo_emp']);
+        
+                                ListarFirmante(a);
+                            }                      
+                        });
+                    }else {
+                        $.post("../../controller/pensioncontrolador.php?op=buscardpto",{txtdateinicio: fech1 , txtdatefin: fech_final_1, txtrazon : razsocialruc},function(data){
+                            console.log("SEGUNDA BUSQUEDA");
+                            if(data == ""){
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'info',
+                                    title: 'No existe informacion',
+                                    showConfirmButton: false,
+                                    timer:1500
+                                });
+                            }else {
+                                data = JSON.parse(data);
+                                //$("#lst_emp_"+a).val(data[0]['ruc']).trigger('change');
+                                $('#nom_emp_'+a).html(data[0]['ruc']+" - "+data[0]['empleador']);
+                                $('#fech_sueldo_'+a).val(data[0]['moneda_sueldo']);
+                                $('#cant_sueldo_'+a).val(data[0]['fechsueldo']);
+                                $('#nom_emp_lab').html(data[0]['empleador']);
+                                $('#nom_emp_lab').val(data[0]['empleador']);
+                                //$('#tiempo_'+a).html(data[0]['Anios']+' Años '+ data[0]['Meses']+' Meses '+data[0]['Dias']+' Dias');
+                                $('#tiempo_header_'+a).html(data[0]['Anios']+' Años '+ data[0]['Meses']+' Meses '+data[0]['Dias']+' Dias');
+                                $('#anios_emp_'+a).val(data[0]['Anios']);
+                                $('#meses_emp_'+a).val(data[0]['Meses']);
+                                $('#dias_emp_'+a).val(data[0]['Dias']);
+                                $('#ruc_emp_'+a).val(data[0]['ruc']);
+                                $('#tipo_emp_'+a).val(data[0]['tipo_emp']);
+                                $('#fech_inicio_emp').val(fech1);
+                                $('#fech_final_emp').val(fech_final_1);
+                                $('#cargo_emp').val(cargo);
+                                $('#dpto_emp_'+a).val(data[0]['dpto']);
+                                $('#rango_emp_'+a).val(data[0]['f_inic_act'] +" / "+ data[0]["f_baja_act"]);  
+                
+                
+                
+                                nom = $('#nom_emp_lab').val();
+                                var dpto1= $('#dpto_emp_'+a).val();
+                                nombres= $('#txtnombre').val();
+                                apelli= $('#txtapellido').val();
+                                tmp = parseInt($('#anios_emp_'+a).val(),"10");
+                                tot = tmp * 132;
+                                firm = $('#firmante'+a).val();
+    
+    
+                                //Asignar valores a TabsEmpresa
+                                $('#nom_emp_lab'+ num).html(data[0]['empleador']);
+                                $('#nombre_emp'+num).val(data[0]['empleador']);
+                                $('#cargo_emp'+num).val(cargo);
+                                $('#fech_inicio_emp'+num).val(fechai);
+                                $('#fech_final_emp'+num).val(fechaf)
+                                $('#dpto_emp'+num).val(dpto1);
+                                $('#logo_nombre'+num).val(logos);
+                                $('#firmante_emp'+num).val(firm)
+                                $('#sueldo_emp'+num).val(data[0]['fechsueldo']);
+                                $('#moneda_emp'+num).val(data[0]['moneda_rm']);
+                                $('#tiempo_imp'+ num).html(tmp +" Años");
+                                
+                        
+                                //$('.emp_imp').html(nom);
+                                $('.nombre_imp').html(nombres+" "+apelli);
+                                //$('.cargo_imp').html(cargo);
+                                $('.desde_imp').html(fechai.toLocaleDateString("es-ES", options).toUpperCase());
+                                $('.hasta_imp').html(fechaf.toLocaleDateString("es-ES", options).toUpperCase());
+                                $('.lugardia').html(dpto1+", "+fechaf.toLocaleDateString("es-ES", options).toUpperCase());
+                                $('.desde_imp_low').html(fechai.toLocaleDateString("es-ES", options));
+                                $('.hasta_imp_low').html(fechaf.toLocaleDateString("es-ES", options));
+                                $('.lugardia_low').html(dpto1+", "+fechaf.toLocaleDateString("es-ES", options));
+                                $('.tiempo_imp').html(tmp +" Años");
+                                $('.tiempo_liqui_imp').html(data[0]['Anios']+' Años '+ data[0]['Meses']+' Meses ');
+                                $('.anios_temp').html(data[0]['Anios']);
+                                $('.tot_imp').html(tot);
+        
+                                $('.img_logo').attr("src","../../assets/img/"+logos);
+                                $('.firmante_nom').html(firm);
+                                $('.departamento_imp').html(dpto1.toUpperCase());
+                                $('.cargo_imp_low').html(cargo.toLowerCase());
+                                $('.desde_imp_num').html(convertDateFormat(fech1));
+                                $('.hasta_imp_num').html(convertDateFormat(fech_final_1));
+                                $('.lugardia_num').html(dpto1 +", "+convertDateFormat(fech_final_1));
+                                $('#sueldo_emp'+ num).val(data[0]['fechsueldo']);
+                                $('#moneda_emp'+ num).val(data[0]['moneda_rm']);
+                                //sumarfechas();
+        
+        
+                                /* LIQUIDACION */
+                                $('#dias_liqui'+ num).val(data[0]['Dias']);
+                                $('#meses_liqui'+ num).val(data[0]['Meses']);
+                                $('#anios_liqui'+ num).val(data[0]['Anios']);
+                                $('#ruc_emp'+ num).val(data[0]['ruc']);
+                                $('#sueldo_liquidacion'+ num).val(data[0]['fechsueldo']);
+    
+                                //estado y condicion
+                                $('#estado_emp_' + a).val(data[0]['estado_emp']);
+                                $('#condicion_emp_' + a).val(data[0]['habido_emp']);
+                                if(data[0]['estado_emp'] == 'ACTIVO'){
+                                    $('#estado_emp_' + a).css({'color': '#70e000','font-weight': 'bold'});
+                                }else {
+                                    $('#estado_emp_' + a).css({'color': '#ef233c','font-weight': 'bold'});
+                                }
+    
+                                if(data[0]['habido_emp'] == 'HABIDO'){
+                                    $('#condicion_emp_' + a).css({'color': '#70e000','font-weight': 'bold'});
+                                }else {
+                                    $('#condicion_emp_' + a).css({'color': '#ef233c','font-weight': 'bold'});
+                                }
+        
+                                SumarAniosEmpresas(a);
+                                MostrarCertificados(data[0]['tipo_emp'], num);
+                                MostrarLiquidacion(fech_final_1, data[0]['tipo_emp'], num);
+                                ListarFirmante(a);
+                            }                      
+                        });
+                    }
+                    //$("#lst_emp_"+a).val(razsocialruc).trigger('change');
+                    //$("#contemp1").show();
+                    $("#prev1").show();
+                    //$("#prev_certificado_1").show();
                 }else {
-                    $.post("../../controller/pensioncontrolador.php?op=buscardpto",{txtdateinicio: fech1 , txtdatefin: fech_final_1, txtrazon : razsocialruc},function(data){
-                        console.log("SEGUNDA BUSQUEDA");
-                        if(data == ""){
-                            Swal.fire({
-                                position: 'center',
-                                icon: 'info',
-                                title: 'No existe informacion',
-                                showConfirmButton: false,
-                                timer:1500
-                            });
-                        }else {
-                            data = JSON.parse(data);
-                            //$("#lst_emp_"+a).val(data[0]['ruc']).trigger('change');
-                            $('#nom_emp_'+a).html(data[0]['ruc']+" - "+data[0]['empleador']);
-                            $('#fech_sueldo_'+a).val(data[0]['moneda_sueldo']);
-                            $('#cant_sueldo_'+a).val(data[0]['fechsueldo']);
-                            $('#nom_emp_lab').html(data[0]['empleador']);
-                            $('#nom_emp_lab').val(data[0]['empleador']);
-                            //$('#tiempo_'+a).html(data[0]['Anios']+' Años '+ data[0]['Meses']+' Meses '+data[0]['Dias']+' Dias');
-                            $('#tiempo_header_'+a).html(data[0]['Anios']+' Años '+ data[0]['Meses']+' Meses '+data[0]['Dias']+' Dias');
-                            $('#anios_emp_'+a).val(data[0]['Anios']);
-                            $('#meses_emp_'+a).val(data[0]['Meses']);
-                            $('#dias_emp_'+a).val(data[0]['Dias']);
-                            $('#ruc_emp_'+a).val(data[0]['ruc']);
-                            $('#tipo_emp_'+a).val(data[0]['tipo_emp']);
-                            $('#fech_inicio_emp').val(fech1);
-                            $('#fech_final_emp').val(fech_final_1);
-                            $('#cargo_emp').val(cargo);
-                            $('#dpto_emp_'+a).val(data[0]['dpto']);
-                            $('#rango_emp_'+a).val(data[0]['f_inic_act'] +" / "+ data[0]["f_baja_act"]);  
-            
-            
-            
-                            nom = $('#nom_emp_lab').val();
-                            var dpto1= $('#dpto_emp_'+a).val();
-                            nombres= $('#txtnombre').val();
-                            apelli= $('#txtapellido').val();
-                            tmp = parseInt($('#anios_emp_'+a).val(),"10");
-                            tot = tmp * 132;
-                            firm = $('#firmante'+a).val();
-
-
-                            //Asignar valores a TabsEmpresa
-                            $('#nom_emp_lab'+ num).html(data[0]['empleador']);
-                            $('#nombre_emp'+num).val(data[0]['empleador']);
-                            $('#cargo_emp'+num).val(cargo);
-                            $('#fech_inicio_emp'+num).val(fechai);
-                            $('#fech_final_emp'+num).val(fechaf)
-                            $('#dpto_emp'+num).val(dpto1);
-                            $('#logo_nombre'+num).val(logos);
-                            $('#firmante_emp'+num).val(firm)
-                            $('#sueldo_emp'+num).val(data[0]['fechsueldo']);
-                            $('#moneda_emp'+num).val(data[0]['moneda_rm']);
-                            $('#tiempo_imp'+ num).html(tmp +" Años");
-                            
-                    
-                            //$('.emp_imp').html(nom);
-                            $('.nombre_imp').html(nombres+" "+apelli);
-                            //$('.cargo_imp').html(cargo);
-                            $('.desde_imp').html(fechai.toLocaleDateString("es-ES", options).toUpperCase());
-                            $('.hasta_imp').html(fechaf.toLocaleDateString("es-ES", options).toUpperCase());
-                            $('.lugardia').html(dpto1+", "+fechaf.toLocaleDateString("es-ES", options).toUpperCase());
-                            $('.desde_imp_low').html(fechai.toLocaleDateString("es-ES", options));
-                            $('.hasta_imp_low').html(fechaf.toLocaleDateString("es-ES", options));
-                            $('.lugardia_low').html(dpto1+", "+fechaf.toLocaleDateString("es-ES", options));
-                            $('.tiempo_imp').html(tmp +" Años");
-                            $('.tiempo_liqui_imp').html(data[0]['Anios']+' Años '+ data[0]['Meses']+' Meses ');
-                            $('.anios_temp').html(data[0]['Anios']);
-                            $('.tot_imp').html(tot);
-    
-                            $('.img_logo').attr("src","../../assets/img/"+logos);
-                            $('.firmante_nom').html(firm);
-                            $('.departamento_imp').html(dpto1.toUpperCase());
-                            $('.cargo_imp_low').html(cargo.toLowerCase());
-                            $('.desde_imp_num').html(convertDateFormat(fech1));
-                            $('.hasta_imp_num').html(convertDateFormat(fech_final_1));
-                            $('.lugardia_num').html(dpto1 +", "+convertDateFormat(fech_final_1));
-                            $('#sueldo_emp'+ num).val(data[0]['fechsueldo']);
-                            $('#moneda_emp'+ num).val(data[0]['moneda_rm']);
-                            //sumarfechas();
-    
-    
-                            /* LIQUIDACION */
-                            $('#dias_liqui'+ num).val(data[0]['Dias']);
-                            $('#meses_liqui'+ num).val(data[0]['Meses']);
-                            $('#anios_liqui'+ num).val(data[0]['Anios']);
-                            $('#ruc_emp'+ num).val(data[0]['ruc']);
-                            $('#sueldo_liquidacion'+ num).val(data[0]['fechsueldo']);
-
-                            //estado y condicion
-                            $('#estado_emp_' + a).val(data[0]['estado_emp']);
-                            $('#condicion_emp_' + a).val(data[0]['habido_emp']);
-                            if(data[0]['estado_emp'] == 'ACTIVO'){
-                                $('#estado_emp_' + a).css({'color': '#70e000','font-weight': 'bold'});
-                            }else {
-                                $('#estado_emp_' + a).css({'color': '#ef233c','font-weight': 'bold'});
-                            }
-
-                            if(data[0]['habido_emp'] == 'HABIDO'){
-                                $('#condicion_emp_' + a).css({'color': '#70e000','font-weight': 'bold'});
-                            }else {
-                                $('#condicion_emp_' + a).css({'color': '#ef233c','font-weight': 'bold'});
-                            }
-    
-                            SumarAniosEmpresas(a);
-                            MostrarCertificados(data[0]['tipo_emp'], num);
-                            MostrarLiquidacion(fech_final_1, data[0]['tipo_emp'], num);
-    
-                            /*OBETNER COMBO FIRMANTE */
-                            /*$.post("../../controller/firmacontrolador.php?op=combo",{numero : data[0]['ruc']}, function(data){
-                                //console.log(data);
-                                $("#firmante"+a).html(data);  
-                            });*/
-                        }                      
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'info',
+                        title: 'Debe seleccionar un cargo',
+                        showConfirmButton: false,
+                        timer:2500
                     });
                 }
-                //$("#lst_emp_"+a).val(razsocialruc).trigger('change');
-                //$("#contemp1").show();
-                $("#prev1").show();
-                //$("#prev_certificado_1").show();
-                
     
             }else { 
     
@@ -4526,6 +4578,7 @@ function imprimir_word(e){
     var nombre_com = nombre + ' ' + apellido;
     var num_doc = $('#num_doc').val();
     var nom_carpeta = "REPORTE-PENSIONES-"+ num_doc;
+    var num_emp = e;
     var fecha_inicio = $('.desde_imp').html();
     var fecha_hasta = $('.hasta_imp').html();
     var fecha_inicio_num = $('.desde_imp_num').html();
@@ -4554,7 +4607,8 @@ function imprimir_word(e){
             tipo : tipo,
             logo : logo,
             firmante : firmante,
-            ruc: ruc
+            ruc: ruc,
+            num_emp : num_emp
         },
         success: function(response){
            
@@ -4599,6 +4653,7 @@ function imprimir_liquidacion_word(e){
     var nombre_com          = nombre + ' ' + apellido;
     var num_doc             = $('#num_doc').val();
     var nom_carpeta         = "REPORTE-PENSIONES-"+ num_doc;
+    var num_emp             = e;
     var fecha_inicio        = $('.desde_imp').html();
     var fecha_hasta         = $('.hasta_imp').html();
     var fecha_inicio_num    = $('.desde_imp_num').html();
@@ -4656,6 +4711,7 @@ function imprimir_liquidacion_word(e){
     formData.append('anio_final', anio);  
     formData.append('cuerpo', cuerpo);  
     formData.append('ruc', ruc); 
+    formData.append('num_emp', num_emp); 
 
     $.ajax({
         type: "POST",
@@ -6135,7 +6191,8 @@ function imprimir_word_renuncia(e){
     var nombre_emp = $('#nom_emp_lab' + e).html();
     var nombre_com = nombre + ' ' + apellido;
     var num_doc = $('#num_doc').val();
-    var nom_carpeta = "PENSIONES-"+ e +"-"+ num_doc;
+    var nom_carpeta = "REPORTE-PENSIONES-"+ num_doc;
+    var num_emp = e;
     var fecha_inicio = $('.desde_imp').html();
     var fecha_hasta = $('.hasta_imp').html();
     var fecha_inicio_num = $('.desde_imp_num').html();
@@ -6164,7 +6221,8 @@ function imprimir_word_renuncia(e){
             logo : logo,
             firmante : firmante,
             ruc: ruc,
-            dni: num_doc
+            dni: num_doc,
+            num_emp: num_emp
         },
         success: function(response){
 

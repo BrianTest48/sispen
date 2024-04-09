@@ -23,7 +23,8 @@ $fecha_footer = $_POST["fecha_footer"];
 $logo = $_POST["logo"];
 $firmante = $_POST["firmante"];
 $ruc = $_POST["ruc"];
-//$zipFile = new \PhpZip\ZipFile();
+$num_emp = $_POST['num_emp'];
+
 $section = $phpWord->addSection(array('marginTop'=>2000));
 // Crear una imagen como marca de agua
 $header = $section->createHeader();
@@ -116,35 +117,19 @@ $directorio = "../../files/";
 
 $creacion_carpeta = zipeaArchivo::crearCarpeta( $directorio . $nombre_carpeta);
 
-exportarWord::write($phpWord, $directorio . $nombre_carpeta, $nombre_afi.'-R6-'.$ruc, $writers);
+//Variable para nombre del archivo.
+$nombre_archivo = 'Renuncia-'.$nombre_emp.'- (Empresa '.$num_emp.')';
+
+exportarWord::write($phpWord, $directorio . $nombre_carpeta, $nombre_archivo, $writers);
 sleep(1);
 
-//echo "1";
 
 // Datos que deseas enviar como JSON (número y texto)
 $responseData = array(
     "estado" => 1,
-    "archivo" => $nombre_afi.'-R6-'.$ruc
+    "archivo" => $nombre_archivo
 );
 
 // Convertir el array asociativo a JSON
 echo json_encode($responseData);
-
-/*if( $creacion_carpeta['status'] == 0 )
-{
-    $archivos_a_zip = [];
-    for ($i=0; $i < 5; $i++) {
-        $name_file = strtotime("now");
-        $archivos_a_zip[$i] = $name_file . ".docx";
-        exportarWord::write($phpWord, $directorio . $nombre_carpeta, strtotime("now"), $writers);
-        sleep(1);
-    }
-}*/
-
-//$zipFile = new \PhpZip\ZipFile();
-//$zipFile->addDirRecursive($creacion_carpeta['data']['archivo'])->saveAsFile($nombre_carpeta.".zip")->close();
-
-
-
-//echo json_encode( zipeaArchivo::zipearArchivo($directorio . $nombre_carpeta, $nombre_carpeta.".zip") );
 ?>
