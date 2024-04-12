@@ -1435,6 +1435,13 @@ function crearTabs(valor, orc, host) {
         tabContent += '                     <div class="row">';
         tabContent += '                         <div class="col-lg-12">';
         tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-sm-12 "><span id="label_fechas_'+ i +'"></span></label>';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                     </div>';
+        tabContent += '                     <div class="row">';
+        tabContent += '                         <div class="col-lg-12">';
+        tabContent += '                             <div class="row mg-b-5">';
         tabContent += '                                 <label class="form-control-label col-sm-6 ">Numero Autogenerado: <span class="tx-danger">*</span></label>';
         tabContent += '                                 <input class="form-control col-sm-6" type="text" id="num_auto'+ i +'" name="num_auto"  placeholder="Numero Aleatorio" >';
         tabContent += '                             </div>';
@@ -1969,6 +1976,13 @@ function crearTabs(valor, orc, host) {
         tabContent += '                     <div class="row">';
         tabContent += '                         <div class="col-lg-12">';
         tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-sm-12 "><span id="label_fechas_'+ i +'"></span></label>';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                     </div>';
+        tabContent += '                     <div class="row">';
+        tabContent += '                         <div class="col-lg-12">';
+        tabContent += '                             <div class="row mg-b-5">';
         tabContent += '                                 <label class="form-control-label col-sm-6 ">Numero Autogenerado: <span class="tx-danger">*</span></label>';
         tabContent += '                                 <input class="form-control col-sm-6" type="text" id="num_auto'+ i +'" name="num_auto"  placeholder="Numero Aleatorio" >';
         tabContent += '                             </div>';
@@ -2494,10 +2508,16 @@ function crearTabs(valor, orc, host) {
         tabContent += '                 </div>';
         tabContent += '             </form>';
         tabContent += '         </div>';
-
         tabContent += '         <div id="bono'+ i +'" class="tab-pane fade">';
         tabContent += '             <form id="form_bono'+ i +'" action="" method="post" autocomplete="off">';
         tabContent += '                 <div class="form-layout form-layout-4">';
+        tabContent += '                     <div class="row">';
+        tabContent += '                         <div class="col-lg-12">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-sm-12 "><span id="label_fechas_'+ i +'"></span></label>';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                     </div>';
         tabContent += '                     <div class="row">';
         tabContent += '                         <div class="col-lg-12">';
         tabContent += '                             <div class="row mg-b-5">';
@@ -3196,8 +3216,8 @@ function mostrardetalle(a, b, c){
         
     } else {
         //console.log('La fecha seleccionada no es posterior al 31 de diciembre de 1992.');
-        $('#nav-bono'+ a).hide();
-        $('#renuncia-tab'+ a).show();
+        $('#nav-bono'+ num).hide();
+        $('#renuncia-tab'+ num).show();
     }
 
     //setear en hidden el logo
@@ -5574,7 +5594,7 @@ function PrevDJ(e){
     $('.oct_92_imp_rst').html(formatearNumero((mes10*0.03).toFixed(2)));
     $('.nov_92_imp_rst').html(formatearNumero((mes11*0.03).toFixed(2)));
 
-    //$('.cant_meses').html(dife1);
+    $('.cant_meses').html(dife1);
     $('.year_ini').html(year_ini);
     $('.year_fin').html(year_fin);
     $('.mon_ini').html(mon_ini);
@@ -5585,6 +5605,22 @@ function PrevDJ(e){
     $("#prev3").hide();
     $("#prev4").show();
     $("#prev_bono_"+tipoprev).show();
+}
+
+/*Funcion para formatear Fecha */
+function formatearFecha(fechaString) {
+    // Crear objeto de fecha
+    var fecha = new Date(fechaString);
+
+    // Obtener componentes de la fecha
+    var dia = fecha.getDate();
+    var mes = fecha.getMonth() + 1; // Sumar 1 porque los meses van de 0 a 11
+    var anio = fecha.getFullYear();
+
+    // Formatear la fecha en el formato deseado (DD-MM-YYYY)
+    var fechaFormateada = (dia < 10 ? '0' : '') + dia + '-' + (mes < 10 ? '0' : '') + mes + '-' + anio;
+
+    return fechaFormateada;
 }
 
 function bono_tab(e){
@@ -5599,6 +5635,15 @@ function bono_tab(e){
     let sum_mes = sum_mes_emp + sum_mes_orc + sum_mes_hos ;
 
     const constante = 0.1831;
+
+
+    /*Setear las fechas de F.Inicio y F.Final */
+    let f_init = $('#fech_inicio_emp' + e).val();
+    let f_final = $('#fech_final_emp' + e).val();
+    let mensaje_fechas  = 'F.Inicio : ' +formatearFecha(f_init) + ' / F.Fin: ' +  formatearFecha(f_final);
+    
+    /*Setear mensaje de fechas */
+    $('#label_fechas_' + e).html(mensaje_fechas);
 
     /*MOSTRAR MONTOS DE CADA MES EN PANEL BONO */
     let total_dic = $('#dic_total').html();
@@ -5631,7 +5676,7 @@ function bono_tab(e){
     let prom_total = (Number(prom_meses) * Number(sum_mes) * constante ).toFixed(2);
     $('#prom_meses').html(prom_meses.toFixed(2));
     //$('#cant_meses_bono').html(sum_mes);
-    $('.cant_meses').html(sum_mes);
+    //$('.cant_meses').html(sum_mes);
     $('#prom_total').html(prom_total);
     $('#cal_bono_1').val(prom_total);
 

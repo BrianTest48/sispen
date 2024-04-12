@@ -96,7 +96,7 @@ $(document).ready(function(){
         minimumResultsForSearch: Infinity
     });
 
-    
+
 
     //Cuando se edita la Lista
     var listaId = getParameterByName('lista');
@@ -109,18 +109,18 @@ $(document).ready(function(){
         //Metodo Mostrar Lista ID
         $.post("../../controller/listacontrolador.php?op=mostrar_id",{ lista_id : listaId},function(datos){
             if(datos != ""){
-               
+
                 datos = JSON.parse(datos);
                 let cnt = datos.cantidad;
                 $("#num_doc").val(datos.num_doc);
                 $('#tipo_doc').val(datos.tipo_doc).trigger('change');
                 $('#btnbuscar').click();
             }
-            
-        }); 
-       
+
+        });
+
     }
-    
+
 });
 
 function getParameterByName(name) {
@@ -132,7 +132,7 @@ function getParameterByName(name) {
 
 function init(){
     $("#bono_form").on("submit",function(e){
-        generar(e);	
+        generar(e);
     });
 }
 
@@ -145,22 +145,22 @@ function activarcargos(){
         });
 
         $('#lst_emp_'+i).select2({
-            placeholder: "Seleccione"  
+            placeholder: "Seleccione"
         });
         $('#logo'+i).select2({
             placeholder: "Seleccione",
-            minimumResultsForSearch: Infinity  
+            minimumResultsForSearch: Infinity
         });
         // $('#firmante'+i).select2({
         //     placeholder: "Seleccione",
-        //     minimumResultsForSearch: Infinity  
+        //     minimumResultsForSearch: Infinity
         // });
     }
     $('.cbx_tipos').select2({
         placeholder: "Seleccione",
-        minimumResultsForSearch: Infinity  
+        minimumResultsForSearch: Infinity
     });
-    
+
 }
 
 function generar(e){
@@ -219,7 +219,7 @@ function generar(e){
                 placeholder: "Seleccione",
                 minimumResultsForSearch: Infinity
             });
-        
+
             $('.select_certificado').select2({
                 placeholder: "Seleccione",
                 minimumResultsForSearch: Infinity
@@ -229,17 +229,17 @@ function generar(e){
                 placeholder: "Seleccione",
                 minimumResultsForSearch: Infinity
             });
-        
+
             $('.combo_prev_bono').select2({
                 placeholder: "Seleccione",
                 minimumResultsForSearch: Infinity
             });
-        
+
             $('.combo_prev_boleta').select2({
                 placeholder: "Seleccione",
                 minimumResultsForSearch: Infinity
             });
-        
+
             $('.combo_prev_liqui').select2({
                 placeholder: "Seleccione",
                 minimumResultsForSearch: Infinity
@@ -249,23 +249,23 @@ function generar(e){
                 placeholder: "Seleccione",
                 minimumResultsForSearch: Infinity
             });
-        
+
             //Ocultar contenedores
             $('.contenedores_emp').hide();
 
             //Recuperar datos del combo MOTIVO CESE
             $.post("../../controller/motivocontrolador.php?op=combo",{},function(data){
                 $('.combo_prev_liqui').html(data);
-            }); 
+            });
 
             /** SETEAR FECHAS A LOS DIV */
             let fnac = $('#txtdate').val();
             let manana = moment(fnac).add(cant_anios, 'years').format('YYYY-MM-DD');
             $('#f_inicio_1').val(manana);
-            $('#f_inicio_1').attr("min" ,manana); 
+            $('#f_inicio_1').attr("min" ,manana);
 
 
-            
+
             $.post("../../controller/cargocontrolador.php?op=comborpt",{}, function(data){
 
                 for(i = 1 ; i<= cnt ; i++){
@@ -273,9 +273,9 @@ function generar(e){
                     $("#div_logo_"+i).hide();
                 }
             });
-        
+
             $.post("../../controller/logocontrolador.php?op=combo",{}, function(data){
-        
+
                 for(i = 1 ; i<= cnt ; i++){
                    $("#logo"+i).html(data);
                 }
@@ -304,7 +304,7 @@ function generar(e){
                             $("#firmante"+i).val(datos["firmante"+i]);
                             mostrardetalle(i, datos["ruc"+i], 1);
                             console.log(datos["ruc"+i]);
-                        }, 600); 
+                        }, 600);
                     }
 
                     var datos_tabs = JSON.parse(datos.datos_derecha)
@@ -364,21 +364,21 @@ function generar(e){
                         $('#sep_92'+ i).val(dato_empresa.Dj.sep_92);
                         $('#oct_92'+ i).val(dato_empresa.Dj.oct_92);
                         $('#nov_92'+ i).val(dato_empresa.Dj.nov_92);
-                        $('#combo_prev_bono'+ i).val(dato_empresa.Dj.modelo).trigger('change');                        
+                        $('#combo_prev_bono'+ i).val(dato_empresa.Dj.modelo).trigger('change');
                     }
-                
+
                     $('#prev1').hide();
                     //mostrardetalle(1, datos["ruc1"], 1);
                     //$("#logo1").val(datos["logo1"]).trigger('change');
                     //$(".firmante_nom").html(datos["firmante1"]);
                     //console.log(datos["firmante1"]);
-                    //$('#btnmostrarempr_1').click();   
-                    //sumarfechas();   
+                    //$('#btnmostrarempr_1').click();
+                    //sumarfechas();
                 }
             });
-           
+
         }
-    }); 
+    });
 }
 
 function crearTabs(valor) {
@@ -449,7 +449,7 @@ function crearTabs(valor) {
         tabContent += '                             <div class="row mg-b-5">';
         tabContent += '                                 <label class="form-control-label col-lg-6">Fecha de Emision: </label>';
         tabContent += '                                 <div class="form-group col-lg-6" style="padding: 0; margin-bottom: 0;">';
-        tabContent += '                                     <input type="date" oninput="ValidarFecha(this)" class="form-control "  id="fecha_certificado'+ i +'"  style="width: 100%"/>';        
+        tabContent += '                                     <input type="date" oninput="ValidarFecha(this)" class="form-control "  id="fecha_certificado'+ i +'"  style="width: 100%"/>';
         tabContent += '                                     <div class="error-msg"></div>';
         tabContent += '                                 </div>';
         tabContent += '                             </div>';
@@ -755,7 +755,7 @@ function crearTabs(valor) {
         tabContent += '                             <div class="row mg-b-5">';
         tabContent += '                                 <label class="form-control-label col-lg-6">Certificado: </label>';
         tabContent += '                                 <div class="col-lg-6 pd-0">';
-        tabContent += '                                     <select class="form-control col-lg-6 select2 select_renuncia" data-placeholder="Seleccione" id="select_renuncia'+ i +'"  style="width: 100%" >';        
+        tabContent += '                                     <select class="form-control col-lg-6 select2 select_renuncia" data-placeholder="Seleccione" id="select_renuncia'+ i +'"  style="width: 100%" >';
         tabContent += '                                         <option value="1">Modelo Renuncia 1</option>';
         tabContent += '                                         <option value="2">Modelo Renuncia 2</option>';
         tabContent += '                                         <option value="3">Modelo Renuncia 3</option>';
@@ -772,7 +772,7 @@ function crearTabs(valor) {
         tabContent += '                             <div class="row mg-b-5">';
         tabContent += '                                 <label class="form-control-label col-lg-6">Fecha de Emision: </label>';
         tabContent += '                                 <div class="form-group col-lg-6" style="padding: 0; margin-bottom: 0;">';
-        tabContent += '                                     <input type="date" oninput="ValidarFecha(this)" class="form-control"  id="fecha_renuncia'+ i +'"  style="width: 100%"/>';        
+        tabContent += '                                     <input type="date" oninput="ValidarFecha(this)" class="form-control"  id="fecha_renuncia'+ i +'"  style="width: 100%"/>';
         tabContent += '                                     <div class="error-msg"></div>';
         tabContent += '                                 </div>';
         tabContent += '                             </div>';
@@ -791,10 +791,17 @@ function crearTabs(valor) {
         tabContent += '                 </div>';
         tabContent += '             </form>';
         tabContent += '         </div>';
-       //Tab bono 
+       //Tab bono
         tabContent += '         <div id="bono'+ i +'" class="tab-pane fade">';
         tabContent += '             <form id="form_bono'+ i +'" action="" method="post" autocomplete="off">';
         tabContent += '                 <div class="form-layout form-layout-4">';
+        tabContent += '                     <div class="row">';
+        tabContent += '                         <div class="col-lg-12">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-sm-12 "><span id="label_fechas_'+ i +'"></span></label>';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                     </div>';
         tabContent += '                     <div class="row">';
         tabContent += '                         <div class="col-lg-12">';
         tabContent += '                             <div class="row mg-b-5">';
@@ -912,7 +919,7 @@ function crearTabs(valor) {
         tabContent += '             </form> ';
         tabContent += '         </div>';
        //Fin Tab Bono
-        tabContent += '     </div> '; 
+        tabContent += '     </div> ';
         tabContent += '     </div>';
         tabContent += '</div>';
 
@@ -1038,7 +1045,7 @@ function creardivsempresa(){
                                                     '<i class="fa fa-edit mr-1"></i> Actualizar'+
                                                     '</div>'+
                                                 '</button>'+
-                                            "</div>"+ 
+                                            "</div>"+
                                         "</div>"+
                                     "</div>"+
                                     "<div class='col-12 col-sm-12'>"+
@@ -1133,7 +1140,7 @@ function creardivsempresa(){
                         "</div>"+
                     "</div>"+
                 "</div>" ;
-                
+
     }
     $("#acc_resultado").html(div);
 }
@@ -1150,7 +1157,7 @@ function validarInputs(){
         if(document.getElementById("tipo_doc").value =="C.E"){
             document.getElementById("num_doc").maxLength = "11";
             document.getElementById("num_doc").type = "text";
-            
+
         }
         else
         {
@@ -1158,13 +1165,13 @@ function validarInputs(){
                 document.getElementById("num_doc").maxLength = "11";
                 document.getElementById("num_doc").type = "text";
             }
-        }            
-    }   
+        }
+    }
 }
 
 $(document).on("click","#btnbuscar", function(){
 
-    
+
     tipo = $("#tipo_doc").val();
     doc = $("#num_doc").val();
     docnum = $("#num_doc").val().length;
@@ -1177,7 +1184,7 @@ $(document).on("click","#btnbuscar", function(){
         //console.log(data);
         data = JSON.parse(data);
         $('#txtcant_anios').val(data.edad).trigger('change');
-        
+
 
     });
 
@@ -1210,7 +1217,7 @@ $(document).on("click","#btnbuscar", function(){
                                 //console.log(data);
                                 $('#txtnombre').val(data.data.nombres);
                                 $('#txtapellido').val(data.data.apellidoPaterno + ' '+data.data.apellidoMaterno);
-                                $('#txtdate').val(convertDateFormatDate(data.data.fechaNacimiento));           
+                                $('#txtdate').val(convertDateFormatDate(data.data.fechaNacimiento));
                             }
                         });
                     } else if (result.isDenied) {
@@ -1226,7 +1233,7 @@ $(document).on("click","#btnbuscar", function(){
                 $('#txtdate').val(data.fech_nac);
                 //$('#cant_emp').val(data.cant_emp).trigger('change');
                 $("#form_datos").show();
-                $('#form_datos').removeClass().addClass('form-layout form-layout-1 ');  
+                $('#form_datos').removeClass().addClass('form-layout form-layout-1 ');
 
                 $.post("../../controller/listacontrolador.php?op=mostrar",{num_doc: doc, lista: t_lista},function(datos){
                     if(datos != ""){
@@ -1238,8 +1245,8 @@ $(document).on("click","#btnbuscar", function(){
                         $("#btnautogenerar").click();
 
                     }
-                    
-                }); 
+
+                });
             }
         });
     }
@@ -1313,7 +1320,7 @@ function BuscarEmp(a){
     let cbx_condicion = $('#cbx_condicion_'+ a).val();
     let manana = moment(fnac).add(16, 'years').format('YYYY-MM-DD');
 
-    
+
     if(fech1 != "" || fech_final_1 !=""){
         var fechanac = new Date(manana);
         var fechain = new Date(fech1)
@@ -1338,7 +1345,7 @@ function BuscarEmp(a){
                         $("#lst_emp_"+a).html(data);
                     }
                 });
-              
+
             }else {
                 Swal.fire({
                     position: 'center',
@@ -1367,7 +1374,7 @@ function BuscarEmp(a){
         });
     }
 
-    
+
 
 }
 
@@ -1423,7 +1430,7 @@ function mostrardetalle(a,b,c){
         //console.log('La fecha seleccionada es posterior al 31 de diciembre de 1992.');
         $('#nav-bono'+ a).show();
         $('#renuncia-tab'+ a).hide();
-        
+
     } else {
         //console.log('La fecha seleccionada no es posterior al 31 de diciembre de 1992.');
         $('#nav-bono'+ a).hide();
@@ -1544,7 +1551,7 @@ function mostrardetalle(a,b,c){
                                 $("#lst_emp_"+a).html(data);
                             }
                         });*/
-    
+
                         $.post("../../controller/pensioncontrolador.php?op=pensionaleatorioempresa",{txtdateinicio: fech1 , txtdatefin: fech_final_1, tipo : cbx_tipo, base : cbx_base, estado : cbx_estado, condicion : cbx_condicion},function(data){
                         //console.log(data);
                             if(data == ""){
@@ -1575,10 +1582,10 @@ function mostrardetalle(a,b,c){
                                 $('#fech_final_emp').val(fech_final_1);
                                 $('#cargo_emp').val(cargo);
                                 $('#dpto_emp_'+a).val(data[0]['dpto']);
-                                $('#rep_legal_'+a).val(data[0]['rep_legal']); 
+                                $('#rep_legal_'+a).val(data[0]['rep_legal']);
                                 $('#dni_a_'+a).val(data[0]['dni_a']);
-                                $('#rango_emp_'+a).val(data[0]['f_inic_act'] +" / "+ data[0]["f_baja_act"]);  
-                                
+                                $('#rango_emp_'+a).val(data[0]['f_inic_act'] +" / "+ data[0]["f_baja_act"]);
+
                                 nom = $('#nom_emp_lab').val();
                                 var dpto1= $('#dpto_emp_'+a).val();
                                 nombres= $('#txtnombre').val();
@@ -1589,7 +1596,7 @@ function mostrardetalle(a,b,c){
                                 rp =  data[0]['rep_legal'];
                                 dnia = data[0]['dni_a'];
                                 firm = $('#firmante'+a).val();
-    
+
                                 //Asignar valores a TabsEmpresa
                                 $('#nombre_emp'+a).val(data[0]['empleador']);
                                 $('#cargo_emp'+a).val(cargo);
@@ -1602,7 +1609,7 @@ function mostrardetalle(a,b,c){
                                 $('#moneda_emp'+a).val(data[0]['moneda_rm']);
                                 $('#tiempo_imp'+ a).val(tmp +" Años");
                                 $('#ruc_emp' +a).val(data[0]['ruc']);
-                        
+
                                 $('.emp_imp').html(nom);
                                 $('.nombre_imp').html(nombres+" "+apelli);
                                 $('.cargo_imp').html(cargo);
@@ -1629,7 +1636,7 @@ function mostrardetalle(a,b,c){
                                 $('.desde_imp_num').html(convertDateFormat(fech1));
                                 $('.hasta_imp_num').html(convertDateFormat(fech_final_1));
                                 $('.lugardia_num').html(dpto1 +", "+convertDateFormat(fech_final_1));
-    
+
                                 $('#emp_certificado').val(nom);
                                 $('#nombre_certificado').val(nombres+" "+apelli);
                                 $('#f_ini_certificado').val(convertDateFormat(fech1));
@@ -1637,14 +1644,14 @@ function mostrardetalle(a,b,c){
                                 $('#cargo_certificado').val(cargo);
                                 $('#firmante_certificado').val(firm);
                                 $('#lugar_certificado').val(dpto1+", "+convertDateFormat(fech_final_1));
-    
+
                                 /* LIQUIDACION */
                                 $('#dias_liqui' + a).val(data[0]['Dias']);
                                 $('#meses_liqui' + a).val(data[0]['Meses']);
                                 $('#anios_liqui' + a).val(data[0]['Anios']);
-    
+
                                 $('#sueldo_liquidacion'+ a).val(data[0]['fechsueldo']);
-    
+
                                  //estado y condicion
                                  $('#estado_emp_' + a).val(data[0]['estado_emp']);
                                  $('#condicion_emp_' + a).val(data[0]['habido_emp']);
@@ -1653,18 +1660,18 @@ function mostrardetalle(a,b,c){
                                  }else {
                                      $('#estado_emp_' + a).css({'color': '#ef233c','font-weight': 'bold'});
                                  }
-    
+
                                  if(data[0]['habido_emp'] == 'HABIDO'){
                                      $('#condicion_emp_' + a).css({'color': '#70e000','font-weight': 'bold'});
                                  }else {
                                      $('#condicion_emp_' + a).css({'color': '#ef233c','font-weight': 'bold'});
                                  }
-    
+
                                 sumarfechas();
                                 sumarbono(a);
                                 MostrarCertificados(data[0]['tipo_emp'], a);
                                 MostrarLiquidacion(fech_final_1, data[0]['tipo_emp'], a);
-    
+
                                 ListarFirmante(a);
                             }
                         });
@@ -1699,10 +1706,10 @@ function mostrardetalle(a,b,c){
                                 $('#fech_final_emp').val(fech_final_1);
                                 $('#cargo_emp').val(cargo);
                                 $('#dpto_emp_'+a).val(data[0]['dpto']);
-                                $('#rep_legal_'+a).val(data[0]['rep_legal']); 
+                                $('#rep_legal_'+a).val(data[0]['rep_legal']);
                                 $('#dni_a_'+a).val(data[0]['dni_a']);
-                                $('#rango_emp_'+a).val(data[0]['f_inic_act'] +" / "+ data[0]["f_baja_act"]);  
-                                
+                                $('#rango_emp_'+a).val(data[0]['f_inic_act'] +" / "+ data[0]["f_baja_act"]);
+
                                 nom = $('#nom_emp_lab').val();
                                 var dpto1= $('#dpto_emp_'+a).val();
                                 nombres= $('#txtnombre').val();
@@ -1713,7 +1720,7 @@ function mostrardetalle(a,b,c){
                                 rp =  data[0]['rep_legal'];
                                 dnia = data[0]['dni_a'];
                                 firm = $('#firmante'+a).val();
-    
+
                                  //Asignar valores a TabsEmpresa
                                  $('#nombre_emp'+a).val(data[0]['empleador']);
                                  $('#cargo_emp'+a).val(cargo);
@@ -1725,7 +1732,7 @@ function mostrardetalle(a,b,c){
                                  $('#sueldo_emp'+a).val(data[0]['fechsueldo']);
                                  $('#moneda_emp'+a).val(data[0]['moneda_rm']);
                                  $('#tiempo_imp'+ a).val(tmp +" Años");
-                        
+
                                  $('.emp_imp').html(nom);
                                  $('.nombre_imp').html(nombres+" "+apelli);
                                  $('.cargo_imp').html(cargo);
@@ -1752,7 +1759,7 @@ function mostrardetalle(a,b,c){
                                  $('.desde_imp_num').html(convertDateFormat(fech1));
                                  $('.hasta_imp_num').html(convertDateFormat(fech_final_1));
                                  $('.lugardia_num').html(dpto1 +", "+convertDateFormat(fech_final_1));
-     
+
                                  $('#emp_certificado').val(nom);
                                  $('#nombre_certificado').val(nombres+" "+apelli);
                                  $('#f_ini_certificado').val(convertDateFormat(fech1));
@@ -1760,16 +1767,16 @@ function mostrardetalle(a,b,c){
                                  $('#cargo_certificado').val(cargo);
                                  $('#firmante_certificado').val(firm);
                                  $('#lugar_certificado').val(dpto1+", "+convertDateFormat(fech_final_1));
-     
+
                                  /* LIQUIDACION */
                                  $('#dias_liqui' + a).val(data[0]['Dias']);
                                  $('#meses_liqui' + a).val(data[0]['Meses']);
                                  $('#anios_liqui' + a).val(data[0]['Anios']);
                                  $('#ruc_emp'+ a).val(data[0]['ruc']);
-     
+
                                  $('#sueldo_liquidacion'+ a).val(data[0]['fechsueldo']);
-                                 
-    
+
+
                                 //estado y condicion
                                 $('#estado_emp_' + a).val(data[0]['estado_emp']);
                                 $('#condicion_emp_' + a).val(data[0]['habido_emp']);
@@ -1778,25 +1785,25 @@ function mostrardetalle(a,b,c){
                                 }else {
                                     $('#estado_emp_' + a).css({'color': '#ef233c','font-weight': 'bold'});
                                 }
-    
+
                                 if(data[0]['habido_emp'] == 'HABIDO'){
                                     $('#condicion_emp_' + a).css({'color': '#70e000','font-weight': 'bold'});
                                 }else {
                                     $('#condicion_emp_' + a).css({'color': '#ef233c','font-weight': 'bold'});
                                 }
-     
+
                                  sumarfechas();
                                  sumarbono(a);
                                  MostrarCertificados(data[0]['tipo_emp'], a);
                                  MostrarLiquidacion(fech_final_1, data[0]['tipo_emp'], a);
-    
+
                                  ListarFirmante(a);
                             }
-                            
-                            
-                        });   
+
+
+                        });
                     }
-                    
+
                     //$("#lst_emp_"+a).val(razsocialruc).trigger('change');
                     //$("#contemp1").show();
                     $("#resultado_pdf").show();
@@ -1878,7 +1885,7 @@ function MostrarCertificados(valor, emp){
                 div_tipo+=  '<option value="g'+i+'">Certificado - G'+i+'</option>';
             }
             break;
-    
+
     }
 
     $("#select_certificado"+emp).html(div_tipo);
@@ -1969,7 +1976,7 @@ function MostrarLiquidacion(valor, tipo, e){
                 $('#bonif' + e).attr("disabled", false);
             }
             break;
-        
+
     }
 }
 function GuardarLista(){
@@ -2040,16 +2047,16 @@ function GuardarLista(){
 
     /*JSON datos Empresa  */
     var empresas_data = {
-        "empresas": 
+        "empresas":
             {
-            "empresa1": 
+            "empresa1":
             {
-                "Certificado": 
+                "Certificado":
                 {
                     "tipo_certificado": $('#select_certificado1').val() || null,
                     "fecha_emision" :   $('#fecha_certificado1').val() || null
                 },
-                "Liquidacion": 
+                "Liquidacion":
                 {
                     "sueldo" :          $('#sueldo_liquidacion1').val() || null,
                     "adelanto" :        $('#adelanto1').val() || null,
@@ -2108,14 +2115,14 @@ function GuardarLista(){
                     "modelo" :        $('#combo_prev_bono1').val() || null
                 }
             },
-            "empresa2": 
+            "empresa2":
             {
-                "Certificado": 
+                "Certificado":
                 {
                     "tipo_certificado": $('#select_certificado2').val() || null,
                     "fecha_emision" :   $('#fecha_certificado2').val() || null
                 },
-                "Liquidacion": 
+                "Liquidacion":
                 {
                     "sueldo" :          $('#sueldo_liquidacion2').val() || null,
                     "adelanto" :        $('#adelanto2').val() || null,
@@ -2174,14 +2181,14 @@ function GuardarLista(){
                     "modelo" :        $('#combo_prev_bono2').val() || null
                 }
             },
-            "empresa3": 
+            "empresa3":
             {
-                "Certificado": 
+                "Certificado":
                 {
                     "tipo_certificado": $('#select_certificado3').val() || null,
                     "fecha_emision" :   $('#fecha_certificado3').val() || null
                 },
-                "Liquidacion": 
+                "Liquidacion":
                 {
                     "sueldo" :          $('#sueldo_liquidacion3').val() || null,
                     "adelanto" :        $('#adelanto3').val() || null,
@@ -2240,14 +2247,14 @@ function GuardarLista(){
                     "modelo" :        $('#combo_prev_bono3').val() || null
                 }
             },
-            "empresa4": 
+            "empresa4":
             {
-                "Certificado": 
+                "Certificado":
                 {
                     "tipo_certificado": $('#select_certificado4').val() || null,
                     "fecha_emision" :   $('#fecha_certificado4').val() || null
                 },
-                "Liquidacion": 
+                "Liquidacion":
                 {
                     "sueldo" :          $('#sueldo_liquidacion4').val() || null,
                     "adelanto" :        $('#adelanto4').val() || null,
@@ -2306,14 +2313,14 @@ function GuardarLista(){
                     "modelo" :        $('#combo_prev_bono4').val() || null
                 }
             },
-            "empresa5": 
+            "empresa5":
             {
-                "Certificado": 
+                "Certificado":
                 {
                     "tipo_certificado": $('#select_certificado5').val() || null,
                     "fecha_emision" :   $('#fecha_certificado5').val() || null
                 },
-                "Liquidacion": 
+                "Liquidacion":
                 {
                     "sueldo" :          $('#sueldo_liquidacion5').val() || null,
                     "adelanto" :        $('#adelanto5').val() || null,
@@ -2432,7 +2439,7 @@ function GuardarLista(){
             logo5 : logo5,
             lista : id_lista,
             tipo : tipo_lista,
-            datos_der : JSON.stringify(empresas_data)  
+            datos_der : JSON.stringify(empresas_data)
         }, function(data){
             console.log("GUARDO");
             console.log(data);
@@ -2445,7 +2452,7 @@ function GuardarLista(){
                     'Registro!',
                     'Se registro correctamente.',
                     'success'
-                );  
+                );
             }
     });
 }
@@ -2495,7 +2502,7 @@ function sumarbono(a){
     anios_bono = 0;
     meses_bono = 0;
     dias_bono = 0;
-    
+
     let numero = $('#txtcant_emp').val();
     let fech1 = $('#f_inicio_'+a).val();
     let fech_final_1 =$('#f_final_'+a).val();
@@ -2518,7 +2525,7 @@ function sumarbono(a){
                     dife1 = f_fin.diff(f_inicio, 'days');
                     anios_bono = Math.trunc(dife1 / 365);
                     dias_bono = dife1 % 365;
-                    if(dias_bono >= 30){ 
+                    if(dias_bono >= 30){
                         mes_orci = Math.trunc(dias_bono / 30);
                         dias_bono = dias_bono % 30;
                         meses_bono = meses_bono + mes_orci;
@@ -2532,12 +2539,12 @@ function sumarbono(a){
                     }
                     suma_anios1 +=anios_bono;
                     suma_meses1 +=meses_bono;
-                    suma_dias1 +=dias_bono; 
+                    suma_dias1 +=dias_bono;
                 }
             }
-                
+
         }
-        
+
     }
     if(suma_dias1 >= 30){
 
@@ -2556,11 +2563,11 @@ function sumarbono(a){
     sum_mes = suma_anios1 * 12 + suma_meses1;
     mensaje = suma_anios1+ ' Años '+suma_meses1+' Meses '+ suma_dias1+' Dias'+'( '+sum_mes+ ' Meses )';
    //console.log(mensaje);
-    $("#tiempo_bono").html(mensaje); 
+    $("#tiempo_bono").html(mensaje);
 }
 
 function calcularBono(){
-   
+
     /*numero = $('#txtcant_emp').val();
     f_inicio = moment($('#f_inicio_'+numero).val());
     f_fin = moment($('#f_final_'+numero).val());
@@ -2569,25 +2576,25 @@ function calcularBono(){
     const constante = 0.1831;
     const meses = parseInt(dife1, "10");
 
-    mes12 = parseFloat($('#dic_91').val()) | 0 
-    mes01 = parseFloat($('#ene_92').val()) | 0 
-    mes02 = parseFloat($('#feb_92').val()) | 0 
-    mes03 = parseFloat($('#mar_92').val()) | 0 
-    mes04 = parseFloat($('#abr_92').val()) | 0 
-    mes05 = parseFloat($('#may_92').val()) | 0 
-    mes06 = parseFloat($('#jun_92').val()) | 0 
-    mes07 = parseFloat($('#jul_92').val()) | 0 
-    mes08 = parseFloat($('#ago_92').val()) | 0 
-    mes09 = parseFloat($('#sep_92').val()) | 0 
-    mes10 = parseFloat($('#oct_92').val()) | 0 
-    mes11 = parseFloat($('#nov_92').val()) | 0 
+    mes12 = parseFloat($('#dic_91').val()) | 0
+    mes01 = parseFloat($('#ene_92').val()) | 0
+    mes02 = parseFloat($('#feb_92').val()) | 0
+    mes03 = parseFloat($('#mar_92').val()) | 0
+    mes04 = parseFloat($('#abr_92').val()) | 0
+    mes05 = parseFloat($('#may_92').val()) | 0
+    mes06 = parseFloat($('#jun_92').val()) | 0
+    mes07 = parseFloat($('#jul_92').val()) | 0
+    mes08 = parseFloat($('#ago_92').val()) | 0
+    mes09 = parseFloat($('#sep_92').val()) | 0
+    mes10 = parseFloat($('#oct_92').val()) | 0
+    mes11 = parseFloat($('#nov_92').val()) | 0
 
     promedio = (mes12+mes01+mes02+mes03+mes04+mes05+mes06+mes07+mes08+mes09+mes10+mes11)/12
     total = new Intl.NumberFormat('en-EN').format(promedio*constante*meses)
 
     $('#cal_bono').val(total)*/
 
-    
+
     const constante = 0.1831;
     let sum_mes = suma_anios1 * 12 + suma_meses1;
     let total_dic = $('#dic_91').val();
@@ -2615,7 +2622,7 @@ function calcularTotalBoleta(e){
     let rm_vacacional = $('#rm_vacacional_boleta'+ e).val();
     let reintegro_boleta = $('#reintegro_boleta'+ e).val();
     let otros_boleta = $('#otros_boleta'+ e).val();
-    
+
     let total ;
 
     total = Number(sueldo_boleta) + Number(h_extras_boleta) + Number(boni_boleta) + Number(rm_vacacional)+ Number(reintegro_boleta) + Number(otros_boleta) ;
@@ -2630,14 +2637,14 @@ function ListarFirmante(a){
 
     $("#firmante"+a).val("");
 
-    
+
     $.post("../../controller/empresacontrolador.php?op=combovigencia",{numero : ruc}, function(data){
         if(data != ""){
             //console.log(data);
             data = JSON.parse(data);
-            $('#rango_emp_'+a).val(data.f_inic_act +" / "+ data.f_baja_act);   
+            $('#rango_emp_'+a).val(data.f_inic_act +" / "+ data.f_baja_act);
         }
-       
+
     });
 
     if(alerta_uso == 0 ){
@@ -2672,10 +2679,10 @@ function ListarFirmante(a){
 function ListarLogo(a){
     let estado = $("#logo"+a).val();
     if(estado == 'no-fotos.png'){
-        $("#logo_img_"+a).attr("src",""); 
+        $("#logo_img_"+a).attr("src","");
         $('#div_logo_'+a).hide();
     }else {
-        $("#logo_img_"+a).attr("src","../../assets/img/"+estado); 
+        $("#logo_img_"+a).attr("src","../../assets/img/"+estado);
         //$('#div_logo_'+a).show();
     }
 }
@@ -2689,7 +2696,7 @@ function Sumarmonto(mes) {
         let valorNumerico = Number(desformatearNumero(numero));
         if (!isNaN(valorNumerico)) {
             num += valorNumerico;
-        } 
+        }
     }
     $('#'+mes+'_total').html(formatearNumeroEntero(num));
     //console.log("El mes es: " + num);
@@ -2708,9 +2715,9 @@ function MostrarBoleta(e){
         let hextras = Number($('#'+mes+'_4').val());
         let bonofi = Number($('#'+mes+'_5').val());
         let otros = Number($('#'+mes+'_6').val());
-    
+
         let total =  desformatearNumero($('#'+mes+'_total').html());
-    
+
         $('#sueldo_boleta'+ e).val(sueldo);
         $('#rm_vacacional_boleta'+ e).val(rm);
         $('#reintegro_boleta'+ e).val(reintegro);
@@ -2719,7 +2726,7 @@ function MostrarBoleta(e){
         $('#otros_boleta'+ e).val(otros);
         $('#total_monto_boleta'+ e).val(total);
         SumarMeses();
-    
+
         let mes_completo = "";
         let estado_dsc = $("#select_mes_boleta"+ e).val();
         let estado_anio_dsc ;
@@ -2735,49 +2742,49 @@ function MostrarBoleta(e){
             case 'mar':
                 mes_completo = "03";
                 estado_anio_dsc = "1992";
-                break; 
+                break;
             case 'abr':
                 mes_completo = "04";
                 estado_anio_dsc = "1992";
-                break; 
+                break;
             case 'may':
                 mes_completo = "05";
                 estado_anio_dsc = "1992";
-                break; 
+                break;
             case 'jun':
                 mes_completo = "06";
                 estado_anio_dsc = "1992";
-                break; 
+                break;
             case 'jul':
                 mes_completo = "07";
                 estado_anio_dsc = "1992";
-                break; 
+                break;
             case 'ago':
                 mes_completo = "08";
                 estado_anio_dsc = "1992";
-                break; 
+                break;
             case 'sep':
                 mes_completo = "09";
                 estado_anio_dsc = "1992";
-                break; 
+                break;
             case 'oct':
                 mes_completo = "10";
                 estado_anio_dsc = "1992";
-                break; 
+                break;
             case 'nov':
                 mes_completo = "11";
                 estado_anio_dsc = "1992";
-                break; 
+                break;
             case 'dic':
                 mes_completo = "12";
                 estado_anio_dsc = "1991";
                 break;
         }
-        
+
         //let estado_anio_dsc = $("#select_anio_boletas"+ e).val();
         let fecha_consulta = estado_anio_dsc+'-'+mes_completo+'-01';
         //console.log(fecha_consulta);
-        //CONSULTA DE MES 
+        //CONSULTA DE MES
         $.post("../../controller/pensioncontrolador.php?op=buscar_mes",{fecha : fecha_consulta}, function(data){
             //console.log(data);
             if(data != ""){
@@ -2815,38 +2822,38 @@ function MostrarBoleta(e){
                 break;
             case 'mar':
                 mes_completo = "03";
-                break; 
+                break;
             case 'abr':
                 mes_completo = "04";
-                break; 
+                break;
             case 'may':
                 mes_completo = "05";
-                break; 
+                break;
             case 'jun':
                 mes_completo = "06";
-                break; 
+                break;
             case 'jul':
                 mes_completo = "07";
-                break; 
+                break;
             case 'ago':
                 mes_completo = "08";
-                break; 
+                break;
             case 'sep':
                 mes_completo = "09";
-                break; 
+                break;
             case 'oct':
                 mes_completo = "10";
-                break; 
+                break;
             case 'nov':
                 mes_completo = "11";
-                break; 
+                break;
             case 'dic':
                 mes_completo = "12";
                 break;
         }
         let fecha_consulta = estado_anio_dsc+'-'+mes_completo+'-01';
         //console.log(fecha_consulta);
-        //CONSULTA DE MES 
+        //CONSULTA DE MES
         $.post("../../controller/pensioncontrolador.php?op=buscar_mes",{fecha : fecha_consulta}, function(data){
             //console.log(data);
             if(data != ""){
@@ -2871,7 +2878,7 @@ function MostrarBoleta(e){
     }
 
 
-    
+
 }
 
 function SumarMeses(){
@@ -2948,7 +2955,7 @@ function imprimir_word(e){
             num_emp: num_emp
         },
         success: function(response){
-           
+
             console.log(response);
             resp = JSON.parse(response);
             if(resp.estado == 1){
@@ -2975,14 +2982,14 @@ function imprimir_word(e){
 
             // Eliminar el elemento <a> del DOM después de la descarga
             document.body.removeChild(link);
-           
+
         }
     });
 }
 
 function imprimir_liquidacion_word(e){
 
-    var nombreruta;          
+    var nombreruta;
     var cuerpo              = $('#combo_prev_cuerpo'+ e).val();
     var nombre              = $('#txtnombre').val();
     var apellido            = $('#txtapellido').val();
@@ -3000,12 +3007,12 @@ function imprimir_liquidacion_word(e){
     var sueldo              = $('#sueldo_emp'+ e).val();
     var moneda              = $('#moneda_emp'+ e).val();
     var motivo              = $('select[name="combo_prev_liqui'+ e +'"] option:selected').text();
-    //Agregar los bonos 
+    //Agregar los bonos
     var bonif_ext           = $('#bonif_extra'+ e).val();
     var bonif_gra           = $('#bonif_gra'+ e).val();
     var bonif_met           = $('#bonif_meta'+ e).val();
     var bonif_dias          = $('#bonif_dias'+ e).val();
-    //Agregar año para la condicional 
+    //Agregar año para la condicional
     var fecha_final         = $("#fech_final_emp"+ e).val();
     var fecha               = new Date(fecha_final);
     var anio                = fecha.getFullYear();
@@ -3029,26 +3036,26 @@ function imprimir_liquidacion_word(e){
     var formData = new FormData($('#form_liqui'+ e)[0]);
 
     // Agrega los datos adicionales al objeto FormData
-    formData.append('empresa', nombre_emp); 
+    formData.append('empresa', nombre_emp);
     formData.append('afiliado', nombre_com);
-    formData.append('nombre_carpeta', nom_carpeta); 
-    formData.append('fecha_inicio', fecha_inicio); 
-    formData.append('fecha_final', fecha_hasta); 
+    formData.append('nombre_carpeta', nom_carpeta);
+    formData.append('fecha_inicio', fecha_inicio);
+    formData.append('fecha_final', fecha_hasta);
     formData.append('fecha_inicio_num', fecha_inicio_num);
-    formData.append('fecha_final_num', fecha_hasta_num); 
-    formData.append('fecha_footer', lugar_dia);   
-    formData.append('cargo', cargo);  
-    formData.append('sueldo', sueldo);   
-    formData.append('moneda', moneda);  
-    formData.append('motivo', motivo); 
-    formData.append('bonif_ext', bonif_ext);  
-    formData.append('bonif_gra', bonif_gra);   
-    formData.append('bonif_met', bonif_met);  
+    formData.append('fecha_final_num', fecha_hasta_num);
+    formData.append('fecha_footer', lugar_dia);
+    formData.append('cargo', cargo);
+    formData.append('sueldo', sueldo);
+    formData.append('moneda', moneda);
+    formData.append('motivo', motivo);
+    formData.append('bonif_ext', bonif_ext);
+    formData.append('bonif_gra', bonif_gra);
+    formData.append('bonif_met', bonif_met);
     formData.append('bonif_dias', bonif_dias);
-    formData.append('anio_final', anio);  
-    formData.append('cuerpo', cuerpo); 
-    formData.append('ruc', ruc);  
-    formData.append('num_emp', num_emp); 
+    formData.append('anio_final', anio);
+    formData.append('cuerpo', cuerpo);
+    formData.append('ruc', ruc);
+    formData.append('num_emp', num_emp);
 
     $.ajax({
         type: "POST",
@@ -3058,9 +3065,9 @@ function imprimir_liquidacion_word(e){
         data : formData,
         processData: false, // Evita que jQuery procese los datos (necesario al usar FormData)
         contentType: false, // No establece el tipo de contenido (necesario al usar FormData)
-        success: function(response){  
+        success: function(response){
             console.log(response);
-           
+
             resp = JSON.parse(response);
             if(resp.estado == 1){
                     swal.fire(
@@ -3086,8 +3093,8 @@ function imprimir_liquidacion_word(e){
 
             // Eliminar el elemento <a> del DOM después de la descarga
             document.body.removeChild(link);
-           
-          
+
+
         }
     });
 }
@@ -3113,8 +3120,8 @@ function imprimir_certificado(){
     ventimp1.document.write(ficha.innerHTML);
     ventimp1.document.write('</body></html>');
     ventimp1.document.close();
-    ventimp1.focus();    
-    
+    ventimp1.focus();
+
     ventimp1.onload = function() {
         ventimp1.print();
         ventimp1.close();
@@ -3137,8 +3144,8 @@ function imprimir_liquidacion(id){
     ventimp1.document.write(contenido.innerHTML);
     ventimp1.document.write('</body></html>');
     ventimp1.document.close();
-    ventimp1.focus();    
-    
+    ventimp1.focus();
+
     ventimp1.onload = function() {
         ventimp1.print();
         ventimp1.close();
@@ -3166,8 +3173,8 @@ function imprimir_boleta(){
     ventimp1.document.write(contenido.innerHTML);
     ventimp1.document.write('</body></html>');
     ventimp1.document.close();
-    ventimp1.focus();    
-    
+    ventimp1.focus();
+
     ventimp1.onload = function() {
         ventimp1.print();
         ventimp1.close();
@@ -3189,8 +3196,8 @@ function imprimir_bono(){
     ventimp1.document.write(ficha.innerHTML);
     ventimp1.document.write('</body></html>');
     ventimp1.document.close();
-    ventimp1.focus();    
-    
+    ventimp1.focus();
+
     ventimp1.onload = function() {
         ventimp1.print();
         ventimp1.close();
@@ -3198,7 +3205,7 @@ function imprimir_bono(){
 }
 
 function imprimir_dj(e){
-    var nombreruta          = $('#combo_prev_bono').val();     // Obtener el tipo de DJ     
+    var nombreruta          = $('#combo_prev_bono').val();     // Obtener el tipo de DJ
     var nombre              = $('#txtnombre').val();
     var apellido            = $('#txtapellido').val();
     var nombre_emp          = $('#nom_emp_lab'+ e).html();
@@ -3213,10 +3220,10 @@ function imprimir_dj(e){
     var formData = new FormData($('#form_bono')[0]);
 
     // Agrega los datos adicionales al objeto FormData
-    formData.append('empresa', nombre_emp); 
+    formData.append('empresa', nombre_emp);
     formData.append('afiliado', nombre_com);
-    formData.append('nombre_carpeta', nom_carpeta); 
-    formData.append('ruc', ruc);  
+    formData.append('nombre_carpeta', nom_carpeta);
+    formData.append('ruc', ruc);
 
     $.ajax({
         type: "POST",
@@ -3226,9 +3233,9 @@ function imprimir_dj(e){
         data : formData,
         processData: false, // Evita que jQuery procese los datos (necesario al usar FormData)
         contentType: false, // No establece el tipo de contenido (necesario al usar FormData)
-        success: function(response){  
+        success: function(response){
             console.log(response);
-           
+
             resp = JSON.parse(response);
             if(resp.estado == 1){
                     swal.fire(
@@ -3254,8 +3261,8 @@ function imprimir_dj(e){
 
             // Eliminar el elemento <a> del DOM después de la descarga
             document.body.removeChild(link);
-           
-          
+
+
         }
     });
 }
@@ -3380,7 +3387,7 @@ function boleta_desc(e){
 
 
 $(document).on("click","#btnboletas_dsc", function(){
-    
+
     let monto = Number($('#total_monto_boleta').val());
     let prc1 = Number(monto *0.01).toFixed(2);
     let prc3 = Number(monto *0.03).toFixed(2);
@@ -3403,7 +3410,7 @@ $(document).on("click","#btnboletas_dsc", function(){
 
     $('#total_dsc_empleador').html(total_empleador);
     $('#total_dsc_trabajador').html(total_trabajador);
-     
+
 });
 
 $(".conceptos").on("input", function() {
@@ -3411,12 +3418,12 @@ $(".conceptos").on("input", function() {
 
     // Itera sobre todos los elementos con la clase ".conceptos"
     $(".conceptos").each(function() {
-        
+
         //var valor = parseFloat($(this).val()) || 0; // Si el valor no es un número, asigna 0
-        
+
         //var valor = parseFloat($(this).val() || 0);
 
-        
+
         /*var valor = Number($(this).val().replace(/[^\d]/g, ''));
         var numeroFormateado = agregarComas(valor);
         $(this).val(numeroFormateado);
@@ -3432,9 +3439,9 @@ $(".conceptos").on("input", function() {
             total += valor; // Suma solo si el valor es un número y no es 0
             $(this).val(numeroFormateado);
         }
-    
+
     });
-    
+
     // Muestra el total en la consola o donde desees mostrarlo
     //console.log("Total: " + total.toFixed(2));
     //console.log("Total Promedio: " + Number(total/12).toFixed(2));
@@ -3597,7 +3604,7 @@ $(document).on("click","#btnprevcer_bono", function(){
     console.log($('#firmante_certificado').val());
     console.log($('#lugar_certificado').val());*/
 
-    
+
     $("#prev_certificado_"+tipoprev).show();
 });
 
@@ -3608,11 +3615,37 @@ $(document).on("click","#orcinea-tab", function(){
     $("#prev4").hide();
 });
 
+/*Funcion para formatear Fecha */
+function formatearFecha(fechaString) {
+    // Crear objeto de fecha
+    var fecha = new Date(fechaString);
+
+    // Obtener componentes de la fecha
+    var dia = fecha.getDate();
+    var mes = fecha.getMonth() + 1; // Sumar 1 porque los meses van de 0 a 11
+    var anio = fecha.getFullYear();
+
+    // Formatear la fecha en el formato deseado (DD-MM-YYYY)
+    var fechaFormateada = (dia < 10 ? '0' : '') + dia + '-' + (mes < 10 ? '0' : '') + mes + '-' + anio;
+
+    return fechaFormateada;
+}
+
 function bono_tab(e){
     SumarMeses();
     let sum_mes = suma_anios1 * 12 + suma_meses1;
     const constante = 0.1831;
-    console.log(sum_mes);
+    let f_init = $('#fech_inicio_emp' + e).val();
+    let f_final = $('#fech_final_emp' + e).val();
+
+    let mensaje_fechas  = 'F.Inicio : ' +formatearFecha(f_init) + ' / F.Fin: ' +  formatearFecha(f_final);
+    
+    /*Setear mensaje de fechas */
+    $('#label_fechas_' + e).html(mensaje_fechas);
+
+    //console.log(formatearFecha(f_init));
+    //console.log(formatearFecha(f_final));
+    //console.log(sum_mes);
 
     /*MOSTRAR MONTOS DE CADA MES EN PANEL BONO */
     let total_dic = $('#dic_total').html();
@@ -3627,7 +3660,7 @@ function bono_tab(e){
     let total_sep = $('#sep_total').html();
     let total_oct = $('#oct_total').html();
     let total_nov = $('#nov_total').html();
-    
+
     $('#dic_91' + e).val(desformatearNumero(total_dic));
     $('#ene_92' + e).val(desformatearNumero(total_ene));
     $('#feb_92' + e).val(desformatearNumero(total_feb));
@@ -3646,61 +3679,14 @@ function bono_tab(e){
     let prom_total = (Number(prom_meses) * Number(sum_mes) * constante ).toFixed(2);
 
     $('#prom_meses').html(prom_meses.toFixed(2));
-    $('.cant_meses').html(sum_mes);
+    //$('.cant_meses').html(sum_mes);
     $('#prom_total').html(prom_total);
     $('#cal_bono').val(prom_total);
 
-    //$('.cant_meses').html(dife1);
 }
-$(document).on("click","#bono-tab", function(){
-
-    SumarMeses();
-    let sum_mes = suma_anios1 * 12 + suma_meses1;
-    const constante = 0.1831;
-    console.log(sum_mes);
-
-    /*MOSTRAR MONTOS DE CADA MES EN PANEL BONO */
-    let total_dic = $('#dic_total').html();
-    let total_ene = $('#ene_total').html();
-    let total_feb = $('#feb_total').html();
-    let total_mar = $('#mar_total').html();
-    let total_abr = $('#abr_total').html();
-    let total_may = $('#may_total').html();
-    let total_jun = $('#jun_total').html();
-    let total_jul = $('#jul_total').html();
-    let total_ago = $('#ago_total').html();
-    let total_sep = $('#sep_total').html();
-    let total_oct = $('#oct_total').html();
-    let total_nov = $('#nov_total').html();
-    
-    $('#dic_91').val(desformatearNumero(total_dic));
-    $('#ene_92').val(desformatearNumero(total_ene));
-    $('#feb_92').val(desformatearNumero(total_feb));
-    $('#mar_92').val(desformatearNumero(total_mar));
-    $('#abr_92').val(desformatearNumero(total_abr));
-    $('#may_92').val(desformatearNumero(total_may));
-    $('#jun_92').val(desformatearNumero(total_jun));
-    $('#jul_92').val(desformatearNumero(total_jul));
-    $('#ago_92').val(desformatearNumero(total_ago));
-    $('#sep_92').val(desformatearNumero(total_sep));
-    $('#oct_92').val(desformatearNumero(total_oct));
-    $('#nov_92').val(desformatearNumero(total_nov));
-
-
-    let prom_meses = (Number(total_dic) + Number(total_ene) + Number(total_feb) + Number(total_mar) + Number(total_abr) + Number(total_may) + Number(total_jun) + Number(total_jul) + Number(total_ago) + Number(total_sep) + Number(total_oct) + Number(total_nov)) / 12;
-    let prom_total = (Number(prom_meses) * Number(sum_mes) * constante ).toFixed(2);
-
-    $('#prom_meses').html(prom_meses.toFixed(2));
-    $('.cant_meses').html(sum_mes);
-    $('#prom_total').html(prom_total);
-    $('#cal_bono').val(prom_total);
-
-    //$('.cant_meses').html(dife1);
-
-});
 
 $(document).on("click","#boleta-tab", function(){
-    
+
     let anio_inicio = $("#fech_inicio_emp").val();
     let anio_final = $("#fech_final_emp").val();
     /**FUNCIONALIDAD PARA CAMBIAR LA VISIBILIDAD DE BONOS*/
@@ -3710,11 +3696,11 @@ $(document).on("click","#boleta-tab", function(){
     let fecha_01_65 = new Date("1965-01-01");
     let fecha_07_80 = new Date("1980-07-01");
     let fecha_01_70 = new Date("1970-01-01");
-    
+
     let fecha_12_82 = new Date("1983-01-01");
     let fecha_07_99 = new Date("1999-08-01");
     let fecha_12_84 = new Date("1985-01-01");
-    
+
 
     $('.bonif').attr("disabled", "disabled");
 
@@ -3735,8 +3721,8 @@ $(document).on("click","#boleta-tab", function(){
         $('#bonificacion_logros_boleta').attr("disabled", false);
     }
     if(fecha > fecha_01_65 && fecha < fecha_12_84){
-        $('#bonificacion_festivos_boleta').attr("disabled", false);  
-    }  
+        $('#bonificacion_festivos_boleta').attr("disabled", false);
+    }
 });
 
 
@@ -3760,14 +3746,14 @@ $(document).on("click","#btnprevli", function(){
     /*CALCULO DEL CUERPO DE AÑOS POR SUELDO */
     let moneda_rm = $('#moneda_emp').val();
     let sueldo_rm = $('#sueldo_emp').val();
-    let monto_sld_anio ;  
+    let monto_sld_anio ;
     let monto_sld_mes ;
-    let monto_sld_dia; 
+    let monto_sld_dia;
     let monto_total_lq;
-    let meses_sld_lq; 
+    let meses_sld_lq;
 
     $('.motivo_retiro').html(motivo.toUpperCase());
-    
+
     if(anio >= 1960 && anio <= 1970){
         $("#liquidacion_1").show();
     }
@@ -3783,7 +3769,7 @@ $(document).on("click","#btnprevli", function(){
 
 
 
-   
+
     if(anio >= 1960 && anio <= 1979){
         if(dias_lq > 0){
             meses_sld_lq = Number(meses_lq) + 1;
@@ -3811,7 +3797,7 @@ $(document).on("click","#btnprevli", function(){
                 $('.modelo_60_79_cuerpo_3').show();
                 break;
         }
-        
+
     }
     if(anio >= 1980 && anio <= 1999){
         meses_sld_lq = meses_lq ;
@@ -3833,7 +3819,7 @@ $(document).on("click","#btnprevli", function(){
                 break;
             case '2':
                 $('.modelo_80_99_cuerpo_2').show();
-                
+
                 break;
             case '3':
                 $('.modelo_80_99_cuerpo_3').show();
@@ -3873,7 +3859,7 @@ $(document).on("click","#btnprevli", function(){
                 divs+='        <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>';
                 divs+='    </div>';
             }
-    
+
             divs+='    <div class="col-4" style="text-align: right !important;">';
             divs+='        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span>'+moneda_rm+'</span> <span>'+valor+'</span> </h1>';
             divs+='    </div>';
@@ -3906,30 +3892,32 @@ function PrevDJ(e){
     let tipoprev = $('#combo_prev_bono'+ e).val();
     let dni = $('#num_doc').val();
     let numero = $('#txtcant_emp').val();
-    
+
     let f_inicio = moment($('#f_inicio_'+ e).val());
     let f_fin = moment($('#f_final_'+ e).val());
-    
+
 
     let dife1 = f_fin.diff(f_inicio, 'months');
 
+    //console.log(dife1);
+
     let mon_ini= moment(f_inicio).format('M');
     let mon_fin= moment(f_fin).format('M');
-    let year_ini= moment(f_inicio).format('YYYY'); 
-    let year_fin= moment(f_fin).format('YYYY'); 
+    let year_ini= moment(f_inicio).format('YYYY');
+    let year_fin= moment(f_fin).format('YYYY');
 
 
-    let mes12 = parseFloat($('#dic_91'+ e).val()) | 0 
-    let mes01 = parseFloat($('#ene_92'+ e).val()) | 0 
-    let mes02 = parseFloat($('#feb_92'+ e).val()) | 0 
-    let mes03 = parseFloat($('#mar_92'+ e).val()) | 0 
-    let mes04 = parseFloat($('#abr_92'+ e).val()) | 0 
-    let mes05 = parseFloat($('#may_92'+ e).val()) | 0 
-    let mes06 = parseFloat($('#jun_92'+ e).val()) | 0 
-    let mes07 = parseFloat($('#jul_92'+ e).val()) | 0 
-    let mes08 = parseFloat($('#ago_92'+ e).val()) | 0 
-    let mes09 = parseFloat($('#sep_92'+ e).val()) | 0 
-    let mes10 = parseFloat($('#oct_92'+ e).val()) | 0 
+    let mes12 = parseFloat($('#dic_91'+ e).val()) | 0
+    let mes01 = parseFloat($('#ene_92'+ e).val()) | 0
+    let mes02 = parseFloat($('#feb_92'+ e).val()) | 0
+    let mes03 = parseFloat($('#mar_92'+ e).val()) | 0
+    let mes04 = parseFloat($('#abr_92'+ e).val()) | 0
+    let mes05 = parseFloat($('#may_92'+ e).val()) | 0
+    let mes06 = parseFloat($('#jun_92'+ e).val()) | 0
+    let mes07 = parseFloat($('#jul_92'+ e).val()) | 0
+    let mes08 = parseFloat($('#ago_92'+ e).val()) | 0
+    let mes09 = parseFloat($('#sep_92'+ e).val()) | 0
+    let mes10 = parseFloat($('#oct_92'+ e).val()) | 0
     let mes11 = parseFloat($('#nov_92'+ e).val()) | 0
 
     $('.dni_imp').html(dni);
@@ -3959,7 +3947,7 @@ function PrevDJ(e){
     $('.oct_92_imp_rst').html(formatearNumero((mes10*0.03).toFixed(2)));
     $('.nov_92_imp_rst').html(formatearNumero((mes11*0.03).toFixed(2)));
 
-    //$('.cant_meses').html(dife1);
+    $('.cant_meses').html(dife1);
     $('.year_ini').html(year_ini);
     $('.year_fin').html(year_fin);
     $('.mon_ini').html(mon_ini);
@@ -3978,30 +3966,30 @@ $(document).on("click","#btnprevbono", function(){
     let tipoprev = $('#combo_prev_bono').val();
     let dni = $('#num_doc').val();
     let numero = $('#txtcant_emp').val();
-    
+
     let f_inicio = moment($('#f_inicio_'+numero).val());
     let f_fin = moment($('#f_final_'+numero).val());
-    
+
 
     let dife1 = f_fin.diff(f_inicio, 'months');
 
     let mon_ini= moment(f_inicio).format('M');
     let mon_fin= moment(f_fin).format('M');
-    let year_ini= moment(f_inicio).format('YYYY'); 
-    let year_fin= moment(f_fin).format('YYYY'); 
+    let year_ini= moment(f_inicio).format('YYYY');
+    let year_fin= moment(f_fin).format('YYYY');
 
 
-    let mes12 = parseFloat($('#dic_91').val()) | 0 
-    let mes01 = parseFloat($('#ene_92').val()) | 0 
-    let mes02 = parseFloat($('#feb_92').val()) | 0 
-    let mes03 = parseFloat($('#mar_92').val()) | 0 
-    let mes04 = parseFloat($('#abr_92').val()) | 0 
-    let mes05 = parseFloat($('#may_92').val()) | 0 
-    let mes06 = parseFloat($('#jun_92').val()) | 0 
-    let mes07 = parseFloat($('#jul_92').val()) | 0 
-    let mes08 = parseFloat($('#ago_92').val()) | 0 
-    let mes09 = parseFloat($('#sep_92').val()) | 0 
-    let mes10 = parseFloat($('#oct_92').val()) | 0 
+    let mes12 = parseFloat($('#dic_91').val()) | 0
+    let mes01 = parseFloat($('#ene_92').val()) | 0
+    let mes02 = parseFloat($('#feb_92').val()) | 0
+    let mes03 = parseFloat($('#mar_92').val()) | 0
+    let mes04 = parseFloat($('#abr_92').val()) | 0
+    let mes05 = parseFloat($('#may_92').val()) | 0
+    let mes06 = parseFloat($('#jun_92').val()) | 0
+    let mes07 = parseFloat($('#jul_92').val()) | 0
+    let mes08 = parseFloat($('#ago_92').val()) | 0
+    let mes09 = parseFloat($('#sep_92').val()) | 0
+    let mes10 = parseFloat($('#oct_92').val()) | 0
     let mes11 = parseFloat($('#nov_92').val()) | 0
 
     $('.dni_imp').html(dni);
@@ -4048,7 +4036,7 @@ $(document).on("click","#btnprevbono", function(){
 
 
 $(document).on("click","#btnprevbol", function(){
-   
+
     OcultarPrev();
     let estado = $('select[name="select_mes_boletas"] option:selected').text();
     let mes = $('#select_mes_boletas').val();
@@ -4152,7 +4140,7 @@ $(document).on("click","#btnprevbol", function(){
     $('.total_neto_boleta_16').html(total_neto_16);
     $('.fecha_boleta').html(fecha_boleta);
     $('.fecha_nac_afi').html(convertDateFormat(fecha_nac_afi));
-    /* EMPRESA  emp_imp*/ 
+    /* EMPRESA  emp_imp*/
 
     $('#horas_imp_boleta').html(horaex);
     $('#boni_imp_boleta').html(boni);
@@ -4232,7 +4220,7 @@ function PrevCertificado(e) {
         let fecha1num = moment(fecha1).format('DD-MM-YYYY');
         let fecha2num = moment(fecha2).format('DD-MM-YYYY');
         let tiempo_anio = $('#tiempo_imp'+ e).val();
-        
+
         //Asignar datos
         $('.emp_imp').html(nom);
         $('.cargo_imp').html(cargo);
@@ -4291,7 +4279,7 @@ function PrevLiquidacion(e){
 
         let fecha1 = new Date(fechai);
         let fecha2 = new Date(fechaf);
-        
+
 
 
         let nom         = $('#nombre_emp'+ e).val();
@@ -4310,11 +4298,11 @@ function PrevLiquidacion(e){
             /*CALCULO DEL CUERPO DE AÑOS POR SUELDO */
         let moneda_rm = $('#moneda_emp'+e).val();
         let sueldo_rm = $('#sueldo_emp'+e).val();
-        let monto_sld_anio ;  
+        let monto_sld_anio ;
         let monto_sld_mes ;
-        let monto_sld_dia; 
+        let monto_sld_dia;
         let monto_total_lq;
-        let meses_sld_lq; 
+        let meses_sld_lq;
 
         console.log("Dias Liqui: " + dias_lq);
         console.log("Meses_liqui: " + meses_lq);
@@ -4363,7 +4351,7 @@ function PrevLiquidacion(e){
                     $('.modelo_60_79_cuerpo_3').show();
                     break;
             }
-            
+
         }
 
         if(anio >= 1980 && anio <= 1999){
@@ -4386,7 +4374,7 @@ function PrevLiquidacion(e){
                     break;
                 case '2':
                     $('.modelo_80_99_cuerpo_2').show();
-                    
+
                     break;
                 case '3':
                     $('.modelo_80_99_cuerpo_3').show();
@@ -4426,7 +4414,7 @@ function PrevLiquidacion(e){
                     divs+='        <h1 style="color: #000;font-weight: 600;font-size: 12px;">=</h1>';
                     divs+='    </div>';
                 }
-        
+
                 divs+='    <div class="col-4" style="text-align: right !important;">';
                 divs+='        <h1 style="color: #000;font-weight: 600;font-size: 12px;"><span>'+moneda_rm+'</span> <span>'+valor+'</span> </h1>';
                 divs+='    </div>';
@@ -4453,19 +4441,19 @@ function PrevLiquidacion(e){
         $('.monto_conceptos_total').html(Number(total_conceptos).toFixed(2));
         $('.cargo_imp').html(cargo);
         $('.emp_imp').html(nom);
-        
+
 
         //Asignar datos
         $('.desde_imp').html(fecha1.toLocaleDateString("es-ES", options).toUpperCase());
         $('.hasta_imp').html(fecha2.toLocaleDateString("es-ES", options).toUpperCase());
-        
+
         $('.desde_imp_low').html(fecha1.toLocaleDateString("es-ES", options));
         $('.hasta_imp_low').html(fecha2.toLocaleDateString("es-ES", options));
         $('.cargo_imp_low').html(cargo.toLowerCase());
         $('.lugardia').html(dpto1+", "+fecha_emi.toLocaleDateString("es-ES", options).toUpperCase());
         $('.lugardia_low').html(dpto1+", "+fecha_emi.toLocaleDateString("es-ES", options));
     }else {
-        
+
         swal.fire(
             'Fecha de emision incorrecta',
             '',
@@ -4516,7 +4504,7 @@ function PrevBoleta(e){
         case "dic":
             fecha_boleta = "31 DE "+ estado.toUpperCase() ;
             break;
-        case "ene": 
+        case "ene":
             fecha_boleta = "31 DE "+ estado.toUpperCase() ;
             break;
         case "feb":
@@ -4620,7 +4608,7 @@ function PrevBoleta(e){
     $('.fecha_nac_afi').html(convertDateFormat(fecha_nac_afi));
     //Nombre de la Empresa
     $('.emp_imp').html(nom);
-    /* EMPRESA  emp_imp*/ 
+    /* EMPRESA  emp_imp*/
 
     $('#horas_imp_boleta').html(horaex);
     $('#boni_imp_boleta').html(boni);
@@ -4685,7 +4673,7 @@ function boleta_tab(e){
         tabContent += '<option value="nov">Noviembre </option>';
         $('#select_mes_boleta'+ e).html(tabContent);
     }
-    
+
 
 
     /**FUNCIONALIDAD PARA CAMBIAR LA VISIBILIDAD DE BONOS*/
@@ -4695,11 +4683,11 @@ function boleta_tab(e){
     let fecha_01_65 = new Date("1965-01-01");
     let fecha_07_80 = new Date("1980-07-01");
     let fecha_01_70 = new Date("1970-01-01");
-    
+
     let fecha_12_82 = new Date("1983-01-01");
     let fecha_07_99 = new Date("1999-08-01");
     let fecha_12_84 = new Date("1985-01-01");
-    
+
 
     $('.bonif'+ e).attr("readonly", "readonly");
 
@@ -4720,8 +4708,8 @@ function boleta_tab(e){
         $('#bonificacion_logros_boleta'+ e).attr("readonly", false);
     }
     if(fecha > fecha_01_65 && fecha < fecha_12_84){
-        $('#bonificacion_festivos_boleta'+ e).attr("readonly", false);  
-    }  
+        $('#bonificacion_festivos_boleta'+ e).attr("readonly", false);
+    }
 }
 
 
@@ -4775,7 +4763,7 @@ function DescargarZip(){
 }
 
 function PrevRenuncia(e) {
-    
+
     let fecha = $('#fecha_renuncia'+ e).val();
     let fechaloc = new Date(fecha);
     var fechaimod = fechaloc.toLocaleString('en-US', {
@@ -4808,7 +4796,7 @@ function PrevRenuncia(e) {
         let fecha2 = new Date(fechaf);
         let fecha1num = moment(fecha1).format('DD-MM-YYYY');
         let fecha2num = moment(fecha2).format('DD-MM-YYYY');
-        
+
         //Asignar datos
         $('.emp_imp').html(nom);
         $('.cargo_imp').html(cargo);
@@ -4859,8 +4847,8 @@ function Imprimir_renuncia(){
     ventimp1.document.write(ficha.innerHTML);
     ventimp1.document.write('</body></html>');
     ventimp1.document.close();
-    ventimp1.focus();    
-    
+    ventimp1.focus();
+
     ventimp1.onload = function() {
         ventimp1.print();
         ventimp1.close();
@@ -4950,7 +4938,7 @@ function imprimir_liquidacion_boleta(e){
     var boleta              = $('#combo_prev_boleta'+ e).val();
     var nombreruta          = 'boleta_'+ boleta +'.php';
 
-    //var nombreruta          = 'boleta_1.php'; 
+    //var nombreruta          = 'boleta_1.php';
     var nombre              = $('#txtnombre').val();
     var apellido            = $('#txtapellido').val();
     var nombre_emp          = $('#nom_emp_lab'+ e).html();
@@ -4966,7 +4954,7 @@ function imprimir_liquidacion_boleta(e){
     var sueldo              = $('#sueldo_emp'+ e).val();
     var moneda              = $('#moneda_emp'+ e).val();
     var motivo              = $('select[name="combo_prev_liqui'+ e +'"] option:selected').text();
-    //Agregar año para la condicional 
+    //Agregar año para la condicional
     var fecha_final         = $("#fech_final_emp"+ e).val();
     var fecha               = new Date(fecha_final);
     var anio                = fecha.getFullYear();
@@ -4993,32 +4981,32 @@ function imprimir_liquidacion_boleta(e){
     var formData = new FormData($('#form_bol'+ e)[0]);
 
     // Agrega los datos adicionales al objeto FormData
-    formData.append('nombre', nombre); 
+    formData.append('nombre', nombre);
     formData.append('apellido', apellido);
-    formData.append('empresa', nombre_emp); 
+    formData.append('empresa', nombre_emp);
     formData.append('afiliado', nombre_com);
-    formData.append('nombre_carpeta', nom_carpeta); 
-    formData.append('fecha_inicio', fecha_inicio); 
-    formData.append('fecha_final', fecha_hasta); 
+    formData.append('nombre_carpeta', nom_carpeta);
+    formData.append('fecha_inicio', fecha_inicio);
+    formData.append('fecha_final', fecha_hasta);
     formData.append('fecha_inicio_num', fecha_inicio_num);
-    formData.append('fecha_final_num', fecha_hasta_num); 
-    formData.append('fecha_footer', lugar_dia);   
-    formData.append('cargo', cargo);  
-    formData.append('sueldo', sueldo);   
-    formData.append('moneda', moneda);  
-    formData.append('motivo', motivo); 
-    formData.append('anio_final', anio);  
-    formData.append('total_boleta', total_boleta); 
-    formData.append('total_neto_1', total_neto_1); 
-    formData.append('total_neto_boleta', total_neto_boleta); 
-    formData.append('dsc_at_pen', dsc_at_pen); 
-    formData.append('dsc_ap_pen', dsc_ap_pen); 
-    formData.append('dsc_at_ss', dsc_at_ss); 
-    formData.append('dsc_ap_ss', dsc_ap_ss); 
-    formData.append('dsc_at_fon', dsc_at_fon); 
-    formData.append('dsc_ap_fon', dsc_ap_fon); 
-    formData.append('tot_desc_at', tot_desc_at); 
-    formData.append('tot_desc_ap', tot_desc_ap); 
+    formData.append('fecha_final_num', fecha_hasta_num);
+    formData.append('fecha_footer', lugar_dia);
+    formData.append('cargo', cargo);
+    formData.append('sueldo', sueldo);
+    formData.append('moneda', moneda);
+    formData.append('motivo', motivo);
+    formData.append('anio_final', anio);
+    formData.append('total_boleta', total_boleta);
+    formData.append('total_neto_1', total_neto_1);
+    formData.append('total_neto_boleta', total_neto_boleta);
+    formData.append('dsc_at_pen', dsc_at_pen);
+    formData.append('dsc_ap_pen', dsc_ap_pen);
+    formData.append('dsc_at_ss', dsc_at_ss);
+    formData.append('dsc_ap_ss', dsc_ap_ss);
+    formData.append('dsc_at_fon', dsc_at_fon);
+    formData.append('dsc_ap_fon', dsc_ap_fon);
+    formData.append('tot_desc_at', tot_desc_at);
+    formData.append('tot_desc_ap', tot_desc_ap);
     formData.append('ruc', ruc);
     if(mes_boletas == 'all'){
         // Crear un array de los meses del año
@@ -5038,12 +5026,12 @@ function imprimir_liquidacion_boleta(e){
                 data : formData,
                 processData: false, // Evita que jQuery procese los datos (necesario al usar FormData)
                 contentType: false, // No establece el tipo de contenido (necesario al usar FormData)
-                success: function(response){  
+                success: function(response){
                     console.log(response);
                     //resp = JSON.parse(response);
                 }
             });
-           
+
         });
 
         swal.fire(
@@ -5051,7 +5039,7 @@ function imprimir_liquidacion_boleta(e){
             '',
             'success'
         );
-            
+
     }else {
         formData.append('mes_anio', mes_anio);
         $.ajax({
@@ -5060,7 +5048,7 @@ function imprimir_liquidacion_boleta(e){
             data : formData,
             processData: false, // Evita que jQuery procese los datos (necesario al usar FormData)
             contentType: false, // No establece el tipo de contenido (necesario al usar FormData)
-            success: function(response){  
+            success: function(response){
                 console.log(response);
                 resp = JSON.parse(response);
                 if(resp.estado == 1){
@@ -5072,26 +5060,26 @@ function imprimir_liquidacion_boleta(e){
                 }
                 // URL del archivo que deseas descargar
                 var url = '../../files/'+nom_carpeta+'/'+resp.archivo+'.docx';
-    
+
                 // Crear un elemento <a> oculto
                 var link = document.createElement('a');
                 link.href = url;
                 link.download = resp.archivo+'-'+num_doc; // Nombre del archivo para descargar
                 link.style.display = 'none';
-    
+
                 // Añadir el elemento <a> al DOM
                 document.body.appendChild(link);
-    
+
                 // Simular un clic en el enlace para iniciar la descarga
                 link.click();
-    
+
                 // Eliminar el elemento <a> del DOM después de la descarga
                 document.body.removeChild(link);
-               
+
             }
         });
-    
-    }  
+
+    }
 
 }
 
@@ -5177,7 +5165,7 @@ function ActualizarEmp(e){
                 // Manejar la respuesta exitosa del servidor
                 //console.log(response);
                 if(response.success == true){
-                    
+
                     //Mostrar Datos de Empresa
                     let dat_emp = response.result;
                     $('#lb_razon').html(dat_emp.razon_social);
@@ -5221,7 +5209,7 @@ function ActualizarEmp(e){
                                         <td style='vertical-align: middle;'>${rep.desde}</td>
                                     </tr>`;
                         });
-                        
+
                     }else {
                         divs = `<tr><td colspan="6">SIN RESULTADOS</td></tr>`;
                     }
@@ -5257,9 +5245,9 @@ function ActualizarEmp(e){
             async : false,
             success: function(response) {
                 // Manejar la respuesta exitosa del servidor
-                
+
                 if(response.success == true){
-                    
+
                     //console.log(response.data);
                     //console.log(response.data.estado_contribuyente);
                     let fecha_cese = convertirFecha(response.data.estado_contribuyente);
@@ -5267,7 +5255,7 @@ function ActualizarEmp(e){
                     if(fecha_cese != 'ACTIVO'){
                         $('#lb_fecha_fin').html(fecha_cese);
                         datos_empresa.fecha_fin = fecha_cese;
-                        
+
                     }else {
                         $('#lb_fecha_fin').html('-');
                         datos_empresa.fecha_fin = '';
@@ -5277,7 +5265,7 @@ function ActualizarEmp(e){
                     // $('#modalactualizar').modal('show');
                     // $('#ruc_empresa_firmante').val(ruc_emp);
                 }else {
-                    // 
+                    //
                     console.log("Error al Segundo AJAX");
                 }
             },
@@ -5306,7 +5294,7 @@ function ActualizarFirmante(){
     var ruc_empresa = $('#ruc_empresa_firmante').val();
     var num = $('#num_tab').val();
 
-   
+
     // Realizar la solicitud AJAX
     $.ajax({
         type: 'POST',
@@ -5322,14 +5310,14 @@ function ActualizarFirmante(){
             });
             $('#modalactualizar').modal('hide');
             mostrardetalle(num, ruc_empresa, 1);
-            
+
         },
         error: function(error) {
             console.log('Error:', error);
         }
     });
 
-    
+
 }
 
 function generarFechaAleatoria() {
@@ -5369,5 +5357,7 @@ function ValidarFecha(input){
         $(input).next('.error-msg').text('Fecha Invalida');
     }
 }
+
+
 
 init();
