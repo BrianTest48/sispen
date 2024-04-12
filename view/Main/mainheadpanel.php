@@ -9,7 +9,8 @@
             <div class="dropdown">
                 <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
                     <span class="logged-name hidden-md-down">Bienvenido(a) <?php echo ($nombres)  ?></span>
-                    <img src="../../assets/img/perfil.png" class="wd-32 rounded-circle" alt="">
+                    <!-- <img src="../../assets/img/perfil.png" class="wd-32 rounded-circle" alt=""> -->
+                    <img src="../../public/img/avatar_goku.png" class="wd-32 rounded-circle" alt="">
                     <span class="square-10 bg-success"></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-header wd-200">

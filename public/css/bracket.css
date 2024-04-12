@@ -13442,7 +13442,8 @@ textarea.parsley-success:focus {
 }
 
 .br-menu-link {
-  color: #adb5bd;
+  /* color: #adb5bd; */
+  color: #ffffff ;
   display: block;
   font-size: 14px;
   border-radius: 2px;
@@ -13450,13 +13451,14 @@ textarea.parsley-success:focus {
 }
 .br-menu-link:hover, .br-menu-link:focus {
   color: #fff;
-  background-color: #18222f;
+   background-color: black; 
+  /* background-color: rgba(24, 34, 47, 0.2) ;  */
 }
 .br-menu-link:focus, .br-menu-link:active {
   outline: none;
 }
 .br-menu-link.show-sub {
-  background-color: #141d28;
+  background-color: rgba(0, 0, 0, 0.5); 
   color: #fff;
 }
 .br-menu-link.active {
@@ -13494,7 +13496,7 @@ textarea.parsley-success:focus {
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 27px;
-  background-color: #1a2432;
+  background-color: black;
   display: none;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;

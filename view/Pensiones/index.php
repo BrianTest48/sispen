@@ -21,7 +21,8 @@
                 </nav>
             </div><!-- br-pageheader -->
             <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
-                <h4 class="tx-gray-800 mg-b-5">Pensión Automático</h4>
+                <!-- <h4 class="tx-gray-800 mg-b-5">Pensión Automático</h4> -->
+                <img src="../../public/img/pension_autom.png" class="img-fluid" alt="Logo" width="450px" height="200px">
                 <p class="mg-b-0">Realiza las pensiones con los siguientes datos.</p>
             </div>
             <div class="br-pagebody">
@@ -33,11 +34,11 @@
                         <div class="col-12 col-sm-6 mg-b-10">
                             <div class="row justify-content-end">
                                 <div class="col-6 col-sm-3">
-                                    <button  type="button" id="btnzipear" name="btnzipear" class="btn btn-info" onclick="DescargarZip()" style="width :100%;" >Descargar en ZIP</button>
+                                    <button  type="button" id="btnzipear" name="btnzipear" class="btn btn-info btn-rounded" onclick="DescargarZip()" style="width :100%;" >Descargar en ZIP</button>
                                 </div>
                                 <div class="col-6 col-sm-3">
                                     <input type="hidden" name="valorguardar" id="valorguardar">
-                                    <button  type="button" id="btnguardarpension" name="btnguardarpension" class="btn btn-info" onclick="GuardarLista()" style="width :100%;background-color : #A20036;" >Guardar</button>
+                                    <button  type="button" id="btnguardarpension" name="btnguardarpension" class="btn btn-info btn-rounded" onclick="GuardarLista()" style="width :100%;background-color : #A20036;" >Guardar</button>
                                 </div>
                             </div>
                             
@@ -70,7 +71,9 @@
                                             </div>
                                         </div><!-- col-4 -->
                                         <div class="col-lg-4  d-flex align-items-center justify-content-center">
-                                            <button type="button" id="btnbuscar" name="btnbuscar"  class="btn btn-info"  >Buscar</button>
+                                            <button type="button" id="btnbuscar" name="btnbuscar"  class="btn btn-info">
+                                                <i class="fa fa-search"></i>
+                                            </button>
                                         </div><!-- col-4 -->
                                     </div>
                                     <br>

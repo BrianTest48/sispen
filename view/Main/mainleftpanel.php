@@ -1,22 +1,31 @@
 <!-- ########## START: LEFT PANEL ########## -->
-<div class="br-logo pd-l-70" >
+<!-- <div class="br-logo pd-l-70" >
     <a href="../Inicio/">
         <span>[</span>SDBZ<span>]</span>
     </a>
+</div> -->
+<div class="br-logo">
+    <a href="../Inicio/">
+        <img src="../../public/img/SDBZ.png" class="img-fluid" alt="Logo">
 </div>
-<div class="br-sideleft overflow-y-auto">
-    <label class="sidebar-label pd-x-15 mg-t-20">Navegación</label>
+<div class="br-sideleft overflow-y-auto fondo-navbar">
+    <label class="sidebar-label pd-x-15 mg-t-20">MENU</label>
     <div class="br-sideleft-menu">
         <a href="../Inicio/" class="br-menu-link menus">
             <div class="br-menu-item">
-                <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
+                <!-- <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i> -->
+                <i class="menu-item-icon">
+                    <img src="../../public/img/bola.png" alt="Ícono de inicio" class="icon ion-ios-home-outline tx-22" width="20px" height="20px">
+                </i>
                 <span class="menu-item-label">Inicio</span>
             </div><!-- menu-item -->
         </a><!-- br-menu-link -->
         <br>
         <a href="#" class="br-menu-link">
             <div class="br-menu-item">
-                <i class="menu-item-icon icon ion-document-text tx-24"></i>
+                <i class="menu-item-icon">
+                    <img src="../../public/img/bola.png" alt="Ícono de inicio" class="icon ion-ios-home-outline tx-22" width="20px" height="20px">
+                </i>
                 <span class="menu-item-label">Pensiones</span>
                 <i class="menu-item-arrow fa fa-angle-down"></i>
             </div><!-- menu-item -->
@@ -29,7 +38,9 @@
         <br>
         <a href="#" class="br-menu-link">
             <div class="br-menu-item">
-                <i class="menu-item-icon icon ion-cash tx-20"></i>
+                <i class="menu-item-icon">
+                    <img src="../../public/img/bola.png" alt="Ícono de inicio" class="icon ion-ios-home-outline tx-22" width="20px" height="20px">
+                </i>
                 <span class="menu-item-label">Bono</span>
                 <i class="menu-item-arrow fa fa-angle-down"></i>
             </div><!-- menu-item -->
@@ -41,7 +52,9 @@
         <br>
         <a href="#" class="br-menu-link">
             <div class="br-menu-item">
-                <i class="menu-item-icon icon ion-document-text tx-24"></i>
+                <i class="menu-item-icon">
+                    <img src="../../public/img/bola.png" alt="Ícono de inicio" class="icon ion-ios-home-outline tx-22" width="20px" height="20px">
+                </i>
                 <span class="menu-item-label">Listas</span>
                 <i class="menu-item-arrow fa fa-angle-down"></i>
             </div><!-- menu-item -->
@@ -53,7 +66,9 @@
         <br>
         <a href="#" class="br-menu-link">
             <div class="br-menu-item">
-                <i class="menu-item-icon icon ion-briefcase tx-20"></i>
+            <i class="menu-item-icon">
+                    <img src="../../public/img/bola.png" alt="Ícono de inicio" class="icon ion-ios-home-outline tx-22" width="20px" height="20px">
+                </i>
                 <span class="menu-item-label">Mantenimiento</span>
                 <i class="menu-item-arrow fa fa-angle-down"></i>
             </div><!-- menu-item -->
@@ -66,7 +81,9 @@
         <br>
         <a href="#" class="br-menu-link">
             <div class="br-menu-item">
-                <i class="menu-item-icon icon ion-person tx-20"></i>
+            <i class="menu-item-icon">
+                    <img src="../../public/img/bola.png" alt="Ícono de inicio" class="icon ion-ios-home-outline tx-22" width="20px" height="20px">
+                </i>
                 <span class="menu-item-label">Usuarios</span>
                 <i class="menu-item-arrow fa fa-angle-down"></i>
             </div><!-- menu-item -->
@@ -77,7 +94,9 @@
         <br>
         <a href="#" class="br-menu-link">
             <div class="br-menu-item">
-                <i class="menu-item-icon icon ion-document-text tx-24"></i>
+            <i class="menu-item-icon">
+                    <img src="../../public/img/bola.png" alt="Ícono de inicio" class="icon ion-ios-home-outline tx-22" width="20px" height="20px">
+                </i>
                 <span class="menu-item-label">Comprimidos</span>
                 <i class="menu-item-arrow fa fa-angle-down"></i>
             </div><!-- menu-item -->
@@ -88,7 +107,9 @@
         <br>
         <a href="#" class="br-menu-link">
             <div class="br-menu-item">
-                <i class="menu-item-icon icon ion-grid"></i>
+            <i class="menu-item-icon">
+                    <img src="../../public/img/bola.png" alt="Ícono de inicio" class="icon ion-ios-home-outline tx-22" width="20px" height="20px">
+                </i>
                 <span class="menu-item-label">Config. de identidad</span>
                 <i class="menu-item-arrow fa fa-angle-down"></i>
             </div><!-- menu-item -->
@@ -104,7 +125,9 @@
         <br>
         <a href="#" class="br-menu-link">
             <div class="br-menu-item">
-                <i class="menu-item-icon icon ion-grid"></i>
+            <i class="menu-item-icon">
+                    <img src="../../public/img/bola.png" alt="Ícono de inicio" class="icon ion-ios-home-outline tx-22" width="20px" height="20px">
+                </i>
                 <span class="menu-item-label">Creación de Documentos</span>
                 <i class="menu-item-arrow fa fa-angle-down"></i>
             </div><!-- menu-item -->
@@ -117,10 +140,6 @@
         </ul>
     </div>
     <br>
-    <div class="d-flex justify-content-center mt-5 mt-xxl-0">
-        <div class="profile bg-gradient-primary-to-secondary">
-            <img class="profile-img" src="../../public/img/gohansuper.png" width="95%" alt="..." />     
-        </div>
-    </div>
+
 </div><!-- br-sideleft -->
 <!-- ########## END: LEFT PANEL ########## -->

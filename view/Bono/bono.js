@@ -408,20 +408,20 @@ function crearTabs(valor) {
         tabContent += '     <br>';
         tabContent += '     <ul class="nav nav-tabs mb-3" id="pills-tab'+ i +'" role="tablist" style="border-bottom : 0px">';
         tabContent += '         <li class="nav-item" role="presentation">';
-        tabContent += '             <button class="nav-link active btn btn-outline-secondary btn-block mg-b-10 "  id="orcinea-tab'+ i +'"  data-bs-toggle="pill" data-bs-target="#certificado'+ i +'" type="button" role="tab" aria-controls="certificado"  aria-selected="true" >Certificado</button>';
+        tabContent += '             <button class="nav-link active btn-outline-secondary btn-block mg-b-10 "  id="orcinea-tab'+ i +'"  data-bs-toggle="pill" data-bs-target="#certificado'+ i +'" type="button" role="tab" aria-controls="certificado"  aria-selected="true" >Certificado</button>';
         tabContent += '         </li>';
         tabContent += '         <li class="nav-item" role="presentation">';
-        tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="host-tab'+ i +'"     data-bs-toggle="pill" data-bs-target="#liquidacion'+ i +'"    type="button" role="tab" aria-controls="liquidacion"     aria-selected="false">Liquidacion</button>';
+        tabContent += '             <button class="nav-link  btn-outline-secondary btn-block mg-b-10 " id="host-tab'+ i +'"     data-bs-toggle="pill" data-bs-target="#liquidacion'+ i +'"    type="button" role="tab" aria-controls="liquidacion"     aria-selected="false">Liquidacion</button>';
         tabContent += '         </li>';
         tabContent += '         <li class="nav-item" role="presentation">';
-        tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="boleta-tab'+ i +'"  onclick="boleta_tab('+ i +')"  data-bs-toggle="pill" data-bs-target="#boleta'+ i +'"  type="button" role="tab" aria-controls="boleta"   aria-selected="false">Boleta</button>';
+        tabContent += '             <button class="nav-link  btn-outline-secondary btn-block mg-b-10 " id="boleta-tab'+ i +'"  onclick="boleta_tab('+ i +')"  data-bs-toggle="pill" data-bs-target="#boleta'+ i +'"  type="button" role="tab" aria-controls="boleta"   aria-selected="false">Boleta</button>';
         tabContent += '         </li>';
         tabContent += '         <li class="nav-item" role="presentation">';
-        tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="renuncia-tab'+ i +'"   data-bs-toggle="pill" data-bs-target="#renuncia'+ i +'"  type="button" role="tab" aria-controls="renuncia"   aria-selected="false" >Renuncia</button>';
+        tabContent += '             <button class="nav-link btn-outline-secondary btn-block mg-b-10 " id="renuncia-tab'+ i +'"   data-bs-toggle="pill" data-bs-target="#renuncia'+ i +'"  type="button" role="tab" aria-controls="renuncia"   aria-selected="false" >Renuncia</button>';
         tabContent += '         </li>';
         //Li nav item nav bono
         tabContent += '         <li class="nav-item" role="presentation" id="nav-bono'+ i +'">';
-        tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="bono-tab'+ i +'"  onclick="bono_tab('+ i +')"  data-bs-toggle="pill" data-bs-target="#bono'+ i +'"  type="button" role="tab" aria-controls="bono"   aria-selected="false">DJ</button>';
+        tabContent += '             <button class="nav-link  btn-outline-secondary btn-block mg-b-10 " id="bono-tab'+ i +'"  onclick="bono_tab('+ i +')"  data-bs-toggle="pill" data-bs-target="#bono'+ i +'"  type="button" role="tab" aria-controls="bono"   aria-selected="false">DJ</button>';
         tabContent += '         </li>';
         //fin nav li
         tabContent += '     </ul>';
@@ -791,7 +791,6 @@ function crearTabs(valor) {
         tabContent += '                 </div>';
         tabContent += '             </form>';
         tabContent += '         </div>';
-
        //Tab bono 
         tabContent += '         <div id="bono'+ i +'" class="tab-pane fade">';
         tabContent += '             <form id="form_bono'+ i +'" action="" method="post" autocomplete="off">';
@@ -913,7 +912,6 @@ function crearTabs(valor) {
         tabContent += '             </form> ';
         tabContent += '         </div>';
        //Fin Tab Bono
-       
         tabContent += '     </div> '; 
         tabContent += '     </div>';
         tabContent += '</div>';
@@ -1424,9 +1422,12 @@ function mostrardetalle(a,b,c){
     if (fechaSelect > fechaLim) {
         //console.log('La fecha seleccionada es posterior al 31 de diciembre de 1992.');
         $('#nav-bono'+ a).show();
+        $('#renuncia-tab'+ a).hide();
+        
     } else {
         //console.log('La fecha seleccionada no es posterior al 31 de diciembre de 1992.');
         $('#nav-bono'+ a).hide();
+        $('#renuncia-tab'+ a).show();
     }
 
     switch (a) {

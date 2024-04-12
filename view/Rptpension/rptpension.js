@@ -982,16 +982,16 @@ function crearTabs(valor, orc, host) {
         tabContent += '     <br>';
         tabContent += '     <ul class="nav nav-tabs mb-3" id="pills-tab'+ i +'" role="tablist" style="border-bottom : 0px">';
         tabContent += '         <li class="nav-item" role="presentation">';
-        tabContent += '             <button class="nav-link active btn btn-outline-secondary btn-block mg-b-10 "  id="orcinea-tab'+ i +'"  data-bs-toggle="pill" data-bs-target="#certificado'+ i +'" type="button" role="tab" aria-controls="certificado"  aria-selected="true" >Certificado</button>';
+        tabContent += '             <button class="nav-link active  btn-outline-secondary btn-block mg-b-10 "  id="orcinea-tab'+ i +'"  data-bs-toggle="pill" data-bs-target="#certificado'+ i +'" type="button" role="tab" aria-controls="certificado"  aria-selected="true" >Certificado</button>';
         tabContent += '         </li>';
         tabContent += '         <li class="nav-item" role="presentation">';
-        tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="host-tab'+ i +'"     data-bs-toggle="pill" data-bs-target="#liquidacion'+ i +'"    type="button" role="tab" aria-controls="liquidacion"     aria-selected="false">Liquidacion</button>';
+        tabContent += '             <button class="nav-link  btn-outline-secondary btn-block mg-b-10 " id="host-tab'+ i +'"     data-bs-toggle="pill" data-bs-target="#liquidacion'+ i +'"    type="button" role="tab" aria-controls="liquidacion"     aria-selected="false">Liquidacion</button>';
         tabContent += '         </li>';
         tabContent += '         <li class="nav-item" role="presentation">';
-        tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="boleta-tab'+ i +'"   data-bs-toggle="pill" data-bs-target="#boleta'+ i +'"  type="button" role="tab" aria-controls="boleta"   aria-selected="false" onclick="boleta_tab('+ i +')">Boleta</button>';
+        tabContent += '             <button class="nav-link  btn-outline-secondary btn-block mg-b-10 " id="boleta-tab'+ i +'"   data-bs-toggle="pill" data-bs-target="#boleta'+ i +'"  type="button" role="tab" aria-controls="boleta"   aria-selected="false" onclick="boleta_tab('+ i +')">Boleta</button>';
         tabContent += '         </li>';
         tabContent += '         <li class="nav-item" role="presentation">';
-        tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="renuncia-tab'+ i +'"   data-bs-toggle="pill" data-bs-target="#renuncia'+ i +'"  type="button" role="tab" aria-controls="renuncia"   aria-selected="false" >Renuncia</button>';
+        tabContent += '             <button class="nav-link  btn-outline-secondary btn-block mg-b-10 " id="renuncia-tab'+ i +'"   data-bs-toggle="pill" data-bs-target="#renuncia'+ i +'"  type="button" role="tab" aria-controls="renuncia"   aria-selected="false" >Renuncia</button>';
         tabContent += '         </li>';
         tabContent += '     </ul>';
         tabContent += '     <div class="tab-content">';
@@ -1399,16 +1399,16 @@ function crearTabs(valor, orc, host) {
         tabContent += '     <br>';
         tabContent += '     <ul class="nav nav-tabs mb-3" id="pills-tab'+ i +'" role="tablist" style="border-bottom : 0px">';
         tabContent += '         <li class="nav-item" role="presentation">';
-        tabContent += '             <button class="nav-link active btn btn-outline-secondary btn-block mg-b-10 "  id="orcinea-tab'+ i +'"  data-bs-toggle="pill" data-bs-target="#certificado'+ i +'" type="button" role="tab" aria-controls="certificado"  aria-selected="true" >Certificado</button>';
+        tabContent += '             <button class="nav-link active  btn-outline-secondary btn-block mg-b-10 "  id="orcinea-tab'+ i +'"  data-bs-toggle="pill" data-bs-target="#certificado'+ i +'" type="button" role="tab" aria-controls="certificado"  aria-selected="true" >Certificado</button>';
         tabContent += '         </li>';
         tabContent += '         <li class="nav-item" role="presentation">';
-        tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="host-tab'+ i +'"     data-bs-toggle="pill" data-bs-target="#liquidacion'+ i +'"    type="button" role="tab" aria-controls="liquidacion"     aria-selected="false">Liquidacion</button>';
+        tabContent += '             <button class="nav-link  btn-outline-secondary btn-block mg-b-10 " id="host-tab'+ i +'"     data-bs-toggle="pill" data-bs-target="#liquidacion'+ i +'"    type="button" role="tab" aria-controls="liquidacion"     aria-selected="false">Liquidacion</button>';
         tabContent += '         </li>';
         tabContent += '         <li class="nav-item" role="presentation">';
-        tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="boleta-tab'+ i +'"   data-bs-toggle="pill" data-bs-target="#boleta'+ i +'"  type="button" role="tab" aria-controls="boleta"   aria-selected="false" onclick="boleta_tab('+ i +')">Boleta</button>';
+        tabContent += '             <button class="nav-link  btn-outline-secondary btn-block mg-b-10 " id="boleta-tab'+ i +'"   data-bs-toggle="pill" data-bs-target="#boleta'+ i +'"  type="button" role="tab" aria-controls="boleta"   aria-selected="false" onclick="boleta_tab('+ i +')">Boleta</button>';
         tabContent += '         </li>';
         tabContent += '         <li class="nav-item" role="presentation">';
-        tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="renuncia-tab'+ i +'"   data-bs-toggle="pill" data-bs-target="#renuncia'+ i +'"  type="button" role="tab" aria-controls="renuncia"   aria-selected="false" >Renuncia</button>';
+        tabContent += '             <button class="nav-link  btn-outline-secondary btn-block mg-b-10 " id="renuncia-tab'+ i +'"   data-bs-toggle="pill" data-bs-target="#renuncia'+ i +'"  type="button" role="tab" aria-controls="renuncia"   aria-selected="false" >Renuncia</button>';
         tabContent += '         </li>';
         tabContent += '     </ul>';
         tabContent += '     <div class="tab-content">';
@@ -1816,16 +1816,16 @@ function crearTabs(valor, orc, host) {
         tabContent += '     <br>';
         tabContent += '     <ul class="nav nav-tabs mb-3" id="pills-tab'+ i +'" role="tablist" style="border-bottom : 0px">';
         tabContent += '         <li class="nav-item" role="presentation">';
-        tabContent += '             <button class="nav-link active btn btn-outline-secondary btn-block mg-b-10 "  id="orcinea-tab'+ i +'"  data-bs-toggle="pill" data-bs-target="#certificado'+ i +'" type="button" role="tab" aria-controls="certificado"  aria-selected="true" >Certificado</button>';
+        tabContent += '             <button class="nav-link active  btn-outline-secondary btn-block mg-b-10 "  id="orcinea-tab'+ i +'"  data-bs-toggle="pill" data-bs-target="#certificado'+ i +'" type="button" role="tab" aria-controls="certificado"  aria-selected="true" >Certificado</button>';
         tabContent += '         </li>';
         tabContent += '         <li class="nav-item" role="presentation">';
-        tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="host-tab'+ i +'"     data-bs-toggle="pill" data-bs-target="#liquidacion'+ i +'"    type="button" role="tab" aria-controls="liquidacion"     aria-selected="false">Liquidacion</button>';
+        tabContent += '             <button class="nav-link  btn-outline-secondary btn-block mg-b-10 " id="host-tab'+ i +'"     data-bs-toggle="pill" data-bs-target="#liquidacion'+ i +'"    type="button" role="tab" aria-controls="liquidacion"     aria-selected="false">Liquidacion</button>';
         tabContent += '         </li>';
         tabContent += '         <li class="nav-item" role="presentation">';
-        tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="boleta-tab'+ i +'"   data-bs-toggle="pill" data-bs-target="#boleta'+ i +'"  type="button" role="tab" aria-controls="boleta"   aria-selected="false" onclick="boleta_tab('+ i +')">Boleta</button>';
+        tabContent += '             <button class="nav-link  btn-outline-secondary btn-block mg-b-10 " id="boleta-tab'+ i +'"   data-bs-toggle="pill" data-bs-target="#boleta'+ i +'"  type="button" role="tab" aria-controls="boleta"   aria-selected="false" onclick="boleta_tab('+ i +')">Boleta</button>';
         tabContent += '         </li>';
         tabContent += '         <li class="nav-item" role="presentation">';
-        tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="renuncia-tab'+ i +'"   data-bs-toggle="pill" data-bs-target="#renuncia'+ i +'"  type="button" role="tab" aria-controls="renuncia"   aria-selected="false" >Renuncia</button>';
+        tabContent += '             <button class="nav-link  btn-outline-secondary btn-block mg-b-10 " id="renuncia-tab'+ i +'"   data-bs-toggle="pill" data-bs-target="#renuncia'+ i +'"  type="button" role="tab" aria-controls="renuncia"   aria-selected="false" >Renuncia</button>';
         tabContent += '         </li>';
         tabContent += '     </ul>';
         tabContent += '     <div class="tab-content">';
@@ -3793,13 +3793,13 @@ function pintarTab(valor, nombre){
 	$filas+='	<br>'
 	$filas+='	<ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist" style="border-bottom : 0px">'
 	$filas+='		<li class="nav-item" role="presentation">'
-	$filas+='			<button class="nav-link active btn btn-outline-secondary btn-block mg-b-10 "  id="orcinea-tab"  data-bs-toggle="pill" data-bs-target="#certificado" type="button" role="tab" aria-controls="certificado"  aria-selected="true" >Certificado</button>'
+	$filas+='			<button class="nav-link active btn-outline-secondary btn-block mg-b-10 "  id="orcinea-tab"  data-bs-toggle="pill" data-bs-target="#certificado" type="button" role="tab" aria-controls="certificado"  aria-selected="true" >Certificado</button>'
 	$filas+='		</li>'
 	$filas+='		<li class="nav-item" role="presentation">'
-	$filas+='			<button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="host-tab"     data-bs-toggle="pill" data-bs-target="#liquidacion"    type="button" role="tab" aria-controls="liquidacion"     aria-selected="false">Liquidacion</button>'
+	$filas+='			<button class="nav-link  btn-outline-secondary btn-block mg-b-10 " id="host-tab"     data-bs-toggle="pill" data-bs-target="#liquidacion"    type="button" role="tab" aria-controls="liquidacion"     aria-selected="false">Liquidacion</button>'
 	$filas+='		</li>'
 	$filas+='		<li class="nav-item" role="presentation">'
-	$filas+='			<button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="refelx-tab"   data-bs-toggle="pill" data-bs-target="#boleta"  type="button" role="tab" aria-controls="boleta"   aria-selected="false">Boleta</button>'
+	$filas+='			<button class="nav-link  btn-outline-secondary btn-block mg-b-10 " id="refelx-tab"   data-bs-toggle="pill" data-bs-target="#boleta"  type="button" role="tab" aria-controls="boleta"   aria-selected="false">Boleta</button>'
 	$filas+='		</li>'
 	$filas+='	</ul>'
 	$filas+='	<div class="tab-content">'

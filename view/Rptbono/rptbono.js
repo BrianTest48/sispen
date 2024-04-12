@@ -804,7 +804,7 @@ function generar(e){
             });
             
         
-            $('#combo_prev_bono').select2({
+            $('.combo_prev_bono').select2({
                 placeholder: "Seleccione",
                 minimumResultsForSearch: Infinity
             });
@@ -1045,20 +1045,20 @@ function crearTabs(valor, orc, host) {
         tabContent += '     <br>';
         tabContent += '     <ul class="nav nav-tabs mb-3" id="pills-tab'+ i +'" role="tablist" style="border-bottom : 0px">';
         tabContent += '         <li class="nav-item" role="presentation">';
-        tabContent += '             <button class="nav-link active btn btn-outline-secondary btn-block mg-b-10 "  id="orcinea-tab'+ i +'"  data-bs-toggle="pill" data-bs-target="#certificado'+ i +'" type="button" role="tab" aria-controls="certificado"  aria-selected="true" >Certificado</button>';
+        tabContent += '             <button class="nav-link active  btn-outline-secondary btn-block mg-b-10 "  id="orcinea-tab'+ i +'"  data-bs-toggle="pill" data-bs-target="#certificado'+ i +'" type="button" role="tab" aria-controls="certificado"  aria-selected="true" >Certificado</button>';
         tabContent += '         </li>';
         tabContent += '         <li class="nav-item" role="presentation">';
-        tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="host-tab'+ i +'"     data-bs-toggle="pill" data-bs-target="#liquidacion'+ i +'"    type="button" role="tab" aria-controls="liquidacion"     aria-selected="false">Liquidacion</button>';
+        tabContent += '             <button class="nav-link btn-outline-secondary btn-block mg-b-10 " id="host-tab'+ i +'"     data-bs-toggle="pill" data-bs-target="#liquidacion'+ i +'"    type="button" role="tab" aria-controls="liquidacion"     aria-selected="false">Liquidacion</button>';
         tabContent += '         </li>';
         tabContent += '         <li class="nav-item" role="presentation">';
-        tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="boleta-tab'+ i +'"  onclick="boleta_tab('+ i +')"  data-bs-toggle="pill" data-bs-target="#boleta'+ i +'"  type="button" role="tab" aria-controls="boleta"   aria-selected="false">Boleta</button>';
+        tabContent += '             <button class="nav-link btn-outline-secondary btn-block mg-b-10 " id="boleta-tab'+ i +'"  onclick="boleta_tab('+ i +')"  data-bs-toggle="pill" data-bs-target="#boleta'+ i +'"  type="button" role="tab" aria-controls="boleta"   aria-selected="false">Boleta</button>';
         tabContent += '         </li>';
         tabContent += '         <li class="nav-item" role="presentation">';
-        tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="renuncia-tab'+ i +'"   data-bs-toggle="pill" data-bs-target="#renuncia'+ i +'"  type="button" role="tab" aria-controls="renuncia"   aria-selected="false" >Renuncia</button>';
+        tabContent += '             <button class="nav-link  btn-outline-secondary btn-block mg-b-10 " id="renuncia-tab'+ i +'"   data-bs-toggle="pill" data-bs-target="#renuncia'+ i +'"  type="button" role="tab" aria-controls="renuncia"   aria-selected="false" >Renuncia</button>';
         tabContent += '         </li>';
         //li DJ
         tabContent += '         <li class="nav-item" role="presentation" id="nav-bono'+ i +'">';
-        tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="bono-tab'+ i +'"  onclick="bono_tab('+ i +')"  data-bs-toggle="pill" data-bs-target="#bono'+ i +'"  type="button" role="tab" aria-controls="bono"   aria-selected="false">DJ</button>';
+        tabContent += '             <button class="nav-link  btn-outline-secondary btn-block mg-b-10 " id="bono-tab'+ i +'"  onclick="bono_tab('+ i +')"  data-bs-toggle="pill" data-bs-target="#bono'+ i +'"  type="button" role="tab" aria-controls="bono"   aria-selected="false">DJ</button>';
         tabContent += '         </li>';
         //FIN li DJ
         tabContent += '     </ul>';
@@ -1579,20 +1579,20 @@ function crearTabs(valor, orc, host) {
         tabContent += '     <br>';
         tabContent += '     <ul class="nav nav-tabs mb-3" id="pills-tab'+ i +'" role="tablist" style="border-bottom : 0px">';
         tabContent += '         <li class="nav-item" role="presentation">';
-        tabContent += '             <button class="nav-link active btn btn-outline-secondary btn-block mg-b-10 "  id="orcinea-tab'+ i +'"  data-bs-toggle="pill" data-bs-target="#certificado'+ i +'" type="button" role="tab" aria-controls="certificado"  aria-selected="true" >Certificado</button>';
+        tabContent += '             <button class="nav-link active btn-outline-secondary btn-block mg-b-10 "  id="orcinea-tab'+ i +'"  data-bs-toggle="pill" data-bs-target="#certificado'+ i +'" type="button" role="tab" aria-controls="certificado"  aria-selected="true" >Certificado</button>';
         tabContent += '         </li>';
         tabContent += '         <li class="nav-item" role="presentation">';
-        tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="host-tab'+ i +'"     data-bs-toggle="pill" data-bs-target="#liquidacion'+ i +'"    type="button" role="tab" aria-controls="liquidacion"     aria-selected="false">Liquidacion</button>';
+        tabContent += '             <button class="nav-link btn-outline-secondary btn-block mg-b-10 " id="host-tab'+ i +'"     data-bs-toggle="pill" data-bs-target="#liquidacion'+ i +'"    type="button" role="tab" aria-controls="liquidacion"     aria-selected="false">Liquidacion</button>';
         tabContent += '         </li>';
         tabContent += '         <li class="nav-item" role="presentation">';
-        tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="boleta-tab'+ i +'"  onclick="boleta_tab('+ i +')"  data-bs-toggle="pill" data-bs-target="#boleta'+ i +'"  type="button" role="tab" aria-controls="boleta"   aria-selected="false">Boleta</button>';
+        tabContent += '             <button class="nav-link btn-outline-secondary btn-block mg-b-10 " id="boleta-tab'+ i +'"  onclick="boleta_tab('+ i +')"  data-bs-toggle="pill" data-bs-target="#boleta'+ i +'"  type="button" role="tab" aria-controls="boleta"   aria-selected="false">Boleta</button>';
         tabContent += '         </li>';
         tabContent += '         <li class="nav-item" role="presentation">';
-        tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="renuncia-tab'+ i +'"   data-bs-toggle="pill" data-bs-target="#renuncia'+ i +'"  type="button" role="tab" aria-controls="renuncia"   aria-selected="false" >Renuncia</button>';
+        tabContent += '             <button class="nav-link btn-outline-secondary btn-block mg-b-10 " id="renuncia-tab'+ i +'"   data-bs-toggle="pill" data-bs-target="#renuncia'+ i +'"  type="button" role="tab" aria-controls="renuncia"   aria-selected="false" >Renuncia</button>';
         tabContent += '         </li>';
         //li DJ
         tabContent += '         <li class="nav-item" role="presentation" id="nav-bono'+ i +'">';
-        tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="bono-tab'+ i +'"  onclick="bono_tab('+ i +')"  data-bs-toggle="pill" data-bs-target="#bono'+ i +'"  type="button" role="tab" aria-controls="bono"   aria-selected="false">DJ</button>';
+        tabContent += '             <button class="nav-link btn-outline-secondary btn-block mg-b-10 " id="bono-tab'+ i +'"  onclick="bono_tab('+ i +')"  data-bs-toggle="pill" data-bs-target="#bono'+ i +'"  type="button" role="tab" aria-controls="bono"   aria-selected="false">DJ</button>';
         tabContent += '         </li>';
         //FIN li DJ
         tabContent += '     </ul>';
@@ -2111,22 +2111,22 @@ function crearTabs(valor, orc, host) {
         tabContent += '     <br>';
         tabContent += '     <ul class="nav nav-tabs mb-3" id="pills-tab'+ i +'" role="tablist" style="border-bottom : 0px">';
         tabContent += '         <li class="nav-item" role="presentation">';
-        tabContent += '             <button class="nav-link active btn btn-outline-secondary btn-block mg-b-10 "  id="orcinea-tab'+ i +'"  data-bs-toggle="pill" data-bs-target="#certificado'+ i +'" type="button" role="tab" aria-controls="certificado"  aria-selected="true" >Certificado</button>';
+        tabContent += '             <button class="nav-link active  btn-outline-secondary btn-block mg-b-10 "  id="orcinea-tab'+ i +'"  data-bs-toggle="pill" data-bs-target="#certificado'+ i +'" type="button" role="tab" aria-controls="certificado"  aria-selected="true" >Certificado</button>';
         tabContent += '         </li>';
         tabContent += '         <li class="nav-item" role="presentation">';
-        tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="host-tab'+ i +'"     data-bs-toggle="pill" data-bs-target="#liquidacion'+ i +'"    type="button" role="tab" aria-controls="liquidacion"     aria-selected="false">Liquidacion</button>';
+        tabContent += '             <button class="nav-link  btn-outline-secondary btn-block mg-b-10 " id="host-tab'+ i +'"     data-bs-toggle="pill" data-bs-target="#liquidacion'+ i +'"    type="button" role="tab" aria-controls="liquidacion"     aria-selected="false">Liquidacion</button>';
         tabContent += '         </li>';
         tabContent += '         <li class="nav-item" role="presentation">';
-        tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="boleta-tab'+ i +'"  onclick="boleta_tab('+ i +')"  data-bs-toggle="pill" data-bs-target="#boleta'+ i +'"  type="button" role="tab" aria-controls="boleta"   aria-selected="false">Boleta</button>';
+        tabContent += '             <button class="nav-link  btn-outline-secondary btn-block mg-b-10 " id="boleta-tab'+ i +'"  onclick="boleta_tab('+ i +')"  data-bs-toggle="pill" data-bs-target="#boleta'+ i +'"  type="button" role="tab" aria-controls="boleta"   aria-selected="false">Boleta</button>';
         tabContent += '         </li>';
         tabContent += '         <li class="nav-item" role="presentation">';
-        tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="renuncia-tab'+ i +'"   data-bs-toggle="pill" data-bs-target="#renuncia'+ i +'"  type="button" role="tab" aria-controls="renuncia"   aria-selected="false" >Renuncia</button>';
+        tabContent += '             <button class="nav-link  btn-outline-secondary btn-block mg-b-10 " id="renuncia-tab'+ i +'"   data-bs-toggle="pill" data-bs-target="#renuncia'+ i +'"  type="button" role="tab" aria-controls="renuncia"   aria-selected="false" >Renuncia</button>';
         tabContent += '         </li>';
-        if(i == emp){
-            tabContent += '         <li class="nav-item" role="presentation" id="nav-bono">';
-            tabContent += '             <button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="bono-tab"   data-bs-toggle="pill" data-bs-target="#bono"  type="button" role="tab" aria-controls="bono"   aria-selected="false">DJ</button>';
-            tabContent += '         </li>';
-        }
+        //Li BONo
+        tabContent += '         <li class="nav-item" role="presentation" id="nav-bono'+ i +'">';
+        tabContent += '             <button class="nav-link  btn-outline-secondary btn-block mg-b-10 " id="bono-tab'+ i +'"  onclick="bono_tab('+ i +')"  data-bs-toggle="pill" data-bs-target="#bono'+ i +'"  type="button" role="tab" aria-controls="bono"   aria-selected="false">DJ</button>';
+        tabContent += '         </li>';
+        //Fin Bono
         tabContent += '     </ul>';
         tabContent += '     <div class="tab-content">';
         tabContent += '         <!-- AQUI VA EL CONTENIDO -->';
@@ -2495,129 +2495,125 @@ function crearTabs(valor, orc, host) {
         tabContent += '             </form>';
         tabContent += '         </div>';
 
-        if( i == emp){
-            tabContent += '         <div id="bono" class="tab-pane fade">';
-            tabContent += '             <form id="form_bono" action="" method="post" autocomplete="off">';
-            tabContent += '                 <div class="form-layout form-layout-4">';
-            tabContent += '                     <div class="row">';
-            tabContent += '                         <div class="col-lg-12">';
-            tabContent += '                             <div class="row mg-b-5">';
-            tabContent += '                                 <label class="form-control-label col-sm-6 ">Numero Autogenerado: <span class="tx-danger">*</span></label>';
-            tabContent += '                                 <input class="form-control col-sm-6" type="text" id="num_auto" name="num_auto"  placeholder="Numero Aleatorio" >';
-            tabContent += '                             </div>';
-            tabContent += '                         </div><!-- col-4 -->';
-            tabContent += '                     </div>';
-            tabContent += '                     <div class="row pd-t-5">';
-            tabContent += '                         <div class="col-lg-6">';
-            tabContent += '                             <div class="row mg-b-5">';
-            tabContent += '                                 <label class="form-control-label col-sm-6">Diciembre 91:</label>';
-            tabContent += '                                 <input class="form-control col-sm-6" type="number" id="dic_91" name="dic_91" oninput="calcularBono()" placeholder="" >';
-            tabContent += '                             </div>';
-            tabContent += '                         </div><!-- col-4 -->';
-            tabContent += '                         <div class="col-lg-6">';
-            tabContent += '                             <div class="row mg-b-5">';
-            tabContent += '                                 <label class="form-control-label col-lg-6">Junio 92: </label>';
-            tabContent += '                                 <input class="form-control col-lg-6" type="number" id="jun_92" name="jun_92" oninput="calcularBono()"  placeholder="" >';
-            tabContent += '                             </div>';
-            tabContent += '                         </div><!-- col-4 -->';
-            tabContent += '                         <div class="col-lg-6">';
-            tabContent += '                             <div class="row mg-b-5">';
-            tabContent += '                                 <label class="form-control-label col-lg-6">Enero 92: </label>';
-            tabContent += '                                 <input class="form-control col-lg-6" type="number" id="ene_92" name="ene_92" oninput="calcularBono()" placeholder="" >';
-            tabContent += '                             </div>';
-            tabContent += '                         </div><!-- col-4 -->';
-            tabContent += '                         <div class="col-lg-6">';
-            tabContent += '                             <div class="row mg-b-5">';
-            tabContent += '                                 <label class="form-control-label col-lg-6">Julio 92:</label>';
-            tabContent += '                                 <input class="form-control col-lg-6" type="number" id="jul_92" name="jul_92" oninput="calcularBono()"   placeholder="" >';
-            tabContent += '                             </div>';
-            tabContent += '                         </div><!-- col-4 -->';
-            tabContent += '                         <div class="col-lg-6">';
-            tabContent += '                             <div class="row mg-b-5">';
-            tabContent += '                                 <label class="form-control-label col-lg-6">Febrero 92: </label>';
-            tabContent += '                                 <input class="form-control col-lg-6" type="number" id="feb_92" name="feb_92" oninput="calcularBono()" placeholder="" >';
-            tabContent += '                             </div>';
-            tabContent += '                         </div><!-- col-4 -->';
-            tabContent += '                         <div class="col-lg-6">';
-            tabContent += '                             <div class="row mg-b-5">';
-            tabContent += '                                 <label class="form-control-label col-lg-6">Agosto 92:</label>';
-            tabContent += '                                 <input class="form-control col-lg-6" type="number" id="ago_92" name="ago_92"  oninput="calcularBono()"  placeholder="" >';
-            tabContent += '                             </div>';
-            tabContent += '                         </div><!-- col-4 -->';
-            tabContent += '                         <div class="col-lg-6">';
-            tabContent += '                             <div class="row mg-b-5">';
-            tabContent += '                                 <label class="form-control-label col-lg-6">Marzo 92: </label>';
-            tabContent += '                                 <input class="form-control col-lg-6" type="number" id="mar_92" name="mar_92" oninput="calcularBono()" placeholder="" >';
-            tabContent += '                             </div>';
-            tabContent += '                         </div><!-- col-4 -->';
-            tabContent += '                         <div class="col-lg-6">';
-            tabContent += '                             <div class="row mg-b-5">';
-            tabContent += '                                 <label class="form-control-label col-lg-6">Septiembre 92:</label>';
-            tabContent += '                                 <input class="form-control col-lg-6" type="number" id="sep_92" name="sep_92" oninput="calcularBono()"   placeholder="" >';
-            tabContent += '                             </div>';
-            tabContent += '                         </div><!-- col-4 -->';
-            tabContent += '                         <div class="col-lg-6">';
-            tabContent += '                             <div class="row mg-b-5">';
-            tabContent += '                                 <label class="form-control-label col-lg-6">Abril 92:</label>';
-            tabContent += '                                 <input class="form-control col-lg-6" type="number" id="abr_92" name="abr_92" oninput="calcularBono()" placeholder="" >';
-            tabContent += '                             </div>';
-            tabContent += '                         </div><!-- col-4 -->';
-            tabContent += '                         <div class="col-lg-6">';
-            tabContent += '                             <div class="row mg-b-5">';
-            tabContent += '                                 <label class="form-control-label col-lg-6">Octubre 92:</label>';
-            tabContent += '                                 <input class="form-control col-lg-6" type="number" id="oct_92" name="oct_92"  oninput="calcularBono()"  placeholder="" >';
-            tabContent += '                             </div>';
-            tabContent += '                         </div><!-- col-4 -->';
-            tabContent += '                         <div class="col-lg-6">';
-            tabContent += '                             <div class="row mg-b-5">';
-            tabContent += '                                 <label class="form-control-label col-lg-6">Mayo 92: </label>';
-            tabContent += '                                 <input class="form-control col-lg-6" type="number" id="may_92" name="may_92" oninput="calcularBono()"  placeholder="" >';
-            tabContent += '                             </div>';
-            tabContent += '                         </div><!-- col-4 -->';
-            tabContent += '                         <div class="col-lg-6">';
-            tabContent += '                             <div class="row mg-b-5">';
-            tabContent += '                                 <label class="form-control-label col-lg-6">Noviembre 92:</label>';
-            tabContent += '                                 <input class="form-control col-lg-6" type="number" id="nov_92" name="nov_92"  oninput="calcularBono()"  placeholder="" >';
-            tabContent += '                             </div>';
-            tabContent += '                         </div><!-- col-4 -->';
-            tabContent += '                     </div><!-- row -->';
-            tabContent += '                     <div class="d-none">';
-            tabContent += '                         <div class="col-12 col-sm-8">';
-            tabContent += '                             <div class="row mg-b-15">';
-            tabContent += '                                 <label class="form-control-label col-lg-6 text-center">Calculo Bono:</label>';
-            tabContent += '                                 <input class="form-control col-lg-6" type="number" id="cal_bono" name="cal_bono"    placeholder="Calculo Bono" >';
-            tabContent += '                             </div>';
-            tabContent += '                         </div><!-- col-4 -->';
-            tabContent += '                         <div class="col-4 col-sm-4">';
-            tabContent += '                             <div class="row justify-content-center mg-l-10">';
-            tabContent += '                                 <button type="button" id="btncalculobono" name="btncalculobono"  class="btn btn-info">Ver Calculo</button>';
-            tabContent += '                             </div>';
-            tabContent += '                         </div>';
-            tabContent += '                     </div>';
-            tabContent += '                 </div>';
-            tabContent += '                 <div class="form-layout-footer text-right mg-t-20">';
-            tabContent += '                     <div class="row">';
-            tabContent += '                         <div class="col-12 col-sm-8">';
-            tabContent += '                             <select class="form-control select2" name="combo_prev_bono" id="combo_prev_bono" style="width: 100%;">';
-            tabContent += '                                 <option value="1">Fecha de 1992</option>';
-            tabContent += '                                 <option value="2">Fecha de 1992 - 1996</option>';
-            tabContent += '                                 <option value="4">Fecha de 1992 - 1996</option>';
-            tabContent += '                                 <option value="3">Fecha de 1992 - 1996 - 2001</option>';
-            tabContent += '                             </select>';
-            tabContent += '                         </div>';
-            tabContent += '                         <div class="col-12 col-sm-4">';
-            tabContent += '                             <button type="button" id="btnprevbono" name="btnprevbono"  class="btn btn-secondary">Previsualizar</button>';
-            tabContent += '                         </div>';
-            tabContent += '                     </div>';
-            tabContent += '                     <!--<button type="button" id="btnimprimirbono" name="btnimprimirbono"  class="btn btn-info">Imprimir Bono</button>-->';
-            tabContent += '                 </div>';
-            tabContent += '             </form> ';
-            tabContent += '         </div>';
-        }
-       
-        tabContent += '     </div> '; 
-        tabContent += '     </div>';
-        tabContent += '</div>';
+        tabContent += '         <div id="bono'+ i +'" class="tab-pane fade">';
+        tabContent += '             <form id="form_bono'+ i +'" action="" method="post" autocomplete="off">';
+        tabContent += '                 <div class="form-layout form-layout-4">';
+        tabContent += '                     <div class="row">';
+        tabContent += '                         <div class="col-lg-12">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-sm-6 ">Numero Autogenerado: <span class="tx-danger">*</span></label>';
+        tabContent += '                                 <input class="form-control col-sm-6" type="text" id="num_auto'+ i +'" name="num_auto"  placeholder="Numero Aleatorio" >';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                     </div>';
+        tabContent += '                     <div class="row pd-t-5">';
+        tabContent += '                         <div class="col-lg-6">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-sm-6">Diciembre 91:</label>';
+        tabContent += '                                 <input class="form-control col-sm-6" type="number" id="dic_91'+ i +'" name="dic_91" oninput="calcularBono()" placeholder="" >';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                         <div class="col-lg-6">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Junio 92: </label>';
+        tabContent += '                                 <input class="form-control col-lg-6" type="number" id="jun_92'+ i +'" name="jun_92" oninput="calcularBono()"  placeholder="" >';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                         <div class="col-lg-6">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Enero 92: </label>';
+        tabContent += '                                 <input class="form-control col-lg-6" type="number" id="ene_92'+ i +'" name="ene_92" oninput="calcularBono()" placeholder="" >';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                         <div class="col-lg-6">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Julio 92:</label>';
+        tabContent += '                                 <input class="form-control col-lg-6" type="number" id="jul_92'+ i +'" name="jul_92" oninput="calcularBono()"   placeholder="" >';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                         <div class="col-lg-6">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Febrero 92: </label>';
+        tabContent += '                                 <input class="form-control col-lg-6" type="number" id="feb_92'+ i +'" name="feb_92" oninput="calcularBono()" placeholder="" >';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                         <div class="col-lg-6">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Agosto 92:</label>';
+        tabContent += '                                 <input class="form-control col-lg-6" type="number" id="ago_92'+ i +'" name="ago_92"  oninput="calcularBono()"  placeholder="" >';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                         <div class="col-lg-6">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Marzo 92: </label>';
+        tabContent += '                                 <input class="form-control col-lg-6" type="number" id="mar_92'+ i +'" name="mar_92" oninput="calcularBono()" placeholder="" >';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                         <div class="col-lg-6">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Septiembre 92:</label>';
+        tabContent += '                                 <input class="form-control col-lg-6" type="number" id="sep_92'+ i +'" name="sep_92" oninput="calcularBono()"   placeholder="" >';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                         <div class="col-lg-6">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Abril 92:</label>';
+        tabContent += '                                 <input class="form-control col-lg-6" type="number" id="abr_92'+ i +'" name="abr_92" oninput="calcularBono()" placeholder="" >';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                         <div class="col-lg-6">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Octubre 92:</label>';
+        tabContent += '                                 <input class="form-control col-lg-6" type="number" id="oct_92'+ i +'" name="oct_92"  oninput="calcularBono()"  placeholder="" >';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                         <div class="col-lg-6">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Mayo 92: </label>';
+        tabContent += '                                 <input class="form-control col-lg-6" type="number" id="may_92'+ i +'" name="may_92" oninput="calcularBono()"  placeholder="" >';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                         <div class="col-lg-6">';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Noviembre 92:</label>';
+        tabContent += '                                 <input class="form-control col-lg-6" type="number" id="nov_92'+ i +'" name="nov_92"  oninput="calcularBono()"  placeholder="" >';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                     </div><!-- row -->';
+        tabContent += '                     <div class="d-none">';
+        tabContent += '                         <div class="col-12 col-sm-8">';
+        tabContent += '                             <div class="row mg-b-15">';
+        tabContent += '                                 <label class="form-control-label col-lg-6 text-center">Calculo Bono:</label>';
+        tabContent += '                                 <input class="form-control col-lg-6" type="number" id="cal_bono'+ i +'" name="cal_bono"    placeholder="Calculo Bono" >';
+        tabContent += '                             </div>';
+        tabContent += '                         </div><!-- col-4 -->';
+        tabContent += '                         <div class="col-4 col-sm-4">';
+        tabContent += '                             <div class="row justify-content-center mg-l-10">';
+        tabContent += '                                 <button type="button" id="btncalculobono'+ i +'" name="btncalculobono"  class="btn btn-info">Ver Calculo</button>';
+        tabContent += '                             </div>';
+        tabContent += '                         </div>';
+        tabContent += '                     </div>';
+        tabContent += '                 </div>';
+        tabContent += '                 <div class="form-layout-footer text-right mg-t-20">';
+        tabContent += '                     <div class="row">';
+        tabContent += '                         <div class="col-12 col-sm-8">';
+        tabContent += '                             <select class="form-control select2 combo_prev_bono" name="combo_prev_bono" id="combo_prev_bono'+ i +'" style="width: 100%;">';
+        tabContent += '                                 <option value="1">Fecha de 1992</option>';
+        tabContent += '                                 <option value="2">Fecha de 1992 - 1996</option>';
+        tabContent += '                                 <option value="4">Fecha de 1992 - 1996</option>';
+        tabContent += '                                 <option value="3">Fecha de 1992 - 1996 - 2001</option>';
+        tabContent += '                             </select>';
+        tabContent += '                         </div>';
+        tabContent += '                         <!--<div class="col-12 col-sm-4">';
+        tabContent += '                             <button type="button" id="btnimprimirbono'+ i +'" name="btnimprimirbono" onclick="imprimir_dj('+ i +')"  class="btn btn-info">Imprimir Bono</button>';
+        tabContent += '                         </div>-->';
+        tabContent += '                         <div class="col-12 col-sm-4">';
+        tabContent += '                             <button type="button" id="btnprevbono'+ i +'" name="btnprevbono" onclick="PrevDJ('+ i +')"  class="btn btn-secondary">Previsualizar</button>';
+        tabContent += '                         </div>';
+        tabContent += '                     </div>';
+        tabContent += '                 </div>';
+        tabContent += '             </form> ';
+        tabContent += '         </div>';
 
         $("#tabsContainer").append(tabContent);
 
@@ -3188,6 +3184,20 @@ function mostrardetalle(a, b, c){
         var n_emp = a + 1 ;
         var fecha_i_nueva = moment(fech_final_1).add(1, 'days').format('YYYY-MM-DD');
         $('#f_inicio_'+n_emp).val(fecha_i_nueva);
+    }
+
+    /*Condicional para visibilidad de DJ */
+    var fechaSelect= new Date(fech_final_1);
+    var fechaLim = new Date('1992-12-31');
+    if (fechaSelect > fechaLim) {
+        //console.log('La fecha seleccionada es posterior al 31 de diciembre de 1992.');
+        $('#nav-bono'+ num).show();
+        $('#renuncia-tab'+ num).hide();
+        
+    } else {
+        //console.log('La fecha seleccionada no es posterior al 31 de diciembre de 1992.');
+        $('#nav-bono'+ a).hide();
+        $('#renuncia-tab'+ a).show();
     }
 
     //setear en hidden el logo
@@ -4239,13 +4249,13 @@ function pintarTab(valor, nombre){
 	$filas+='	<br>'
 	$filas+='	<ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist" style="border-bottom : 0px">'
 	$filas+='		<li class="nav-item" role="presentation">'
-	$filas+='			<button class="nav-link active btn btn-outline-secondary btn-block mg-b-10 "  id="orcinea-tab"  data-bs-toggle="pill" data-bs-target="#certificado" type="button" role="tab" aria-controls="certificado"  aria-selected="true" >Certificado</button>'
+	$filas+='			<button class="nav-link active btn-outline-secondary btn-block mg-b-10 "  id="orcinea-tab"  data-bs-toggle="pill" data-bs-target="#certificado" type="button" role="tab" aria-controls="certificado"  aria-selected="true" >Certificado</button>'
 	$filas+='		</li>'
 	$filas+='		<li class="nav-item" role="presentation">'
-	$filas+='			<button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="host-tab"     data-bs-toggle="pill" data-bs-target="#liquidacion"    type="button" role="tab" aria-controls="liquidacion"     aria-selected="false">Liquidacion</button>'
+	$filas+='			<button class="nav-link btn-outline-secondary btn-block mg-b-10 " id="host-tab"     data-bs-toggle="pill" data-bs-target="#liquidacion"    type="button" role="tab" aria-controls="liquidacion"     aria-selected="false">Liquidacion</button>'
 	$filas+='		</li>'
 	$filas+='		<li class="nav-item" role="presentation">'
-	$filas+='			<button class="nav-link btn btn-outline-secondary btn-block mg-b-10 " id="refelx-tab"   data-bs-toggle="pill" data-bs-target="#boleta"  type="button" role="tab" aria-controls="boleta"   aria-selected="false">Boleta</button>'
+	$filas+='			<button class="nav-link btn-outline-secondary btn-block mg-b-10 " id="refelx-tab"   data-bs-toggle="pill" data-bs-target="#boleta"  type="button" role="tab" aria-controls="boleta"   aria-selected="false">Boleta</button>'
 	$filas+='		</li>'
 	$filas+='	</ul>'
 	$filas+='	<div class="tab-content">'

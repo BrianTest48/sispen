@@ -29,6 +29,8 @@
 <link rel="stylesheet" href="../../public/lib/rickshaw/rickshaw.min.css" >
 <link rel="stylesheet" href="../../public/lib/chartist/chartist.css" >
 
+<link rel="stylesheet" href="../../public/css/style.css">
+
 <!-- Favicon -->
 <link rel="shortcut icon" href="../../assets/img/faviconsp.png">
 

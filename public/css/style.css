@@ -1,0 +1,21 @@
+button.btn{
+    border-radius: 3rem;
+}
+
+
+.br-logo {
+    margin: auto;
+    padding: 0 40px;
+}
+
+.br-logo a {
+    display: inline-block; /* Para que el enlace ocupe solo el ancho necesario */
+}
+
+.fondo-navbar {
+    background-image: url(../../public/img/fondo_navbar.jpg) !important; 
+    background-size: cover; 
+    background-position: right;
+    
+}
+
