@@ -4393,6 +4393,10 @@ button.close {
   }
 }
 
+.modal-xxl {
+  max-width: 100vw;
+}
+
 .tooltip {
   position: absolute;
   z-index: 1070;
