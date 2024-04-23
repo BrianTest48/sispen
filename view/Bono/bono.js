@@ -3462,19 +3462,24 @@ $(".conceptos").on("input", function() {
 });
 
 $("#variable").on("input", function() {
-
-    if ($(this).val().length > 2) {
-        $(this).val($(this).val().slice(0, 2));
+    // Limitar la longitud total del valor a 6 caracteres (2 enteros + 1 punto + 4 decimales)
+    if ($(this).val().length > 6) {
+        $(this).val($(this).val().slice(0, 6));
     }
+    
+    // Obtener el valor actual del campo de entrada
     var valor = $(this).val();
-    // Realiza acciones con el valor, por ejemplo, mostrarlo en la consola
-   // console.log("Valor del campo de entrada: " + valor);
+    
+    // Desformatear el número total
     let total = desformatearNumero($('#prom_total').html());
-    //var total = parseFloat($('#prom_total').html());
+    
+    // Calcular el monto final multiplicando el valor del campo de entrada por el número total
     var montofinal = Number(Number(valor) * Number(total)).toFixed(2);
-    //$('#monto_final').html(formatearNumero(montofinal));
+    
+    // Mostrar el monto final formateado en el elemento #monto_final
     $('#monto_final').html(formatearNumero(montofinal));
 });
+
 
 function CuadroBoletas(e){
 
@@ -3482,11 +3487,30 @@ function CuadroBoletas(e){
     let fecha_ini = $('#fech_inicio_emp'+ e).val();
     let fecha_fin = $('#fech_final_emp'+ e).val();
 
+    //Obtener Fecha de Nacimiento
+    let fecha_naci = $('#txtdate').val();
+
+    // Convertir la cadena de fecha de nacimiento a un objeto moment
+    let fecha_nacimiento = moment(fecha_naci, 'YYYY-MM-DD');
+
+    // Obtener la fecha actual
+    let fecha_actual = moment();
+
+
+    // Calcular la diferencia en años entre la fecha actual y la fecha de nacimiento
+    let edad = fecha_actual.diff(fecha_nacimiento, 'years');
+
+    // Mostrar la edad del Afiliado
+    $('#edad_actual_afiliado').html(edad + " años")
+
     let fecha1 = new Date(fecha_ini);
     let fecha2 = new Date(fecha_fin);
+    
 
     let fecha_i= moment(fecha1).format('DD-MM-YYYY');
     let fecha_f = moment(fecha2).format('DD-MM-YYYY');
+
+
     //Asignar las fechas
     $('#fecha_inicio_bol').html(fecha_i);
     $('#fecha_final_bol').html(fecha_f);
@@ -3899,7 +3923,6 @@ function PrevDJ(e){
 
     let dife1 = f_fin.diff(f_inicio, 'months');
 
-    //console.log(dife1);
 
     let mon_ini= moment(f_inicio).format('M');
     let mon_fin= moment(f_fin).format('M');

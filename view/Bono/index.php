@@ -11103,7 +11103,7 @@
                                             <div class="row">
                                                 <div class="col-6 table-responsive">
                                                     <p style="color: #000;font-weight: 600;font-size: 13px;">1. Meses Laborados (1)</p>
-                                                    <table class="table table-borderless" style="margin-bottom: 0px; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; height: 10px;">
+                                                    <table class="table table-bordered" style="margin-bottom: 0px; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; height: 80%;">
                                                         <thead>
                                                             <tr>
                                                                 <th colspan="2" style="font-size: 13px; text-align: center; padding-bottom: 0px;">DESDE</th>
@@ -11119,72 +11119,82 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody class="text-center" style="font-size: 12px;">
-                                                            <tr>
+                                                            <tr >
                                                                 <th class="mon_ini" id="mon_ini" scope="row" style="padding-bottom: 0px;"></th>
                                                                 <th class="year_ini" id="year_ini" scope="row" style="padding-bottom: 0px;"></th>
                                                                 <th class="mon_fin"  id="mon_fin" scope="row" style="padding-bottom: 0px;"></th>
                                                                 <th class="year_fin"  id="year_fin" scope="row" style="padding-bottom: 0px;"></th>
                                                                 <th class="cant_meses" id="cant_meses" scope="row" style="padding-bottom: 0px;"></th>
                                                             </tr>
-                                                            <tr style="visibility: hidden;">
-                                                            <th scope="row" style="padding-bottom: 0px;">01</th>
-                                                            <th scope="row" style="padding-bottom: 0px;">92</th>
-                                                            <th scope="row" style="padding-bottom: 0px;">12</th>
-                                                            <th scope="row" style="padding-bottom: 0px;">0.36</th>
+                                                            <tr>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
                                                             </tr>
-                                                            <tr style="visibility: hidden;">
-                                                            <th scope="row" style="padding-bottom: 0px;">02</th>
-                                                            <th scope="row" style="padding-bottom: 0px;">92</th>
-                                                            <th scope="row" style="padding-bottom: 0px;">12</th>
-                                                            <th scope="row" style="padding-bottom: 0px;">0.36</th>
+                                                            <tr >
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
                                                             </tr>
-                                                            <tr style="visibility: hidden;">
-                                                            <th scope="row" style="padding-bottom: 0px;">03</th>
-                                                            <th scope="row" style="padding-bottom: 0px;">92</th>
-                                                            <th scope="row" style="padding-bottom: 0px;">12</th>
-                                                            <th scope="row" style="padding-bottom: 0px;">0.36</th>
+                                                            <tr >
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
                                                             </tr>
-                                                            <tr style="visibility: hidden;">
-                                                            <th scope="row" style="padding-bottom: 0px;">04</th>
-                                                            <th scope="row" style="padding-bottom: 0px;">92</th>
-                                                            <th scope="row" style="padding-bottom: 0px;">12</th>
-                                                            <th scope="row" style="padding-bottom: 0px;">0.36</th>
+                                                            <tr >
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
                                                             </tr>
-                                                            <tr style="visibility: hidden;">
-                                                            <th scope="row" style="padding-bottom: 0px;">05</th>
-                                                            <th scope="row" style="padding-bottom: 0px;">92</th>
-                                                            <th scope="row" style="padding-bottom: 0px;">12</th>
-                                                            <th scope="row" style="padding-bottom: 0px;">0.36</th>
+                                                            <tr >
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
                                                             </tr>
-                                                            <tr style="visibility: hidden;">
-                                                            <th scope="row" style="padding-bottom: 0px;">06</th>
-                                                            <th scope="row" style="padding-bottom: 0px;">92</th>
-                                                            <th scope="row" style="padding-bottom: 0px;">12</th>
-                                                            <th scope="row" style="padding-bottom: 0px;">0.36</th>
+                                                            <tr>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
                                                             </tr>
-                                                            <tr style="visibility: hidden;">
-                                                            <th scope="row" style="padding-bottom: 0px;">07</th>
-                                                            <th scope="row" style="padding-bottom: 0px;">92</th>
-                                                            <th scope="row" style="padding-bottom: 0px;">12</th>
-                                                            <th scope="row" style="padding-bottom: 0px;">0.36</th>
+                                                            <tr >
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
                                                             </tr>
-                                                            <tr style="visibility: hidden;">
-                                                            <th scope="row" style="padding-bottom: 0px;">08</th>
-                                                            <th scope="row" style="padding-bottom: 0px;">92</th>
-                                                            <th scope="row" style="padding-bottom: 0px;">12</th>
-                                                            <th scope="row" style="padding-bottom: 0px;">0.36</th>
+                                                            <tr >
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
                                                             </tr>
-                                                            <tr style="visibility: hidden;">
-                                                            <th scope="row" style="padding-bottom: 0px;">09</th>
-                                                            <th scope="row" style="padding-bottom: 0px;">92</th>
-                                                            <th scope="row" style="padding-bottom: 0px;">12</th>
-                                                            <th scope="row" style="padding-bottom: 0px;">0.36</th>
+                                                            <tr>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
                                                             </tr>
-                                                            <tr style="visibility: hidden;">
-                                                            <th scope="row" style="padding-bottom: 0px;">10</th>
-                                                            <th scope="row" style="padding-bottom: 0px;">92</th>
-                                                            <th scope="row" style="padding-bottom: 0px;">12</th>
-                                                            <th scope="row" style="padding-bottom: 0px;">0.36</th>
+                                                            <tr >
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
+                                                            <th scope="row" style="padding-bottom: 0px;"></th>
                                                             </tr>
                                             
                                                         </tbody>
@@ -11193,7 +11203,7 @@
                                                 </div>
                                                 <div class="col-6 table-responsive">
                                                     <p style="color: #000;font-weight: 600;font-size: 13px;">2. Últimas doce (12) Remuneraciones (1)</p>
-                                                    <table class="table table-borderless" style="margin-bottom: 0px; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; height: 10px;width: 100%;">
+                                                    <table class="table table table-bordered" style="margin-bottom: 0px; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; height: 10px;width: 100%;">
                                                         <thead>
                                                             <tr class="text-center">
                                                                 <th scope="col" style="font-size: 11px;" style="padding-bottom: 0px;">Mes</th>
@@ -11345,7 +11355,7 @@
                                                 <div class="row">
                                                     <div class="col-6 table-responsive">
                                                         <p style="color: #000;font-weight: 600;font-size: 13px;">1. Meses Laborados (1)</p>
-                                                        <table class="table table-borderless" style="margin-bottom: 0px; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; height: 10px;">
+                                                        <table class="table table table-bordered" style="margin-bottom: 0px; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; height: 10px;">
                                                             <thead>
                                                                 <tr>
                                                                     <th colspan="2" style="font-size: 13px; text-align: center; padding-bottom: 0px;">DESDE</th>
@@ -11435,7 +11445,7 @@
                                                     </div>
                                                     <div class="col-6 table-responsive">
                                                         <p style="color: #000;font-weight: 600;font-size: 13px;">2. Últimas doce (12) Remuneraciones (1)</p>
-                                                        <table class="table table-borderless" style="margin-bottom: 0px; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; height: 10px;width: 100%;">
+                                                        <table class="table table table-bordered" style="margin-bottom: 0px; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; height: 10px;width: 100%;">
                                                             <thead>
                                                                 <tr class="text-center">
                                                                     <th scope="col" style="font-size: 11px;" style="padding-bottom: 0px;">Mes</th>

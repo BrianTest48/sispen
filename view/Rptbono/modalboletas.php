@@ -10,7 +10,7 @@
                 <div class="form-layout form-layout-4">
                     <div class="row">
                         <div class="col-lg-12 col-sm-12">
-                            <p>DNI - <span id="dni_cal_bono">0000000</span> - <span id="fecha_inicio_bol"></span> - <span id="fecha_final_bol"></span></p>
+                        <p>DNI - <span id="dni_cal_bono">0000000</span>  /  <span id="fecha_inicio_bol"></span> / <span id="fecha_final_bol"></span> / Edad: <span id="edad_actual_afiliado"></span></p>
                         </div>
                     </div>
                     <div class="row">
@@ -63,7 +63,7 @@
                                     <p class="font-weight-bold">Variable</p>
                                 </div>
                                 <div class="col-6">
-                                    <input type="number" id="variable" value="1" style="width: 100%; text-align: right;">
+                                    <input type="number" id="variable" value="1" step="0.0001" style="width: 100%; text-align: right;">
                                 </div>
                             </div>
                         </div>
