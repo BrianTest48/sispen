@@ -5797,18 +5797,29 @@ function ListarFirmante(a){
     //ruc_empresa = $("#lst_emp_"+a).val();
     $('#nom_emp_'+a).html(ruc+" - "+estado);
     $("#firmante"+a).val("");  
-    /*$.post("../../controller/firmacontrolador.php?op=combo",{numero : ruc}, function(data){
-        //console.log(data);
-        $("#firmante"+a).html(data);  
-    });*/
 
     $.post("../../controller/empresacontrolador.php?op=combovigencia",{numero : ruc}, function(data){
         if(data != ""){
             data = JSON.parse(data);
             //console.log(data);
-            $('#rango_emp_'+a).val(data.f_inic_act +" / "+ data.f_baja_act);   
+            $('#rango_emp_'+a).val(data.f_inic_act +" / "+ data.f_baja_act); 
+            $('#estado_emp_' + a).val(data.estado_emp);
+            $('#condicion_emp_' + a).val(data.habido_emp);
+
+            if(data.estado_emp == 'ACTIVO'){
+                $('#estado_emp_' + a).css({'color': '#70e000','font-weight': 'bold'});
+            }else {
+                $('#estado_emp_' + a).css({'color': '#ef233c','font-weight': 'bold'});
+            }
+
+            if(data.habido_emp == 'HABIDO'){
+                $('#condicion_emp_' + a).css({'color': '#70e000','font-weight': 'bold'});
+            }else {
+                $('#condicion_emp_' + a).css({'color': '#ef233c','font-weight': 'bold'});
+            }
         }
-    }); 
+    });
+
     if(alerta_uso == 0 ){
         // Realizar la solicitud AJAX POST
        $.ajax({

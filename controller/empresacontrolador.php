@@ -222,6 +222,8 @@ switch ($_GET["op"]) {
                 $output["ruc"] = $row["ruc"];
                 $output["f_inic_act"] = $row["f_inic_act"];
                 $output["f_baja_act"] = $row["f_baja_act"];
+                $output["estado_emp"] = $row["estado_emp"];
+                $output["habido_emp"] = $row["habido_emp"];
             }
             echo json_encode($output);
         }

@@ -202,7 +202,7 @@
         public function get_empresa_x_ruc($emp_ruc){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT ruc, empleador, DATE_FORMAT(f_inic_act, '%d-%m-%Y') AS f_inic_act , DATE_FORMAT(f_baja_act, '%d-%m-%Y') AS f_baja_act FROM empresas WHERE ruc = ? AND est = 1";
+            $sql="SELECT *, ruc, empleador, DATE_FORMAT(f_inic_act, '%d-%m-%Y') AS f_inic_act , DATE_FORMAT(f_baja_act, '%d-%m-%Y') AS f_baja_act FROM empresas WHERE ruc = ? AND est = 1";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1,$emp_ruc);
             $sql->execute();
