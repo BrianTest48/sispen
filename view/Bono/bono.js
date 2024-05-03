@@ -294,7 +294,8 @@ function generar(e){
                         $('#cbx_estado_'+ i).val(datos["estado_"+i]).trigger('change');
                         $('#cbx_condicion_'+ i).val(datos["condicion_"+i]).trigger('change');
                         //mostrardetalle(i, 0, 0);
-                        BuscarEmp(i);
+                        //BuscarEmp(i);
+                        BuscarEmp_inicio(i, datos["ruc"+i]);
 
                         setTimeout(function() {
                             //console.log("Despues de 1 segundo");
@@ -1051,7 +1052,7 @@ function creardivsempresa(){
                                     "<div class='col-12 col-sm-12'>"+
                                         "<div class='form-group'>"+
                                             "<label class='form-control-label' for='lst_emp_"+i+"'>Empresa</label>"+
-                                            "<select class='form-control select2' name='lst_emp_"+i+"' id='lst_emp_"+i+"' data-placeholder='Seleccione' style='width: 100%' required onchange='ListarFirmante("+i+")'></select>"+
+                                            "<select class='form-control select2' name='lst_emp_"+i+"' id='lst_emp_"+i+"' data-placeholder='Seleccione' style='width: 100%' required onchange='ListarFirmante("+i+")' disabled></select>"+
                                             "<label id='errorLabel_"+i+"' class='error-label' style='color: red;'>Texto predeterminado</label>"+ // Label con texto predeterminado
                                         "</div>"+
                                     "</div>"+
@@ -1309,6 +1310,27 @@ function CopiarRazSocial(a) {
     });
 }
 
+function BuscarEmp_inicio(a, ruc){
+    $.ajax({
+        url: "../../controller/empresacontrolador.php?op=rucempresa",
+        type: "POST",
+        data: { emp_ruc: ruc },
+        dataType: 'JSON',
+        success: function(data) {
+            //console.log(data);
+            let select = `<option value="${ruc}">${data.empleador}</option>`;
+            $("#lst_emp_"+ a).html(select);
+        
+        },
+        error: function(xhr, status, error) {
+            console.error("Error en la solicitud AJAX:", status, error);
+        }
+    });
+}
+
+var empresasData = [];
+var empresasBusqueda = [];
+
 function BuscarEmp(a){
 
     let fech1 = $('#f_inicio_'+a).val();
@@ -1336,16 +1358,39 @@ function BuscarEmp(a){
 
         if(fechai >= fechanac){
             if(fechai < fechaf){
-
-                $.post("../../controller/pensioncontrolador.php?op=combo",{txtdateinicio: fech1 , txtdatefin: fech_final_1, tipo : cbx_tipo, base : cbx_base, estado : cbx_estado, condicion : cbx_condicion}, function(data){
-                    if(data == ""){
-                        console.log("NO EXISTE DATA");
-                    }else {
+                $.ajax({
+                    url: "../../controller/pensioncontrolador.php?op=empresas_seleccion",
+                    type: "POST",
+                    data: {
+                        txtdateinicio: fech1,
+                        txtdatefin: fech_final_1,
+                        tipo: cbx_tipo,
+                        base: cbx_base,
+                        estado: cbx_estado,
+                        condicion: cbx_condicion
+                    },
+                    dataType: "json",
+                    success: function(data) {
                         //console.log(data);
-                        $("#lst_emp_"+a).html(data);
+                        if (data.length > 0) {
+                            // Almacena los datos de empresas en la variable global
+                            empresasData = data;
+                            var resultadosPorPagina = 10; // Define el número de resultados por página
+                            var paginaActual = 1; // Página inicial
+                            mostrarDatos(a, empresasData, paginaActual, resultadosPorPagina);
+
+                            $('#val_number_emp').val(a);
+                            //Mostrar Modal
+                            $('#modalempresas').modal('show');
+                        } else {
+                            // Manejar caso donde no hay datos
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                        // Maneja errores si es necesario
                     }
                 });
-
             }else {
                 Swal.fire({
                     position: 'center',
@@ -1377,6 +1422,118 @@ function BuscarEmp(a){
 
 
 }
+
+// Función para mostrar datos paginados
+function mostrarDatos(a, empresas, paginaActual, resultadosPorPagina) {
+    // Limpiar contenido existente de la tabla
+    $("#div_empresas").empty();
+
+    // Calcular índices de inicio y fin para la página actual
+    var inicio = (paginaActual - 1) * resultadosPorPagina;
+    var fin = inicio + resultadosPorPagina;
+    var empresasPaginadas = empresas.slice(inicio, fin);
+
+    // Construir y mostrar las filas de la tabla para la página actual
+    var html = "";
+    empresasPaginadas.forEach(function(empresa) {
+        html += "<tr>";
+        html += "<td style='vertical-align: middle;'><input type='radio' name='empresa_seleccionada' value='" + empresa.ruc + "'></td>";
+        html += "<td style='vertical-align: middle;'>" + empresa.ruc + "</td>";
+        html += "<td style='vertical-align: middle;'>" + empresa.empleador + "</td>";
+        html += "</tr>";
+    });
+    $("#div_empresas").html(html);
+
+    // Mostrar la información de paginación
+    mostrarPaginacion(a, empresas.length, paginaActual, resultadosPorPagina, empresas);
+}
+
+// Función para mostrar la paginación
+function mostrarPaginacion(a, totalEmpresas, paginaActual, resultadosPorPagina, empresas) {
+    var totalPaginas = Math.ceil(totalEmpresas / resultadosPorPagina);
+    var paginacionHtml = "";
+
+    // Construir botón "Anterior"
+    paginacionHtml += "<button type='button' class='btn btn-sm btn-outline-secondary mr-1' id='btnAnterior'>Anterior</button>";
+
+    // Mostrar número de página actual y total de páginas
+    paginacionHtml += "<span class='mr-1'>Página <span id='paginaActual'>" + paginaActual + "</span> de <span id='totalPaginas'>" + totalPaginas + "</span></span>";
+
+    // Construir botón "Siguiente"
+    paginacionHtml += "<button type='button' class='btn btn-sm btn-outline-secondary' id='btnSiguiente'>Siguiente</button>";
+
+    // Agregar la paginación al contenedor correspondiente
+    $("#paginacion").html(paginacionHtml);
+
+    // Evento al hacer clic en el botón "Anterior"
+    $("#btnAnterior").on("click", function() {
+        var paginaActual = parseInt($("#paginaActual").text());
+        if (paginaActual > 1) {
+            paginaActual--;
+            mostrarDatos(a, empresas, paginaActual, resultadosPorPagina);
+        }
+    });
+
+    // Evento al hacer clic en el botón "Siguiente"
+    $("#btnSiguiente").on("click", function() {
+        var paginaActual = parseInt($("#paginaActual").text());
+        var totalPaginas = parseInt($("#totalPaginas").text());
+        if (paginaActual < totalPaginas) {
+            paginaActual++;
+            mostrarDatos(a, empresas, paginaActual, resultadosPorPagina);
+        }
+    });
+}
+
+// Controlador de eventos para el evento keyup en el input de búsqueda
+$("#searchInput").on("keyup", function() {
+    var value_emp = $('#val_number_emp').val();
+    var textoBusqueda = $(this).val().toLowerCase(); // Obtener el valor del input y convertirlo a minúsculas
+    var primeraPagina = 1;
+    var resultadosPorPagina = 10; 
+    if (textoBusqueda === "") {
+        // Si el input está vacío, mostrar todas las empresas del primer resultado del API
+        //console.log("Texto Vacio");
+        mostrarDatos(value_emp, empresasData, primeraPagina, resultadosPorPagina);
+    } else {
+        // Si hay un valor en el input, realizar la búsqueda en el JSON y mostrar los resultados correspondientes
+        var empresasFiltradas = filtrarEmpresas(empresasData, textoBusqueda);
+        if (empresasFiltradas.length > 0) {
+            mostrarDatos(value_emp, empresasFiltradas, primeraPagina, resultadosPorPagina);
+        } else {
+            // Manejar el caso en el que no se encuentren resultados
+            $("#div_empresas").html("<tr><td colspan='3'>No se encontraron empresas que coincidan con la búsqueda.</td></tr>");
+        }
+    }
+});
+
+// Función para filtrar las empresas basadas en el texto de búsqueda
+function filtrarEmpresas(empresas, textoBusqueda) {
+    return empresas.filter(function(empresa) {
+        // Filtrar las empresas cuyo nombre (empleador) coincida parcialmente con el texto de búsqueda
+        return empresa.empleador.toLowerCase().includes(textoBusqueda);
+    });
+}
+
+function SeleccionarEmpresa(){
+    var num = $('#val_number_emp').val();
+    var rucSeleccionado = $("input[name='empresa_seleccionada']:checked").val();
+    var nombreEmpresa = $("input[name='empresa_seleccionada']:checked").closest("tr").find("td:nth-child(3)").text();
+
+    if (rucSeleccionado && nombreEmpresa) {
+        //Setear los valores al input text;
+        let texto = `<option value="${rucSeleccionado}">${nombreEmpresa}</option>`;
+        
+        $('#lst_emp_' + num).html(texto);
+        $('#modalempresas').modal('hide');
+        $('#ruc_emp_'+num).val(rucSeleccionado);
+        ListarFirmante(num);
+    } else {
+        console.error("No se ha seleccionado ninguna empresa.");
+    }
+}
+
+
 
 function mostrardetalle(a,b,c){
     $('#contenedor_emp'+ a).show();
@@ -1541,7 +1698,7 @@ function mostrardetalle(a,b,c){
         if(fechai >= fechanac){
             if(fechai < fechaf){
                 if(cbx_cargo !== ''){
-                    if(valor_busqueda == 0){
+                    if(1 == 0){
                         //Ajax para traer la lista
                         /*$.post("../../controller/pensioncontrolador.php?op=combo",{txtdateinicio: fech1 , txtdatefin: fech_final_1, tipo : cbx_tipo, base : cbx_base, estado : cbx_estado, condicion : cbx_condicion}, function(data){
                             if(data == ""){
@@ -1551,130 +1708,7 @@ function mostrardetalle(a,b,c){
                                 $("#lst_emp_"+a).html(data);
                             }
                         });*/
-
-                        $.post("../../controller/pensioncontrolador.php?op=pensionaleatorioempresa",{txtdateinicio: fech1 , txtdatefin: fech_final_1, tipo : cbx_tipo, base : cbx_base, estado : cbx_estado, condicion : cbx_condicion},function(data){
-                        //console.log(data);
-                            if(data == ""){
-                                Swal.fire({
-                                    position: 'center',
-                                    icon: 'info',
-                                    title: 'No existe informacion',
-                                    showConfirmButton: false,
-                                    timer:1500
-                                });
-                            }else {
-                                console.log("PRIMERA BUSQUEDA");
-                                data = JSON.parse(data);
-                                //console.log(data);
-                                //$("#lst_emp_"+a).val(data[0]['ruc']).trigger('change');
-                                $('#nom_emp_'+a).html(data[0]['ruc']+" - "+data[0]['empleador']);
-                                $('#fech_sueldo_'+a).val(data[0]['moneda_sueldo']);
-                                $('#cant_sueldo_'+a).val(data[0]['fechsueldo']);
-                                $('#nom_emp_lab'+ a).html(data[0]['empleador']);
-                                $('#nom_emp_lab'+ a).val(data[0]['empleador']);
-                                $('#tiempo_header_'+a).html(data[0]['Anios']+' Años '+ data[0]['Meses']+' Meses '+data[0]['Dias']+' Dias');
-                                $('#anios_emp_'+a).val(data[0]['Anios']);
-                                $('#meses_emp_'+a).val(data[0]['Meses']);
-                                $('#dias_emp_'+a).val(data[0]['Dias']);
-                                $('#ruc_emp_'+a).val(data[0]['ruc']);
-                                $('#tipo_emp_'+a).val(data[0]['tipo_emp']);
-                                $('#fech_inicio_emp').val(fech1);
-                                $('#fech_final_emp').val(fech_final_1);
-                                $('#cargo_emp').val(cargo);
-                                $('#dpto_emp_'+a).val(data[0]['dpto']);
-                                $('#rep_legal_'+a).val(data[0]['rep_legal']);
-                                $('#dni_a_'+a).val(data[0]['dni_a']);
-                                $('#rango_emp_'+a).val(data[0]['f_inic_act'] +" / "+ data[0]["f_baja_act"]);
-
-                                nom = $('#nom_emp_lab').val();
-                                var dpto1= $('#dpto_emp_'+a).val();
-                                nombres= $('#txtnombre').val();
-                                apelli= $('#txtapellido').val();
-                                tmp = parseInt($('#anios_emp_'+a).val(),"10");
-                                sldo = Number(data[0]['fechsueldo'])
-                                tot = tmp * sldo;
-                                rp =  data[0]['rep_legal'];
-                                dnia = data[0]['dni_a'];
-                                firm = $('#firmante'+a).val();
-
-                                //Asignar valores a TabsEmpresa
-                                $('#nombre_emp'+a).val(data[0]['empleador']);
-                                $('#cargo_emp'+a).val(cargo);
-                                $('#fech_inicio_emp'+a).val(fechai);
-                                $('#fech_final_emp'+a).val(fechaf)
-                                $('#dpto_emp'+a).val(dpto1);
-                                $('#logo_nombre'+a).val(logos);
-                                $('#firmante_emp'+a).val(firm)
-                                $('#sueldo_emp'+a).val(data[0]['fechsueldo']);
-                                $('#moneda_emp'+a).val(data[0]['moneda_rm']);
-                                $('#tiempo_imp'+ a).val(tmp +" Años");
-                                $('#ruc_emp' +a).val(data[0]['ruc']);
-
-                                $('.emp_imp').html(nom);
-                                $('.nombre_imp').html(nombres+" "+apelli);
-                                $('.cargo_imp').html(cargo);
-                                $('.desde_imp').html(fechai.toLocaleDateString("es-ES", options).toUpperCase());
-                                $('.hasta_imp').html(fechaf.toLocaleDateString("es-ES", options).toUpperCase());
-                                $('.lugardia').html(dpto1+", "+fechaf.toLocaleDateString("es-ES", options).toUpperCase());
-                                $('.desde_imp_low').html(fechai.toLocaleDateString("es-ES", options));
-                                $('.hasta_imp_low').html(fechaf.toLocaleDateString("es-ES", options));
-                                $('.lugardia_low').html(dpto1+", "+fechaf.toLocaleDateString("es-ES", options));
-                                $('.tiempo_imp').html(tmp +" Años");
-                                $('.anios_temp').html(data[0]['Anios']);
-                                $('.tiempo_liqui_imp').html(data[0]['Anios']+' Años '+ data[0]['Meses']+' Meses ');
-                                $('.sueldo_imp').html(sldo);
-                                $('.tot_imp').html(tot);
-                                $('.nom_emp_ap').html(apelli+" "+nombres);
-                                $('.ruc_emp_imp').val(data[0]['ruc']);
-                                $('.nom_emp_ap_rp').html(rp);
-                                $('.dni_imp_rp').html(dnia);
-                                $('.img_logo').attr("src","../../assets/img/"+logos);
-                                $('.firmante_nom').html(firm);
-                                $('.departamento_imp').html(dpto1.toUpperCase());
-                                $('.cargo_imp_low').html(cargo.toLowerCase());
-                                    /*NUEVO*/
-                                $('.desde_imp_num').html(convertDateFormat(fech1));
-                                $('.hasta_imp_num').html(convertDateFormat(fech_final_1));
-                                $('.lugardia_num').html(dpto1 +", "+convertDateFormat(fech_final_1));
-
-                                $('#emp_certificado').val(nom);
-                                $('#nombre_certificado').val(nombres+" "+apelli);
-                                $('#f_ini_certificado').val(convertDateFormat(fech1));
-                                $('#f_baj_certificado').val(convertDateFormat(fech_final_1));
-                                $('#cargo_certificado').val(cargo);
-                                $('#firmante_certificado').val(firm);
-                                $('#lugar_certificado').val(dpto1+", "+convertDateFormat(fech_final_1));
-
-                                /* LIQUIDACION */
-                                $('#dias_liqui' + a).val(data[0]['Dias']);
-                                $('#meses_liqui' + a).val(data[0]['Meses']);
-                                $('#anios_liqui' + a).val(data[0]['Anios']);
-
-                                $('#sueldo_liquidacion'+ a).val(data[0]['fechsueldo']);
-
-                                 //estado y condicion
-                                 $('#estado_emp_' + a).val(data[0]['estado_emp']);
-                                 $('#condicion_emp_' + a).val(data[0]['habido_emp']);
-                                 if(data[0]['estado_emp'] == 'ACTIVO'){
-                                     $('#estado_emp_' + a).css({'color': '#70e000','font-weight': 'bold'});
-                                 }else {
-                                     $('#estado_emp_' + a).css({'color': '#ef233c','font-weight': 'bold'});
-                                 }
-
-                                 if(data[0]['habido_emp'] == 'HABIDO'){
-                                     $('#condicion_emp_' + a).css({'color': '#70e000','font-weight': 'bold'});
-                                 }else {
-                                     $('#condicion_emp_' + a).css({'color': '#ef233c','font-weight': 'bold'});
-                                 }
-
-                                sumarfechas();
-                                sumarbono(a);
-                                MostrarCertificados(data[0]['tipo_emp'], a);
-                                MostrarLiquidacion(fech_final_1, data[0]['tipo_emp'], a);
-
-                                ListarFirmante(a);
-                            }
-                        });
+                        
                     }else {
                          $.post("../../controller/pensioncontrolador.php?op=buscardpto",{txtdateinicio: fech1 , txtdatefin: fech_final_1, txtrazon : razsocialruc},function(data){
                         //console.log(data);
@@ -2982,7 +3016,7 @@ function imprimir_word(e){
             // Crear un elemento <a> oculto
             var link = document.createElement('a');
             link.href = url;
-            link.download = resp.archivo+'-'+num_doc; // Nombre del archivo para descargar
+            link.download = resp.archivo+'-'+num_doc + '.docx'; // Nombre del archivo para descargar
             link.style.display = 'none';
 
             // Añadir el elemento <a> al DOM
@@ -4948,7 +4982,7 @@ function imprimir_word_renuncia(e){
             // Crear un elemento <a> oculto
             var link = document.createElement('a');
             link.href = url;
-            link.download = resp.archivo+'-'+num_doc; // Nombre del archivo para descargar
+            link.download = resp.archivo+'-'+num_doc + '.docx'; // Nombre del archivo para descargar
             link.style.display = 'none';
 
             // Añadir el elemento <a> al DOM
@@ -5392,6 +5426,10 @@ function ValidarFecha(input){
     }
 }
 
+$(document).on("click","#btnclosemodal_empresa", function(){
+
+    $("#modalempresas").modal('hide');
+});
 
 
 init();

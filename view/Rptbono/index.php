@@ -106,7 +106,7 @@
                                         <label class="col-sm-4 form-control-label">Nro Empresas:</label>
                                         <div class="row col-sm-6 mg-t-10 mg-sm-t-0">
                                             <div class="col-lg-8">
-                                                <input type="number" max="5" min="1" class="form-control" name="txtcant_emp" id="txtcant_emp">
+                                                <input type="number" max="5" min="0" class="form-control" name="txtcant_emp" id="txtcant_emp">
                                             </div>
                                         </div>
                                     </div>
@@ -114,7 +114,7 @@
                                         <label class="col-sm-4 form-control-label">Nro Orcinea:</label>
                                         <div class="row col-sm-6 mg-t-10 mg-sm-t-0">
                                             <div class="col-lg-8">
-                                                <input type="number" max="4" min="1" class="form-control" name="txtcant_orcinea" id="txtcant_orcinea">
+                                                <input type="number" max="4" min="0" class="form-control" name="txtcant_orcinea" id="txtcant_orcinea">
                                             </div>
                                            
                                         </div>
@@ -123,7 +123,7 @@
                                         <label class="col-sm-4 form-control-label">Nro Host:</label>
                                         <div class="row col-sm-6 mg-t-10 mg-sm-t-0">
                                             <div class="col-lg-8">
-                                                <input type="number" max="4" min="1" class="form-control" name="txtcant_host" id="txtcant_host" >
+                                                <input type="number" max="4" min="0" class="form-control" name="txtcant_host" id="txtcant_host" >
                                             </div>
                                             <div class="col-lg-4 text-center">
                                                 <button type="submit" id="btnautogenerar" name=""  class="btn btn-info"  >Generar</button>
@@ -12813,6 +12813,7 @@
             require_once("./modalactualizar.php");
             require_once("./modalboletas.php");
             require_once("./modalboletasdsc.php");
+            require_once("./modalempresas.php");
             require_once("../Main/mainjs.php"); 
         ?>
         <script src="rptbono.js" type="text/javascript"></script>

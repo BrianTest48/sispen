@@ -11646,6 +11646,7 @@
             require_once("./modalboletas.php");
             require_once("../Main/mainjs.php");
             require_once("./modalboleta_info.php");
+            require_once("./modalempresas.php");
         ?>
     
         <script src="pensiones.js" type="text/javascript"></script>

@@ -321,7 +321,22 @@ switch ($_GET["op"]) {
             echo $html;
         }
         break;
-
+    case 'empresas_seleccion':
+        $datos = $pension->pension_aleatorio_empresa($_POST["txtdateinicio"], $_POST["txtdatefin"], $_POST["tipo"], $_POST["base"], $_POST["estado"], $_POST["condicion"]);
+        if (is_array($datos) && count($datos) > 0) {
+            // Crear un arreglo asociativo para almacenar los datos de las empresas
+            $empresas = array();
+            foreach ($datos as $row) {
+                // Agregar cada fila como un elemento al arreglo de empresas
+                $empresas[] = array(
+                    'ruc' => $row["ruc"],
+                    'empleador' => $row["empleador"]
+                );
+            }
+            // Devolver los datos como JSON
+            echo json_encode($empresas);
+        }
+        break;
     case 'buscardpto':
 
         $datos = $pension->pension_empresa_dpto($_POST["txtdateinicio"], $_POST["txtdatefin"], $_POST["txtrazon"]);

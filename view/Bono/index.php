@@ -12799,6 +12799,7 @@
             require_once("./modalfirmante.php");
             require_once("./modalboletas.php");
             require_once("./modalboletasdsc.php");
+            require_once("./modalempresas.php");
             require_once("../Main/mainjs.php");
         ?>
         <script src="bono.js" type="text/javascript"></script>

@@ -289,7 +289,7 @@ function generar(e){
                         $('#cbx_condicion_'+ i).val(datos["condicion_"+i]).trigger('change');
 
                         //mostrardetalle(i, 0, 0);
-                        BuscarEmp(i);
+                        BuscarEmp_inicio(i, datos["ruc"+i]);
                         
                         setTimeout(function() {
                             //console.log("Despues de 1 segundo");
@@ -344,9 +344,6 @@ function generar(e){
                         $('#select_renuncia'+ i).val(dato_empresa.Renuncia.tipo_renuncia).trigger('change');
                         $('#fecha_renuncia'+ i).val(dato_empresa.Renuncia.fecha_emision);
                     }
-
-                    
-                
                     $('#prev1').hide();
                 }else {
 
@@ -904,7 +901,7 @@ function creardivsempresa(){
                                     "<div class='col-12 col-sm-12'>"+
                                         "<div class='form-group'>"+
                                             "<label class='form-control-label' for='lst_emp_"+i+"'>Empresa</label>"+
-                                            "<select class='form-control select2' name='lst_emp_"+i+"' id='lst_emp_"+i+"' data-placeholder='Seleccione' style='width: 100%' required onchange='ListarFirmante("+i+")'></select>"+
+                                            "<select class='form-control select2' name='lst_emp_"+i+"' id='lst_emp_"+i+"' data-placeholder='Seleccione' style='width: 100%' required onchange='ListarFirmante("+i+")' disabled></select>"+
                                             "<label id='errorLabel_"+i+"' class='error-label' style='color: red;'>Texto predeterminado</label>"+ // Label con texto predeterminado
                                         "</div>"+
                                     "</div>"+
@@ -1163,6 +1160,27 @@ function CopiarRazSocial(a) {
     });
 }
 
+function BuscarEmp_inicio(a, ruc){
+    $.ajax({
+        url: "../../controller/empresacontrolador.php?op=rucempresa",
+        type: "POST",
+        data: { emp_ruc: ruc },
+        dataType: 'JSON',
+        success: function(data) {
+            console.log(data);
+            let select = `<option value="${ruc}">${data.empleador}</option>`;
+            $("#lst_emp_"+ a).html(select);
+        
+        },
+        error: function(xhr, status, error) {
+            console.error("Error en la solicitud AJAX:", status, error);
+        }
+    });
+}
+
+var empresasData = [];
+var empresasBusqueda = [];
+
 function BuscarEmp(a){
 
     let fech1 = $('#f_inicio_'+a).val();
@@ -1190,16 +1208,49 @@ function BuscarEmp(a){
 
         if(fechai >= fechanac){
             if(fechai < fechaf){
-
-                $.post("../../controller/pensioncontrolador.php?op=combo",{txtdateinicio: fech1 , txtdatefin: fech_final_1, tipo : cbx_tipo, base : cbx_base, estado : cbx_estado, condicion : cbx_condicion}, function(data){
+                /*$.post("../../controller/pensioncontrolador.php?op=combo",{txtdateinicio: fech1 , txtdatefin: fech_final_1, tipo : cbx_tipo, base : cbx_base, estado : cbx_estado, condicion : cbx_condicion}, function(data){
                     if(data == ""){
                         console.log("NO EXISTE DATA");
                     }else {
                         //console.log(data);
-                        $("#lst_emp_"+a).html(data);
+                        $("#lst_emp_"+ a).html(data);
+                       //Mostrar Modal
+                        $('#modalempresas').modal('show');
+                    }
+                });*/
+                $.ajax({
+                    url: "../../controller/pensioncontrolador.php?op=empresas_seleccion",
+                    type: "POST",
+                    data: {
+                        txtdateinicio: fech1,
+                        txtdatefin: fech_final_1,
+                        tipo: cbx_tipo,
+                        base: cbx_base,
+                        estado: cbx_estado,
+                        condicion: cbx_condicion
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        //console.log(data);
+                        if (data.length > 0) {
+                            // Almacena los datos de empresas en la variable global
+                            empresasData = data;
+                            var resultadosPorPagina = 10; // Define el número de resultados por página
+                            var paginaActual = 1; // Página inicial
+                            mostrarDatos(a, empresasData, paginaActual, resultadosPorPagina);
+
+                            $('#val_number_emp').val(a);
+                            //Mostrar Modal
+                            $('#modalempresas').modal('show');
+                        } else {
+                            // Manejar caso donde no hay datos
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                        // Maneja errores si es necesario
                     }
                 });
-              
             }else {
                 Swal.fire({
                     position: 'center',
@@ -1231,6 +1282,120 @@ function BuscarEmp(a){
     
 
 }
+
+
+// Función para mostrar datos paginados
+function mostrarDatos(a, empresas, paginaActual, resultadosPorPagina) {
+    // Limpiar contenido existente de la tabla
+    $("#div_empresas").empty();
+
+    // Calcular índices de inicio y fin para la página actual
+    var inicio = (paginaActual - 1) * resultadosPorPagina;
+    var fin = inicio + resultadosPorPagina;
+    var empresasPaginadas = empresas.slice(inicio, fin);
+
+    // Construir y mostrar las filas de la tabla para la página actual
+    var html = "";
+    empresasPaginadas.forEach(function(empresa) {
+        html += "<tr>";
+        html += "<td style='vertical-align: middle;'><input type='radio' name='empresa_seleccionada' value='" + empresa.ruc + "'></td>";
+        html += "<td style='vertical-align: middle;'>" + empresa.ruc + "</td>";
+        html += "<td style='vertical-align: middle;'>" + empresa.empleador + "</td>";
+        html += "</tr>";
+    });
+    $("#div_empresas").html(html);
+
+    // Mostrar la información de paginación
+    mostrarPaginacion(a, empresas.length, paginaActual, resultadosPorPagina, empresas);
+}
+
+// Función para mostrar la paginación
+function mostrarPaginacion(a, totalEmpresas, paginaActual, resultadosPorPagina, empresas) {
+    var totalPaginas = Math.ceil(totalEmpresas / resultadosPorPagina);
+    var paginacionHtml = "";
+
+    // Construir botón "Anterior"
+    paginacionHtml += "<button type='button' class='btn btn-sm btn-outline-secondary mr-1' id='btnAnterior'>Anterior</button>";
+
+    // Mostrar número de página actual y total de páginas
+    paginacionHtml += "<span class='mr-1'>Página <span id='paginaActual'>" + paginaActual + "</span> de <span id='totalPaginas'>" + totalPaginas + "</span></span>";
+
+    // Construir botón "Siguiente"
+    paginacionHtml += "<button type='button' class='btn btn-sm btn-outline-secondary' id='btnSiguiente'>Siguiente</button>";
+
+    // Agregar la paginación al contenedor correspondiente
+    $("#paginacion").html(paginacionHtml);
+
+    // Evento al hacer clic en el botón "Anterior"
+    $("#btnAnterior").on("click", function() {
+        var paginaActual = parseInt($("#paginaActual").text());
+        if (paginaActual > 1) {
+            paginaActual--;
+            mostrarDatos(a, empresas, paginaActual, resultadosPorPagina);
+        }
+    });
+
+    // Evento al hacer clic en el botón "Siguiente"
+    $("#btnSiguiente").on("click", function() {
+        var paginaActual = parseInt($("#paginaActual").text());
+        var totalPaginas = parseInt($("#totalPaginas").text());
+        if (paginaActual < totalPaginas) {
+            paginaActual++;
+            mostrarDatos(a, empresas, paginaActual, resultadosPorPagina);
+        }
+    });
+}
+
+// Controlador de eventos para el evento keyup en el input de búsqueda
+$("#searchInput").on("keyup", function() {
+    var value_emp = $('#val_number_emp').val();
+    var textoBusqueda = $(this).val().toLowerCase(); // Obtener el valor del input y convertirlo a minúsculas
+    var primeraPagina = 1;
+    var resultadosPorPagina = 10; 
+    if (textoBusqueda === "") {
+        // Si el input está vacío, mostrar todas las empresas del primer resultado del API
+        //console.log("Texto Vacio");
+        mostrarDatos(value_emp, empresasData, primeraPagina, resultadosPorPagina);
+    } else {
+        // Si hay un valor en el input, realizar la búsqueda en el JSON y mostrar los resultados correspondientes
+        var empresasFiltradas = filtrarEmpresas(empresasData, textoBusqueda);
+        if (empresasFiltradas.length > 0) {
+            mostrarDatos(value_emp, empresasFiltradas, primeraPagina, resultadosPorPagina);
+        } else {
+            // Manejar el caso en el que no se encuentren resultados
+            $("#div_empresas").html("<tr><td colspan='3'>No se encontraron empresas que coincidan con la búsqueda.</td></tr>");
+        }
+    }
+});
+
+// Función para filtrar las empresas basadas en el texto de búsqueda
+function filtrarEmpresas(empresas, textoBusqueda) {
+    return empresas.filter(function(empresa) {
+        // Filtrar las empresas cuyo nombre (empleador) coincida parcialmente con el texto de búsqueda
+        return empresa.empleador.toLowerCase().includes(textoBusqueda);
+    });
+}
+
+function SeleccionarEmpresa(){
+    var num = $('#val_number_emp').val();
+    
+    var rucSeleccionado = $("input[name='empresa_seleccionada']:checked").val();
+    var nombreEmpresa = $("input[name='empresa_seleccionada']:checked").closest("tr").find("td:nth-child(3)").text();
+
+    if (rucSeleccionado && nombreEmpresa) {
+        //Setear los valores al input text;
+        let texto = `<option value="${rucSeleccionado}">${nombreEmpresa}</option>`;
+        
+        $('#lst_emp_' + num).html(texto);
+        $('#modalempresas').modal('hide');
+        $('#ruc_emp_'+num).val(rucSeleccionado);
+        ListarFirmante(num);
+    } else {
+        console.error("No se ha seleccionado ninguna empresa.");
+    }
+}
+
+
 
 function mostrardetalle(a, b, c){  
 
@@ -1383,7 +1548,7 @@ function mostrardetalle(a, b, c){
             if(fechai < fechaf){
                 if(fechaf <= fecha_final){
                     if(cbx_cargo !== ''){
-                        if(valor_busqueda == 0){
+                        if(1 == 0){
                             //Ajax para obtener la lista de empresas
     
                             /*$.post("../../controller/pensioncontrolador.php?op=combo",{txtdateinicio: fech1 , txtdatefin: fech_final_1, tipo : cbx_tipo, base : cbx_base, estado : cbx_estado, condicion : cbx_condicion}, function(data){
@@ -1397,7 +1562,7 @@ function mostrardetalle(a, b, c){
                             
     
                             //Ajax para el primer valor de la lista.
-                            $.post("../../controller/pensioncontrolador.php?op=pensionaleatorioempresa",{txtdateinicio: fech1 , txtdatefin: fech_final_1, tipo : cbx_tipo, base : cbx_base, estado : cbx_estado, condicion : cbx_condicion},function(data){
+                            /*$.post("../../controller/pensioncontrolador.php?op=pensionaleatorioempresa",{txtdateinicio: fech1 , txtdatefin: fech_final_1, tipo : cbx_tipo, base : cbx_base, estado : cbx_estado, condicion : cbx_condicion},function(data){
                                 console.log("PRIMERA BUSQUEDA");
         
                                 if(data == ""){
@@ -1433,8 +1598,6 @@ function mostrardetalle(a, b, c){
         
                                    
                                     
-                                    /****DATOS DE DIAS */
-                                    //$("#lst_emp_"+a).val(data[0]['ruc']).trigger('change');
                                     nom = $('#nom_emp_lab').val();
                                     var dpto1= $('#dpto_emp_'+a).val();
                                     temp = $('#tiempo_header_'+a).html();
@@ -1488,7 +1651,7 @@ function mostrardetalle(a, b, c){
                                     $('.lugardia_num').html(dpto1 +", "+convertDateFormat(fech_final_1));
         
         
-                                    /* CERTIFICADO */
+                                    // CERTIFICADO 
                                     $('#emp_certificado').val(nom);
                                     $('#nombre_certificado').val(nombres+" "+apelli);
                                     $('#f_ini_certificado').val(convertDateFormat(fech1));
@@ -1499,7 +1662,7 @@ function mostrardetalle(a, b, c){
                                     $('#sueldo_emp').val(data[0]['fechsueldo']);
                                     $('#moneda_emp').val(data[0]['moneda_rm']);
         
-                                    /* LIQUIDACION */
+                                    // LIQUIDACION 
                                     $('#dias_liqui'+ a).val(data[0]['Dias']);
                                     $('#meses_liqui'+ a).val(data[0]['Meses']);
                                     $('#anios_liqui'+ a).val(data[0]['Anios']);
@@ -1530,7 +1693,7 @@ function mostrardetalle(a, b, c){
                                     
                                 }
                                 
-                            });
+                            });*/
                         }else {
                             $.post("../../controller/pensioncontrolador.php?op=buscardpto",{txtdateinicio: fech1 , txtdatefin: fech_final_1, txtrazon : razsocialruc},function(data){
                                 console.log("SEGUNDA BUSQUEDA");
@@ -4145,6 +4308,11 @@ $(document).on("click","#btnclosemodal_info", function(){
     $("#modalboleta_info").modal('hide');
 });
 
+$(document).on("click","#btnclosemodal_empresa", function(){
+
+    $("#modalempresas").modal('hide');
+});
+
 function PrevCertificado(e) {
 
     console.log("PrevCertificado : " + e );
@@ -4470,7 +4638,7 @@ function imprimir_word_renuncia(e){
             // Crear un elemento <a> oculto
             var link = document.createElement('a');
             link.href = url;
-            link.download = resp.archivo+'-'+num_doc; // Nombre del archivo para descargar
+            link.download = resp.archivo+'-'+num_doc + '.docx'; // Nombre del archivo para descargar
             link.style.display = 'none';
 
             // Añadir el elemento <a> al DOM
