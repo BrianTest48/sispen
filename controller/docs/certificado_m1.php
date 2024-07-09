@@ -25,19 +25,69 @@ $firmante = $_POST["firmante"];
 $ruc = $_POST["ruc"];
 $num_emp = $_POST['num_emp'];
 
+
+// Variable para controlar si se muestra la marca de agua
+$mostrarMarcaAgua = false;
+
+// Verificar si se ha enviado una imagen en la solicitud POST y si no está vacía
+if (isset($_POST["nombre_fondo"]) && !empty($_POST["nombre_fondo"])) {
+    // Ruta de la imagen de la marca de agua
+    $rutaImagen = '../../assets/img/' . $_POST["nombre_fondo"];
+
+    // Verificar si la imagen existe
+    if (file_exists($rutaImagen)) {
+        // Establecer la variable $imagenMarcaAgua con la ruta de la imagen
+        $mostrarMarcaAgua = true;
+    }
+}
+
+
 $section = $phpWord->addSection(array('marginTop'=>2000));
+
+
+/**START FONDO */
 // Crear una imagen como marca de agua
 $header = $section->createHeader();
-// $header->addImage('../../view/images/bola.png',
-//     array(
-//         'positioning'      => \PhpOffice\PhpWord\Style\Image::POSITION_ABSOLUTE,
-//         'posHorizontal'    => \PhpOffice\PhpWord\Style\Image::POSITION_HORIZONTAL_LEFT,
-//         'posHorizontalRel' => \PhpOffice\PhpWord\Style\Image::POSITION_RELATIVE_TO_PAGE,
-//         'posVerticalRel'   => \PhpOffice\PhpWord\Style\Image::POSITION_RELATIVE_TO_PAGE,
-//         'marginRight'       => \PhpOffice\PhpWord\Shared\Converter::cmToPixel(2.5),
-//         'marginTop'        => \PhpOffice\PhpWord\Shared\Converter::cmToPixel(1),
-//     )
-// );
+
+if($mostrarMarcaAgua){
+
+    // Ruta de la imagen de la marca de agua
+    $imagenMarcaAgua = '../../assets/img/'.$_POST["nombre_fondo"];
+
+    // Obtener dimensiones originales de la imagen
+    list($anchoOriginal, $altoOriginal) = getimagesize($imagenMarcaAgua);
+
+    // Obtener dimensiones de la página actual del documento
+    $anchoPagina = $section->getPageWidth();
+    $altoPagina = $section->getPageHeight();
+
+    // Aplicar un factor de reducción adicional
+    $factorReduccion = 0.5; // Puedes ajustar este valor según sea necesario
+
+    // Calcular nuevas dimensiones de la imagen
+    $nuevoAncho = $anchoOriginal * $factorReduccion;
+    $nuevoAlto = $altoOriginal * $factorReduccion;
+
+    // Opciones de la imagen de la marca de agua
+    $opcionesImagen = array(
+        'positioning' => \PhpOffice\PhpWord\Style\Image::POSITION_ABSOLUTE,
+        'posHorizontal' => \PhpOffice\PhpWord\Style\Image::POSITION_HORIZONTAL_CENTER,
+        'posHorizontalRel' => \PhpOffice\PhpWord\Style\Image::POSITION_RELATIVE_TO_PAGE,
+        'posVertical' => \PhpOffice\PhpWord\Style\Image::POSITION_VERTICAL_CENTER,
+        'posVerticalRel' => \PhpOffice\PhpWord\Style\Image::POSITION_RELATIVE_TO_PAGE,
+        'marginTop' => 0, // Ajusta según sea necesario
+        'width' => $nuevoAncho,
+        'height' => $nuevoAlto,
+    );
+
+    // Agregar la imagen de la marca de agua al encabezado
+    $header->addImage($imagenMarcaAgua, $opcionesImagen);
+
+    /*END FONDO */
+}
+
+
+
 $imgpath = '../../assets/img/'.$logo;
 $imgoptions = array(
     'width' => 120, // Ancho de la imagen en píxeles

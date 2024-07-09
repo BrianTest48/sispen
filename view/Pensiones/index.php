@@ -506,8 +506,7 @@
                                                 <button class="btn btn-info" onclick="imprimir_certificado()">Imprimir</button>
                                             </div>
                                         </div>
-                                        <div id="contenido_certificado_p1" class="card-body m-5 p-5">
-                                          
+                                        <div id="contenido_certificado_p1" class="card-body m-5 p-5">                                         
                                             <div class="d-flex justify-content-between mb-5 divimagen" >
                                                 <div  style="text-align: right !important;">
                                                     <h1 class="emp_imp" style="color: #FF0000;font-weight: 600;font-size: 20px;">XXXXXX</h1>
@@ -566,8 +565,7 @@
                                                         <!--<p style="color: #000;font-weight: 600;font-size: 16px;">GERENTE</p>-->
                                                     </div>
                                                 </div>
-                                            </div>
-                                            
+                                            </div>   
                                         </div>
                                     </div>
                                 </div>
@@ -11644,9 +11642,9 @@
             require_once("./modalactualizar.php");
             require_once("./modalfirmante.php");
             require_once("./modalboletas.php");
-            require_once("../Main/mainjs.php");
             require_once("./modalboleta_info.php");
             require_once("./modalempresas.php");
+            require_once("../Main/mainjs.php");
         ?>
     
         <script src="pensiones.js" type="text/javascript"></script>

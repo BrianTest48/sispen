@@ -833,6 +833,11 @@ function generar(e){
                 placeholder: "Seleccione",
                 minimumResultsForSearch: Infinity
             });
+
+            $('.select_fondo').select2({
+                placeholder: "Seleccione",
+                minimumResultsForSearch: Infinity
+            });
             
             //Ocultar contenedores
             $('.contenedores_emp').hide();
@@ -841,6 +846,11 @@ function generar(e){
             $.post("../../controller/motivocontrolador.php?op=combo",{},function(data){
                 $('.combo_prev_liqui').html(data);
             }); 
+
+            //Recuperar datos del combo Fondo
+            $.post("../../controller/fondocontrolador.php?op=combo",{},function(data){
+                $('.select_fondo').html(data);
+            });
             
             let fnac = $('#txtdate').val();
             let manana = moment(fnac).add(cant_anios, 'years').format('YYYY-MM-DD');
@@ -1089,6 +1099,13 @@ function crearTabs(valor, orc, host) {
         tabContent += '                                 <div class="form-group col-lg-6" style="padding: 0; margin-bottom: 0;">';
         tabContent += '                                     <input type="date" oninput="ValidarFecha(this)" class="form-control"  id="fecha_certificado'+ i +'"  style="width: 100%"/>';        
         tabContent += '                                     <div class="error-msg"></div>';
+        tabContent += '                                 </div>';
+        tabContent += '                             </div>';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Fondo: </label>';
+        tabContent += '                                 <div class="col-lg-6 pd-0">';
+        tabContent += '                                     <select class="form-control col-lg-6 select2 select_fondo" data-placeholder="Seleccione" id="select_fondo'+ i +'"  style="width: 100%" >';        
+        tabContent += '                                     </select>';
         tabContent += '                                 </div>';
         tabContent += '                             </div>';
         tabContent += '                         </div> ';
@@ -1632,6 +1649,13 @@ function crearTabs(valor, orc, host) {
         tabContent += '                                     <div class="error-msg"></div>';
         tabContent += '                                 </div>';
         tabContent += '                             </div>';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Fondo: </label>';
+        tabContent += '                                 <div class="col-lg-6 pd-0">';
+        tabContent += '                                     <select class="form-control col-lg-6 select2 select_fondo" data-placeholder="Seleccione" id="select_fondo'+ i +'"  style="width: 100%" >';        
+        tabContent += '                                     </select>';
+        tabContent += '                                 </div>';
+        tabContent += '                             </div>';
         tabContent += '                         </div> ';
         tabContent += '                     </div><!-- row -->';
         tabContent += '                 </div>';
@@ -2169,6 +2193,13 @@ function crearTabs(valor, orc, host) {
         tabContent += '                                 <div class="form-group col-lg-6" style="padding: 0; margin-bottom: 0;">';
         tabContent += '                                     <input type="date" oninput="ValidarFecha(this)" class="form-control "  id="fecha_certificado'+ i +'"  style="width: 100%"/>';        
         tabContent += '                                     <div class="error-msg"></div>';
+        tabContent += '                                 </div>';
+        tabContent += '                             </div>';
+        tabContent += '                             <div class="row mg-b-5">';
+        tabContent += '                                 <label class="form-control-label col-lg-6">Fondo: </label>';
+        tabContent += '                                 <div class="col-lg-6 pd-0">';
+        tabContent += '                                     <select class="form-control col-lg-6 select2 select_fondo" data-placeholder="Seleccione" id="select_fondo'+ i +'"  style="width: 100%" >';        
+        tabContent += '                                     </select>';
         tabContent += '                                 </div>';
         tabContent += '                             </div>';
         tabContent += '                         </div> ';
@@ -4691,6 +4722,7 @@ function imprimir_word(e){
     var logo = $('#logo_nombre'+ e).val();
     var firmante = $('.firmante_nom').html();
     var ruc = $('#ruc_emp'+ e).val();
+    var fondo = $('#select_fondo'+ e).val();
 
     $.ajax({
         type: "POST",
@@ -4711,7 +4743,8 @@ function imprimir_word(e){
             logo : logo,
             firmante : firmante,
             ruc: ruc,
-            num_emp : num_emp
+            num_emp : num_emp,
+            nombre_fondo: fondo
         },
         success: function(response){
            
@@ -4896,6 +4929,36 @@ function imprimir_certificado(){
     }
     let tipoprev = $('#select_certificado'+ e).val();
     var ficha = document.getElementById('contenido_certificado_'+tipoprev);
+
+
+    let fondo = $('#select_fondo'+ e).val();
+    // URL de la imagen de marca de agua (colócala manualmente aquí)
+    let imagenURL = `../../assets/img/${fondo}`;
+
+    // Estilos para la marca de agua
+    let imgStyles = {
+        position: 'fixed', // Posiciona la imagen en relación con la ventana del navegador
+        top: '50%', // Posiciona la imagen en el centro verticalmente
+        left: '50%', // Posiciona la imagen en el centro horizontalmente
+        transform: 'translate(-50%, -50%)', // Centra la imagen completamente
+        width: '60%', // Establece el tamaño al 60% del ancho de la ventana del navegador
+        height: 'auto', // Altura automática para mantener la proporción de la imagen
+        opacity: 0.3 // Opacidad de la marca de agua
+    };
+
+    // Crear un elemento <img> con la imagen de marca de agua y aplicar estilos
+    let imgElement = $('<img>', {
+        src: imagenURL,
+        style: Object.entries(imgStyles).map(([key, value]) => `${key}:${value}`).join(';') // Convertir el objeto de estilos en una cadena de estilos CSS
+    });
+
+    if(fondo){
+        // Adjuntar la imagen al contenedor del certificado
+        $(ficha).prepend(imgElement);
+    }
+
+    console.log(fondo);
+
     var ventimp1 = window.open(' ', 'Imprimir');
     ventimp1.document.write('<html><head><title>Certificado</title>');
     ventimp1.document.write('<link rel="stylesheet" href="../../public/css/bracket.css"></link>');
@@ -4909,6 +4972,7 @@ function imprimir_certificado(){
     
     ventimp1.onload = function() {
         ventimp1.print();
+        imgElement.remove();
         ventimp1.close();
     };
 
@@ -6521,12 +6585,23 @@ function PrevCertificado(e) {
         let fecha2 = new Date(fechaf);
         let fecha1num = moment(fecha1).format('DD-MM-YYYY');
         let fecha2num = moment(fecha2).format('DD-MM-YYYY');
-        console.log(fecha1);
-        console.log(fecha2);
+
 
         //console.log("Nombre de Empresa:" + nom);
         //console.log("Fecha1: " + fecha1);
         //console.log("Fecha2 : "+ fecha2);
+
+        //Certificado
+        let certificado = $('#select_certificado' + e).val();
+        //Fondo
+        let fondo = $('#select_fondo'+ e).val();
+        let imagenURL = `../../assets/img/${fondo}`;
+        $(`#contenido_certificado_${certificado}`).css({
+            'background-image': 'url(' + imagenURL + ')',
+            'background-size': '50%', // Establece el tamaño al 50%
+            'background-position': 'center', // Centra la imagen
+            'background-repeat': 'no-repeat' // Evita que la imagen se repita
+        });
         
         //Asignar datos
         $('.emp_imp').html(nom);

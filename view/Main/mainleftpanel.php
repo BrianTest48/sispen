@@ -121,6 +121,7 @@
             <li class="nav-item"><a href="../../view/MotivoCese/" class="nav-link menus">Motivo de Cese</a></li>
             <li class="nav-item"><a href="../../view/EmpresasUtilizadas/" class="nav-link">Empresas Utilizadas</a></li>
             <li class="nav-item"><a href="../../view/TiempoUso/" class="nav-link">Tiempo de Uso</a></li>
+            <li class="nav-item"><a href="../../view/Fondo/" class="nav-link">Fondo</a></li>
         </ul>
         <br>
         <a href="#" class="br-menu-link">
